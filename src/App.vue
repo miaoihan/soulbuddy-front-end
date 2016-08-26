@@ -1,6 +1,10 @@
 <template>
-  <!-- <input type="text" style="font-size:.16rem;width:100%;border:0"></input> -->
-  <bind-phone></bind-phone>
+<div id="app">
+  <div class="head">aa</div>
+  <a v-link="{ path: '/foo' }">Go to Foo</a>
+  <a v-link="{ path: '/bar' }">Go to bar</a>
+  <router-view></router-view>
+</div>
 </template>
 
 <script>

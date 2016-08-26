@@ -1,8 +1,21 @@
 import Vue from 'vue'
 import App from './App'
+import Router from 'vue-router'
+import BindPhone from './pages/BindPhone'
+import routes from './routes.js'
 
-/* eslint-disable no-new */
-new Vue({
-  el: 'body',
-  components: { App }
+// install router
+Vue.use(Router)
+
+// routing
+var router = new Router()
+
+router.map(routes)
+
+router.beforeEach(function () {
+  window.scrollTo(0, 0)
 })
+
+
+// 路由器会创建一个 App 实例，并且挂载到选择符 #app 匹配的元素上。
+router.start(App, '#app')
