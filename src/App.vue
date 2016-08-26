@@ -1,6 +1,7 @@
 <template>
-  <div id="app">
-    <img class="logo" src="./assets/logo.png">
+  <div>
+    xinglong da sb
+    在线直播
     <hello></hello>
     
   </div>
