@@ -1,22 +1,35 @@
 <template>
-  <div id="app">
-    <img class="logo" src="./assets/logo.png">
-    <hello></hello>
-    
-  </div>
+  <bind-phone></bind-phone>
 </template>
 
 <script>
 import Hello from './components/Hello'
-
+import Login from './pages/Login'
+import BindPhone from './pages/BindPhone'
 export default {
   components: {
-    Hello
+    Hello,Login,BindPhone,
   }
 }
 </script>
 
 <style lang="stylus">
+//公共样式
+img{
+    display: block;
+    outline: none;
+    border:0;
+    height: 100%;
+    width: 100%;
+}
+
+.container{
+  margin 0 auto
+  width 98%
+}
+
+
+//浏览器初始化
   body {
     position: relative;
     margin: 0;
@@ -118,23 +131,6 @@ export default {
   table {
     border-collapse: collapse;
     border-spacing: 0;
-  }
-
-  .container {
-    margin: 0 auto;
-    max-width: 3rem;
-  }
-
-  .container-fluid {
-    margin: 0 auto;
-    width: 90%;
-  }
-
-  .btn-clear {
-    padding: 0;
-    border: none;
-    background: none;
-    color: #fff;
   }
 
   html {
