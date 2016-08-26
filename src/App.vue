@@ -1,4 +1,5 @@
 <template>
+  <!-- <input type="text" style="font-size:.16rem;width:100%;border:0"></input> -->
   <bind-phone></bind-phone>
 </template>
 
@@ -6,9 +7,10 @@
 import Hello from './components/Hello'
 import Login from './pages/Login'
 import BindPhone from './pages/BindPhone'
+import InputBox from './components/areaComp/InputBox'
 export default {
   components: {
-    Hello,Login,BindPhone,
+    Hello,Login,BindPhone,InputBox
   }
 }
 </script>
@@ -27,7 +29,10 @@ img{
   margin 0 auto
   width 98%
 }
-
+.main{
+  background:#fff;
+  font-size:.14rem;
+}
 
 //浏览器初始化
   body {
