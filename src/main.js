@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import App from './App'
 import Router from 'vue-router'
-
+import BindPhone from './pages/BindPhone'
+import routes from './routes.js'
 
 // install router
 Vue.use(Router)
@@ -9,12 +10,7 @@ Vue.use(Router)
 // routing
 var router = new Router()
 
-router.map({
-  // '/': {
-  //   component: NewsView
-  // },
-  
-})
+router.map(routes)
 
 router.beforeEach(function () {
   window.scrollTo(0, 0)
