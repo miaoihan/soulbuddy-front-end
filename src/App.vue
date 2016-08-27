@@ -1,8 +1,6 @@
 <template>
 <div id="app">
-  <div class="head">aa</div>
-  <a v-link="{ path: '/foo' }">Go to Foo</a>
-  <a v-link="{ path: '/bar' }">Go to bar</a>
+  <i class="iconfont">&#58881;</i>
   <router-view></router-view>
 </div>
 </template>
@@ -19,30 +17,23 @@ export default {
 </script>
 
 <style lang="stylus">
-//公共样式
-img{
-    display: block;
-    outline: none;
-    border:0;
-    height: 100%;
-    width: 100%;
-}
+@import './assets/stylus.styl'
 
-.container{
-  margin 0 auto
-  width 98%
-}
+/*
+* 公共样式部分
+*
+**/
 
 
 //浏览器初始化
   body {
     position: relative;
     margin: 0;
-    background: #ebebeb;
+    background: $bg;
   }
 
   html {
-    font-size: 100px;
+    font-size: 20px;
   }
 
   * {
