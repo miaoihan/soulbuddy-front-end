@@ -1,10 +1,11 @@
 <template>
-<div id="app">
+<!-- <div id="app">
   <div class="head">aa</div>
   <a v-link="{ path: '/foo' }">Go to Foo</a>
   <a v-link="{ path: '/bar' }">Go to bar</a>
   <router-view></router-view>
-</div>
+</div> -->
+<bind-phone></bind-phone>
 </template>
 
 <script>
@@ -12,9 +13,10 @@ import Hello from './components/Hello'
 import Login from './pages/Login'
 import BindPhone from './pages/BindPhone'
 import InputBox from './components/areaComp/InputBox'
+import TopBar from './components/areaComp/TopBar'
 export default {
   components: {
-    Hello,Login,BindPhone,InputBox
+    Hello,Login,BindPhone,InputBox,TopBar,
   }
 }
 </script>
@@ -46,7 +48,7 @@ img{
   }
 
   html {
-    font-size: 100px;
+    font-size: 20px;
   }
 
   * {
