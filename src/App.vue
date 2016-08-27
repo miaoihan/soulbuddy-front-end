@@ -9,9 +9,10 @@
 import Hello from './components/Hello'
 import Login from './pages/Login'
 import BindPhone from './pages/BindPhone'
+import InputBox from './components/areaComp/InputBox'
 export default {
   components: {
-    Hello,Login,BindPhone,
+    Hello,Login,BindPhone,InputBox
   }
 }
 </script>
@@ -24,6 +25,14 @@ export default {
 *
 **/
 
+.container{
+  margin 0 auto
+  width 98%
+}
+.main{
+  background:#fff;
+  font-size:.14rem;
+}
 
 //浏览器初始化
   body {

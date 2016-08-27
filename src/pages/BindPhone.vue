@@ -1,11 +1,16 @@
 <template>
-  <div>
-  	foo
-  </div>
+	<div>
+		<input-box title="手机号码" buttonName="发送验证码"></input-box>
+		<input-box title="验证码" style="margin-top:.01rem"></input-box>
+	</div>
 </template>
 
 <script>
+import InputBox from '../components/areaComp/InputBox'
 export default {
+  components: {
+    InputBox
+  },
   data () {
     return {
       
