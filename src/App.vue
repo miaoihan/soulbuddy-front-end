@@ -1,18 +1,14 @@
 <template>
-<div id="app">
-  <i class="iconfont">&#58881;</i>
-  <router-view></router-view>
-</div>
+  <home></home>
 </template>
 
 <script>
-import Hello from './components/Hello'
 import Login from './pages/Login'
 import BindPhone from './pages/BindPhone'
-import InputBox from './components/areaComp/InputBox'
+import Home from './pages/Home'
 export default {
   components: {
-    Hello,Login,BindPhone,InputBox
+    Login,Home
   }
 }
 </script>
@@ -29,10 +25,19 @@ export default {
   margin 0 auto
   width 98%
 }
-.main{
+.part{
   background:#fff;
-  font-size:.14rem;
+  font-size: 0.7rem
+  font-wight: 400 
+  overflow hidden
 }
+
+.wrapper{
+  overflow:hidden;
+  position relative
+}
+
+
 
 //浏览器初始化
   body {
@@ -43,6 +48,10 @@ export default {
 
   html {
     font-size: 20px;
+  }
+  
+  button{
+    border: 0;
   }
 
   * {
