@@ -1,11 +1,16 @@
 <template>
+
   <home></home>
+
+<bind-phone></bind-phone>
+
 </template>
 
 <script>
 import Login from './pages/Login'
 import BindPhone from './pages/BindPhone'
 import Home from './pages/Home'
+
 export default {
   components: {
     Login,Home
@@ -36,8 +41,6 @@ export default {
   overflow:hidden;
   position relative
 }
-
-
 
 //浏览器初始化
   body {
