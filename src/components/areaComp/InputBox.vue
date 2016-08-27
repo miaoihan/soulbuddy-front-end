@@ -64,16 +64,13 @@ input:focus{
 .button-body{
 	margin-top: 0.55rem;
 	overflow: hidden;
-	line-height: 2.5rem;
 	height: 1.4rem;
-	line-height: 2.5rem
 }
 .inputbox-button{
 	position: absolute;
 	font-size: 0.7rem;
 	height: 1.4rem;
 	width: 4.5rem;
-	/*top:.11rem;*/
 	right: 0.75rem;
 	background-color: #29abe2;
 	color: #fff;

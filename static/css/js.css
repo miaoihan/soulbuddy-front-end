@@ -1,0 +1,27 @@
+/**
+* css库
+* auth：han
+*/
+img {
+	display: inline-block;
+	outline: none;
+	border: 0;
+	height: 100%;
+	width: 100%;
+}
+.container {
+	margin: 0 auto;
+	width: 98%;
+}
+.btn {
+
+}
+.nav {
+}
+.nav-btm {
+
+}
+
+.center{
+	margin: 0 auto;
+}

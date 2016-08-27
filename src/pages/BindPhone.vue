@@ -1,8 +1,8 @@
 <template>
 	<div>
     <top-bar></top-bar>
-		<input-box title="手机号码" btnname="发送验证码" name="phonenum"style="margin-top:.2rem"></input-box>
-		<input-box title="验证码" name="identcode" style="margin-top:.01rem"></input-box>
+		<input-box title="手机号码" btnname="发送验证码" name="phonenum"style="margin-top:1.0rem"></input-box>
+		<input-box title="验证码" name="identcode" style="margin-top:0.05rem"></input-box>
     <div class="finish-body">
       <button class="finishBtn" v-on:click="handleClick(event)">
         完成

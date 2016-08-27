@@ -1,10 +1,4 @@
 <template>
-<!-- <div id="app">
-  <div class="head">aa</div>
-  <a v-link="{ path: '/foo' }">Go to Foo</a>
-  <a v-link="{ path: '/bar' }">Go to bar</a>
-  <router-view></router-view>
-</div> -->
 <bind-phone></bind-phone>
 </template>
 
@@ -22,14 +16,12 @@ export default {
 </script>
 
 <style lang="stylus">
-//公共样式
-img{
-    display: block;
-    outline: none;
-    border:0;
-    height: 100%;
-    width: 100%;
-}
+@import './assets/stylus.styl'
+
+/*
+* 公共样式部分
+*
+**/
 
 .container{
   margin 0 auto
@@ -44,7 +36,7 @@ img{
   body {
     position: relative;
     margin: 0;
-    background: #ebebeb;
+    background: $bg;
   }
 
   html {
