@@ -3,7 +3,7 @@
 	<ul class="func-nav">
 		<li>
 			<div class="img-wrap">
-				<img src="../../assets/imgs/anli.png" alt="">
+				<!-- <img src="../../assets/imgs/anli.png" alt=""> -->
 			</div>
 			<div class="item-txt">
 				<span>测评</span>
@@ -11,7 +11,7 @@
 		</li>
 		<li>
 			<div class="img-wrap">
-				<img src="../../assets/imgs/anli.png" alt="">
+				<!-- <img src="../../assets/imgs/anli.png" alt=""> -->
 			</div>
 			<div class="item-txt">
 				<span>科普</span>
@@ -19,7 +19,7 @@
 		</li>
 		<li>
 			<div class="img-wrap">
-				<img src="../../assets/imgs/anli.png" alt="">
+				<!-- <img src="../../assets/imgs/anli.png" alt=""> -->
 			</div>
 			<div class="item-txt">
 				<span>放松</span>
@@ -27,7 +27,7 @@
 		</li>
 		<li>
 			<div class="img-wrap">
-				<img src="../../assets/imgs/anli.png" alt="">
+				<!-- <img src="../../assets/imgs/anli.png" alt=""> -->
 			</div>
 			<div class="item-txt">
 				<span>案例</span>
@@ -51,6 +51,8 @@
 </script>
 
 <style scoped lang="stylus">
+@import '../../assets/stylus.styl'
+
 .func-nav
 	height: 5.0rem
 
@@ -62,13 +64,15 @@ ul
 		float left
 		width 25%
 		.item-txt
-			margin  0.5rem 0 0
+			margin  0.3rem 0 0
 			font-size: 0.7rem
-			font-weight 700
-			color #29abe2
+			font-weight 500
+			color $ztc
 
 .img-wrap{
 	width 1.5rem
+	height 1.5rem
+	// border 1px solid $ztc
 	margin 0 auto
 }
 	

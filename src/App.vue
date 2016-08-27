@@ -2,7 +2,6 @@
 
   <home></home>
 
-<bind-phone></bind-phone>
 
 </template>
 
@@ -32,9 +31,8 @@ export default {
 }
 .part{
   background:#fff;
-  font-size: 0.7rem
-  font-wight: 400 
   overflow hidden
+  position relative
 }
 
 .wrapper{
@@ -62,7 +60,9 @@ export default {
     padding: 0;
     list-style: none;
     outline: none;
-    font-family: "Helvetica Neue", Arial, verdana, sans-serif;
+    font-size: 0.75rem
+    font-family: "webfont", Arial, verdana, sans-serif;
+   
   }
 
   /*
@@ -88,7 +88,7 @@ export default {
   body,
   button, input, select, textarea /* for ie */
   {
-    font: 12px / 1.5 tahoma, arial, \5b8b\4f53, sans-serif;
+    font: 15px / 1.5 tahoma, arial, \5b8b\4f53, sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
