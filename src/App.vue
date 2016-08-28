@@ -10,23 +10,16 @@
 import Hello from './components/Hello'
 import Login from './pages/Login'
 import BindPhone from './pages/BindPhone'
-<<<<<<< HEAD
 import Home from './pages/Home'
 import Evaluation from './pages/Evaluation'
-
-export default {
-  components: {
-    Login,Home,Evaluation
-  },
-=======
 import InputBox from './components/areaComp/InputBox'
 import TopBar from './components/areaComp/TopBar'
 import MinePage from './pages/MinePage'
+
 export default {
   components: {
-    Hello,Login,BindPhone,InputBox,TopBar,MinePage
-  }
->>>>>>> 8a755202dc9a9dafd11a0dbd343167491c14ca42
+    Login,Home,Evaluation,BindPhone,InputBox,TopBar,MinePage
+  },
 }
 </script>
 
@@ -66,13 +59,7 @@ export default {
     padding: 0;
     list-style: none;
     outline: none;
-<<<<<<< HEAD
-
     font-family: "Helvetica Neue", Arial, verdana, sans-serif;
-   
-=======
-    font-family: "Helvetica Neue", Arial, verdana, sans-serif;
->>>>>>> 8a755202dc9a9dafd11a0dbd343167491c14ca42
   }
 
   /*
