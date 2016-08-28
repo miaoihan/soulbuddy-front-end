@@ -4,7 +4,6 @@
 */
 img {
 	display: inline-block;
-	outline: none;
 	border: 0;
 	height: 100%;
 	width: 100%;
@@ -22,6 +21,3 @@ img {
 
 }
 
-.center{
-	margin: 0 auto;
-}

@@ -10,11 +10,10 @@ import Login from './pages/Login'
 import BindPhone from './pages/BindPhone'
 import InputBox from './components/areaComp/InputBox'
 import TopBar from './components/areaComp/TopBar'
-import RadiusBtn from './components/funComp/RadiusBtn'
 import MinePage from './pages/MinePage'
 export default {
   components: {
-    Hello,Login,BindPhone,InputBox,TopBar,MinePage,RadiusBtn
+    Hello,Login,BindPhone,InputBox,TopBar,MinePage
   }
 }
 </script>

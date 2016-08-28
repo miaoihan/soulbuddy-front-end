@@ -1,0 +1,80 @@
+<template>
+<nav class="wrapper part" style="height: 5rem">
+	<ul class="func-nav">
+		<li>
+			<div class="img-wrap">
+				<!-- <img src="../../assets/imgs/anli.png" alt=""> -->
+			</div>
+			<div class="item-txt">
+				<span>测评</span>
+			</div>
+		</li>
+		<li>
+			<div class="img-wrap">
+				<!-- <img src="../../assets/imgs/anli.png" alt=""> -->
+			</div>
+			<div class="item-txt">
+				<span>科普</span>
+			</div>
+		</li>
+		<li>
+			<div class="img-wrap">
+				<!-- <img src="../../assets/imgs/anli.png" alt=""> -->
+			</div>
+			<div class="item-txt">
+				<span>放松</span>
+			</div>
+		</li>
+		<li>
+			<div class="img-wrap">
+				<!-- <img src="../../assets/imgs/anli.png" alt=""> -->
+			</div>
+			<div class="item-txt">
+				<span>案例</span>
+			</div>
+		</li>
+</ul>
+	
+	 
+</nav>
+</template>
+
+<script>
+  export default{
+	  props:{
+
+	  },
+	  components: {
+
+	  },
+  }
+</script>
+
+<style scoped lang="stylus">
+@import '../../assets/stylus.styl'
+
+.func-nav
+	height: 5.0rem
+
+ul
+	overflow: hidden
+	padding 1.0rem 0 0
+	text-align center
+	li
+		float left
+		width 25%
+		.item-txt
+			margin  0.3rem 0 0
+			font-size: 0.7rem
+			font-weight 500
+			color $ztc
+
+.img-wrap{
+	width 1.5rem
+	height 1.5rem
+	// border 1px solid $ztc
+	margin 0 auto
+}
+	
+
+</style>
