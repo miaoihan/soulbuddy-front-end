@@ -11,48 +11,30 @@
 	  		<span class="nock-text" v-if="!que.isFree">
 	  		￥{{ que.pay }} 解锁该问题的所有回答</span>
 	  	</div>
-
-			<div class="answer">
-				<!-- 回答者信息 -->
-				<div class="answer-inf wrapper">
-				<!-- 头像 -->
-					<div class="avator pull-left">
-								
-					</div>
-					<!-- 简介 -->
-					<div style="float: left;padding: 0.25rem 0.4rem">
-						<div style="font-size: 13px">{{que.answer.name}}</div>
-						<div style="font-size: 12px; color: #999">{{que.answer.desc}}</div>
-					</div>
-					<div class="pull-right" v-if="que.answer.isbest">
-						<a href="#" class="button ">最佳答案</a>
-					</div>
-				</div>
-				<!-- voice组件 -->
-				<div class="voice-wrapper">
-					<voice :data="que"></voice>
-				</div>
-				<div class="meta wrapper">
-					<ul>
-						<li><strong style="color: #2b8ff7">
-								{{que.answer.like}}</strong> 人认为有帮助</li>
-						<li>回答于 <time>{{que.answer.data}}</time></li>
-						<li>•••</li>
-					</ul>
-				</div>
-			</div> <!-- end answer -->
+			<answer-card :data="que"></answer-card>
 		</section>
   </div>
 </template>
 
 <script>
-import Voice from '../../components/funComp/Voice.vue'
+
+import AnswerCard from '../../components/areaComp/AnswerCard.vue'
   export default{
+  	components: {
+	   AnswerCard
+	  },
   	data() {
   		return{
   			ztc: '#2b8ff7'
   		}
   	},
+  	// ready() {
+  	// 	$('.voice').hover(function(){
+  	// 		$('.voice').css({'height': '6.5rem'})
+  	// 	},function(){
+  	// 		$('.voice').css({'height': '1.rem'})
+  	// 	})
+  	// },
 	  props: {
 	  	data: {
 	  		type: Array,
@@ -67,7 +49,7 @@ import Voice from '../../components/funComp/Voice.vue'
 	  								name:'许雯',
 	  								desc:'国家心理二级咨询师',
 	  								isbest:'true',
-	  								time: 45,
+	  								time: 35,
 	  								like: 168,
 	  								data: '08-17'
 	  							}
@@ -91,9 +73,7 @@ import Voice from '../../components/funComp/Voice.vue'
 	  		}
 	  	}
 	  },
-	  components: {
-	  	Voice
-	  },
+	  
   }
 </script>
 
@@ -133,27 +113,5 @@ import Voice from '../../components/funComp/Voice.vue'
 	-webkit-box-orient: vertical;
 }
 
-.answer
-	padding 0.8rem 0 1.1rem 0
-	.answer-inf
-		.avator
-			width 2.3rem
-			height 2.3rem
-			border-radius 50%
-			border 1px solid #ebebeb
-			
-.button
-	color $ztc
-	border 1px solid $ztc
 
-.voice-wrapper
-	margin 1.0rem 0 1.2rem 0
-
-
-.meta
-	ul
-		li
-			float left
-			margin-right 1.1rem
-			font-size 13px
 </style>

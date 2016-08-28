@@ -1,7 +1,7 @@
 <template>
 
-  <home></home>
-
+  <!-- <home></home> -->
+  <evaluation></evaluation>
 
 </template>
 
@@ -9,11 +9,12 @@
 import Login from './pages/Login'
 import BindPhone from './pages/BindPhone'
 import Home from './pages/Home'
+import Evaluation from './pages/Evaluation'
 
 export default {
   components: {
-    Login,Home
-  }
+    Login,Home,Evaluation
+  },
 }
 </script>
 

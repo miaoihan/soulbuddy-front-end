@@ -1,13 +1,15 @@
 <template>
-  <div class="voice wrapper" id="voice" 
-  		 :style="{width: data.answer.time>60 ? '100%' : data.answer.time*5/3+'%' }">
+  <div class="wrapper" 
+  		:class=" data.isFree ? 'voice' : 'voice-locked' " 
+
+  		 :style="{width: data.answer.time>60 ? '100%' : (data.answer.time)*5/6+50+'%' }">
   	<div class="v-inner">
   	<!-- 计时 -->
-	  	<div :class="{free: data.isFree, unfree: !data.isFree}" 
+	  	<div :class=" data.isFree ? 'free' : 'unfree'" 
 	  				style="display: inline-block">
 	  		<i class="iconfont">&#xe60a;</i>	
 	  		<span class="v-time">
-	  			{{min}}:{{sec}}
+	  			{{min}}:{{sec}} {{data.isFree ? 'free' : 'un'}}
 	  		</span>
 	  	</div>
 		<!-- 小锁 -->
@@ -82,9 +84,15 @@
 	transition:all .3s ;
 }
 
-#voice:hover{
+.voice-locked{
+	height: 1.8rem;
+	line-height: 1.8rem;
+	border-radius: 20px;
+	background-color: #2b8ff7;
+}
+
+.voice:hover{
 	height: 6.5rem;
-	width: 100%;
 }
 
 .v-inner{
@@ -108,7 +116,7 @@
   margin-left: 3%;
 	padding-top: 0.5rem;
 	text-align: center;
-	border-top: 1px solid #ebebeb;
+	border-top: 1px solid #69c4ea;
 	color:#fff;
 }
 
