@@ -45,6 +45,7 @@ export default {
     position: relative;
     margin: 0;
     background: $bg;
+    font-size: 0.75rem
   }
 
   html {
@@ -60,8 +61,8 @@ export default {
     padding: 0;
     list-style: none;
     outline: none;
-    font-size: 0.75rem
-    font-family: "webfont", Arial, verdana, sans-serif;
+
+    font-family: "Helvetica Neue", Arial, verdana, sans-serif;
    
   }
 
