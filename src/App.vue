@@ -1,5 +1,7 @@
 <template>
-<bind-phone></bind-phone>
+<mine-page></mine-page>
+<!-- <radius-btn></radius-btn> -->
+<!-- <top-bar></top-bar> -->
 </template>
 
 <script>
@@ -8,9 +10,11 @@ import Login from './pages/Login'
 import BindPhone from './pages/BindPhone'
 import InputBox from './components/areaComp/InputBox'
 import TopBar from './components/areaComp/TopBar'
+import RadiusBtn from './components/funComp/RadiusBtn'
+import MinePage from './pages/MinePage'
 export default {
   components: {
-    Hello,Login,BindPhone,InputBox,TopBar,
+    Hello,Login,BindPhone,InputBox,TopBar,MinePage,RadiusBtn
   }
 }
 </script>
@@ -27,11 +31,13 @@ export default {
   margin 0 auto
   width 98%
 }
-.main{
+.part{
   background:#fff;
   font-size:.14rem;
 }
-
+.font-center{
+  text-align: center;
+}
 //浏览器初始化
   body {
     position: relative;

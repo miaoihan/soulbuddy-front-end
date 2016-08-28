@@ -61,20 +61,22 @@ export default {
 input:focus{
     border:0;
 }
-.button-body{
+/*.button-body{
 	margin-top: 0.55rem;
 	overflow: hidden;
 	height: 1.4rem;
-}
+}*/
 .inputbox-button{
 	position: absolute;
 	font-size: 0.7rem;
 	height: 1.4rem;
-	width: 4.5rem;
-	right: 0.75rem;
+	width: 4.75rem;
+	right: 0.6rem;
+	border-radius: 1.4rem;
 	background-color: #29abe2;
 	color: #fff;
 	border:0;
+	margin-top: 0.55rem;
 }
 .display{
 	display: none;
