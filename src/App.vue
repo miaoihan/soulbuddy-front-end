@@ -2,12 +2,15 @@
 
   <!-- <home></home> -->
   <evaluation></evaluation>
+  <mine-page></mine-page>
 
 </template>
 
 <script>
+import Hello from './components/Hello'
 import Login from './pages/Login'
 import BindPhone from './pages/BindPhone'
+<<<<<<< HEAD
 import Home from './pages/Home'
 import Evaluation from './pages/Evaluation'
 
@@ -15,6 +18,15 @@ export default {
   components: {
     Login,Home,Evaluation
   },
+=======
+import InputBox from './components/areaComp/InputBox'
+import TopBar from './components/areaComp/TopBar'
+import MinePage from './pages/MinePage'
+export default {
+  components: {
+    Hello,Login,BindPhone,InputBox,TopBar,MinePage
+  }
+>>>>>>> 8a755202dc9a9dafd11a0dbd343167491c14ca42
 }
 </script>
 
@@ -32,15 +44,11 @@ export default {
 }
 .part{
   background:#fff;
-  overflow hidden
-  position relative
+  font-size:.14rem;
 }
-
-.wrapper{
-  overflow:hidden;
-  position relative
+.font-center{
+  text-align: center;
 }
-
 //浏览器初始化
   body {
     position: relative;
@@ -52,19 +60,19 @@ export default {
   html {
     font-size: 20px;
   }
-  
-  button{
-    border: 0;
-  }
 
   * {
     margin: 0;
     padding: 0;
     list-style: none;
     outline: none;
+<<<<<<< HEAD
 
     font-family: "Helvetica Neue", Arial, verdana, sans-serif;
    
+=======
+    font-family: "Helvetica Neue", Arial, verdana, sans-serif;
+>>>>>>> 8a755202dc9a9dafd11a0dbd343167491c14ca42
   }
 
   /*
@@ -90,7 +98,7 @@ export default {
   body,
   button, input, select, textarea /* for ie */
   {
-    font: 15px / 1.5 tahoma, arial, \5b8b\4f53, sans-serif;
+    font: 12px / 1.5 tahoma, arial, \5b8b\4f53, sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
