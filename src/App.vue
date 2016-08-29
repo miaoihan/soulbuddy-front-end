@@ -1,24 +1,25 @@
 <template>
 
   <!-- <home></home> -->
-  <evaluation></evaluation>
-  <mine-page></mine-page>
+  <!-- <evaluation></evaluation> -->
+  <!-- <mine-page></mine-page> -->
+  <!-- <self-eva></self-eva> -->
+  <science :data="data"></science>
 
 </template>
 
 <script>
-import Hello from './components/Hello'
 import Login from './pages/Login'
 import BindPhone from './pages/BindPhone'
 import Home from './pages/Home'
 import Evaluation from './pages/Evaluation'
-import InputBox from './components/areaComp/InputBox'
-import TopBar from './components/areaComp/TopBar'
 import MinePage from './pages/MinePage'
+import SelfEva from './pages/SelfEva'
+import Science from './pages/Science'
 
 export default {
   components: {
-    Login,Home,Evaluation,BindPhone,InputBox,TopBar,MinePage
+    Login,Home,Evaluation,BindPhone,SelfEva,Science
   },
 }
 </script>
@@ -37,11 +38,55 @@ export default {
 }
 .part{
   background:#fff;
-  font-size:.14rem;
+  font-size: 15px;
+  overflow hidden
 }
 .font-center{
   text-align: center;
 }
+
+.wrapper{
+  overflow hidden
+}
+
+.btn{
+
+}
+
+.btn .btn-default{
+  background-color: $ztc
+  color: #fff
+}
+
+.ztc{
+  background-color: $ztc
+}
+
+.over-2{
+  overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.over-3{
+  overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.label{
+  display inline-block
+  padding 0.12rem 0.4rem
+  font-size: 0.6rem
+  color #fff
+  border-radius 0.25rem
+  background $ztc;
+}
+
 //浏览器初始化
   body {
     position: relative;

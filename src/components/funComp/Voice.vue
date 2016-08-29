@@ -29,8 +29,6 @@
 	  	</div>
 	  </div>
   </div>
-  
-
 </template>
 
 <script>
@@ -49,7 +47,7 @@
 	  	// 将秒转换成分秒
 	    min(){
 	    	let time = this.data.answer.time;
-	      if (time>0 && time<60 )
+	      if (time>0 && time<60)
 	      	return 0
 	      else
 	      	time = parseInt(time/60)
@@ -73,13 +71,15 @@
   }
 </script>
 
-<style scoped >
+<style scoped lang="stylus">
+@import '../../assets/stylus.styl'
+
 .voice{
 	height: 1.8rem;
 	line-height: 1.8rem;
 	/*width: 100%;*/
 	border-radius: 20px;
-	background-color: #2b8ff7;
+	background-color: $ztc;
 	/*动画效果*/
 	transition:all .3s ;
 }
@@ -88,24 +88,19 @@
 	height: 1.8rem;
 	line-height: 1.8rem;
 	border-radius: 20px;
-	background-color: #2b8ff7;
+	background-color: $ztc;
 }
 
 .voice:hover{
 	height: 6.5rem;
 }
 
-.v-inner{
+.v-inner
 	margin: 0 1rem;
-}
-
-.v-inner .free{
-	color: #fff;
-}
-
-.v-inner .unfree{
-	color: #69c4ea;
-}
+	.free
+		color: #fff;
+	.unfree
+		color: #69c4ea;
 
 .v-time{
 	margin-left: 1.0rem;
