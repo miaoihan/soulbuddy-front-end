@@ -1,7 +1,9 @@
 <template>
-<mine-page></mine-page>
+<!-- <mine-page></mine-page> -->
 <!-- <radius-btn></radius-btn> -->
 <!-- <top-bar></top-bar> -->
+<!-- <person-msg></person-msg> -->
+<soul-mate></soul-mate>
 </template>
 
 <script>
@@ -11,9 +13,11 @@ import BindPhone from './pages/BindPhone'
 import InputBox from './components/areaComp/InputBox'
 import TopBar from './components/areaComp/TopBar'
 import MinePage from './pages/MinePage'
+import PersonMsg from './pages/PersonMsg'
+import SoulMate from './pages/SoulMate'
 export default {
   components: {
-    Hello,Login,BindPhone,InputBox,TopBar,MinePage
+    Hello,Login,BindPhone,InputBox,TopBar,MinePage,PersonMsg,SoulMate
   }
 }
 </script>

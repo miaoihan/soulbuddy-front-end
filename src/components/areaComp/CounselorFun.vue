@@ -1,4 +1,6 @@
+<!-- 咨询师身份时我的页面中的功能选项 -->
 <template>
+	<div class="counselor">
   		<div class="person-msg-fun part">
     		<div class="function-body font-center">
 	    		<a href="#">
@@ -19,10 +21,16 @@
 	    		</a>
     		</div>
     	</div>
+    	
+    </div>
 </template>
 
 <script>
+import ChangeBtn from '../funComp/ChangeBtn'
 export default {
+	components:{
+		ChangeBtn,
+	},
   data () {
     return {
       

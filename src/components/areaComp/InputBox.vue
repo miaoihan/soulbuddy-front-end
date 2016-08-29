@@ -1,7 +1,17 @@
+<!-- 
+输入框
+title 输入框的标题
+btnname 右侧是否有按钮如果有则写上
+placeholder   输入框默认值
+name 输入框name
+TitleColor  标题颜色
+TextColor  输入字体颜色
+author：long
+ -->
 <template>
   <div class="inputbox-body">
-  	<span class="inputbox-title">{{title}}</span>
-  	<input type="text" class="inputbox-text" :placeholder="placeholder" :name="name"></input>
+  	<span class="inputbox-title" style="color:{{TitleColor}}">{{title}}</span>
+  	<input type="text" class="inputbox-text" :placeholder="placeholder" :name="name" style="color:{{TextColor}}"></input>
   	<div class="button-body">
   		<button class="inputbox-button" :class="{ display: btnname===''}" v-on:click="handleClick">
 	  		{{btnname}}
@@ -13,10 +23,12 @@
 <script>
 export default {
 	props:{
-		title:{type:String},
-		btnname:{type:String,default:''},
-		placeholder:{type:String},
-		name:{type:String}
+		title:{type:String},//输入框的标题
+		btnname:{type:String,default:''},//右侧是否有按钮如果有则写上
+		placeholder:{type:String},//输入框默认值
+		name:{type:String},//输入框name
+		TitleColor:{type:String},//标题颜色
+		TextColor:{type:String}//输入字体颜色
 	},
 	methods:{
 		handleClick(){
@@ -41,22 +53,24 @@ export default {
 	width: 100%;
 	height: 2.5rem;
 	background-color: #fff;
+	font-size: 0.8rem;
 }
 .inputbox-title{
 	float: left;
-	font-size: 0.7rem;
 	line-height: 2.5rem;
 	margin-left: 1.0rem;
 	color: #d4d4d4;
+
 }
 .inputbox-text{
 	float: left;
 	color: #d4d4d4;
 	height: 2.5rem;
-	margin-left: 1.0rem;
-	font-size: 0.7rem;
+	margin-left: 0.5rem;
+	margin-right: 0.5rem;
 	border:0;
-	display: block;
+	/*width: 100%;*/
+	/*display: block;*/
 }
 input:focus{
     border:0;

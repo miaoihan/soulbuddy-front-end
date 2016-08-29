@@ -1,16 +1,16 @@
+<!-- 长条形功能按钮 -->
 <template>
   <div class="changebtn-body">
-	  <a href="id">
-	    <span class="text">{{btntext}}</span>
-	    <i class="icon-img iconfont">&#xe603;</i>
-	  </a>
+	    <span class="text"style="color:{{TextColor}}">{{btntext}}</span>
+	    <i class="icon-img iconfont" style="color:{{IconColor}}">&#xe603;</i>
   </div>
 </template>
-
 <script>
 export default {
 	props:{
-		btntext:{type:String}
+		btntext:{type:String},//功能名称
+		TextColor:{type:String,default:"black"},//控制文字颜色
+		IconColor:{type:String,default:"#bbb"}//箭头icon颜色
 	},
   data () {
     return {
@@ -27,15 +27,12 @@ export default {
 	height: 2.5rem;
 	line-height: 2.5rem;
 	overflow: hidden;
-	background-color: #29abe2;
+	background-color: #fff;
 }
 .text{
-	color: #fff;
-	margin-left: 1.0rem;
+	float: left;
 }
 .icon-img{
-	color: #fff;
 	float: right;
-	margin-right: 1.0rem;
 }
 </style>

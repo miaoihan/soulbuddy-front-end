@@ -3,10 +3,10 @@
     <div class="person-msg-body">
     	<div class="person-msg-basic">
     		<div class="img-body">
-    			<img :src="imgurl" class="img-imgs">
+    			<img :src="user.imgurl" class="img-imgs">
     		</div>
     		<div class="person-msg-name">
-    			<span class="name-text">{{username}}</span>
+    			<span class="name-text">{{user.username}}</span>
 				<a href="#" class="button button-round btnstyle">编辑个人资料</a>
     		</div>
     		<div class="hint-img">
@@ -15,9 +15,19 @@
     		</div>
     	</div>   	
     </div>
-
-    <common-fun></common-fun>
-    <change-btn btntext="切换到普通用户" style="margin-top:1.5rem"></change-btn>
+    <div v-if="user.UserType==='counselor'">
+    	<counselor-fun></counselor-fun>
+    </div>   
+    <div v-if="user.UserType==='common'">
+    	<common-fun></common-fun>
+    </div>
+    <!-- <common-fun v-if="user.UserType===common"></common-fun> -->
+    
+    <change-btn :btntext="btntext" 
+	    	style="margin-top:1rem;padding-left:1rem;padding-right:1rem;background:#29abe2"
+			text-color="#fff" icon-color="#fff"
+			@click="handleClick">
+	</change-btn>
   </div>
 </template>
 
@@ -29,15 +39,49 @@ export default {
 	components:{
 		ChangeBtn,CounselorFun,CommonFun
 	},
+	props:{
+	  	user:{
+	  		type:Array,
+	  		default(){
+	  			return{
+	  				id:1,
+					imgurl:require("../assets/logo.png"),
+					username:"陈雪琴", 	
+					UserType:'common',			
+	  			}  			
+	  		}
+	  	},
+	  	hintnum:{type:Number,default:2}, 	
+	},
   data () {
     return {
-      
+    	btntext:""
     }
   },
-  props:{
-  	imgurl:{type:String,default:"http://img3.imgtn.bdimg.com/it/u=3399543288,3713437897&fm=206&gp=0.jpg"},
-  	username:{type:String,default:"陈雪琴"},
-  	hintnum:{type:Number,default:2}
+  ready:function(){
+  	if (this.user.UserType=="counselor") {
+  		this.btntext='切换到普通用户'
+  	}else if (this.user.UserType=="common") {
+  		this.btntext='切换到咨询师身份'
+  	}
+  },
+  // destroyed:function(){
+  // 	if (this.user.UserType=="counselor") {
+  // 		this.btntext='切换到普通用户'
+  // 	}else if (this.user.UserType=="common") {
+  // 		this.btntext='切换到咨询师身份'
+  // 	}
+  // },
+  methods:{
+  	handleClick(){
+  		if (this.user.UserType=="counselor") {
+  			this.btntext='切换到咨询师身份';
+  			this.user.UserType="common"
+  		}else if (this.user.UserType=="common") {
+  			this.btntext='切换到普通用户';
+  			this.user.UserType="counselor"
+  		}
+  	}
   }
 }
 </script>
@@ -81,6 +125,7 @@ export default {
 .name-text{
 	display: block;
 	margin-top: 1.55rem;
+	height:1.35rem;
 	font-size: 0.9rem;
 	font-weight: 700;
 }
