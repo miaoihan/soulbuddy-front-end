@@ -1,8 +1,10 @@
 <template>
   <header class="bar bar-nav" 
   				id="navHeader" :class="{fixed: fixed}">
-	  <a class="icon pull-left"><i class="iconfont">&#xe600;</i></a>
-	  <button class="btn-nav pull-right">提问</button>
+	  <a class="icon pull-left">
+	  	<i class="iconfont" v-if="title=='心灵鸡汤'">&#xe600;</i>
+	  </a>
+	  <button class="btn-nav pull-right" v-if="title=='心灵鸡汤'">提问</button>
 	  <h1 class="title">{{ title }}</h1>
 	</header>
 	<div style="height: 2.2rem"></div>

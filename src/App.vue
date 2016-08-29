@@ -1,15 +1,23 @@
 <template>
+
 <!-- <mine-page></mine-page> -->
 <!-- <radius-btn></radius-btn> -->
 <!-- <top-bar></top-bar> -->
 <!-- <person-msg></person-msg> -->
 <soul-mate></soul-mate>
+
+  <!-- <home></home> -->
+  <!-- <evaluation></evaluation>
+  <mine-page></mine-page> -->
+
 </template>
 
 <script>
 import Hello from './components/Hello'
 import Login from './pages/Login'
 import BindPhone from './pages/BindPhone'
+import Home from './pages/Home'
+import Evaluation from './pages/Evaluation'
 import InputBox from './components/areaComp/InputBox'
 import TopBar from './components/areaComp/TopBar'
 import MinePage from './pages/MinePage'
@@ -46,6 +54,7 @@ export default {
     position: relative;
     margin: 0;
     background: $bg;
+    font-size: 0.75rem
   }
 
   html {
