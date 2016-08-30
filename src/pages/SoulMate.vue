@@ -1,54 +1,94 @@
 <template>
-  <nav-header></nav-header>
+  <nav-header title="心灵伙伴" :fixed="true"></nav-header>
   <div class="quecard">
+
     <span class="card-name">询问我的问题</span>
     <div class="swiper-container">
 		<div class="swiper-wrapper">
-		    <div class="swiper-slide" v-for="result in results">
-			    <div style="width:100%;">
-			    	<div class="person-img quer-top">
-			    		<img :src="result.imgurl" class="img-body">
+		    <div class="swiper-slide" v-for="data in topdata">
+		    	<a href="3">
+				    <div style="width:100%;">
+				    	<div class="person-img quer-top">
+				    		<img :src="data.imgurl" class="img-body">
+				    	</div>
+				    	<div class="quername quer-top">
+				    		{{data.cname}}
+				    	</div>
+				    	<div class="paymoney quer-top">
+				    		已支付￥{{data.cpay}}
+				    	</div>
+				    </div>
+			    	<div class="que-text">
+			    		{{data.question}}
 			    	</div>
-			    	<div class="quername quer-top">
-			    		{{result.cname}}
-			    	</div>
-			    	<div class="paymoney quer-top">
-			    		已支付￥{{result.cpay}}
-			    	</div>
-			    </div>
-		    	<div class="que-text">
-		    		{{result.question}}
-		    	</div>
+		    	</a>
 		    </div>
 		</div>
     </div>
   </div>
+  <div class="que-item" v-for="listdata in listdatas">
+  	<question-card :data="listdata"></question-card>
+  </div> 
+  <!-- <answer-card></answer-card> -->
 </template>
 
 <script>
 import swiper from '../assets/swiper/swiper.min.js'
 import NavHeader from '../components/funComp/NavHeader'
+import QuestionCard from '../components/areaComp/QuestionCard'
 export default {
 	components:{
-		NavHeader
+		NavHeader,QuestionCard
 	},
 	props:{
-		results: {
+		topdata: {
 			type: Array,
 			default() {
 		       return [
 		       		{cname: '1',
+		       		 imgurl:'',
 		       		 cpay: '25',
-		       		 question:'你可以在网上找到类似上述的其他JS脚本，它们不管多么优秀，其原理都是一样的，通过对keydown、keyup或keypress之类的键盘键位操作事件来监控文本区的输入，无法防止鼠标右键的粘贴，为此，如果一定要真正地限制textarea的字数，我们还得为网页加另一把锁——禁用鼠标右键，这无疑得付出额外的开销，同时也可能是网页制作者不一定愿意做的。其实，还有一个更简单的方法，使用onpropertychange属性。'},
+		       		 question:'你可以在网上找到类似上述的其他JS脚本，它们不管多么优秀，其原理都是一'},
 		       		 {cname: '2',
+		       		  imgurl:require('../assets/logo.png'),
 		       		  cpay: '25',
-		       		  question:'你可以在网上找到类似上述的其他JS脚本，它们不管多么优秀，其原理都是一样的，通过对keydown、keyup或keypress之类的键盘键位操作事件来监控文本区的输入，无法防止鼠标右键的粘贴，为此，如果一定要真正地限制textarea的字数，我们还得为网页加另一把锁——禁用鼠标右键，这无疑得付出额外的开销，同时也可能是网页制作者不一定愿意做的。其实，还有一个更简单的方法，使用onpropertychange属性。'},
+		       		  question:'要真，这无疑得付出额外的开销，同时也可能是网页制作者不一定愿意做的。其实，还有一个更简单的方法，使用onpropertychange属性。'},
 		       		 {cname: '3',
+		       		  imgurl:'',
 		       		  cpay: '25',
-		       		  question:'你可以在网上找到类似上述的其他JS脚本，它们不管多么优秀，其原理都是一样的，通过对keydown、keyup或keypress之类的键盘键位操作事件来监控文本区的输入，无法防止鼠标右键的粘贴，为此，如果一定要真正地限制textarea的字数，我们还得为网页加另一把锁——禁用鼠标右键，这无疑得付出额外的开销，同时也可能是网页制作者不一定愿意做的。其实，还有一个更简单的方法，使用onpropertychange属性。'},
+		       		  question:'你可标右键，这无疑得付出额外的开销，同时也可能是网页制作者不一定愿意做的。其实，还有一个更简单的方法，使用onpropertychange属性。'},
 		       ]
 		    }
 		},
+		listdatas:{
+			type:Array,
+			default(){
+				return[
+					{qname: '王小喵1',
+					 queimg:require('../assets/logo.png'),
+		       	     pay: '25',
+		       	     quetitle:'你可以在网上找到类似上述的其他脚本，它们不管多么优秀，其原理都是一样的，通过对keydown',
+		       	     quecontent:'是一个比较特殊的样式，我们可以用它代替我们通常所用的标题截取函数，而且这样做对搜索引擎更加友好，如：标题文件有50 个汉字，而我们的列表可能只有300px的宽度。如果用标题截取函数，则标题不是完整的',
+		       	     type:'piblic',
+		       	     answernum:2,
+		       	     date:'08-14'},
+		       	    {qname: '王小喵2',
+		       	     pay: '25',
+		       	     quetitle:'你可以在网上找到类似上述的其他脚本，它们不管多么优秀，其原理都是一样的，通过对keydown',
+		       	     quecontent:'是一个比较特殊的样式，我们可以用它代替我们通常所用的标题截取函数，而且这样做对搜索引擎更加友好，如：标题文件有50 个汉字，而我们的列表可能只有300px的宽度。如果用标题截取函数，则标题不是完整的',
+		       	     type:'piblic',
+		       	     answernum:2,
+		       	     date:'08-14'},
+		       	    {qname: '王小喵3',
+		       	     pay: '25',
+		       	     quetitle:'你可以在网上找到类似上述的其他脚本，它们不管多么优秀，其原理都是一样的，通过对keydown',
+		       	     quecontent:'是一个比较特殊的样式，我们可以用它代替我们通常所用的标题截取函数，而且这样做对搜索引擎更加友好，如：标题文件有50 个汉字，而我们的列表可能只有300px的宽度。如果用标题截取函数，则标题不是完整的',
+		       	     type:'piblic',
+		       	     answernum:2,
+		       	     date:'08-14'},
+				]
+			}
+		}
 	},
   data () {
     return {
@@ -74,6 +114,7 @@ export default {
 .quecard{
 	/*margin-top: 1.55rem;*/
 	overflow: hidden;
+	/*margin-top: -6rem;*/
 	height: 9.25rem;
 	width: 100%;
 	background-color: #29abe2;
@@ -128,9 +169,13 @@ export default {
 	font-size: 0.65rem;
 	color: #b1e0f4;
 	display: -webkit-box;
-	/*text-overflow: ellipsis;*/
 	-webkit-line-clamp: 2;
 	-webkit-box-orient: vertical;
 }
-
+.que-item{
+	background-color: #fff;
+	padding:1rem 1rem 0rem 1rem;
+	overflow: hidden;
+	margin-bottom: 0.5rem;
+}
 </style>

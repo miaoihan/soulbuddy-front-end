@@ -4,7 +4,8 @@
 <!-- <radius-btn></radius-btn> -->
 <!-- <top-bar></top-bar> -->
 <!-- <person-msg></person-msg> -->
-<soul-mate></soul-mate>
+<!-- <soul-mate></soul-mate> -->
+<question-con></question-con>
 
   <!-- <home></home> -->
   <!-- <evaluation></evaluation>
@@ -13,19 +14,17 @@
 </template>
 
 <script>
-import Hello from './components/Hello'
 import Login from './pages/Login'
 import BindPhone from './pages/BindPhone'
 import Home from './pages/Home'
 import Evaluation from './pages/Evaluation'
-import InputBox from './components/areaComp/InputBox'
-import TopBar from './components/areaComp/TopBar'
 import MinePage from './pages/MinePage'
 import PersonMsg from './pages/PersonMsg'
 import SoulMate from './pages/SoulMate'
+import QuestionCon from './pages/QuestionCon'
 export default {
   components: {
-    Hello,Login,BindPhone,InputBox,TopBar,MinePage,PersonMsg,SoulMate
+    Login,BindPhone,MinePage,PersonMsg,SoulMate,QuestionCon
   }
 }
 </script>
