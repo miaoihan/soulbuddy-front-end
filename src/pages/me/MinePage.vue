@@ -13,17 +13,17 @@
     			<i class="iconfont imgimg">&#xe605;</i>
     			<div class="hint-text" v-if="hintnum<=99">{{hintnum}}</div>
     		</div>
-    	</div>   	
+    	</div>
     </div>
     <div v-if="user.UserType==='counselor'">
     	<counselor-fun></counselor-fun>
-    </div>   
+    </div>
     <div v-if="user.UserType==='common'">
     	<common-fun></common-fun>
     </div>
     <!-- <common-fun v-if="user.UserType===common"></common-fun> -->
-    
-    <change-btn :btntext="btntext" 
+
+    <change-btn :btntext="btntext"
 	    	style="margin-top:1rem;padding-left:1rem;padding-right:1rem;background:#29abe2"
 			text-color="#fff" icon-color="#fff"
 			@click="handleClick">
@@ -32,9 +32,9 @@
 </template>
 
 <script>
-import ChangeBtn from '../components/funComp/ChangeBtn';
-import CounselorFun from '../components/areaComp/CounselorFun';
-import CommonFun from '../components/areaComp/CommonFun';
+import ChangeBtn from 'components/funComp/ChangeBtn';
+import CounselorFun from 'components/areaComp/CounselorFun';
+import CommonFun from 'components/areaComp/CommonFun';
 export default {
 	components:{
 		ChangeBtn,CounselorFun,CommonFun
@@ -45,13 +45,13 @@ export default {
 	  		default(){
 	  			return{
 	  				id:1,
-					imgurl:require("../assets/logo.png"),
-					username:"陈雪琴", 	
-					UserType:'common',			
-	  			}  			
+					imgurl:require("assets/logo.png"),
+					username:"陈雪琴",
+					UserType:'common',
+	  			}
 	  		}
 	  	},
-	  	hintnum:{type:Number,default:2}, 	
+	  	hintnum:{type:Number,default:2},
 	},
   data () {
     return {
@@ -104,7 +104,7 @@ export default {
 .img-body{
 	overflow: hidden;
 	float: left;
-	margin-top: 0.95rem;	
+	margin-top: 0.95rem;
 	width: 3.25rem;
 	height: 3.25rem;
 	border-radius: 3.25rem;

@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import NavHeader from '../components/funComp/NavHeader'
+import NavHeader from 'components/funComp/NavHeader'
   export default{
 	  props:{
 	  	data: {
@@ -59,7 +59,7 @@ import NavHeader from '../components/funComp/NavHeader'
 </script>
 
 <style scoped lang="stylus">
-@import '../assets/stylus.styl'
+@import '../../assets/stylus.styl'
 
 .eva{
 	margin-top: 0.5rem;
@@ -69,7 +69,7 @@ import NavHeader from '../components/funComp/NavHeader'
 	height: 3.25rem;
 	margin-bottom: 10px;
 	padding: 0.65rem 0.65rem;
-	background: #fff; 
+	background: #fff;
 }
 
 .name{

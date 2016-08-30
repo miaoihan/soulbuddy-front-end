@@ -1,30 +1,30 @@
 <template>
 
-  <mine-page :is="currentPage"></mine-page>
-  <radius-btn></radius-btn>
-  <top-bar></top-bar>
-  <person-msg></person-msg>
-  <soul-mate></soul-mate>
-  <question-con></question-con>
-  <roll-card></roll-card>
-  <home></home>
-  <evaluation></evaluation>
-  <mine-page></mine-page>
-  <self-eva></self-eva>
-  <science :data="data"></science>
-  <evaluation></evaluation>
-  <mine-page></mine-page>
+  <!--<mine-page :is="currentPage"></mine-page>-->
+  <!--<radius-btn :is="currentPage"></radius-btn>-->
+  <!--<top-bar :is="currentPage"></top-bar>-->
+  <!--<person-msg :is="currentPage"></person-msg>-->
+  <!--<soul-mate :is="currentPage"></soul-mate>-->
+  <!--<question-con :is="currentPage"></question-con>-->
+  <!--<roll-card :is="currentPage"></roll-card>-->
+  <!--<home :is="currentPage"></home>-->
+  <!--<evaluation :is="currentPage"></evaluation>-->
+  <!--<mine-page :is="currentPage"></mine-page>-->
+  <!--<self-eva :is="currentPage"></self-eva>-->
+  <!--<science :data="data" :is="currentPage"></science>-->
+  <!--<evaluation :is="currentPage"></evaluation>-->
+  <!--<mine-page :is="currentPage"></mine-page>-->
 
 </template>
 
 <script>
 import Login from './pages/Login'
 import BindPhone from './pages/BindPhone'
-import Home from './pages/Home'
-import Evaluation from './pages/Evaluation'
-import MinePage from './pages/MinePage'
-import SelfEva from './pages/SelfEva'
-import Science from './pages/Science'
+import Home from './pages/home/Home'
+import Evaluation from './pages/home/Evaluation'
+import MinePage from './pages/me/MinePage.vue'
+import SelfEva from './pages/home/SelfEva'
+import Science from './pages/home/Science'
 import PersonMsg from './pages/PersonMsg'
 import SoulMate from './pages/SoulMate'
 import QuestionCon from './pages/QuestionCon'
@@ -35,7 +35,7 @@ export default {
     return{
       currentPage: 'home'
     }
-  }
+  },
   components: {
     Login,Home,Evaluation,BindPhone,SelfEva,Science,
     MinePage,PersonMsg,SoulMate,QuestionCon,RollCard
