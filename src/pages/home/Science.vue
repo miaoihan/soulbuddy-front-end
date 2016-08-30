@@ -2,7 +2,7 @@
   <div>
   	<nav-header title="科普"></nav-header>
   	<div class="swiper wrapper">
-  		
+
   	</div>
   	<div class="article-list">
   		<section class="article-item part" v-for="art in data">
@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import NavHeader from '../components/funComp/NavHeader'
+import NavHeader from 'components/funComp/NavHeader'
 
   export default{
   	components: {
@@ -55,7 +55,7 @@ import NavHeader from '../components/funComp/NavHeader'
 		  	}
 	  	}
 	  },
-	  
+
   }
 </script>
 

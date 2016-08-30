@@ -1,14 +1,14 @@
 <template>
-  <div class="swiper-container part">
+  <div class="swiper-container part wrapper">
 		<div class="swiper-wrapper fullscr">
-		    <div class="swiper-slide fullscr" v-for="data in data">
-		    	<a v-if="data.href===null">
-			    	<img class="card-img fullscr" :src="imgas" alt="">
-			    	<div class="cont-title" style="color:{{textColor}}">{{data.ContTitle}}</div>
+		    <div class="swiper-slide fullscr" v-for="obj in data">
+		    	<a v-if="obj.href===null">
+			    	<img class="card-img fullscr" :src="obj.imgurl" alt="">
+			    	<div class="cont-title" style="color:{{textColor}}">{{obj.contitle}}</div>
 		    	</a>
-		    	<a :href="data.href" :v-if="data.href!=null">
-			    	<img class="card-img fullscr" :src="imgas" alt="">
-			    	<div class="cont-title" style="color:{{textColor}}">{{data.ContTitle}}</div>
+		    	<a :href="obj.href" :v-if="obj.href!=null">
+			    	<img class="card-img fullscr" :src="obj.imgurl" alt="">
+			    	<div class="cont-title" style="color:{{textColor}}">{{obj.contitle}}</div>
 		    	</a>
 		    </div>
 		</div>
@@ -19,31 +19,17 @@
 <script>
 import swiper from '../../assets/swiper/swiper.min.js'
 export default {
-  data () {
-    return {
-      
-    }
-  },
   props:{
   	data:{
   		type:Array,
   		default(){
-  			return[
-  				{
-  					ContTitle:"这里是标题1",
-  					imgUrl:require("../../assets/logo.png"),
-  					href:null,
-  				},
-  				{
-  					ContTitle:"这里是标题2",
-  					imgUrl:require("../../assets/logo.png"),
-  					href:"159",
-  				}
-  			]
+  			return[{contitle:"",//图中标题
+  					imgurl:'',//背景图
+  					href:null},//是否连接
+                   ] 			
   		}
   	},
-  	imgas:{type:String,default:"../../assets/logo.png"},
-  	textColor:{type:String,default:"black"},
+  	textColor:{type:String,default:"black"},//字体颜色
   },
   ready:function(){
    	console.log(123);

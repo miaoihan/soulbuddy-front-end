@@ -1,6 +1,6 @@
 <template>
   <nav-header title="心灵伙伴" :fixed="true"></nav-header>
-  <div class="quecard">
+  <div class="quecard ">
 
     <span class="card-name">询问我的问题</span>
     <div class="swiper-container">
@@ -104,7 +104,7 @@ export default {
 	        paginationClickable: true,
 	        spaceBetween: 15
 	})
-  }
+   }
 }
 </script>
 

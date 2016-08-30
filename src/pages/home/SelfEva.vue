@@ -4,7 +4,7 @@
 			请根据过去的<strong>一周</strong>的情况选择。答案没有对错，<strong>真实</strong>反映自己的感受就好。 （共{{ data.number}}题）
 		</div>
   <div>
-  	<select-list :data="data.projects"></select-list>	
+  	<select-list :data="data.projects"></select-list>
   </div>
   <footer>
   	<a href="#" class="button button-round btn-default f-btn">提交</a>
@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import NavHeader from '../components/funComp/NavHeader'
-import SelectList from '../components/areaComp/SelectList.vue'
+import NavHeader from 'components/funComp/NavHeader'
+import SelectList from 'components/areaComp/SelectList.vue'
 
   export default{
   	components: {
@@ -54,7 +54,7 @@ import SelectList from '../components/areaComp/SelectList.vue'
 		  	}
 	  	}
 	  },
-	  
+
   }
 </script>
 
