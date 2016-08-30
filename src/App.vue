@@ -1,10 +1,19 @@
 <template>
 
+<!-- <mine-page></mine-page> -->
+<!-- <radius-btn></radius-btn> -->
+<!-- <top-bar></top-bar> -->
+<!-- <person-msg></person-msg> -->
+<!-- <soul-mate></soul-mate> -->
+<!-- <question-con></question-con> -->
+<roll-card></roll-card>
   <!-- <home></home> -->
   <!-- <evaluation></evaluation> -->
   <!-- <mine-page></mine-page> -->
   <!-- <self-eva></self-eva> -->
   <science :data="data"></science>
+  <!-- <evaluation></evaluation>
+  <mine-page></mine-page> -->
 
 </template>
 
@@ -16,10 +25,15 @@ import Evaluation from './pages/Evaluation'
 import MinePage from './pages/MinePage'
 import SelfEva from './pages/SelfEva'
 import Science from './pages/Science'
+import PersonMsg from './pages/PersonMsg'
+import SoulMate from './pages/SoulMate'
+import QuestionCon from './pages/QuestionCon'
+import RollCard from './components/areaComp/RollCard'
 
 export default {
   components: {
-    Login,Home,Evaluation,BindPhone,SelfEva,Science
+    Login,Home,Evaluation,BindPhone,SelfEva,Science,
+    MinePage,PersonMsg,SoulMate,QuestionCon,RollCard
   },
 }
 </script>
