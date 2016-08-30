@@ -5,8 +5,8 @@
 <!-- <top-bar></top-bar> -->
 <!-- <person-msg></person-msg> -->
 <!-- <soul-mate></soul-mate> -->
-<question-con></question-con>
-
+<!-- <question-con></question-con> -->
+<roll-card></roll-card>
   <!-- <home></home> -->
   <!-- <evaluation></evaluation>
   <mine-page></mine-page> -->
@@ -22,9 +22,10 @@ import MinePage from './pages/MinePage'
 import PersonMsg from './pages/PersonMsg'
 import SoulMate from './pages/SoulMate'
 import QuestionCon from './pages/QuestionCon'
+import RollCard from './components/areaComp/RollCard'
 export default {
   components: {
-    Login,BindPhone,MinePage,PersonMsg,SoulMate,QuestionCon
+    Login,BindPhone,MinePage,PersonMsg,SoulMate,QuestionCon,RollCard
   }
 }
 </script>
