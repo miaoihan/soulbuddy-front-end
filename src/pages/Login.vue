@@ -2,7 +2,7 @@
   <!-- <div class="login-background" :style="height:{{srcHeight}}rem"> -->
   <div class="login-background">
     <img :src="background.img"/>
-    <div class="loginBtn" v-on:click="handClick(e)">
+    <div class="loginBtn" @click="handClick(e)">
     	<a href="#">
     		<img src="../assets/imgs/loginBtn.png">
     	</a>
@@ -18,8 +18,8 @@ export default {
 			default(){
 				return{
 					img:require("../assets/imgs/login.png")
-				}							
-			}			
+				}
+			}
 		}
 	},
 	data(){
@@ -29,17 +29,17 @@ export default {
 
       }
     },
-    methods:{      
+    methods:{
     	handClick(e){
     		console.log("click the loginButton");
-    	} 
+    	}
     },
     ready: function(){
       // this.srcHeight = document.body.clientWidth;
       // this.srcHeight = document.body.clientHeight/100;
       // this.srcHeightstr='height:'+this.srcHeight+'rem';
       // alert(this.srcHeightstr)
-    },	  
+    },
 }
 </script>
 
@@ -58,7 +58,7 @@ export default {
     border:0;
     height: 100%;
     width: 100%;
-}	
+}
 
 .loginBtn{
 	overflow: hidden;
@@ -69,7 +69,5 @@ export default {
 	left: 27.5%;
 	/*margin-right:-1.87rem;*/
 }
-.active{
-	background-color: blue;
-}
+
 </style>

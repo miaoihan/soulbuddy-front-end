@@ -7,8 +7,8 @@
     		<span class="sub-text">上传真实头像</span>
     	</div>
     </div>
-    <input-box title="真实姓名" 
-    	placeholder='请填写' 
+    <input-box title="真实姓名"
+    	placeholder='请填写'
     	title-color="black" text-color="black">
    	</input-box>
    	<span class="lab-name">
@@ -24,14 +24,14 @@
    		<textarea class="inputarea" maxlength="150" name="evaluation" placeholder="请填写自我评价（最多150个字）"></textarea>
    	</div>
    	<div class="save-box">
-   		<input class="save-body" type="submit" value="保存" name="savemsg"></div>
-   	</div>
+   		<input class="save-body" type="submit" value="保存" name="savemsg">
+    </div>
    	<!-- <div style="height:5.0rem"></div> -->
   </div>
 </template>
 
 <script>
-import InputBox from '../components/areaComp/InputBox'
+import InputBox from '../../components/areaComp/InputBox'
 export default {
 	components:{
 		InputBox
@@ -41,7 +41,7 @@ export default {
 	},
   data () {
     return {
-      
+
     }
   }
 }
@@ -49,7 +49,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="stylus">
-@import '../assets/stylus.styl'
+@import 'assets/stylus.styl'
 .person-photo{
 	position: relative;
 	height:10.0rem;
@@ -69,7 +69,7 @@ export default {
 	bottom:0.5rem;
 	right:0.75rem;
 	// display:block;
-	
+
 }
 .sub-text{
 	float:right

@@ -5,11 +5,11 @@
 </template>
 
 <script>
-import QuestionCard from '../components/areaComp/QuestionCard'
+import QuestionCard from 'components/areaComp/QuestionCard'
 export default {
   data () {
     return {
-      
+
     }
   },
   components:{
@@ -26,7 +26,7 @@ export default {
 		       	   quecontent:'是一个比较特殊的样式，我们可以用它代替我们通常所用的标题截取函数有300px的宽度。如果用标题截取函数，则标题不是完整的',
 		       	   type:'private',
 		       	   answernum:2,
-		       	   date:'08-14'} 			
+		       	   date:'08-14'}
   		}
   	},
   }

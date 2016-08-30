@@ -1,50 +1,33 @@
 <template>
 
-  <!--<mine-page :is="currentPage"></mine-page>-->
-  <!--<radius-btn :is="currentPage"></radius-btn>-->
-  <!--<top-bar :is="currentPage"></top-bar>-->
-  <!--<person-msg :is="currentPage"></person-msg>-->
-  <!--<soul-mate :is="currentPage"></soul-mate>-->
-  <!--<question-con :is="currentPage"></question-con>-->
-  <!--<roll-card :is="currentPage"></roll-card>-->
-  <!--<home :is="currentPage"></home>-->
-  <!--<evaluation :is="currentPage"></evaluation>-->
-  <!--<mine-page :is="currentPage"></mine-page>-->
-  <!--<self-eva :is="currentPage"></self-eva>-->
-  <!--<science :data="data" :is="currentPage"></science>-->
-  <!--<evaluation :is="currentPage"></evaluation>-->
-  <!--<mine-page :is="currentPage"></mine-page>-->
+  <component :is="currentPage"></component>
 
 </template>
 
 <script>
-import Login from './pages/Login'
-import BindPhone from './pages/BindPhone'
-import Home from './pages/home/Home'
-import Evaluation from './pages/home/Evaluation'
-import MinePage from './pages/me/MinePage.vue'
-import SelfEva from './pages/home/SelfEva'
-import Science from './pages/home/Science'
-import PersonMsg from './pages/PersonMsg'
-import SoulMate from './pages/SoulMate'
-import QuestionCon from './pages/QuestionCon'
-import RollCard from './components/areaComp/RollCard'
 
 export default {
   data(){
     return{
-      currentPage: 'home'
+      currentPage: 'self-eva',
     }
   },
   components: {
-    Login,Home,Evaluation,BindPhone,SelfEva,Science,
-    MinePage,PersonMsg,SoulMate,QuestionCon,RollCard
+    Login: require('pages/Login'),
+    BindPhone: require('pages/BindPhone'),
+    Home: require('pages/home/Home'),
+    Evaluation: require('pages/home/Evaluation'),
+    SelfEva: require('pages/home/SelfEva'),
+    Science: require('pages/home/Science'),
+//    MinePage: require('pages/me/MinePage'),
+//    PersonMsg: require('pages/me/PersonMsg'),
+//    QuestionCon: require('pages/consultant/QuestionCon'),
   },
 }
 </script>
 
 <style lang="stylus">
-@import './assets/stylus.styl'
+@import 'assets/stylus.styl'
 
 /*
 * 公共样式部分
@@ -66,6 +49,7 @@ export default {
 
 .wrapper{
   overflow hidden
+  display relative
 }
 
 .btn{

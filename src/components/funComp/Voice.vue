@@ -1,19 +1,19 @@
 <template>
-  <div class="wrapper" 
-  		:class=" data.isFree ? 'voice' : 'voice-locked' " 
+  <div class="wrapper"
+  		:class=" data.isFree ? 'voice' : 'voice-locked' "
 
   		 :style="{width: data.answer.time>60 ? '100%' : (data.answer.time)*5/6+50+'%' }">
   	<div class="v-inner">
   	<!-- 计时 -->
-	  	<div :class=" data.isFree ? 'free' : 'unfree'" 
+	  	<div :class=" data.isFree ? 'free' : 'unfree'"
 	  				style="display: inline-block">
-	  		<i class="iconfont">&#xe60a;</i>	
+	  		<i class="iconfont">&#xe60a;</i>
 	  		<span class="v-time">
-	  			{{min}}:{{sec}} {{data.isFree ? 'free' : 'un'}}
+	  			{{min}}:{{sec}}
 	  		</span>
 	  	</div>
 		<!-- 小锁 -->
-		<i class="iconfont pull-right" 
+		<i class="iconfont pull-right"
 				v-if="!data.isFree"
 				style="color: #fff">&#xe60b;</i>
   	</div>
@@ -25,7 +25,7 @@
 	  	<div class="eva-help">
 	  		<a href="" class="button" style="margin-right:0.6rem">有帮助</a>
 	  		<a href="" class="button">没有帮助</a>
-	  		
+
 	  	</div>
 	  </div>
   </div>
@@ -55,7 +55,7 @@
 	    },
 	    sec(){
 				let time = this.data.answer.time;
-				if (time < 60) 
+				if (time < 60)
 					return time
 				else
 					time = time%60
@@ -81,7 +81,7 @@
 	border-radius: 20px;
 	background-color: $ztc;
 	/*动画效果*/
-	transition:all .3s ;
+	/*transition:all .3s ;*/
 }
 
 .voice-locked{
@@ -121,7 +121,7 @@
 	display: inline-block;
 	background-color: #3eb3e4;
 	font-size: 12px;
-}	
+}
 
 
 </style>
