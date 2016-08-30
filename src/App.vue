@@ -49,6 +49,9 @@ export default {
 .font-center{
   text-align: center;
 }
+.wrapper{
+  overflow hidden
+}
 //浏览器初始化
   body {
     position: relative;

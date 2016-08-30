@@ -1,12 +1,19 @@
 <template>
   <div class="swiper-container part">
-		<div class="swiper-wrapper ">
-		    <div class="swiper-slide">
-		    	<img class="card-img" src="" alt="">
+		<div class="swiper-wrapper fullscr">
+		    <div class="swiper-slide fullscr" v-for="data in data">
+		    	<a v-if="data.href===null">
+			    	<img class="card-img fullscr" :src="imgas" alt="">
+			    	<div class="cont-title" style="color:{{textColor}}">{{data.ContTitle}}</div>
+		    	</a>
+		    	<a :href="data.href" :v-if="data.href!=null">
+			    	<img class="card-img fullscr" :src="imgas" alt="">
+			    	<div class="cont-title" style="color:{{textColor}}">{{data.ContTitle}}</div>
+		    	</a>
 		    </div>
 		</div>
-		<div class="swiper-pagination" style="margin-bottom:7px"></div>
-    </div>
+		<div class="swiper-pagination"></div>
+  </div>
 </template>
 
 <script>
@@ -17,12 +24,33 @@ export default {
       
     }
   },
+  props:{
+  	data:{
+  		type:Array,
+  		default(){
+  			return[
+  				{
+  					ContTitle:"这里是标题1",
+  					imgUrl:require("../../assets/logo.png"),
+  					href:null,
+  				},
+  				{
+  					ContTitle:"这里是标题2",
+  					imgUrl:require("../../assets/logo.png"),
+  					href:"159",
+  				}
+  			]
+  		}
+  	},
+  	imgas:{type:String,default:"../../assets/logo.png"},
+  	textColor:{type:String,default:"black"},
+  },
   ready:function(){
    	console.log(123);
    	var mySwiper = new Swiper ('.swiper-container', {
 		    direction: 'horizontal',
 		    loop: true,
-		    autoplay: 3000,
+		    // autoplay: 3000,
 		    pagination: '.swiper-pagination',
 	})
    }
@@ -33,11 +61,14 @@ export default {
 <style scoped>
 @import '../../assets/swiper/swiper.min.css';
 .fullscr{
-	height: 8.0rem;
+	height: 100%;
 	width: 100%;
 }
 .swiper-container{	
+	position: relative;
+	height: 8.0rem;
 	padding-bottom: 0;
+	text-align: center;
 }
 .swiper-wrapper{
 	
@@ -46,6 +77,14 @@ export default {
 	
 }
 .card-img{
-
+	
+}
+.cont-title{
+	position: absolute;
+	width: 100%;
+	z-index: 10;
+	font-size: 1rem;
+	top: 3.45rem;
+	font-weight: 700;
 }
 </style>
