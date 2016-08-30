@@ -12,12 +12,10 @@ img {
 	margin: 0 auto;
 	width: 98%;
 }
-.btn {
 
-}
-.nav {
-}
-.nav-btm {
-
+.jd-cell{
+	display: flex;
+  align-items: center;
+  margin-left: 0.8rem;
 }
 

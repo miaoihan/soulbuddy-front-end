@@ -1,32 +1,45 @@
 <template>
 
-<!-- <mine-page></mine-page> -->
-<!-- <radius-btn></radius-btn> -->
-<!-- <top-bar></top-bar> -->
-<!-- <person-msg></person-msg> -->
-<!-- <soul-mate></soul-mate> -->
-<!-- <question-con></question-con> -->
-<roll-card></roll-card>
-  <!-- <home></home> -->
-  <!-- <evaluation></evaluation>
-  <mine-page></mine-page> -->
+  <mine-page :is="currentPage"></mine-page>
+  <radius-btn></radius-btn>
+  <top-bar></top-bar>
+  <person-msg></person-msg>
+  <soul-mate></soul-mate>
+  <question-con></question-con>
+  <roll-card></roll-card>
+  <home></home>
+  <evaluation></evaluation>
+  <mine-page></mine-page>
+  <self-eva></self-eva>
+  <science :data="data"></science>
+  <evaluation></evaluation>
+  <mine-page></mine-page>
 
 </template>
 
 <script>
 import Login from './pages/Login'
 import BindPhone from './pages/BindPhone'
-import Home from './pages/Home'
+import Home from './pages/home/Home'
 import Evaluation from './pages/Evaluation'
 import MinePage from './pages/MinePage'
+import SelfEva from './pages/SelfEva'
+import Science from './pages/Science'
 import PersonMsg from './pages/PersonMsg'
 import SoulMate from './pages/SoulMate'
 import QuestionCon from './pages/QuestionCon'
 import RollCard from './components/areaComp/RollCard'
+
 export default {
+  data(){
+    return{
+      currentPage: 'home'
+    }
+  },
   components: {
-    Login,BindPhone,MinePage,PersonMsg,SoulMate,QuestionCon,RollCard
-  }
+    Login,Home,Evaluation,BindPhone,SelfEva,Science,
+    MinePage,PersonMsg,SoulMate,QuestionCon,RollCard
+  },
 }
 </script>
 
@@ -44,14 +57,55 @@ export default {
 }
 .part{
   background:#fff;
-  font-size:.14rem;
+  font-size: 15px;
+  overflow hidden
 }
 .font-center{
   text-align: center;
 }
+
 .wrapper{
   overflow hidden
 }
+
+.btn{
+
+}
+
+.btn .btn-default{
+  background-color: $ztc
+  color: #fff
+}
+
+.ztc{
+  background-color: $ztc
+}
+
+.over-2{
+  overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.over-3{
+  overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.label{
+  display inline-block
+  padding 0.12rem 0.4rem
+  font-size: 0.6rem
+  color #fff
+  border-radius 0.25rem
+  background $ztc;
+}
+
 //浏览器初始化
   body {
     position: relative;
