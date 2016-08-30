@@ -33,17 +33,10 @@ import RollCard from './components/areaComp/RollCard'
 export default {
   data(){
     return{
-      currentPage: 'home',    
-    }
-  },
-  props:{
-    rolldata:{
-      type:Array,
-      default(){
-        return[{contitle:"标题1",imgurl:'',href:null},
+      currentPage: 'home',
+      rolldata:[{contitle:"标题1",imgurl:'',href:null},
                {contitle:"标题2",imgurl:'',href:null},
-               {contitle:"标题3",imgurl:'',href:null}]
-      }
+               {contitle:"标题3",imgurl:'',href:null}]    
     }
   },
   components: {
