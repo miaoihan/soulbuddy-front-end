@@ -1,10 +1,8 @@
 <template>
-  <div class="swiper-container">
-		<div class="swiper-wrapper">
-		    <div class="swiper-slide" >
-		    	<a href="3">
-				    123
-		    	</a>
+  <div class="swiper-container part">
+		<div class="swiper-wrapper ">
+		    <div class="swiper-slide">
+		    	<img class="card-img" src="" alt="">
 		    </div>
 		</div>
 		<div class="swiper-pagination" style="margin-bottom:7px"></div>
@@ -34,4 +32,20 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 @import '../../assets/swiper/swiper.min.css';
+.fullscr{
+	height: 8.0rem;
+	width: 100%;
+}
+.swiper-container{	
+	padding-bottom: 0;
+}
+.swiper-wrapper{
+	
+}
+.swiper-slide{
+	
+}
+.card-img{
+
+}
 </style>
