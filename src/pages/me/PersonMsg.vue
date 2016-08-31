@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="wrapper">
     <div class="person-photo">
     	<img class="photo-img" :src="PersonPhoto" >
     	<div class="sub-photo">
@@ -7,8 +7,8 @@
     		<span class="sub-text">上传真实头像</span>
     	</div>
     </div>
-    <input-box title="真实姓名"
-    	placeholder='请填写'
+    <input-box title="真实姓名" 
+    	placeholder='请填写' 
     	title-color="black" text-color="black">
    	</input-box>
    	<span class="lab-name">
@@ -25,23 +25,23 @@
    	</div>
    	<div class="save-box">
    		<input class="save-body" type="submit" value="保存" name="savemsg">
-    </div>
+   	</div>
    	<!-- <div style="height:5.0rem"></div> -->
   </div>
 </template>
 
 <script>
-import InputBox from 'components/areaComp/InputBox'
+import InputBox from '../components/areaComp/InputBox'
 export default {
 	components:{
 		InputBox
 	},
 	props:{
-		PersonPhoto:{type:String,default:"http://img1.imgtn.bdimg.com/it/u=3911485987,324527754&fm=206&gp=0.jpg"}
+		PersonPhoto:{type:String}
 	},
   data () {
     return {
-
+      
     }
   }
 }
@@ -49,7 +49,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="stylus">
-@import 'assets/stylus.styl'
+@import '../assets/stylus.styl'
 .person-photo{
 	position: relative;
 	height:10.0rem;
@@ -69,7 +69,7 @@ export default {
 	bottom:0.5rem;
 	right:0.75rem;
 	// display:block;
-
+	
 }
 .sub-text{
 	float:right

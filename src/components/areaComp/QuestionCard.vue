@@ -15,10 +15,10 @@
 		</div>
 	</div>
 	<div class="que-title">
-		{{data.quetitle}}
+		<h1>{{data.quetitle}}</h1>
 	</div>
 	<div class="que-content" v-if="isContent===true">
-		{{data.quecontent}}
+		<p>{{data.quecontent}}</p>
 	</div>
 	<div class="card-bottom">
 		<span class="answer-num" v-if="data.type==='piblic'">					已有{{data.answernum}}个回答
@@ -26,7 +26,7 @@
 		<span class="answer-num" v-if="data.type==='private'">
 			{{data.qname}} 直接咨询你
 		</span>
-		<span class="que-data">发起于{{data.date}}</span>
+		<time class="que-data">发起于{{data.date}}</time>
 		<span class="dian" v-if="isContent===false">•••</span>
 	</div>
   </div>

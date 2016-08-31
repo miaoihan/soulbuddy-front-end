@@ -1,6 +1,6 @@
 <template>
   <nav-header title="心灵伙伴" :fixed="true"></nav-header>
-  <div class="quecard ">
+  <div class="quecard wrapper">
 
     <span class="card-name">询问我的问题</span>
     <div class="swiper-container">
@@ -19,7 +19,7 @@
 				    	</div>
 				    </div>
 			    	<div class="que-text">
-			    		{{data.question}}
+			    		<p>{{data.question}}</p>
 			    	</div>
 		    	</a>
 		    </div>
@@ -28,14 +28,14 @@
   </div>
   <div class="que-item" v-for="listdata in listdatas">
   	<question-card :data="listdata"></question-card>
-  </div>
+  </div> 
   <!-- <answer-card></answer-card> -->
 </template>
 
 <script>
-import swiper from '../../assets/swiper/swiper.min.js'
-import NavHeader from '../../components/funComp/NavHeader'
-import QuestionCard from '../../components/areaComp/QuestionCard'
+import swiper from 'assets/swiper/swiper.min.js'
+import NavHeader from 'components/funComp/NavHeader'
+import QuestionCard from 'components/areaComp/QuestionCard'
 export default {
 	components:{
 		NavHeader,QuestionCard
@@ -92,7 +92,7 @@ export default {
 	},
   data () {
     return {
-
+      
     }
   },
    ready:function(){
@@ -110,7 +110,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import 'assets/swiper/swiper.min.css';
+@import '../assets/swiper/swiper.min.css';
 .quecard{
 	/*margin-top: 1.55rem;*/
 	overflow: hidden;
