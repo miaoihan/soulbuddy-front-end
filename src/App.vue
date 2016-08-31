@@ -26,14 +26,13 @@ import MinePage from './pages/me/MinePage.vue'
 import SelfEva from './pages/home/SelfEva'
 import Science from './pages/home/Science'
 import PersonMsg from './pages/PersonMsg'
-import SoulMate from './pages/SoulMate'
+import HomeQue from './pages/HomeQue'
 import QuestionCon from './pages/QuestionCon'
-import RollCard from './components/areaComp/RollCard'
-
+import History from './pages/me/History'
 export default {
   data(){
     return{
-      currentPage: 'mine-page',
+      currentPage: 'history',
       rolldata:[{contitle:"标题1",imgurl:'',href:null},
                {contitle:"标题2",imgurl:'',href:null},
                {contitle:"标题3",imgurl:'',href:null}]    
@@ -41,7 +40,7 @@ export default {
   },
   components: {
     Login,Home,Evaluation,BindPhone,SelfEva,Science,
-    MinePage,PersonMsg,SoulMate,QuestionCon,RollCard
+    MinePage,PersonMsg,HomeQue,QuestionCon,History
   },
 }
 </script>

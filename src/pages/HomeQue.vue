@@ -1,6 +1,6 @@
 <template>
   <nav-header title="心灵伙伴" :fixed="true"></nav-header>
-  <div class="quecard ">
+  <div class="quecard wrapper">
 
     <span class="card-name">询问我的问题</span>
     <div class="swiper-container">
@@ -19,7 +19,7 @@
 				    	</div>
 				    </div>
 			    	<div class="que-text">
-			    		{{data.question}}
+			    		<p>{{data.question}}</p>
 			    	</div>
 		    	</a>
 		    </div>
@@ -33,9 +33,9 @@
 </template>
 
 <script>
-import swiper from '../assets/swiper/swiper.min.js'
-import NavHeader from '../components/funComp/NavHeader'
-import QuestionCard from '../components/areaComp/QuestionCard'
+import swiper from 'assets/swiper/swiper.min.js'
+import NavHeader from 'components/funComp/NavHeader'
+import QuestionCard from 'components/areaComp/QuestionCard'
 export default {
 	components:{
 		NavHeader,QuestionCard

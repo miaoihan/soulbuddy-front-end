@@ -10,8 +10,8 @@ author：long
  -->
 <template>
   <div class="inputbox-body">
-  	<span class="inputbox-title" style="color:{{TitleColor}}">{{title}}</span>
-  	<input type="text" class="inputbox-text" :placeholder="placeholder" :name="name" style="color:{{TextColor}}"></input>
+  	<span class="inputbox-title" :style="{color:TitleColor}">{{title}}</span>
+  	<input type="text" class="inputbox-text" :placeholder="placeholder" :name="name" :style="{color:TextColor}"></input>
   	<div class="button-body">
   		<button class="inputbox-button" :class="{ display: btnname===''}" v-on:click="handleClick">
 	  		{{btnname}}

@@ -1,6 +1,6 @@
 <template>
   <!-- <div class="login-background" :style="height:{{srcHeight}}rem"> -->
-  <div class="login-background">
+  <div class="login-background wrapper">
     <img :src="background.img"/>
     <div class="loginBtn" @click="handClick(e)">
     	<a href="#">
@@ -17,7 +17,7 @@ export default {
 			type:Array,
 			default(){
 				return{
-					img:require("../assets/imgs/login.png")
+					img:require("assets/imgs/login.png")
 				}							
 			}			
 		}

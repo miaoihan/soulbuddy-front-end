@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="wrapper">
     <div class="person-photo">
     	<img class="photo-img" :src="PersonPhoto" >
     	<div class="sub-photo">
@@ -24,7 +24,7 @@
    		<textarea class="inputarea" maxlength="150" name="evaluation" placeholder="请填写自我评价（最多150个字）"></textarea>
    	</div>
    	<div class="save-box">
-   		<input class="save-body" type="submit" value="保存" name="savemsg"></div>
+   		<input class="save-body" type="submit" value="保存" name="savemsg">
    	</div>
    	<!-- <div style="height:5.0rem"></div> -->
   </div>
@@ -37,7 +37,7 @@ export default {
 		InputBox
 	},
 	props:{
-		PersonPhoto:{type:String,default:"http://img1.imgtn.bdimg.com/it/u=3911485987,324527754&fm=206&gp=0.jpg"}
+		PersonPhoto:{type:String}
 	},
   data () {
     return {
