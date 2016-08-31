@@ -2,7 +2,7 @@
   <!-- <div class="login-background" :style="height:{{srcHeight}}rem"> -->
   <div class="login-background">
     <img :src="background.img"/>
-    <div class="loginBtn" v-on:click="handClick(e)">
+    <div class="loginBtn" @click="handClick(e)">
     	<a href="#">
     		<img src="../assets/imgs/loginBtn.png">
     	</a>
@@ -68,8 +68,5 @@ export default {
 	bottom: 12%;
 	left: 27.5%;
 	/*margin-right:-1.87rem;*/
-}
-.active{
-	background-color: blue;
 }
 </style>

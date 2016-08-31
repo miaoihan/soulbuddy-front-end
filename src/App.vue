@@ -1,12 +1,12 @@
 <template>
-
-  <!--<mine-page :is="currentPage"></mine-page>-->
+  <component :is="currentPage"></component> 
+  <!-- <mine-page :is="currentPage"></mine-page> -->
   <!--<radius-btn :is="currentPage"></radius-btn>-->
   <!--<top-bar :is="currentPage"></top-bar>-->
   <!--<person-msg :is="currentPage"></person-msg>-->
   <!-- <soul-mate :is="currentPage"></soul-mate> -->
   <!--<question-con :is="currentPage"></question-con>-->
-  <roll-card :data="rolldata"></roll-card>
+  <!-- <roll-card :data="rolldata"></roll-card> -->
   <!--<home :is="currentPage"></home>-->
   <!--<evaluation :is="currentPage"></evaluation>-->
   <!--<mine-page :is="currentPage"></mine-page>-->
@@ -33,7 +33,7 @@ import RollCard from './components/areaComp/RollCard'
 export default {
   data(){
     return{
-      currentPage: 'home',
+      currentPage: 'mine-page',
       rolldata:[{contitle:"标题1",imgurl:'',href:null},
                {contitle:"标题2",imgurl:'',href:null},
                {contitle:"标题3",imgurl:'',href:null}]    
