@@ -1,8 +1,7 @@
 <template>
   <div class="wrapper"
-  		:class=" data.isFree ? 'voice' : 'voice-locked' "
-
-  		 :style="{width: data.answer.time>60 ? '100%' : (data.answer.time)*5/6+50+'%' }">
+  		 :class=" data.isFree ? 'voice' : 'voice-locked' "
+  		 :style="{width: data.time>60 ? '100%' : (data.time)*5/6+50+'%' }">
   	<div class="v-inner">
   	<!-- 计时 -->
 	  	<div :class=" data.isFree ? 'free' : 'unfree'"
@@ -46,7 +45,7 @@
 	  computed: {
 	  	// 将秒转换成分秒
 	    min(){
-	    	let time = this.data.answer.time;
+	    	let time = this.data.time;
 	      if (time>0 && time<60)
 	      	return 0
 	      else
@@ -54,7 +53,7 @@
 	      	return time
 	    },
 	    sec(){
-				let time = this.data.answer.time;
+				let time = this.data.time;
 				if (time < 60)
 					return time
 				else

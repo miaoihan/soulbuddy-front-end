@@ -17,16 +17,19 @@
 </template>
 
 <script>
-import swiper from '../../assets/swiper/swiper.min.js'
+import swiper from 'assets/swiper/swiper.min.js'
 export default {
   props:{
   	data:{
   		type:Array,
   		default(){
-  			return[{contitle:"",//图中标题
+  			return[
+          {
+            contitle:"",//图中标题
   					imgurl:'',//背景图
-  					href:null},//是否连接
-                   ] 			
+  					href:null
+          },//是否连接
+        ]
   		}
   	},
   	textColor:{type:String,default:"black"},//字体颜色
@@ -50,20 +53,20 @@ export default {
 	height: 100%;
 	width: 100%;
 }
-.swiper-container{	
+.swiper-container{
 	position: relative;
 	height: 8.0rem;
 	padding-bottom: 0;
 	text-align: center;
 }
 .swiper-wrapper{
-	
+
 }
 .swiper-slide{
-	
+
 }
 .card-img{
-	
+
 }
 .cont-title{
 	position: absolute;

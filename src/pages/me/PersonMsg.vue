@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import InputBox from '../../components/areaComp/InputBox'
+import InputBox from 'components/areaComp/InputBox'
 export default {
 	components:{
 		InputBox

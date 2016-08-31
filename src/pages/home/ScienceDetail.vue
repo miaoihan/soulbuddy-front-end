@@ -1,0 +1,79 @@
+<template>
+<!-- 文章详情 -->
+   <div class="wrapper">
+   		<!-- 文章头部 -->
+      <section class="art-top ztc">
+          <h1 class="art-title over-2">
+            干货: 别说你真的会用抑郁药物！别说你真的会用抑郁药物
+          </h1>
+          <!-- 标签组 -->
+          <p class="art-label">
+            <span class="label label-border">抑郁症</span>
+            <span class="label label-border">焦虑症</span>
+          </p>
+          <!-- 信息 -->
+          <article class="art-meta">
+            <span>{{data.author}}</span>
+            <time>{{data.date}}</time>
+            <aside class="pull-right">来源：{{data.laiyuan}}</aside>
+          </article>
+      </section>
+      <!-- 文章主体 -->
+      <section class="art-main">
+      		{{{ data.content }}}
+      </section>
+      <footer class="art-footer">
+	      <aside class="tips">
+	      	{{tips}}
+	      </aside>
+      </footer>
+   </div>
+</template> 
+
+<script>
+   export default{
+     components:{
+       
+     },
+     data(){
+     	return{
+     		tips:'本网站所有注明“来源：丁香园”的文字、图片和音视频资料，版权均属于丁香园所有，非经授权，任何媒体、网站或个人不得转载'
+     	}
+     },
+     props:{
+       data:{
+         type: Object,
+           default() {
+           	 return {
+	              title: '一个人心理成熟的具体表现都有哪些？',
+	              content: '有些朋友之间感情变淡是必然的事情，那表示我们不再有相同的志趣，所以不会再难过。“不要拉朋友一起上路，但却可以在路上找朋友。<br>懂得了每个人都在打一场自己并不能看见的战争，所以，尽量对他人友善，如果不能做到友善，起码保持安静。',
+	              isRec: true,
+	              author: '心灵伙伴',
+	              date: '2016-8-16',
+	              laiyuan: '丁香园',
+             }
+           }
+         }
+       },
+
+    }
+</script>
+
+<style scoped lang="stylus">
+  .art-top
+    height: 155px
+    padding 1.10rem 1.0rem 1.1rem 0.95rem
+    .art-title
+    	font-size 0.85rem
+    .art-label
+      margin 0.5rem 0 0.6rem 0
+      font-size: 12px
+    .art-meta
+     	font-size: 13px
+  .art-main
+  	padding 1.0rem 1.1rem
+  	background-color: #FFF
+  .art-footer
+  	background-color: #FFF
+  	padding 1.0rem 1.0rem 4.75rem 1.0rem
+</style>

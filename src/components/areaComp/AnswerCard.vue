@@ -5,14 +5,14 @@
 				<div class="answer-inf wrapper">
 				<!-- 头像 -->
 					<div class="avator pull-left">
-								
+									
 					</div>
 					<!-- 简介 -->
 					<div style="float: left;padding: 0.25rem 0.4rem">
-						<div style="font-size: 13px">{{data.answer.name}}</div>
-						<div style="font-size: 12px; color: #999">{{data.answer.desc}}</div>
+						<div style="font-size: 13px">{{data.name}}</div>
+						<div style="font-size: 12px; color: #999">{{data.desc}}</div>
 					</div>
-					<div class="pull-right" v-if="data.answer.isbest">
+					<div class="pull-right" v-if="data.isbest">
 						<a href="#" class="button ">最佳答案</a>
 					</div>
 				</div>
@@ -24,8 +24,8 @@
 				<div class="meta wrapper">
 					<ul>
 						<li><strong style="color: #2b8ff7">
-								{{data.answer.like}}</strong> 人认为有帮助</li>
-						<li>回答于 <time>{{data.answer.data}}</time></li>
+								{{data.like}}</strong> 人认为有帮助</li>
+						<li>回答于 <time>{{data.date}}</time></li>
 						<li>•••</li>
 					</ul>
 				</div>
@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import Voice from '../../components/funComp/Voice.vue'
+import Voice from 'components/funComp/Voice.vue'
   export default{
 	  props:{
 	  	data:{
@@ -49,7 +49,7 @@ import Voice from '../../components/funComp/Voice.vue'
 
 <style scoped lang="stylus">
 .answer
-	padding 0.8rem 0 1.1rem 0
+	padding 0.8rem 1.0rem
 	.answer-inf
 		.avator
 			width 2.3rem

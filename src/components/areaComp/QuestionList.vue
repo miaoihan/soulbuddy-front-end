@@ -11,7 +11,7 @@
 	  		<span class="nock-text" v-if="!que.isFree">
 	  		￥{{ que.pay }} 解锁该问题的所有回答</span>
 	  	</div>
-			<answer-card :data="que"></answer-card>
+			<answer-card :data="que.answer"></answer-card>
 		</section>
   </div>
 </template>
@@ -51,7 +51,8 @@ import AnswerCard from '../../components/areaComp/AnswerCard.vue'
 	  								isbest:'true',
 	  								time: 35,
 	  								like: 168,
-	  								data: '08-17'
+	  								date: '08-17',
+	  								isFree: true,
 	  							}
 	  						
 	  					},
@@ -66,7 +67,8 @@ import AnswerCard from '../../components/areaComp/AnswerCard.vue'
 	  								isbest:'true',
 	  								time: 78,
 	  								like: 79,
-	  								data: '08-17'
+	  								date: '08-17',
+	  								isFree: false,
 	  							}
 	  					},
 	  				]

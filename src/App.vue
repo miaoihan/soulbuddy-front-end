@@ -9,7 +9,7 @@
 export default {
   data(){
     return{
-      currentPage: 'self-eva',
+      currentPage: 'question-detail',
     }
   },
   components: {
@@ -19,6 +19,10 @@ export default {
     Evaluation: require('pages/home/Evaluation'),
     SelfEva: require('pages/home/SelfEva'),
     Science: require('pages/home/Science'),
+    ScienceDetail: require('pages/home/ScienceDetail'),
+    SerchList: require('pages/home/SerchList'),
+    Ask: require('pages/home/Ask'),
+    QuestionDetail: require('pages/home/QuestionDetail'),
 //    MinePage: require('pages/me/MinePage'),
 //    PersonMsg: require('pages/me/PersonMsg'),
 //    QuestionCon: require('pages/consultant/QuestionCon'),
@@ -35,8 +39,7 @@ export default {
 **/
 
 .container{
-  margin 0 auto
-  width 98%
+  padding 20px 20px
 }
 .part{
   background:#fff;
@@ -47,6 +50,7 @@ export default {
   text-align: center;
 }
 
+// 外套
 .wrapper{
   overflow hidden
   display relative
@@ -61,10 +65,13 @@ export default {
   color: #fff
 }
 
+/*背景色加白色字体*/
 .ztc{
   background-color: $ztc
+  color: #fff
 }
 
+ // 两行文本溢出显示...
 .over-2{
   overflow : hidden;
   text-overflow: ellipsis;
@@ -81,6 +88,7 @@ export default {
   -webkit-box-orient: vertical;
 }
 
+//  标签
 .label{
   display inline-block
   padding 0.12rem 0.4rem
@@ -89,8 +97,49 @@ export default {
   border-radius 0.25rem
   background $ztc;
 }
-
-//浏览器初始化
+// 白色边框标签
+.label-border{
+  border 1px solid #fff
+}
+// 灰色tip框
+.tips{
+  padding 0.9rem 0.8rem
+  background-color: #f2f2f2
+  color #999
+}
+// 横条框
+.tbar
+  height 2.5rem
+  // line-height 2.5rem
+  padding 0.75rem 1.0rem
+  width 100%
+  background-color: #FFF
+  input
+    width 100%
+    // height 1.5rem
+    border none
+// 头像
+.avator{
+  display inline-block
+  border-radius 50%
+  // 部署的时候删除
+  border 1px solid #e7e7e7  
+}
+// 底部固定条
+.fixed-bottom
+  height 2.2rem
+  line-height 2.2rem
+  width 100%
+  position fixed
+  bottom 0
+  background-color: $ztc
+  text-align: center
+  
+/*****************
+*                 *
+*   初始化浏览器     *
+*                 *
+******************/
   body {
     position: relative;
     margin: 0;
@@ -128,6 +177,10 @@ export default {
     margin: 0;
     padding: 0;
   }
+  // 取消聚焦和textarea放大
+  input,button,select,textarea{
+  outline:none
+  }textarea{resize:none}
 
   /** 设置默认字体 **/
   body,
