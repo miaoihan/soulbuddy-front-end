@@ -9,7 +9,7 @@
 export default {
   data(){
     return{
-      currentPage: 'question-detail',
+      currentPage: 'ask',
     }
   },
   components: {

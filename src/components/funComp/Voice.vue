@@ -1,7 +1,8 @@
 <template>
-  <div class="wrapper"
+  <div class="wrapper" 
   		 :class=" data.isFree ? 'voice' : 'voice-locked' "
-  		 :style="{width: data.time>60 ? '100%' : (data.time)*5/6+50+'%' }">
+  		 :style="{width: data.time>60 ? '100%' : (data.time)*5/6+50+'%' }"
+  		 @click="voiceAction($el)">
   	<div class="v-inner">
   	<!-- 计时 -->
 	  	<div :class=" data.isFree ? 'free' : 'unfree'"
@@ -40,6 +41,13 @@
 	  				isFree: false
 	  			}
 	  		}
+	  	}
+	  },
+	  methods:{
+	  	voiceAction(el){
+
+	  		if(this.data.isFree)
+	  			el.style.height="6.5rem"
 	  	}
 	  },
 	  computed: {
@@ -88,10 +96,6 @@
 	line-height: 1.8rem;
 	border-radius: 20px;
 	background-color: $ztc;
-}
-
-.voice:hover{
-	height: 6.5rem;
 }
 
 .v-inner
