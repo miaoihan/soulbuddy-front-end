@@ -45,7 +45,7 @@ export default {
 	  							{
 	  								name:'许雯',
 	  								desc:'国家心理二级咨询师',
-	  								isbest:false,
+	  								isbest:true,
 	  								time: 35,
 	  								like: 168,
 	  								data: '08-17'
