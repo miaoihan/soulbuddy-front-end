@@ -22,8 +22,8 @@
       <span v-if="isbox===true">
         取消
       </span>
-    </button>   
-  </div> 
+    </button>
+  </div>
   <div class="bottom-record wrapper" v-if="isFinish===true">
     <div class="record-box  font-center">
       <span class="shiting-text">点击试听</span>
@@ -36,7 +36,7 @@
       <div class="finish"><button class="btn" @click="again">重新录制</button></div>
       <div class="finish"><input class="btn submit" type="submit" name="submit" value="发布答案" @click="submit"></div>
     </div>
-  </div>  
+  </div>
 </template>
 
 <script>
@@ -47,7 +47,7 @@ import TopBar from 'components/areaComp/TopBar'
 export default {
   data () {
     return {
-      isbox:false,//是否出现录音区域框，false时不出现 
+      isbox:false,//是否出现录音区域框，false时不出现
       isStart:false,//是否开始录音，true时则开始录音，false时等待点击开始
       isFinish:false,//是否结束录音进入到试听阶段，true时录音结束进入到试听发布阶段
     }
@@ -66,7 +66,7 @@ export default {
 		       	   quecontent:'是一个比较特殊的样式，我们可以用它代替我们通常所用的标题截取函数有300px的宽度。如果用标题截取函数，则标题不是完整的',
 		       	   type:'private',
 		       	   answernum:2,
-		       	   date:'08-14'} 			
+		       	   date:'08-14'}
   		}
   	},
   },
@@ -79,7 +79,7 @@ export default {
       console.log('isbox',this.isbox)
     },
     recordbgn(){
-      this.isStart=!this.isStart;      
+      this.isStart=!this.isStart;
     },
     recordfin(){
       this.isFinish=!this.isFinish;

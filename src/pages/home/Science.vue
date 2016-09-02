@@ -2,7 +2,7 @@
   <div>
   	<nav-header title="科普"></nav-header>
   	<div class="swiper wrapper">
-
+      <roll-card :data="swiperList"></roll-card>
   	</div>
   	<div class="article-list">
   		<section class="article-item part" v-for="art in data">
@@ -26,12 +26,32 @@
 </template>
 
 <script>
-import NavHeader from 'components/funComp/NavHeader'
-
   export default{
   	components: {
-  		NavHeader
+  		NavHeader: require('components/funComp/NavHeader'),
+  		RollCard: require('components/funComp/RollCard'),
 	  },
+    data(){
+      return {
+        swiperList:[
+          {
+            contitle:"",//图中标题
+            imgurl:require('assets/imgs/p001.png'),//背景图
+            href:null
+          },
+          {
+            contitle:"",//图中标题
+            imgurl:require('assets/imgs/p001.png'),//背景图
+            href:null
+          },
+          {
+            contitle:"",//图中标题
+            imgurl:require('assets/imgs/p001.png'),//背景图
+            href:null
+          },
+        ]
+      }
+    },
 	  props:{
 	  	data: {
 	  		type: Array,
@@ -41,6 +61,7 @@ import NavHeader from 'components/funComp/NavHeader'
 		  				title: '为什么顶级艺术家当中女性很少即使是在当今？',
 		  				content: '如何评价IT业界老板和员工都跪舔妇女来当程序员，但是现在男女比例还是如此大的现状？ ——大部分女性压根就没打算要来。',
 		  				isRec: true,
+		  				
 		  			},
 		  			{
 		  				title: '如何评敖厂长最新一期囧的呼唤发现水下八关？',
@@ -60,33 +81,34 @@ import NavHeader from 'components/funComp/NavHeader'
 </script>
 
 <style scoped lang="stylus">
-.swiper{
-	height: 8.0rem;
-}
+	.swiper{
+		height: 8.0rem;
+		margin-bottom: 1rem 
+	}
 
-.article-list
-	margin-bottom 1.5rem
-	.article-item
-		height 6.0rem
-		margin-bottom: 0.5rem
-		.a-l
-			float: left
-			width 33.3%
-		.a-r
-			// float left
-			display table-cell
-			vertical-align middle
+	.article-list
+		margin-bottom 1.5rem
+		.article-item
 			height 6.0rem
-			width 66.6%
-			padding 0.4rem 0.9rem 1.0rem 0.5rem
-			.a-title
-				font-size: 15px
-			.a-content
-				font-size: 12px
+			margin-bottom: 0.5rem
+			.a-l
+				float: left
+				width 33.3%
+			.a-r
+				// float left
+				display table-cell
+				vertical-align middle
+				height 6.0rem
+				width 66.6%
+				padding 0.4rem 0.9rem 1.0rem 0.5rem
+				.a-title
+					font-size: 15px
+				.a-content
+					font-size: 12px
 
-.label
-	height 0.85rem
-	line-height: 0.76rem
-	font-size: 10px
-	background-color #316aa3
+	.label
+		height 0.85rem
+		line-height: 0.76rem
+		font-size: 10px
+		background-color #316aa3
 </style>
