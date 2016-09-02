@@ -30,7 +30,8 @@
   		</div>
   	</section>
   	<footer class="qd-footer fixed-bottom ztc"
-  					@click="unlock">
+  					@click="unlock"
+  					v-if="lock">
   		￥{{ money }} 解锁该问题的所有回答
   	</footer>
   </div>
@@ -43,12 +44,14 @@
 	  },
 	  data(){
 	  	return{
-	  		money: 1
+	  		money: 1,
+	  		lock: true 
 			}
 	  },
 	  methods:{
 	  	// 这里跳转支付接口
 	  	unlock(){
+	  		this.lock = false
 	  		this.best.isFree = true
 	  		for(let i in this.data){
 	  			// console.log(obj)
@@ -133,5 +136,8 @@
 	margin-bottom: 0.7rem;
 	font-size: 13px
 	color #999
+	
+.answer-item
+	margin-bottom 1.0rem
 
 </style>

@@ -18,7 +18,8 @@
 				</div>
 				<!-- voice组件 -->
 				<div class="voice-wrapper">
-					<voice :data="data"></voice>
+				<!-- 双向绑定 -->
+					<voice :data.sync="data"></voice>
 				</div>
 				<!-- 描述 -->
 				<div class="meta wrapper">
