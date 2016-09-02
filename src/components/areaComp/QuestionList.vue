@@ -48,7 +48,7 @@ import AnswerCard from '../../components/areaComp/AnswerCard.vue'
 	  							{
 	  								name:'许雯',
 	  								desc:'国家心理二级咨询师',
-	  								isbest:'true',
+	  								isbest:true,
 	  								time: 35,
 	  								like: 168,
 	  								data: '08-17'
@@ -63,7 +63,7 @@ import AnswerCard from '../../components/areaComp/AnswerCard.vue'
 	  							{
 	  								name:'米兰',
 	  								desc:'经验达人',
-	  								isbest:'true',
+	  								isbest:false,
 	  								time: 78,
 	  								like: 79,
 	  								data: '08-17'
