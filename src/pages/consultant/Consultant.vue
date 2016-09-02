@@ -10,8 +10,9 @@
 		  		<div class="desc-l1">
 		  			<span class="d-l1-name">{{item.name}}</span>
 		  			<span><i></i></span>
-		  			<span class="pull-right" style="font-size:0.6rem">
-		  				<span style="color: #2b8ff7;font-size:0.65rem">{{ item.num }}</span>
+		  			<span class="pull-right" style="font-size:0.6rem;color: #999">
+		  				<strong style="color: #2b8ff7;font-size:0.65rem">
+		  				{{ item.num }}</strong>
 		  				人收藏了这位咨询师
 		  			</span>
 		  		</div>
@@ -87,6 +88,7 @@
 	.d-l1-name
 		font-size:0.7rem
 		font-weight: 700
+		color #444
 	.desc-l3
 		margin-top: 0.7rem
 </style>

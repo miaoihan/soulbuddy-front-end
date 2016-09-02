@@ -5,11 +5,10 @@
 </template>
 
 <script>
-
 export default {
   data(){
     return{
-      currentPage: 'consultant',
+      currentPage: 'kol',
     }
   },
   components: {
@@ -25,18 +24,26 @@ export default {
     QuestionDetail: require('pages/home/QuestionDetail'),
     QuestionCon: require('pages/consultant/QuestionCon'),
     Consultant: require('pages/consultant/Consultant'),
+    History: require('pages/me/History'),
+    HomeQue: require('pages/HomeQue'),
+    PersonMsg: require('pages/me/PersonMsg'),
+    MinePage: require('pages/me/MinePage'),
+    QuestionCon: require('pages/consultant/QuestionCon'),
+    Kol: require('pages/consultant/Kol'),
+
   },
 }
 </script>
 
 <style lang="stylus">
 @import 'assets/stylus.styl'
-
 /*
 * 公共样式部分
 *
 **/
-
+.container-6{
+  padding 6px 6px
+}
 .container-16{
   padding 16px 16px
 }
@@ -54,28 +61,22 @@ export default {
 .font-center{
   text-align: center;
 }
-
 // 外套
 .wrapper{
   overflow hidden
   display relative
 }
-
 .btn{
-
 }
-
 .btn .btn-default{
   background-color: $ztc
   color: #fff
 }
-
 /*背景色加白色字体*/
 .ztc{
   background-color: $ztc
   color: #fff
 }
-
  // 两行文本溢出显示...
 .over-2{
   overflow : hidden;
@@ -84,7 +85,6 @@ export default {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
-
 .over-3{
   overflow : hidden;
   text-overflow: ellipsis;
@@ -92,7 +92,6 @@ export default {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
-
 //  标签
 .label{
   display inline-block
@@ -150,7 +149,6 @@ export default {
   bottom 0
   background-color: $ztc
   text-align: center
-
 /*****************
 *                 *
 *   初始化浏览器     *
@@ -162,11 +160,9 @@ export default {
     background: $bg;
     font-size: 0.75rem
   }
-
   html {
     font-size: 20px;
   }
-
   * {
     margin: 0;
     padding: 0;
@@ -174,7 +170,9 @@ export default {
     outline: none;
     font-family: "Helvetica Neue", Arial, verdana, sans-serif;
   }
-
+  a {
+    display: inline-block;
+  }
   /*
   KISSY CSS Reset
   理念：1. reset 的目的不是清除浏览器的默认样式，这仅是部分工作。清除和重置是紧密不可分的。
@@ -182,7 +180,6 @@ export default {
   3. reset 期望提供一套普适通用的基础样式。但没有银弹，推荐根据具体需求，裁剪和修改后再使用。
   特色：1. 适应中文；2. 基于最新主流浏览器。
    */
-
   /** 清除内外边距 **/
   body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, /* structural elements 结构元素 */
   dl, dt, dd, ul, ol, li, /* list elements 列表元素 */
@@ -197,39 +194,31 @@ export default {
   input,button,select,textarea{
   outline:none
   }textarea{resize:none}
-
   /** 设置默认字体 **/
   body,
   button, input, select, textarea /* for ie */
   {
     font: 12px / 1.5 tahoma, arial, \5b8b\4f53, sans-serif;
   }
-
   h1, h2, h3, h4, h5, h6 {
     font-size: 100%;
   }
-
   address, cite, dfn, em, var {
     font-style: normal;
   }
-
   /* 将斜体扶正 */
   code, kbd, pre, samp {
     font-family: courier new, courier, monospace;
   }
-
   /* 统一等宽字体 */
   small {
     font-size: 12px;
   }
-
   /* 小于 12px 的中文很难阅读，让 small 正常化 */
-
   /** 重置列表元素 **/
   ul, ol {
     list-style: none;
   }
-
   /** 重置文本格式元素 **/
   a {
     text-decoration: none;
@@ -239,38 +228,29 @@ export default {
       text-decoration: none;
     }
   }
-
   /** 重置表单元素 **/
   legend {
     color: #000;
   }
-
   /* for ie6 */
   fieldset, img {
     border: 0;
   }
-
   /* img 搭车：让链接里的 img 无边框 */
   button, input, select, textarea {
     font-size: 100%;
   }
-
   /* 使得表单元素在 ie 下能继承字体大小 */
   /* 注：optgroup 无法扶正 */
-
   /** 重置表格元素 **/
   table {
     border-collapse: collapse;
     border-spacing: 0;
   }
-
   html {
     box-sizing: border-box;
   }
-
   *, *:before, *:after {
     box-sizing: inherit;
   }
-
 </style>
-

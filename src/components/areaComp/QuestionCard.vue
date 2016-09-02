@@ -52,7 +52,8 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped >
+<style scoped lang="stylus">
+@import '../../assets/stylus.styl'
 .card-body{
 	width: 100%;
 	overflow: hidden;
@@ -85,10 +86,10 @@ export default {
 	line-height: 1.1rem;
 	font-size: 0.6rem;
 	float: right;
-	border:0.05rem solid #29abe2;
+	border:0.05rem solid $ztc;
 	border-radius: 0.25rem;
 	padding: 0 0.5rem;
-	color: #29abe2;
+	color: $ztc;
 }
 .que-title{
 	overflow: hidden;

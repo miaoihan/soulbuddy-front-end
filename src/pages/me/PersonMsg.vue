@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import InputBox from '../components/areaComp/InputBox'
+import InputBox from 'components/funComp/InputBox'
 export default {
 	components:{
 		InputBox
@@ -49,7 +49,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="stylus">
-@import '../assets/stylus.styl'
+@import '../../assets/stylus.styl'
 .person-photo{
 	position: relative;
 	height:10.0rem;
