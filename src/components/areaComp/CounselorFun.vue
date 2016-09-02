@@ -16,7 +16,7 @@
     		</div>
     		<div class="function-body font-center">
 	    		<a href="#">
-	    			<i class="iconfont fun-img">&#xe607;</i>
+	    			<i class="iconfont fun-img" style="font-weight:700">&#xe607;</i>
 	    			<span class="fun-text">设置</span>
 	    		</a>
     		</div>
@@ -40,7 +40,8 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="stylus">
+@import '../../assets/stylus.styl'
 .person-msg-fun{
 	height:4.45rem;
 	width: 100%;
@@ -56,7 +57,7 @@ export default {
 .fun-img{
 	font-size: 1.2rem;
 	overflow: hidden;
-	color: #29abe2;
+	color: $ztc;
 }
 .fun-text{
 	display: block;

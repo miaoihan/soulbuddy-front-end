@@ -47,7 +47,8 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="stylus">
+@import '../../assets/stylus.styl'
 .inputbox-body{
 	overflow: hidden;
 	width: 100%;
@@ -75,11 +76,6 @@ export default {
 input:focus{
     border:0;
 }
-/*.button-body{
-	margin-top: 0.55rem;
-	overflow: hidden;
-	height: 1.4rem;
-}*/
 .inputbox-button{
 	position: absolute;
 	font-size: 0.7rem;
@@ -87,12 +83,9 @@ input:focus{
 	width: 4.75rem;
 	right: 0.6rem;
 	border-radius: 1.4rem;
-	background-color: #29abe2;
+	background-color: $ztc;
 	color: #fff;
 	border:0;
 	margin-top: 0.55rem;
-}
-.display{
-	display: none;
 }
 </style>

@@ -24,7 +24,7 @@
     <!-- <common-fun v-if="user.UserType===common"></common-fun> -->
 
     <change-btn :btntext="btntext"
-	    	style="margin-top:1rem;padding-left:1rem;padding-right:1rem;background:#29abe2"
+	    	style="margin-top:1rem;padding-left:1rem;padding-right:1rem;background:#2b8ff7"
 			text-color="#fff" icon-color="#fff"
 			@click="handleClick">
 	</change-btn>
@@ -45,7 +45,7 @@ export default {
 	  		default(){
 	  			return{
 	  				id:1,
-					imgurl:require("assets/logo.png"),
+					imgurl:"",
 					username:"陈雪琴",
 					UserType:'common',
 	  			}
@@ -86,7 +86,8 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="stylus">
+@import '../../assets/stylus.styl'
 .person-msg-body{
 	overflow: hidden;
 	height: 5.15rem;
@@ -147,7 +148,7 @@ export default {
 	margin-top: 2.0rem;
 }
 .imgimg{
-	color: #29abe2;
+	color: $ztc;
 	font-size: 1.0rem;
 }
 .hint-text{

@@ -60,7 +60,7 @@ export default {
   		type:Object,
   		default(){
   			return{qname: '王小喵33',
-  				     queimg:require('../assets/logo.png'),
+  				     queimg:require('../../assets/logo.png'),
 		       	   pay: '25',
 		       	   quetitle:'你可以在网上找到类似上述的其他脚本，它们不管多么优秀，其原理都是一样的，通过对keydown',
 		       	   quecontent:'是一个比较特殊的样式，我们可以用它代替我们通常所用的标题截取函数有300px的宽度。如果用标题截取函数，则标题不是完整的',
@@ -104,8 +104,8 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped >
- /*@simport '../assets/stylus.styl'*/
+<style scoped lang="stylus">
+@import '../../assets/stylus.styl'
 .que-content{
 	background-color: #fff;
 	padding:1rem 1rem 0rem 1rem;
@@ -116,7 +116,7 @@ export default {
   width: 100%;
 }
 .btn{
-  background-color: #29abe2;
+  background-color: $ztc;
   color: #fff;
   border: 0;
 }
@@ -129,7 +129,7 @@ export default {
   position: relative;
   overflow: hidden;
   height: 6.0rem;
-  background-color: #29abe2;
+  background-color: $ztc;
   color:#fff;
 }
 /*进行录音中*/

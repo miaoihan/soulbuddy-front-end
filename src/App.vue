@@ -8,7 +8,7 @@
 export default {
   data(){
     return{
-      currentPage: 'home',
+      currentPage: 'home-que',
     }
   },
   components: {
@@ -23,9 +23,10 @@ export default {
     Ask: require('pages/home/Ask'),
     QuestionDetail: require('pages/home/QuestionDetail'),
     History: require('pages/me/History'),
-//    MinePage: require('pages/me/MinePage'),
-//    PersonMsg: require('pages/me/PersonMsg'),
-//    QuestionCon: require('pages/consultant/QuestionCon'),
+    HomeQue: require('pages/HomeQue'),
+    PersonMsg: require('pages/me/PersonMsg'),
+    MinePage: require('pages/me/MinePage'),
+    QuestionCon: require('pages/consultant/QuestionCon'),
   },
 }
 </script>

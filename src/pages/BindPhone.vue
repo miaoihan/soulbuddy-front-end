@@ -1,14 +1,12 @@
 <template>
 	<div class="wrapper">
-    <top-bar></top-bar>
 		<input-box title="手机号码" btnname="发送验证码" name="phonenum" style="margin-top:1.0rem"></input-box>
 		<input-box title="验证码" name="identcode" style="margin-top:0.05rem"></input-box>
     <div class="finish-body">
       <button class="finishBtn" @click="handleClick(event)">
         完成
       </button>
-    </div>
-    
+    </div>    
 	</div>
 </template>
 
@@ -33,7 +31,8 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="stylus">
+@import '../assets/stylus.styl'
 .finish-body{
   overflow: hidden;
   height: 2.25rem;
@@ -43,7 +42,7 @@ export default {
   display: block;
   height:2.25rem;
   width: 100%;
-  background-color: #29abe2;
+  background-color: $ztc;
   font-size: 0.8rem;
   color: #6cc5eb;
   text-align: center;
