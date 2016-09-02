@@ -1,8 +1,10 @@
 <template>
-  <div class="wrapper" 
+	
+  <div class="wrapper"
   		 :class=" data.isFree ? 'voice' : 'voice-locked' "
   		 :style="{width: data.time>60 ? '100%' : (data.time)*5/6+50+'%' }"
-  		 @click="voiceAction($el)">
+  		 @click="voiceAction"
+  		 >
   	<div class="v-inner">
   	<!-- 计时 -->
 	  	<div :class=" data.isFree ? 'free' : 'unfree'"
@@ -23,8 +25,12 @@
 	  		请对该答案进行评价
 	  	</div>
 	  	<div class="eva-help">
-	  		<a href="" class="button" style="margin-right:0.6rem">有帮助</a>
-	  		<a href="" class="button">没有帮助</a>
+	  		<button href="#" class="button" style="margin-right:0.6rem"
+	  			 			@click="hasHelp($event)"
+	  			 			:disabled="isEva">有帮助</button>
+	  		<button href="#" class="button"
+	  						 @click="noHelp($event)"
+	  						 :disabled="isEva">没有帮助</button>
 
 	  	</div>
 	  </div>
@@ -38,16 +44,42 @@
 	  		type: Object,
 	  		default() {
 	  			return {
-	  				isFree: false
+	  				isFree: false,
+	  				
 	  			}
 	  		}
 	  	}
 	  },
+	  data(){
+	  	return{
+	  		isEva: false,
+	  	}
+	  },
 	  methods:{
-	  	voiceAction(el){
-
+	  	// 点击voice后的动作
+	  	voiceAction(){
+	  		// 免费
 	  		if(this.data.isFree)
-	  			el.style.height="6.5rem"
+	  			// 还没评价
+	  			// if (!this.isEva)
+	  				this.$el.style.height="6.5rem"
+	  	},
+
+	  	closeVoice(){
+	  		
+	  		
+	  	},
+
+	  	hasHelp(eve){
+	  		this.data.like++
+	  		this.$el.style.height="1.8rem"
+	  		this.isEva = true  	
+	  		// 阻止事件传播、触发父组件
+	  		eve.stopPropagation()  		
+	  	},
+	  	noHelp(eve){
+	  		this.$el.style.height="1.8rem"
+	  		this.isEva = true  	
 	  	}
 	  },
 	  computed: {
@@ -72,6 +104,17 @@
 					return time
 	    }
 	  },
+	  ready(){
+	  	$(".voice").blur(function(){
+  			alert(111)
+  			this.$el.style.height="1.8rem"
+			}); 
+			$(".v-inner").blur(function(){
+  			alert(111222	)
+  			this.$el.style.height="1.8rem"
+			}); 
+	  },
+
 	  components: {
 
 	  },
@@ -79,52 +122,54 @@
 </script>
 
 <style scoped lang="stylus">
-@import '../../assets/stylus.styl'
+	@import '../../assets/stylus.styl'
 
-.voice{
-	height: 1.8rem;
-	line-height: 1.8rem;
-	/*width: 100%;*/
-	border-radius: 20px;
-	background-color: $ztc;
-	/*动画效果*/
-	/*transition:all .3s ;*/
-}
+	.voice{
+		height: 1.8rem;
+		line-height: 1.8rem;
+		/*width: 100%;*/
+		border-radius: 20px;
+		background-color: $ztc;
+		/*动画效果*/
+		/*transition:all .3s ;*/
+	}
+	.voice:hover
+		height 6.5rem
 
-.voice-locked{
-	height: 1.8rem;
-	line-height: 1.8rem;
-	border-radius: 20px;
-	background-color: $ztc;
-}
+	.voice-locked{
+		height: 1.8rem;
+		line-height: 1.8rem;
+		border-radius: 20px;
+		background-color: $ztc;
+	}
 
-.v-inner
-	margin: 0 1rem;
-	.free
-		color: #fff;
-	.unfree
-		color: #69c4ea;
+	.v-inner
+		margin: 0 1rem;
+		.free
+			color: #fff;
+		.unfree
+			color: #69c4ea;
 
-.v-time{
-	margin-left: 1.0rem;
-}
+	.v-time{
+		margin-left: 1.0rem;
+	}
 
-.v-evaluate{
-	width: 94%;
-  margin-left: 3%;
-	padding-top: 0.5rem;
-	text-align: center;
-	border-top: 1px solid #69c4ea;
-	color:#fff;
-}
+	.v-evaluate{
+		width: 94%;
+	  margin-left: 3%;
+		padding-top: 0.5rem;
+		text-align: center;
+		border-top: 1px solid #69c4ea;
+		color:#fff;
+	}
 
-.eva-help .button{
-	width: auto;
-	color: #fff;
-	display: inline-block;
-	background-color: #3eb3e4;
-	font-size: 12px;
-}
-
-
+	.eva-help
+		button
+			width: auto;
+			color: #fff;
+			display: inline-block;
+			background-color: #3eb3e4
+			font-size: 12px;
+		button:disabled
+			background-color: #999
 </style>

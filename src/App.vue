@@ -9,7 +9,7 @@
 export default {
   data(){
     return{
-      currentPage: 'ask',
+      currentPage: 'consultant',
     }
   },
   components: {
@@ -23,9 +23,8 @@ export default {
     SerchList: require('pages/home/SerchList'),
     Ask: require('pages/home/Ask'),
     QuestionDetail: require('pages/home/QuestionDetail'),
-//    MinePage: require('pages/me/MinePage'),
-//    PersonMsg: require('pages/me/PersonMsg'),
-//    QuestionCon: require('pages/consultant/QuestionCon'),
+    QuestionCon: require('pages/consultant/QuestionCon'),
+    Consultant: require('pages/consultant/Consultant'),
   },
 }
 </script>
@@ -38,7 +37,13 @@ export default {
 *
 **/
 
-.container{
+.container-16{
+  padding 16px 16px
+}
+.container-18{
+  padding 18px 18px
+}
+.container-20{
   padding 20px 20px
 }
 .part{
@@ -97,6 +102,17 @@ export default {
   border-radius 0.25rem
   background $ztc;
 }
+.label-grey{
+  display inline-block
+  height 1.05rem 
+  line-height: 1.05rem
+  padding 0 0.3rem
+  border-radius 0.25rem
+  font-size: 0.6rem
+  background-color #f3f3f3
+  color #999
+}
+  
 // 白色边框标签
 .label-border{
   border 1px solid #fff
