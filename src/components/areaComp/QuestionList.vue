@@ -1,10 +1,9 @@
 <template>
   <div class="wrapper" style="margin-top: .5rem;">
   <!-- 问题列表 -->
-  	<section v-for="que in data">
-		  <div class="question-item part" >
-
-		  	<title class="que-content">
+  	<section class="question-item part" v-for="que in data">
+		  <div class="q-i-title">
+		  	<title class="que-content over-2">
 		  		{{que.content}}
 		  	</title>
 		  	<div class="nock">
@@ -12,7 +11,6 @@
 		  		<span class="nock-text" v-if="!que.isFree">
 		  		￥{{ que.pay }} 解锁该问题的所有回答</span>
 		  	</div>
-				
 			</div>
 			<answer-card :data="que.answer"></answer-card>
 		</section>
@@ -46,7 +44,7 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
 	  					{
 	  						content: '是这些球星的第一次夺冠，为啥勇士都没人哭呢。特别是新FMVP比库里更淡定的样子',
 	  						pay: 5,
-	  						isFree: true,
+	  						isFree: false,
 	  						answer:
 	  							{
 	  								name:'许雯',
@@ -62,7 +60,7 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
 	  					{
 	  						content: '在Windows操作系统上显示良好。但是仅限于12像素和14像素。超出14像素的字基本就会出现字不够方正，锯齿明显的现象',
 	  						pay: 1,
-	  						isFree: false,
+	  						isFree: true,
 	  						answer:
 	  							{
 	  								name:'米兰',
@@ -83,40 +81,26 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
 </script>
 
 <style scoped lang="stylus">
-@import '../../assets/stylus.styl'
+	@import '../../assets/stylus.styl'
 
-.question-item{
-	padding 1.15rem 1.35rem 0 1.0rem
-	margin-bottom: 0.5rem
-}
+	.question-item
+		margin-bottom: 0.5rem
+		
+	.q-i-title
+		padding 1.15rem 1.35rem 0 1.0rem
 
-.nock
-	border-bottom: 1px solid #ebebeb
-	padding-bottom 0.9rem
-	 .nock-text
-		 	display block
-		 	text-align center
-		 	font-size 14px
-		 	color $ztc
-
-.label{
-	display inline-block
-	padding 0.12rem 0.4rem
-	font-size: 0.6rem
-	color #fff
-	border-radius 0.25rem
-	background $ztc;
-}
-	
-.que-content{
-	margin-bottom: 1.05rem
-	font-size 15px
-	overflow : hidden;
-	text-overflow: ellipsis;
-	display: -webkit-box;
-	-webkit-line-clamp: 2;
-	-webkit-box-orient: vertical;
-}
-
+	.nock
+		border-bottom: 1px solid #ebebeb
+		padding-bottom 0.9rem
+		 .nock-text
+			 	display block
+			 	text-align center
+			 	font-size 14px
+			 	color $ztc
+		
+	.que-content{
+		margin-bottom: 1.05rem
+		font-size 15px
+	}
 
 </style>
