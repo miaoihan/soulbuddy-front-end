@@ -31,7 +31,6 @@
 	  		<button href="#" class="button"
 	  						 @click="noHelp($event)"
 	  						 :disabled="isEva">没有帮助</button>
-
 	  	</div>
 	  </div>
   </div>
@@ -59,10 +58,10 @@
 	  	// 点击voice后的动作
 	  	voiceAction(){
 	  		// 免费
-	  		if(this.data.isFree)
+	  		if(this.data.isFree){}
 	  			// 还没评价
 	  			// if (!this.isEva)
-	  				this.$el.style.height="6.5rem"
+	  				// this.$el.style.height="6.5rem"
 	  	},
 
 	  	closeVoice(){
@@ -72,13 +71,13 @@
 
 	  	hasHelp(eve){
 	  		this.data.like++
-	  		this.$el.style.height="1.8rem"
+	  		// this.$el.style.height="1.8rem"
 	  		this.isEva = true  	
 	  		// 阻止事件传播、触发父组件
 	  		eve.stopPropagation()  		
 	  	},
 	  	noHelp(eve){
-	  		this.$el.style.height="1.8rem"
+	  		// this.$el.style.height="1.8rem"
 	  		this.isEva = true  	
 	  	}
 	  },
