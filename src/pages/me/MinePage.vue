@@ -26,7 +26,12 @@
     <change-btn :btntext="btntext"
 	    	style="margin-top:1rem;padding-left:1rem;padding-right:1rem;background:#2b8ff7"
 			text-color="#fff" icon-color="#fff"
-			@click="handleClick">
+			@click="handleClick" v-if="user.isCounselor===true">
+	</change-btn>
+	<change-btn btntext="申请成为咨询师或经验答人"
+	    	style="margin-top:1rem;padding-left:1rem;padding-right:1rem;background:#fff"
+			text-color="#2b8ff7" v-if="user.isCounselor===false"
+			>
 	</change-btn>
   </div>
 </template>
@@ -40,6 +45,19 @@ export default {
 		ChangeBtn,CounselorFun,CommonFun
 	},
 	props:{
+		data:{
+  		type:Array,
+  		default(){
+  			return[
+          {
+            contitle:"",//图中标题
+  					imgurl:'',//背景图
+  					href:"null"
+          },//是否连接
+        ]
+  		}
+  	},
+  	textColor:{type:String,default:"black"},
 	  	user:{
 	  		type:Array,
 	  		default(){
@@ -47,7 +65,8 @@ export default {
 	  				id:1,
 					imgurl:"",
 					username:"陈雪琴",
-					UserType:'common',
+					UserType:'common',//用户当前的身份
+					isCounselor:true,//是否已经成为咨询师
 	  			}
 	  		}
 	  	},
