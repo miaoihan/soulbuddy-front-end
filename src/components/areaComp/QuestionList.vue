@@ -1,16 +1,19 @@
 <template>
   <div class="wrapper" style="margin-top: .5rem;">
   <!-- 问题列表 -->
-	  <section class="question-item part" v-for="que in data">
+  	<section v-for="que in data">
+		  <div class="question-item part" >
 
-	  	<title class="que-content">
-	  		{{que.content}}
-	  	</title>
-	  	<div class="nock">
-	  		<span class="label" v-if="que.isFree">免费</span>
-	  		<span class="nock-text" v-if="!que.isFree">
-	  		￥{{ que.pay }} 解锁该问题的所有回答</span>
-	  	</div>
+		  	<title class="que-content">
+		  		{{que.content}}
+		  	</title>
+		  	<div class="nock">
+		  		<span class="label" v-if="que.isFree">免费</span>
+		  		<span class="nock-text" v-if="!que.isFree">
+		  		￥{{ que.pay }} 解锁该问题的所有回答</span>
+		  	</div>
+				
+			</div>
 			<answer-card :data="que.answer"></answer-card>
 		</section>
   </div>
