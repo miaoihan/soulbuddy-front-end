@@ -8,7 +8,7 @@
 export default {
   data(){
     return{
-      currentPage: 'kol',
+      currentPage: 'ask',
     }
   },
   components: {
@@ -30,6 +30,7 @@ export default {
     MinePage: require('pages/me/MinePage'),
     QuestionCon: require('pages/consultant/QuestionCon'),
     Kol: require('pages/consultant/Kol'),
+    About: require('pages/consultant/About'),
 
   },
 }
@@ -115,6 +116,7 @@ export default {
 // 白色边框标签
 .label-border{
   border 1px solid #fff
+  padding 0 0.2rem
 }
 // 灰色tip框
 .tips{

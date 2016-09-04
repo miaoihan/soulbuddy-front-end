@@ -18,7 +18,7 @@
 
 <script>
 
-import AnswerCard from '../../components/areaComp/AnswerCard.vue'
+import AnswerCard from 'components/areaComp/AnswerCard.vue'
   export default{
   	components: {
 	   AnswerCard

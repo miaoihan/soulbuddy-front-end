@@ -8,20 +8,25 @@
   		<textarea name="" id="" placeholder="请详细描述一下你的问题" 
   							class="ask-tearea"></textarea>
   	</div>
-  	<div class="tbar">
-  		<span class="ask-gold" name="gold">请输入赏金金额（￥）</span>
-  		<input type="text" placeholder="0" class="input-gold">
-  	</div>
-  	<aside class="tips">
-			问题有三人抢答，最佳回答获得60%的费用，其他各20%
-  	</aside>
-  	<div class="tbar" style="margin-top: 1.0rem">
+  	<div v-if="is_qiangda">
+	  	<div class="tbar">
+	  		<span class="ask-gold" name="gold">请输入赏金金额（￥）</span>
+	  		<input type="text" placeholder="0" class="input-gold">
+	  	</div>
+	  	<aside class="tips">
+				问题有三人抢答，最佳回答获得60%的费用，其他各20%
+	  	</aside>
+	  </div>
+  	<div class="tbar wrapper" style="margin-top: 1.0rem">
   		<span>请将该问题设为公开</span>
 	  		<label class="label-switch pull-right" style="margin-top: -0.3rem">
 		        <input type="checkbox" v-model="value">
 		        <div class="checkbox"></div>
 	       </label>
   	</div>
+  	<aside class="tips">
+			将问题设为公开后，答案被其他人付费收听后，你和咨询师各获得0.5元
+	  </aside>
   	
   </div>
 </template>
@@ -33,7 +38,8 @@
 	  },
 	  data(){
 	  	return{
-	  		value: true
+	  		value: true,
+	  		is_qiangda: false
 	  	}
 	  },
 	  props:{

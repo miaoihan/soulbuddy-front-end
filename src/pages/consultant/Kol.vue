@@ -13,8 +13,10 @@
 	  				<div class="z-desc">
 				  		<div class="desc-l1">
 				  			<span class="d-l1-name">{{item.name}}</span>
-				  			<span><i></i></span>
-				  			
+				  			<!-- 认证标志 -->
+				  			<span>
+				  				<i></i>
+				  			</span>
 				  		</div>
 				  		<div class="desc-l2">
 				  			<span style="font-size:0.6rem;color: #999">
@@ -89,7 +91,7 @@
   }
 </script>
 
-<style scoped lang="stylus">
+<style lang="stylus">
 
 	.koa-item
 		border-bottom: 1px solid #e7e7e7
@@ -97,12 +99,13 @@
 	.k-i-l
 		// display: inline-block
 		height 5.5rem
-		width 3.45rem
+		// width 3.45rem
 		float: left
 	.k-i-r
 		display: inline-block
 		height 5.5rem
 		float: left
+		margin-left: 0.6rem
 	a
 		width 100%
 
