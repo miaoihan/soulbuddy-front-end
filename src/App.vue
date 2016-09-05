@@ -8,7 +8,7 @@
 export default {
   data(){
     return{
-      currentPage: 'mine-page',
+      currentPage: 'apply',
     }
   },
   components: {
@@ -31,7 +31,7 @@ export default {
     QuestionCon: require('pages/consultant/QuestionCon'),
     Kol: require('pages/consultant/Kol'),
     About: require('pages/consultant/About'),
-
+    Apply: require('pages/me/Apply'),
   },
 }
 </script>
@@ -42,6 +42,17 @@ export default {
 * 公共样式部分
 *
 **/
+.float-left{
+  float:left
+}
+.float-right{
+  float:right
+  width:82%
+}
+.top-20{
+  margin-top:1.0rem
+  overflow hidden
+}
 .container-6{
   padding 6px 6px
 }
@@ -151,6 +162,7 @@ export default {
   bottom 0
   background-color: $ztc
   text-align: center
+
 /*****************
 *                 *
 *   初始化浏览器     *
