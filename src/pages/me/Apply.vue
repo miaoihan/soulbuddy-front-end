@@ -2,11 +2,11 @@
   <nav-header title="申请"></nav-header>
   <div class="top-20 part">
 	<i class="iconfont float-left">&#xe618;</i>
-  	<change-btn class="float-right" btntext="申请成为咨询师"></change-btn>
+  	<change-btn class="float-right" btntext="申请成为咨询师" href="123"></change-btn>
   </div>
   <div class="top-20 part">
-  	<i class="iconfont float-left">&#xe618;</i>
-  	<change-btn class="float-right" btntext="申请成为经验答人"></change-btn>
+  	<i class="iconfont float-left">&#xe619;</i>
+  	<change-btn class="float-right" btntext="申请成为经验答人" href="456"></change-btn>
   </div>
 </template>
 
