@@ -8,7 +8,7 @@
 export default {
   data(){
     return{
-      currentPage: 'apply',
+      currentPage: 'person-msg',
     }
   },
   components: {
@@ -42,12 +42,14 @@ export default {
 * 公共样式部分
 *
 **/
+.text-center{
+  text-align: center //文字水平居中
+}
 .float-left{
   float:left
 }
 .float-right{
   float:right
-  width:82%
 }
 .top-20{
   margin-top:1.0rem

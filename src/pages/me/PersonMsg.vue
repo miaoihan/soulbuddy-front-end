@@ -9,8 +9,13 @@
     </div>
     <input-box title="真实姓名" 
     	placeholder='请填写' 
-    	title-color="black" text-color="black">
+    	title-color="black" text-color="black"
+    	style="padding:0 1rem">
    	</input-box>
+
+   	<div class="part top-20 wrapper" style="padding:0 1rem">
+   		<card-photo></card-photo>
+   	</div>
    	<span class="lab-name">
    		擅长标签
    	</span>
@@ -32,9 +37,10 @@
 
 <script>
 import InputBox from 'components/funComp/InputBox'
+import CardPhoto from 'components/areaComp/CardPhoto'
 export default {
 	components:{
-		InputBox
+		InputBox,CardPhoto
 	},
 	props:{
 		PersonPhoto:{type:String}
@@ -50,6 +56,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="stylus">
 @import '../../assets/stylus.styl'
+input::-webkit-input-placeholder {text-align:right}
 .person-photo{
 	position: relative;
 	height:10.0rem;
