@@ -5,22 +5,7 @@
       <roll-card :data="swiperList"></roll-card>
   	</div>
   	<div class="article-list">
-  		<section class="article-item part" v-for="art in data">
-  			<div class="a-l">
-  				<img src="" alt="">
-  			</div>
-  			<div class="a-r">
-  				<aside>
-  					<span class="label" v-if="art.isRec">推荐</span>
-  				</aside>
-  				<p class="a-title over-2">
-  					{{art.title}}
-  				</p>
-					<p class="a-content over-2">
-						{{art.content}}
-					</p>
-  			</div>
-  		</section> <!-- end article-item -->
+  		<article-list :data="data"></article-list>
   	</div> <!-- end article-list -->
   </div>
 </template>
@@ -30,6 +15,7 @@
   	components: {
   		NavHeader: require('components/funComp/NavHeader'),
   		RollCard: require('components/funComp/RollCard'),
+  		ArticleList: require('components/AreaComp/ArticleList'),
 	  },
     data(){
       return {
@@ -85,30 +71,10 @@
 		height: 8.0rem;
 		margin-bottom: 1rem 
 	}
-
+	
 	.article-list
 		margin-bottom 1.5rem
-		.article-item
-			height 6.0rem
-			margin-bottom: 0.5rem
-			.a-l
-				float: left
-				width 33.3%
-			.a-r
-				// float left
-				display table-cell
-				vertical-align middle
-				height 6.0rem
-				width 66.6%
-				padding 0.4rem 0.9rem 1.0rem 0.5rem
-				.a-title
-					font-size: 15px
-				.a-content
-					font-size: 12px
+	
 
-	.label
-		height 0.85rem
-		line-height: 0.76rem
-		font-size: 10px
-		background-color #316aa3
+	
 </style>

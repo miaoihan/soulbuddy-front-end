@@ -8,7 +8,7 @@
 export default {
   data(){
     return{
-      currentPage: 'home',
+      currentPage: 'science',
     }
   },
   components: {
@@ -31,6 +31,7 @@ export default {
     QuestionCon: require('pages/consultant/QuestionCon'),
     Kol: require('pages/consultant/Kol'),
     About: require('pages/consultant/About'),
+    Favorite: require('pages/me/Favorite'),
 
   },
 }
@@ -151,6 +152,20 @@ export default {
   bottom 0
   background-color: $ztc
   text-align: center
+  
+//tab导航
+.nav-tab
+  height 2.5rem
+  line-height: 2.5rem
+  font-size: 0.7rem
+  color #999
+  background-color: #FFF
+  li
+    float left
+    display inline-block
+    text-align center
+
+
 /*****************
 *                 *
 *   初始化浏览器     *
