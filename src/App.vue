@@ -8,7 +8,7 @@
 export default {
   data(){
     return{
-      currentPage: 'person-msg',
+      currentPage: 'science',
     }
   },
   components: {

@@ -89,7 +89,7 @@
 	width 3.0rem
 	border 0.1rem solid $ztc
 	border-radius 0.3rem
-	line-height 3.0rem
+	line-height 2.8rem
 }
 .iconfont{
 	font-size 1.2rem

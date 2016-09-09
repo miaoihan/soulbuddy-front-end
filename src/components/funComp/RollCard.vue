@@ -1,12 +1,12 @@
 <template>
   <div class="swiper-container part wrapper">
-		<div class="swiper-wrapper fullscr">
+		<div class="swiper-wrapper ">
 		    <div class="swiper-slide fullscr" v-for="obj in data">
-		    	<a v-if="obj.href===null">
+		    	<a v-if="obj.href===null" class="fullscr">
 			    	<img class="card-img fullscr" :src="obj.imgurl" alt="">
 			    	<div class="cont-title" style="{color:textColor}">{{obj.contitle}}</div>
 		    	</a>
-		    	<a :href="obj.href" :v-if="obj.href!=null">
+		    	<a :href="obj.href" v-if="obj.href!=null" class="fullscr">
 			    	<img class="card-img fullscr" :src="obj.imgurl" alt="">
 			    	<div class="cont-title" style="{color:textColor}">{{obj.contitle}}</div>
 		    	</a>
