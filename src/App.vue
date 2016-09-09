@@ -8,7 +8,7 @@
 export default {
   data(){
     return{
-      currentPage: 'science',
+      currentPage: 'person-msg',
     }
   },
   components: {
@@ -32,7 +32,7 @@ export default {
     Kol: require('pages/consultant/Kol'),
     About: require('pages/consultant/About'),
     Favorite: require('pages/me/Favorite'),
-
+    Apply: require('pages/me/Apply'),
   },
 }
 </script>
@@ -43,6 +43,19 @@ export default {
 * 公共样式部分
 *
 **/
+.text-center{
+  text-align: center //文字水平居中
+}
+.float-left{
+  float:left
+}
+.float-right{
+  float:right
+}
+.top-20{
+  margin-top:1.0rem
+  overflow hidden
+}
 .container-6{
   padding 6px 6px
 }
@@ -164,7 +177,6 @@ export default {
     float left
     display inline-block
     text-align center
-
 
 /*****************
 *                 *

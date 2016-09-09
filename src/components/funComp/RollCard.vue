@@ -4,11 +4,11 @@
 		    <div class="swiper-slide fullscr" v-for="obj in data">
 		    	<a v-if="obj.href===null">
 			    	<img class="card-img fullscr" :src="obj.imgurl" alt="">
-			    	<div class="cont-title" style="color:{{textColor}}">{{obj.contitle}}</div>
+			    	<div class="cont-title" style="{color:textColor}">{{obj.contitle}}</div>
 		    	</a>
 		    	<a :href="obj.href" :v-if="obj.href!=null">
 			    	<img class="card-img fullscr" :src="obj.imgurl" alt="">
-			    	<div class="cont-title" style="color:{{textColor}}">{{obj.contitle}}</div>
+			    	<div class="cont-title" style="{color:textColor}">{{obj.contitle}}</div>
 		    	</a>
 		    </div>
 		</div>

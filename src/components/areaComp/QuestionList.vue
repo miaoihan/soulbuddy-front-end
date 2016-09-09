@@ -6,7 +6,7 @@
 		  	<title class="que-content over-2">
 		  		{{que.content}}
 		  	</title>
-		  	<div class="nock">
+		  	<div class="nock" v-if="que.role==0">
 		  		<span class="label" v-if="que.isFree">免费</span>
 		  		<span class="nock-text" v-if="!que.isFree">
 		  		￥{{ que.pay }} 解锁该问题的所有回答</span>
@@ -44,6 +44,7 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
 	  					{
 	  						content: '是这些球星的第一次夺冠，为啥勇士都没人哭呢。特别是新FMVP比库里更淡定的样子',
 	  						pay: 5,
+	  						role:0,
 	  						isFree: false,
 	  						answer:
 	  							{
@@ -60,6 +61,7 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
 	  					{
 	  						content: '在Windows操作系统上显示良好。但是仅限于12像素和14像素。超出14像素的字基本就会出现字不够方正，锯齿明显的现象',
 	  						pay: 1,
+	  						role:0,
 	  						isFree: true,
 	  						answer:
 	  							{
@@ -90,6 +92,7 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
 		padding 1.15rem 1.35rem 0 1.0rem
 
 	.nock
+		overflow hidden
 		border-bottom: 1px solid #ebebeb
 		padding-bottom 0.9rem
 		 .nock-text
