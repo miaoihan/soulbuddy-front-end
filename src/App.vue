@@ -8,7 +8,7 @@
 export default {
   data(){
     return{
-      currentPage: 'science',
+      currentPage: 'apply-jydr',
     }
   },
   components: {
@@ -33,6 +33,7 @@ export default {
     About: require('pages/consultant/About'),
     Favorite: require('pages/me/Favorite'),
     Apply: require('pages/me/Apply'),
+    ApplyJydr:require('pages/me/ApplyJydr'),
   },
 }
 </script>
