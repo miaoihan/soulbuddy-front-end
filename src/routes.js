@@ -5,6 +5,9 @@ var routes = {
   '/foo': {
     component: require('./pages/BindPhone.vue')
   },
+  '/': {
+    component: require('./pages/home/Home.vue')
+  },
   
 }
 
