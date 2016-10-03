@@ -6,7 +6,7 @@
 				<!-- <img src="../../assets/imgs/anli.png" alt=""> -->
 			</div>
 			<div class="item-txt">
-				<span>测评</span>
+				<a v-link="{ path: 'evaluation' }"><span>测评</span></a>
 			</div>
 		</li>
 		<li>
@@ -14,7 +14,7 @@
 				<!-- <img src="../../assets/imgs/anli.png" alt=""> -->
 			</div>
 			<div class="item-txt">
-				<span>科普</span>
+				<a v-link="{ path: 'science' }"><span>科普</span></a>
 			</div>
 		</li>
 		<li>
@@ -22,7 +22,7 @@
 				<!-- <img src="../../assets/imgs/anli.png" alt=""> -->
 			</div>
 			<div class="item-txt">
-				<span>放松</span>
+				<a v-link="{ path: 'evaluation' }"><span>放松</span></a>
 			</div>
 		</li>
 		<li>
@@ -30,7 +30,7 @@
 				<!-- <img src="../../assets/imgs/anli.png" alt=""> -->
 			</div>
 			<div class="item-txt">
-				<span>案例</span>
+				<a v-link="{ path: 'sciencedetail' }"><span>案例</span></a>
 			</div>
 		</li>
 </ul>

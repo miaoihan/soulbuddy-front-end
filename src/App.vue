@@ -1,14 +1,14 @@
 <template>
 
-  <component :is="currentPage"></component>
-
+  <router-view></router-view>
 </template>
 
 <script>
+// import routes from 'src/routes.js'
 export default {
   data(){
     return{
-      currentPage: 'apply-jydr',
+      currentPage: 'bind-phone',
     }
   },
   components: {
@@ -35,6 +35,7 @@ export default {
     Apply: require('pages/me/Apply'),
     ApplyJydr:require('pages/me/ApplyJydr'),
   },
+
 }
 </script>
 
