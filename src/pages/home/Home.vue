@@ -1,6 +1,6 @@
 <template>
   <div>
-  	<nav-header title="心灵伙伴"></nav-header>
+  	
   	<func-nav></func-nav>
   	<question-list></question-list>
 

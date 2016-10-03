@@ -14,6 +14,9 @@ var routes = {
   '/sciencedetail': {
     component: require('./pages/home/ScienceDetail.vue')
   },
+  '/': {
+    component: require('./pages/home/Home.vue')
+  },
   
 }
 
