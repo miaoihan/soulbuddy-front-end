@@ -1,15 +1,5 @@
 <template>
-
-<<<<<<< HEAD
   <router-view></router-view>
-=======
-  <!-- <component :is="currentPage"></component> -->
-  <div id="app">
-    <nav-header title="新灵伙伴"></nav-header>
-    <router-view></router-view>
-    <nav-bottom></nav-bottom>
-  </div>
->>>>>>> 43b799c1c494f8228e9c5722324ac10095b6ab11
 </template>
 
 <script>
@@ -17,11 +7,7 @@
 export default {
   data(){
     return{
-<<<<<<< HEAD
       currentPage: 'bind-phone',
-=======
-      currentPage: 'home',
->>>>>>> 43b799c1c494f8228e9c5722324ac10095b6ab11
     }
   },
   components: {
@@ -47,9 +33,6 @@ export default {
     Favorite: require('pages/me/Favorite'),
     Apply: require('pages/me/Apply'),
     ApplyJydr:require('pages/me/ApplyJydr'),
-
-    NavHeader:require('components/funComp/NavHeader.vue'),
-    NavBottom:require('components/funComp/NavBottom.vue'),
   },
 
 }
@@ -174,10 +157,6 @@ export default {
   // 部署的时候删除
   border 1px solid #e7e7e7
 }
-.fixed{
-  position fixed
-}
-  
 // 底部固定条
 .fixed-bottom
   height 2.2rem
