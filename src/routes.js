@@ -2,20 +2,20 @@
 * 路由配置
 */
 var routes = {
-  '/': {
+  '/home': {
     component: require('./pages/home/Home.vue')
   },
-  '/evaluation': {
+  '/home/evaluation': {
     component: require('./pages/home/Evaluation.vue')
   },
-  '/science': {
+  '/home/science': {
     component: require('./pages/home/Science.vue')
   },
-  '/sciencedetail': {
+  '/home/sciencedetail': {
     component: require('./pages/home/ScienceDetail.vue')
   },
-  '/': {
-    component: require('./pages/home/Home.vue')
+  '/me/profile': {
+    component: require('./pages/me/Profile.vue')
   },
   
 }

@@ -1,5 +1,6 @@
 <template>
-  <router-view></router-view>
+  <!-- <router-view></router-view> -->
+  <component :is="currentPage"></component>
 </template>
 
 <script>
@@ -7,7 +8,7 @@
 export default {
   data(){
     return{
-      currentPage: 'bind-phone',
+      currentPage: 'mine-page',
     }
   },
   components: {
@@ -33,6 +34,7 @@ export default {
     Favorite: require('pages/me/Favorite'),
     Apply: require('pages/me/Apply'),
     ApplyJydr:require('pages/me/ApplyJydr'),
+    Profile:require('pages/me/Profile')
   },
 
 }

@@ -1,14 +1,8 @@
 <!-- 长条形功能按钮 -->
 <template>
-  <div class="changebtn-body">
-  <a v-if="href===null">  		
+  <div class="changebtn-body"> 
 	    <span class="text" :style="{color:TextColor}">{{btntext}}</span>
 	    <i class="icon-img iconfont" :style="{color:IconColor}">&#xe603;</i>
-  </a>
-  <a :href="href" :v-if="href!=null">  		
-	    <span class="text" :style="{color:TextColor}">{{btntext}}</span>
-	    <i class="icon-img iconfont" :style="{color:IconColor}">&#xe603;</i>
-  </a>
   </div>
 </template>
 <script>

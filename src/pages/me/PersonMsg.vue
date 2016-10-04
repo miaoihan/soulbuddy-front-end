@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <div class="person-photo">
+    <div class="person-photo1">
     	<img class="photo-img" :src="PersonPhoto" >
     	<div class="sub-photo">
     		<i class="iconfont craicon">&#xe60c;</i>
@@ -12,7 +12,6 @@
     	title-color="black" text-color="black"
     	style="padding:0 1rem">
    	</input-box>
-
    	<div class="part top-20 wrapper" style="padding:0 1rem">
    		<card-photo></card-photo>
    	</div>
@@ -57,7 +56,7 @@ export default {
 <style scoped lang="stylus">
 @import '../../assets/stylus.styl'
 input::-webkit-input-placeholder {text-align:right}
-.person-photo{
+.person-photo1{
 	position: relative;
 	height:10.0rem;
 	width: 100%;

@@ -66,7 +66,7 @@ export default {
 					imgurl:"",
 					username:"陈雪琴",
 					UserType:'common',//用户当前的身份
-					isCounselor:true,//是否已经成为咨询师
+					isCounselor:false,//是否已经成为咨询师
 	  			}
 	  		}
 	  	},
