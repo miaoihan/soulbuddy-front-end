@@ -1,40 +1,35 @@
 <template>
-<nav class="wrapper part" style="height: 5rem">
+<nav class="wrapper part">
 	<ul class="func-nav">
-		<li>
-			<div class="img-wrap">
-				<!-- <img src="../../assets/imgs/anli.png" alt=""> -->
-			</div>
+		<li :class="{active: index == 1}"
+  				@click="change(1)">
 			<div class="item-txt">
-				<a v-link="{ path: 'home/evaluation' }"><span>测评</span></a>
+				<i class="iconfont icon-jingxuan"></i>
+				<span>精选</span>
 			</div>
 		</li>
-		<li>
-			<div class="img-wrap">
-				<!-- <img src="../../assets/imgs/anli.png" alt=""> -->
-			</div>
+		<li :class="{active: index == 2}"
+  				@click="change(2)">
 			<div class="item-txt">
-				<a v-link="{ path: 'home/science' }"><span>科普</span></a>
+				<i class="iconfont icon-wenda"></i>
+				<span>问答</span> 
 			</div>
 		</li>
-		<li>
-			<div class="img-wrap">
-				<!-- <img src="../../assets/imgs/anli.png" alt=""> -->
-			</div>
+		<li :class="{active: index == 3}"
+  				@click="change(3)">
 			<div class="item-txt">
-				<a v-link="{ path: 'home/evaluation' }"><span>放松</span></a>
+				<i class="iconfont icon-zhishiku"></i>
+				<span>阅读</span>
 			</div>
 		</li>
-		<li>
-			<div class="img-wrap">
-				<!-- <img src="../../assets/imgs/anli.png" alt=""> -->
-			</div>
+		<li :class="{active: index == 4}"
+  				@click="change(4)">
 			<div class="item-txt">
-				<a v-link="{ path: 'home/sciencedetail' }"><span>案例</span></a>
+				<i class="iconfont icon-pingce"></i>
+				<span>测评</span>
 			</div>
 		</li>
 </ul>
-	
 	 
 </nav>
 </template>
@@ -42,10 +37,17 @@
 <script>
   export default{
 	  props:{
-
+	  	index:{
+	  		default:1
+	  	}
 	  },
 	  components: {
 
+	  },
+	  methods:{
+	  	change(i){
+	  		this.index = i
+	  	}
 	  },
   }
 </script>
@@ -54,21 +56,27 @@
 @import '../../assets/stylus.styl'
 
 .func-nav
-	height: 5.0rem
+	height: 2.2rem
+	// line-height: 2.2rem
 
 ul
 	overflow: hidden
-	padding 1.0rem 0 0
+	padding-top 0.60rem
 	text-align center
 	li
 		float left
 		width 25%
+		height 100%
+
 		.item-txt
-			margin  0.3rem 0 0
+			// margin  0.3rem 0 0
 			font-size: 0.7rem
 			font-weight 500
 			color $ztc
 
+.active
+	border-bottom: 2px solid $ztc
+	
 .img-wrap{
 	width 1.5rem
 	height 1.5rem
@@ -76,5 +84,4 @@ ul
 	margin 0 auto
 }
 	
-
 </style>

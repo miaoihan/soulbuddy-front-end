@@ -1,31 +1,19 @@
 <template>
 <!-- 文章列表 -->
-  <div class="wrapper">
+  <div class="art-list wrapper">
   	<section class="article-item part" v-for="art in data">
-  			<div class="a-l">
-  				<img src="" alt="">
-  			</div>
-  			<div class="a-r">
-  				<aside>
-  					<span class="label" v-if="art.isRec">推荐</span>
-  				</aside>
-  				<h1 class="a-title over-2">
-  					{{art.title}}
-  				</h1>
-					<p class="a-content over-2">
-						{{art.content}}
-					</p>
-  			</div>
-  		</section> <!-- end article-item -->
+  		<article-item :data="art"></article-item>
+  	</section> <!-- end article-item -->
   </div>
 </template>
 
 <script>
   export default{
   	components: {
-
+  		ArticleItem: require('components/areaComp/ArticleItem')
 	  },
 	  props:{
+
 	  	data: {
 	  		type: Array,
 		  	default(){
@@ -37,6 +25,7 @@
 		  	}
 	  	}
 	  },
+	 
 	  
   }
 </script>
@@ -62,7 +51,7 @@
 				.a-content
 					font-size: 12px
 					
-	.label
+	.art-label
 		height 0.85rem
 		line-height: 0.76rem
 		font-size: 10px

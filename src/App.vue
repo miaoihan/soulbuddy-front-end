@@ -1,6 +1,13 @@
 <template>
-  <!-- <router-view></router-view> -->
-  <component :is="currentPage"></component>
+
+  <!-- <component :is="currentPage"></component> -->
+  <div id="app">
+   <nav-header title="新灵伙伴"></nav-header>
+   <!-- <router-view></router-view> -->
+   <home></home>
+
+   <nav-bottom></nav-bottom>
+  </div>
 </template>
 
 <script>
@@ -35,7 +42,10 @@ export default {
     Favorite: require('pages/me/Favorite'),
     Apply: require('pages/me/Apply'),
     ApplyJydr:require('pages/me/ApplyJydr'),
-    Profile:require('pages/me/Profile')
+    Profile:require('pages/me/Profile'),
+
+    NavHeader:require('components/funComp/NavHeader.vue'),
+    NavBottom:require('components/funComp/NavBottom.vue'),
   },
 
 }
@@ -71,6 +81,9 @@ export default {
 }
 .container-20{
   padding 20px 20px
+}
+.container-20-lr{
+  padding 0px 20px  
 }
 .part{
   background:#fff;
@@ -112,9 +125,10 @@ export default {
   -webkit-box-orient: vertical;
 }
 //  标签
+// label写的有点乱，后面再改
 .label{
   display inline-block
-  padding 0.12rem 0.4rem
+  padding 0.05rem 0.4rem
   font-size: 0.6rem
   color #fff
   border-radius 0.25rem
@@ -126,8 +140,27 @@ export default {
   line-height: 1.05rem
   padding 0 0.3rem
   border-radius 0.25rem
+  font-size: 0.65rem
+  color #999
+}
+.label-bg-grey{
+  display inline-block
+  height 0.8rem
+  line-height: .8rem
+  padding 1px 8px
+  background: #F3F3F3;
+  border-radius: 8px;
+  font-size: 10px;
+  color: #999999;
+}
+.label-big-border{
+  display inline-block
+  height 1.3rem
+  line-height: 1.3rem
+  padding 0 0.3rem
+  border-radius 0.25rem
+  border 1px solid #999
   font-size: 0.6rem
-  background-color #f3f3f3
   color #999
 }
   
@@ -182,6 +215,9 @@ export default {
     display inline-block
     text-align center
 
+.fixed{
+  position: fixed
+}
 /*****************
 *                 *
 *   初始化浏览器     *
