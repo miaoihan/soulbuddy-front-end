@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper" style="margin-top: .5rem;margin-bottom:2.5rem">
+  <div class="wrapper">
   <!-- 问题列表 -->
   	<section class="question-item part" v-for="que in data">
 		  <div class="q-i-title">
@@ -86,6 +86,7 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
 
 	  },
 	  ready(){
+	  	// 异步获取token
 	  	$.ajax({
           url: this.url1,
           type:'GET', 
@@ -111,7 +112,7 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
 								},
           cache: false,
           success: function(data) {
-          	console.log(data)
+          	// console.log(data)
             this.questionList = data.data
             console.log(this.questionList);
           }.bind(this),
@@ -144,7 +145,7 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
 			 	color $ztc
 		
 	.que-content{
-		margin-bottom: 1.05rem
+		margin-bottom: 1rem
 		font-size 15px
 	}
 

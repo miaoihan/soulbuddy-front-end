@@ -1,5 +1,5 @@
 <template>
-<nav class="wrapper part" style="height: 5rem">
+<nav class="wrapper part">
 	<ul class="func-nav">
 		<li :class="{active: index == 1}"
   				@click="change(1)">

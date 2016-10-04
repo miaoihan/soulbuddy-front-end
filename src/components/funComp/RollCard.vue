@@ -75,5 +75,6 @@ export default {
 	font-size: 1rem;
 	top: 3.45rem;
 	font-weight: 700;
+	color: #fff;
 }
 </style>

@@ -69,7 +69,7 @@
 	  		</div>
 	  	</div>
   	</div><!-- end tag -->
-  	<aside style="text-align:center;margin: 30px 0 20px 0">
+  	<aside style="text-align:center;margin: 30px 0 15px 0">
   		  所有文章 
   	</aside>
   	<article-list :data=data></article-list>
