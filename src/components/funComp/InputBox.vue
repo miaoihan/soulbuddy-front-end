@@ -65,7 +65,6 @@ input::-webkit-input-placeholder {text-align:right}
 	float: left;
 	line-height: 2.5rem;
 	color: #d4d4d4;
-
 }
 .item-input{
 	margin-left 0.25rem

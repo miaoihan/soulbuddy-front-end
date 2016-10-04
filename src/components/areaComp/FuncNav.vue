@@ -1,5 +1,5 @@
 <template>
-<nav class="wrapper part" >
+<nav class="wrapper part" style="height: 5rem">
 	<ul class="func-nav">
 		<li :class="{active: index == 1}"
   				@click="change(1)">
@@ -67,6 +67,7 @@ ul
 		float left
 		width 25%
 		height 100%
+
 		.item-txt
 			// margin  0.3rem 0 0
 			font-size: 0.7rem
@@ -75,5 +76,12 @@ ul
 
 .active
 	border-bottom: 2px solid $ztc
+	
+.img-wrap{
+	width 1.5rem
+	height 1.5rem
+	// border 1px solid $ztc
+	margin 0 auto
+}
 	
 </style>

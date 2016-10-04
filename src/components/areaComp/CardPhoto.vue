@@ -7,15 +7,24 @@
 	<div class="photo-note">
 		请上传您的就医证明、康复证明等能证明您相关身份的照片
 	</div>
-	<div class="photo-box-body wrapper">
-		<div class="photo-box float-left" v-for="img in imgs">
+	<form class="photo-box-body wrapper" method="post" enctype="multipart/form-data"
+				action="javascript: yulan();" >
+	<div id="photos">
 		
-		</div>
-		<div class="add-btn float-left text-center" @click="addPhoto">
-			<i class="iconfont">&#xe61a;</i>
-		</div>
 	</div>
+		<div class="add-btn float-left text-center" >
+			<input type="file" class="getfile photo-box" 
+					id="tt" @change="addPhoto()">
+			<i class="iconfont">&#xe61a;</i>
+			</input>
+		</div>
+
+	</form>
+	<!-- <input type="file" class="" @click="addPhoto" id="tt">
+	<button @click="getv">get</button> -->
   </div>
+
+
 </template>
 
 <script>
@@ -23,7 +32,7 @@
     components: {},
     data(){
     	return{
-
+    		num:0,
     	}
     },
     props:{
@@ -31,17 +40,54 @@
     		type:Array,
     		default(){
     			return[
-    				{imgUrl:""},
+    				{imgUrl:require('e:/xiangmu/soulbuddy-front-end/src/assets/logo.png')},
+    			]
+    		}
+    	},
+    	ids:{
+    		type:Array,
+    		default(){
+    			return[
+
     			]
     		}
     	}
     },
     methods:{
-    	addPhoto(){
-    		this.imgs.push({imgUrl:""})
-    	}
+    	addPhoto(){	
+    		// let num = this.num
+    		// this.ids.push(num);
+    		// console.log('num is:',num);
+    		// let item = "photo"+num;
+    		// console.log('id is:',item);
+    		var prevDiv = document.getElementById("photos");    		
+    		var fileInput = document.getElementById('tt');
+    		// console.log(fileInput);
+    		var reader = new FileReader();
+    		reader.onload = function(evt){
+                console.log(prevDiv)
+                var child=document.createElement("div");
+                // console.log(evt.target.result)
+            	child.innerHTML = '<div style="overflow:hidden;height:3.0rem;width:3.0rem;border-radius: 0.3rem;background-color:#eee;margin-right:1rem;margin-bottom:0.5rem;float:left"><img src="' + evt.target.result + '" /></div>';
+            	prevDiv.appendChild(child)
+            
+            }
+            // prevDiv.innerHTML = '<div style="overflow:hidden;height:3.0rem;width:3.0rem;border-radius: 0.3rem;background-color:#eee;margin-right:1rem;float:left" class="photo-box float-left" ><img src="' + evt.target.result + '" /></div>';
+ //            overflow:hidden
+	// height 3.0rem
+	// width 3.0rem
+	// border-radius 0.3rem
+	// background-color #eee
+	// margin-right 1rem
+			reader.readAsDataURL(fileInput.files[0]);
+    		this.num=this.num+1;
+    	},
+    },
+    ready(){
+    	
     }
   }
+  
 </script>
 
 <style scoped lang="stylus">
@@ -72,16 +118,18 @@
 	margin-bottom 1.1rem
 }
 .photo-box-body{
-	margin-bottom:1rem
+	// height
+	// margin-bottom:1rem
 	// margin-right -1rem
 } 
 .photo-box{
+	overflow:hidden
 	height 3.0rem
 	width 3.0rem
 	border-radius 0.3rem
 	background-color #eee
 	margin-right 1rem
-	margin-bottom 0.5rem
+	// margin-bottom 0.5rem
 }
 .add-btn{
 	position relative
@@ -90,6 +138,13 @@
 	border 0.1rem solid $ztc
 	border-radius 0.3rem
 	line-height 2.8rem
+	margin-bottom 1rem
+}
+.getfile{
+	position:absolute;
+ 	font-size:5.0rem; 
+ 	opacity:0; 
+ 	// filter:alpha(opacity=0);
 }
 .iconfont{
 	font-size 1.2rem

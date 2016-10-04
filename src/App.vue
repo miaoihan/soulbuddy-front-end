@@ -5,31 +5,13 @@
    <nav-header title="新灵伙伴"></nav-header>
    <!-- <router-view></router-view> -->
    <home></home>
-   <!-- <evaluation></evaluation>
-   <self-eva></self-eva>
-   <science></science>
-   <science-detail></science-detail>
-   <serch-list></serch-list>
-   <ask></ask>
-   <question-detail></question-detail>
-   <consultant></consultant>
-   <history></history>
-   <home-que></home-que>
-   <person-msg></person-msg>
-   <mine-page></mine-page>
-   <question-con></question-con>
-   <kol></kol>
-   <about></about>
-   <favorite></favorite>
-   <apply></apply>
-   <apply-jydr></apply-jydr>
-  <bind-phone></bind-phone>
-  <login></login> -->
+
    <nav-bottom></nav-bottom>
   </div>
 </template>
 
 <script>
+// import routes from 'src/routes.js'
 export default {
   data(){
     return{
@@ -59,10 +41,9 @@ export default {
     Favorite: require('pages/me/Favorite'),
     Apply: require('pages/me/Apply'),
     ApplyJydr:require('pages/me/ApplyJydr'),
-
-    NavHeader:require('components/funComp/NavHeader.vue'),
-    NavBottom:require('components/funComp/NavBottom.vue'),
+    Profile:require('pages/me/Profile')
   },
+
 }
 </script>
 
@@ -197,10 +178,6 @@ export default {
   // 部署的时候删除
   border 1px solid #e7e7e7
 }
-.fixed{
-  position fixed
-}
-  
 // 底部固定条
 .fixed-bottom
   height 2.2rem
