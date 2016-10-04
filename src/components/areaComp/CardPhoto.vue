@@ -40,7 +40,7 @@
     		type:Array,
     		default(){
     			return[
-    				{imgUrl:require('e:/xiangmu/soulbuddy-front-end/src/assets/logo.png')},
+    				
     			]
     		}
     	},

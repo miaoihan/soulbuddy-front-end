@@ -8,7 +8,7 @@
 export default {
   data(){
     return{
-      currentPage: 'history',
+      currentPage: 'home',
     }
   },
   components: {
