@@ -33,7 +33,7 @@ import Choice from 'pages/home/Choice.vue'
       // index: {
       //   // default: 2
       // }
-    }
+    },
   }
 </script>
 
@@ -56,7 +56,7 @@ import Choice from 'pages/home/Choice.vue'
   margin: 10px 10% 0;
   height: 30px;
   line-height: 32px;
-  background: #E3E3E3;
+  // background: #E3E3E3;
   border-radius: 15px;
   font-size: 13px;
   color: #999;

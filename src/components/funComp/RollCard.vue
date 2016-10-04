@@ -35,7 +35,7 @@ export default {
   	textColor:{type:String,default:"black"},//字体颜色
   },
   ready:function(){
-   	console.log(123);
+  	// console.log("in swiper loader")
    	var mySwiper = new Swiper ('.swiper-container', {
 		    direction: 'horizontal',
 		    loop: true,

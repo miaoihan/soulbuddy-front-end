@@ -46,9 +46,12 @@
         lunboURL:'http://xinling.songtaxihuan.com/article/get_top_article',
         readURL:'http://xinling.songtaxihuan.com/article/get_choice_article',
 
-  			swiperList:[],
+  			swiperList:[
+  			],
   			readList:[],
+  			tlist:[
 
+  				]
       }
     },
     props: {
@@ -93,6 +96,32 @@
 	  		}
 	  	}
 	  },
+	  created(){
+	  	$.ajax({
+          url: this.lunboURL,
+          type:'POST', 
+          dataType: 'json',
+          cache: true,
+          async:false,
+          // async:false,
+          success: function(data) {
+          	// console.log(data)
+            let lunboArr = data.data
+            // console.log("title is "+lunboArr[0].title)
+            for (var i = 0; i < lunboArr.length; i++) {
+            	this.swiperList.$set(i,{
+            		contitle:lunboArr[i].title,
+            		imgurl: lunboArr[i].img_file,
+            		href: ''
+            	});
+            	console.log("in arr")
+            }
+          }.bind(this),
+          error: function(xhr, status, err) {
+            console.error(lunboArr, status, err.toString());
+          }.bind(this)
+        });
+	  },
 	  ready(){
 	  	// 异步获取token
 	  	$.ajax({
@@ -110,27 +139,7 @@
           }.bind(this)
         });
 
-	  	$.ajax({
-          url: this.lunboURL,
-          type:'POST', 
-          dataType: 'json',
-          cache: true,
-          success: function(data) {
-          	// console.log(data)
-            let lunboArr = data.data
-            // console.log("title is "+lunboArr[0].title)
-            for (var i = 0; i < lunboArr.length; i++) {
-            	this.swiperList.$set(i,{
-            		contitle:lunboArr[i].title,
-            		imgurl: lunboArr[i].img_file,
-            		href: ''
-            	});
-            }
-          }.bind(this),
-          error: function(xhr, status, err) {
-            console.error(lunboArr, status, err.toString());
-          }.bind(this)
-        });
+	  	
 
 	  	$.ajax({
           url: this.readURL,
@@ -148,6 +157,7 @@
             console.error(readList, status, err.toString());
           }.bind(this)
         });
+
 	  },
 	  
   }
