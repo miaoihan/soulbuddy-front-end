@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper" style="margin-top: .5rem;">
+  <div class="wrapper" style="margin-top: .5rem;margin-bottom:2.5rem">
   <!-- 问题列表 -->
   	<section class="question-item part" v-for="que in data">
 		  <div class="q-i-title">
@@ -26,7 +26,11 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
 	  },
   	data() {
   		return{
-  			ztc: '#2b8ff7'
+  			ztc: '#2b8ff7',
+  			token: '',
+  			url1:"http://xinling.songtaxihuan.com/test/test?uid=3",
+  			url2:"http://xinling.songtaxihuan.com/question/get_question_list",
+  			questionList: []
   		}
   	},
   	// ready() {
@@ -77,6 +81,44 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
 	  				]
 	  		}
 	  	}
+	  },
+	  computed:{
+
+	  },
+	  ready(){
+	  	$.ajax({
+          url: this.url1,
+          type:'GET', 
+          dataType: 'json',
+          cache: false,
+          async:false,
+          success: function(data) {
+            this.token = data.data
+            // console.log( typeof this.token);	
+          }.bind(this),
+          error: function(xhr, status, err) {
+            console.error(this.token, status, err.toString());
+          }.bind(this)
+        });
+
+	  	$.ajax({
+          url: this.url2,
+          type:'POST', 
+          dataType: 'json',
+          data: {
+          				page:1,
+									token:this.token,
+								},
+          cache: false,
+          success: function(data) {
+          	console.log(data)
+            this.questionList = data.data
+            console.log(this.questionList);
+          }.bind(this),
+          error: function(xhr, status, err) {
+            console.error(this.questionList, status, err.toString());
+          }.bind(this)
+        });
 	  },
 	  
   }

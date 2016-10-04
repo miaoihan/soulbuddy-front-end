@@ -21,12 +21,7 @@
   	components: {
   		CstList: require('components/areaComp/CstList'),
   		KolList: require('components/areaComp/KolList'),
-  		ArticleList: require('components/areaComp/ArticleList')
-	  },
-	  data(){
-	  	return{
-	  		index: 1
-	  	}
+  		ArticleList: require('components/areaComp/ArticleList')	
 	  },
 	  methods:{
 	  	change(i){
@@ -34,6 +29,9 @@
 	  	}
 	  },
 	  props:{
+	  	index:{
+	  		default: 1
+	  	},
 	  	data: {
 	  		type: Array,
 		  	default(){

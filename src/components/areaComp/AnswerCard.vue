@@ -18,7 +18,7 @@
 				</div>
 				<!-- voice组件 -->
 				<div class="voice-wrapper">
-				<!-- 双向绑定 -->
+				<!-- 双向绑定 数据同步-->
 					<voice :data.sync="data"></voice>
 				</div>
 				<!-- 描述 -->

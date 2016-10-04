@@ -2,9 +2,30 @@
 
   <!-- <component :is="currentPage"></component> -->
   <div id="app">
-    <nav-header title="新灵伙伴"></nav-header>
-    <router-view></router-view>
-    <nav-bottom></nav-bottom>
+   <nav-header title="新灵伙伴"></nav-header>
+   <!-- <router-view></router-view> -->
+   <home></home>
+   <!-- <evaluation></evaluation>
+   <self-eva></self-eva>
+   <science></science>
+   <science-detail></science-detail>
+   <serch-list></serch-list>
+   <ask></ask>
+   <question-detail></question-detail>
+   <consultant></consultant>
+   <history></history>
+   <home-que></home-que>
+   <person-msg></person-msg>
+   <mine-page></mine-page>
+   <question-con></question-con>
+   <kol></kol>
+   <about></about>
+   <favorite></favorite>
+   <apply></apply>
+   <apply-jydr></apply-jydr>
+  <bind-phone></bind-phone>
+  <login></login> -->
+   <nav-bottom></nav-bottom>
   </div>
 </template>
 
@@ -12,7 +33,7 @@
 export default {
   data(){
     return{
-      currentPage: 'home',
+      currentPage: 'login',
     }
   },
   components: {
@@ -76,6 +97,9 @@ export default {
 .container-20{
   padding 20px 20px
 }
+.container-20-lr{
+  padding 0px 20px  
+}
 .part{
   background:#fff;
   font-size: 15px;
@@ -130,8 +154,17 @@ export default {
   line-height: 1.05rem
   padding 0 0.3rem
   border-radius 0.25rem
+  font-size: 0.65rem
+  color #999
+}
+.label-big-border{
+  display inline-block
+  height 1.3rem
+  line-height: 1.3rem
+  padding 0 0.3rem
+  border-radius 0.25rem
+  border 1px solid #999
   font-size: 0.6rem
-  background-color #f3f3f3
   color #999
 }
   

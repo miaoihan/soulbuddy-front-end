@@ -3,7 +3,7 @@
   <div class="login-background wrapper">
     <img :src="background.img"/>
     <div class="loginBtn" @click="handClick(e)">
-    	<a href="#">
+    	<a v-link="'home'">
     		<img src="../assets/imgs/loginBtn.png">
     	</a>
     </div>
@@ -20,18 +20,45 @@ export default {
 					img:require("assets/imgs/login.png")
 				}							
 			}			
-		}
+		},
+    token:{
+      type:String,
+      default:''
+    }
 	},
 	data(){
       return{
         srcHeight:0,//屏幕高度
-        srcHeightstr:'',
-
+        srcHeightstr:'a',
+        url:"http://xinling.songtaxihuan.com/test/test?uid=3"
       }
     },
     methods:{      
     	handClick(e){
-    		console.log("click the loginButton");
+      //   let that = this
+      //   that.$http.get('http://xinling.songtaxihuan.com/test/test?uid=3').then((response) => {
+      //   // success callback
+      //   this.token = response.body;
+      //   console.log(this.token)
+      // }, (response) => {
+      //   // error callback
+      // });
+          $.ajax({
+          url: this.url,
+          type:'get', 
+          dataType: 'json',
+          // jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)  
+          // jsonpCallback: "receive",//自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据
+          cache: false,
+          success: function(data) {
+            this.token = data.data
+            console.log(this.token);
+          }.bind(this),
+          error: function(xhr, status, err) {
+            console.error(this.url, status, err.toString());
+            console.log(222);
+          }.bind(this)
+        });
     	} 
     },
     ready: function(){
@@ -39,6 +66,7 @@ export default {
       // this.srcHeight = document.body.clientHeight/100;
       // this.srcHeightstr='height:'+this.srcHeight+'rem';
       // alert(this.srcHeightstr)
+      
     },	  
 }
 </script>
