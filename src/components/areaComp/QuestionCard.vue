@@ -2,31 +2,32 @@
   <div class="card-body">
     <div class="head">
 		<div class="person-img quer-top">
-			<img :src="data.queimg" class="img-body">
+			<img :src="data.logo" class="img-body">
 		</div>
 		<div class="quername quer-top">
-			{{data.qname}}
+			{{data.user_name}}
 		</div>
-		<div class="paymoney" v-if="data.type==='private'">
+		<div class="paymoney" v-if="type=='private'">
 			已支付￥{{data.pay}}
 		</div>
-		<div class="paymoney" v-if="data.type==='piblic'">
-			悬赏￥{{data.pay}}，{{data.answernum}}人抢答
+		<div class="paymoney" v-if="type=='public'">
+			悬赏￥{{data.reward_money}}，{{data.answernum}}人抢答
 		</div>
 	</div>
 	<div class="que-title">
-		<h1>{{data.quetitle}}</h1>
+		<h1>{{data.title}}</h1>
 	</div>
 	<div class="que-content" v-if="isContent===true">
-		<p>{{data.quecontent}}</p>
+		<p>{{data.content}}</p>
 	</div>
 	<div class="card-bottom">
-		<span class="answer-num" v-if="data.type==='piblic'">					已有{{data.answernum}}个回答
+		<span class="answer-num" v-if="type=='public'">					
+			已有{{data.answer_count}}个回答
 		</span>
-		<span class="answer-num" v-if="data.type==='private'">
+		<span class="answer-num" v-if="type=='private'">
 			{{data.qname}} 直接咨询你
 		</span>
-		<time class="que-data">发起于{{data.date}}</time>
+		<time class="que-data">发起于{{data.create_time}}</time>
 		<span class="dian" v-if="isContent===false">•••</span>
 	</div>
   </div>
@@ -46,6 +47,7 @@ export default {
   			return{} 			
   		}
   	},
+  	type:{type:String},
   	isContent:{type:Boolean,default:false}
   }
 }

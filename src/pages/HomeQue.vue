@@ -26,8 +26,8 @@
 		</div>
     </div>
   </div>
-  <div class="que-item" v-for="listdata in listdatas">
-  	<question-card :data="listdata"></question-card>
+  <div class="que-item" v-for="listdata in otherQues">
+  	<question-card type="public" :data="listdata"></question-card>
   </div> 
   <!-- <answer-card></answer-card> -->
 </template>
@@ -92,7 +92,11 @@ export default {
 	},
   data () {
     return {
-      
+      	token:'',
+  		url1:'http://xinling.songtaxihuan.com/test/test?uid=3',
+  		url2:'http://xinling.songtaxihuan.com/question/get_need_answer_list',
+  		myQues:[],
+  		otherQues:[],
     }
   },
    ready:function(){
@@ -104,7 +108,61 @@ export default {
 	        paginationClickable: true,
 	        spaceBetween: 15
 	})
+	$.ajax({
+          url: this.url1,
+          type:'GET', 
+          dataType: 'json',
+          cache: false,
+          async:false,
+          success: function(data) {
+            this.token = data.data
+            console.log(this.token);	
+          }.bind(this),
+          error: function(xhr, status, err) {
+            console.error(this.token, status, err.toString());
+          }.bind(this)
+        });
+
+	  	$.ajax({
+          url: this.url2,
+          type:'POST', 
+          dataType: 'json',
+          data: {
+          	page:1,
+          	type:1,
+			token:this.token,
+		  },
+          cache: false,
+          success: function(data) {
+          	console.log(data)
+            this.myQues = data.data
+            console.log('person: '+this.myQues);
+          }.bind(this),
+          error: function(xhr, status, err) {
+            console.error(this.questionList, status, err.toString());
+          }.bind(this)
+        });
+        $.ajax({
+          url: this.url2,
+          type:'POST', 
+          dataType: 'json',
+          data: {
+          	page:1,
+          	type:2,
+			token:this.token,
+		  },
+          cache: false,
+          success: function(data) {
+          	console.log(data)
+            this.otherQues = data.data
+            console.log('person: '+this.otherQues);
+          }.bind(this),
+          error: function(xhr, status, err) {
+            console.error(this.questionList, status, err.toString());
+          }.bind(this)
+        });
    }
+
 }
 </script>
 

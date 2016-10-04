@@ -1,7 +1,7 @@
 <template>
   <nav-header title="问题详情"></nav-header>
   <div class="que-content wrapper">
-    <question-card :data="data" :is-content=true></question-card>
+    <question-card :data="datas" type="public" :is-content=true></question-card>
   </div>
   <div class="bottom-record wrapper">
     <div class="record-box" v-if="isbox===true">
@@ -50,29 +50,64 @@ export default {
       isbox:false,//是否出现录音区域框，false时不出现
       isStart:false,//是否开始录音，true时则开始录音，false时等待点击开始
       isFinish:false,//是否结束录音进入到试听阶段，true时录音结束进入到试听发布阶段
+      token:'',
+      url1:'http://xinling.songtaxihuan.com/test/test?uid=3',
+      url2:'http://xinling.songtaxihuan.com/question/get_question_info',
+      datas:{},
     }
   },
   components:{
   	QuestionCard,Voice,TopBar,NavHeader
   },
   props:{
-  	data:{
-  		type:Object,
-  		default(){
-  			return{qname: '王小喵33',
-  				     queimg:require('assets/logo.png'),
+  	// data:{
+  	// 	type:Object,
+  	// 	default(){
+  	// 		return{qname: '王小喵33',
+  	// 			     queimg:require('assets/logo.png'),
 
-		       	   pay: '25',
-		       	   quetitle:'你可以在网上找到类似上述的其他脚本，它们不管多么优秀，其原理都是一样的，通过对keydown',
-		       	   quecontent:'是一个比较特殊的样式，我们可以用它代替我们通常所用的标题截取函数有300px的宽度。如果用标题截取函数，则标题不是完整的',
-		       	   type:'private',
-		       	   answernum:2,
-		       	   date:'08-14'}
-  		}
-  	},
+		 //       	   pay: '25',
+		 //       	   quetitle:'你可以在网上找到类似上述的其他脚本，它们不管多么优秀，其原理都是一样的，通过对keydown',
+		 //       	   quecontent:'是一个比较特殊的样式，我们可以用它代替我们通常所用的标题截取函数有300px的宽度。如果用标题截取函数，则标题不是完整的',
+		 //       	   type:'private',
+		 //       	   answernum:2,
+		 //       	   date:'08-14'}
+  	// 	}
+  	// },
   },
   ready:function(){
-
+    $.ajax({
+          url: this.url1,
+          type:'GET', 
+          dataType: 'json',
+          cache: false,
+          async:false,
+          success: function(data) {
+            this.token = data.data
+            // console.log( typeof this.token); 
+          }.bind(this),
+          error: function(xhr, status, err) {
+            console.error(this.token, status, err.toString());
+          }.bind(this)
+        });
+      $.ajax({
+          url: this.url2,
+          type:'POST', 
+          dataType: 'json',
+          data: {
+            q_id:1,
+            token:this.token,
+          },
+          cache: false,
+          success: function(data) {
+            // console.log("aa"+data)
+            this.datas = data.data
+            console.log(this.datas);
+          }.bind(this),
+          error: function(xhr, status, err) {
+            console.error(this.datas, status, err.toString());
+          }.bind(this)
+      });
   },
   methods:{
     changebtn(event){

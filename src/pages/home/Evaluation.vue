@@ -1,105 +1,118 @@
 <template>
-<nav-header title="心理测评"></nav-header>
-<!-- 心理測評 -->
-  <div class="eva" v-for="eva in data">
-  	<div class="eva-item">
-	  	<div class="e-l">
-	  		<p class="name">
-	  			{{eva.name}}
-	  		</p>
-	  		<p :class=" eva.status==1 ? 'iseva' : 'uneva' "
-	  				style="font-size: 12px;">
-	  			{{eva.status==1 ? '已测评' : '未测评'}}
-	  		</p>
-  		</div>
-  		<div class="e-r">
-  			<span> {{eva.status==1 ? '重新评测' : '开始评测'}}</span>
-  			<i class="iconfont">&#58893;</i>
-  		</div>
-  	</div><!-- end eva-item -->
-  </div> <!-- end eva list -->
+  <div class="wrapper">
+  	<div class="yyzp body-eva wrapper">
+  		<img class="img-eva" src="" alt="">
+  		<i class="iconfont people">&#xe62b;</i>
+  		<span class="num-peo">{{peonumy}}</span>
+		<span class="function">国际通用抑郁自评表（SDS）</span>
+		<div class="startBtn" v-if="statusy==0">
+			开始
+		</div>
+		<span class="status" v-if="statusy==1">
+			您已完成测评
+		</span>
+  	</div>
+  	<div class="jlzp body-eva wrapper">
+  		<img class="img-eva" src="" alt="">
+  		<i class="iconfont people">&#xe62b;</i>
+  		<span class="num-peo">{{peonumj}}</span>
+  		<span class="function">国际通用焦虑自评表（SDS）</span>
+  		<div class="startBtn" v-if="statusj==0">
+			开始
+		</div>
+		<span class="status" v-if="statusj==1">
+			您已完成测评
+		</span>
+  	</div>
+  </div>
 </template>
 
 <script>
-import NavHeader from 'components/funComp/NavHeader'
+
   export default{
-	  props:{
-	  	data: {
-	  		type: Array,
-		  	default(){
-		  		return[
-		  			{
-		  				name:'国际通用抑郁自评表（SDA）',
-		  				status:1
-		  			},
-		  			{
-		  				name:'国际通用焦虑自评表（SAS）',
-		  				status:0
-		  			},
-		  			{
-		  				name:'国际通用焦虑自评表（SAS）',
-		  				status:0
-		  			},
-		  			{
-		  				name:'国际通用焦虑自评表（SAS）',
-		  				status:1
-		  			},
-		  			{
-		  				name:'国际通用焦虑自评表（SAS）',
-		  				status:0
-		  			},
-		  		]
-		  	}
-	  	}
-	  },
-	  components: {
-			NavHeader
-	  },
+    components: {
+    	
+    },
+    props:{
+    	statusy:{type:String,default:1},
+    	statusj:{type:String,default:0},
+    	peonumy:{type:String,default:231},
+    	peonumj:{type:String,default:132}
+    }
   }
 </script>
 
-<style scoped lang="stylus">
-@import '../../assets/stylus.styl'
+<style>
 
-.eva{
-	margin-top: 0.5rem;
+.body-eva{
+	height:8.0rem;
+	width: 100%;
+	background-color:#e6e6e6;
+	margin-top:0.5rem;
+	text-align:center;
 }
-
-.eva-item{
-	height: 3.25rem;
-	margin-bottom: 10px;
-	padding: 0.65rem 0.65rem;
-	background: #fff;
+.yyzp{
+	position: relative;
 }
-
-.name{
-
+.jlzp{
+	position: relative;
 }
-
-.status{
+.people{
+	color: #FFFFFF;
+	position: absolute;
+	right:44px;
+	z-index: 10;
+	top:0.5rem;
+	font-size: 0.7rem;
+}
+.num-peo{
+	position: absolute;
+	z-index: 10;
+	font-family: SFUIText-Medium;
 	font-size: 12px;
-	margin-top: 0.15rem;
+	color: #FFFFFF;
+	right:1rem;
+	top:0.45rem;
 }
-
-.iseva{
-	color: #b4b4b4;
+.function{
+	display: block;
+	position: relative;
+	z-index: 10;
+	font-size: 0.75rem;
+	margin-top: 3.0rem;
+	font-family: .PingFang-SC-Medium;
+	color: #ffffff;
 }
-
-.uneva{
-	color: $ztc
+.startBtn{
+	position: relative;
+	/*display: block;*/
+	z-index: 10;
+	height: 1.4rem;
+	width: 3.2rem;
+	margin:0 auto;
+	margin-top: 1.0rem;
+	border: 1px solid #FFFFFF;
+	border-radius: 25px;
+	font-family: .PingFang-SC-Medium;
+	font-size: 13px;
+	color: #FFFFFF;
+	line-height: 1.4rem;
 }
-
-.e-l{
-	float: left
+.status{
+	opacity: 0.5;
+	font-family: .PingFang-SC-Regular;
+	font-size: 13px;
+	color: #FFFFFF;
+	position: relative;
+	z-index: 10;
+	margin-top: 1.5rem;
 }
-
-.e-r{
-	float: right
-	margin-top 0.45rem
-}
-
-.e-r span{
-	color $ztc
-}
+.img-eva{
+	position: absolute;
+	z-index: 1;
+	height: 100%;
+	width: 100%;
+	left: 0;
+}	
 
 </style>
