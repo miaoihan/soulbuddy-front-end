@@ -15,12 +15,11 @@
 export default {
   data(){
     return{
-
-      currentPage: 'login',
-
+      currentPage: 'eva-card',
     }
   },
   components: {
+    EvaCard:require('components/funComp/EvaCard'),
     Login: require('pages/Login'),
     BindPhone: require('pages/BindPhone'),
     Home: require('pages/home/Home'),
