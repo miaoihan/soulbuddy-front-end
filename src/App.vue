@@ -15,7 +15,9 @@
 export default {
   data(){
     return{
+
       currentPage: 'login',
+
     }
   },
   components: {
