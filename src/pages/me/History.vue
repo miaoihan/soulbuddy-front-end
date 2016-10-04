@@ -25,16 +25,13 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
 	  },
   	data() {
   		return{
-  			ztc: '#2b8ff7'
+  			ztc: '#2b8ff7',
+  			token:'',
+	  		url1:'http://xinling.songtaxihuan.com/test/test?uid=3',
+	  		url2:'http://xinling.songtaxihuan.com/user/get_my_answer',
+	  		questions:{},
   		}
   	},
-  	// ready() {
-  	// 	$('.voice').hover(function(){
-  	// 		$('.voice').css({'height': '6.5rem'})
-  	// 	},function(){
-  	// 		$('.voice').css({'height': '1.rem'})
-  	// 	})
-  	// },
 	  props: {
 	  	data: {
 	  		type: Array,
@@ -70,13 +67,48 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
 	  								time: 78,
 	  								like: 79,
 	  								date: '08-17',
-	  								isFree: true,
+	  								isFree: false,
 	  							}
 	  					},
 	  				]
 	  		}
 	  	}
 	  },
+	  ready(){
+	  	$.ajax({
+          url: this.url1,
+          type:'GET', 
+          dataType: 'json',
+          cache: false,
+          async:false,
+          success: function(data) {
+            this.token = data.data
+            // console.log( typeof this.token);	
+          }.bind(this),
+          error: function(xhr, status, err) {
+            console.error(this.token, status, err.toString());
+          }.bind(this)
+        });
+	  	$.ajax({
+          url: this.url2,
+          type:'POST', 
+          dataType: 'json',
+          data: {
+          	page:1,
+			token:this.token,
+		  },
+          cache: false,
+          success: function(data) {
+          	// console.log("aa"+data)
+            this.questions = data.data
+            // console.log(this.questions);
+          }.bind(this),
+          error: function(xhr, status, err) {
+            console.error(this.questions, status, err.toString());
+          }.bind(this)
+        });
+	  },
+
 	  
   }
 </script>

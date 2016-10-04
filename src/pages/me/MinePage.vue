@@ -3,15 +3,15 @@
     <div class="person-msg-body">
     	<div class="person-msg-basic">
     		<div class="img-body">
-    			<img :src="user.imgurl" class="img-imgs">
+    			<img :src="person.logo" class="img-imgs">
     		</div>
     		<div class="person-msg-name">
-    			<span class="name-text">{{user.username}}</span>
+    			<span class="name-text">{{person.user_name}}</span>
 				<a href="#" class="button button-round btnstyle">编辑个人资料</a>
     		</div>
     		<div class="hint-img">
     			<i class="iconfont imgimg">&#xe605;</i>
-    			<div class="hint-text" v-if="hintnum<=99">{{hintnum}}</div>
+    			<div class="hint-text" v-if="hintnum<=99">{{person.fav_count}}</div>
     		</div>
     	</div>
     </div>
@@ -26,11 +26,11 @@
     <change-btn :btntext="btntext"
 	    	style="margin-top:1rem;padding-left:1rem;padding-right:1rem;background:#2b8ff7"
 			text-color="#fff" icon-color="#fff"
-			@click="handleClick" v-if="user.isCounselor===true">
+			@click="handleClick" v-if="person.identity==0">
 	</change-btn>
 	<change-btn btntext="申请成为咨询师或经验答人"
 	    	style="margin-top:1rem;padding-left:1rem;padding-right:1rem;background:#fff"
-			text-color="#2b8ff7" v-if="user.isCounselor===false"
+			text-color="#2b8ff7" v-if="person.identity==1"
 			url="/123/321"
 			>
 	</change-btn>
@@ -75,7 +75,11 @@ export default {
 	},
   data () {
     return {
-    	btntext:""
+    	btntext:"",
+    	token:'',
+  		url1:'http://xinling.songtaxihuan.com/test/test?uid=3',
+  		url2:'http://xinling.songtaxihuan.com/user/get_user_info',
+  		person:{},
     }
   },
   ready:function(){
@@ -84,7 +88,41 @@ export default {
   	}else if (this.user.UserType=="common") {
   		this.btntext='切换到咨询师身份'
   	}
+  	$.ajax({
+          url: this.url1,
+          type:'GET', 
+          dataType: 'json',
+          cache: false,
+          async:false,
+          success: function(data) {
+            this.token = data.data
+            console.log(this.token);	
+          }.bind(this),
+          error: function(xhr, status, err) {
+            console.error(this.token, status, err.toString());
+          }.bind(this)
+        });
+
+	  	$.ajax({
+          url: this.url2,
+          type:'POST', 
+          dataType: 'json',
+          data: {
+          	u_id:1,
+			token:this.token,
+		  },
+          cache: false,
+          success: function(data) {
+          	console.log(data)
+            this.person = data.data
+            console.log('person: '+this.person.identity);
+          }.bind(this),
+          error: function(xhr, status, err) {
+            console.error(this.questionList, status, err.toString());
+          }.bind(this)
+        });
   },
+
   // destroyed:function(){
   // 	if (this.user.UserType=="counselor") {
   // 		this.btntext='切换到普通用户'

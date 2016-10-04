@@ -8,7 +8,7 @@
 export default {
   data(){
     return{
-      currentPage: 'question-con',
+      currentPage: 'history',
     }
   },
   components: {

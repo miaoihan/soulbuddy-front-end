@@ -1,7 +1,7 @@
 <template>
   <div class="top wrapper">
     <div class="person-photo-pro wrapper">
-      <img src="" alt="">
+      <img :src="photo" alt="">
     </div>
     <div class="nik-body wrapper">
       <div class="nikname wrapper">
@@ -39,7 +39,8 @@ import ChangeBtn from '../../components/funComp/ChangeBtn'
     	InputBox,ChangeBtn
     },
     props:{
-    phonenum:{type:String,default:"156156156"}
+      photoo:{type:String},
+      phonenum:{type:String,default:"156156156"}
   },
   }
 </script>
