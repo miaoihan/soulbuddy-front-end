@@ -7,7 +7,7 @@
       <i class="iconfont title-next relative">&#xe60d;</i>
       <span class="checkall relative">查看全部评测</span>
     </div>
-    <div class="swiper-container" style="margin-top:1.5rem">
+    <div class="swiper-container" style="margin-top:0.8rem">
       <div class="swiper-wrapper">
           <div class="swiper-slide card-rall" style="height:5rem;text-align:center;" v-for="data in data">
           <div class="opacityback">
@@ -72,7 +72,6 @@ import QuestionList from 'components/areaComp/QuestionList.vue'
   position:relative
 }
 .card-body{
-  position:absolute;
   height:11.5rem;
   width:100%;
 }
@@ -80,7 +79,7 @@ import QuestionList from 'components/areaComp/QuestionList.vue'
   width: 100%;
   height: 100%;
   position:absolute;
-  z-index: 1;
+  z-index: -1;
   left: 0
 }
 .top-title{

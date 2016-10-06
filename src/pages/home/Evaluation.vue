@@ -18,12 +18,25 @@
   		<span class="num-peo">{{peonumj}}</span>
   		<span class="function">国际通用焦虑自评表（SDS）</span>
   		<div class="startBtn" v-if="statusj==0">
-			开始
-		</div>
-		<span class="status" v-if="statusj==1">
-			您已完成测评
-		</span>
+				开始
+			</div>
+			<span class="status" v-if="statusj==1">
+				您已完成测评
+			</span>
   	</div>
+  	<div class="jlzp body-eva wrapper">
+  		<img class="img-eva" src="" alt="">
+  		<i class="iconfont people">&#xe62b;</i>
+  		<span class="num-peo">{{peonumj}}</span>
+  		<span class="function">国际通用焦虑自评表（SDS）</span>
+  		<div class="startBtn" v-if="statusj==0">
+				开始
+			</div>
+			<span class="status" v-if="statusj==1">
+				您已完成测评
+			</span>
+  	</div>
+  	
   </div>
 </template>
 

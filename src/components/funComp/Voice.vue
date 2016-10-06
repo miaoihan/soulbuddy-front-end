@@ -1,13 +1,13 @@
 <template>
 	
   <div class="wrapper"
-  		 :class=" data.isFree ? 'voice' : 'voice-locked' "
+  		 :class=" data.is_free ? 'voice' : 'voice-locked' "
   		 :style="{width: data.time>60 ? '100%' : (data.time)*5/6+50+'%' }"
   		 @click="voiceAction"
   		 >
   	<div class="v-inner">
   	<!-- 计时 -->
-	  	<div :class=" data.isFree ? 'free' : 'unfree'"
+	  	<div :class=" data.is_free ? 'free' : 'unfree'"
 	  				style="display: inline-block">
 	  		<i class="iconfont">&#xe60a;</i>
 	  		<span class="v-time">
@@ -16,8 +16,8 @@
 	  	</div>
 		<!-- 小锁 -->
 		<i class="iconfont pull-right"
-				v-if="!data.isFree"
-				style="color: #fff">&#xe60b;</i>
+				v-if="!data.is_free"
+				style="color: #fff; margin-top:2px">&#xe60b;</i>
   	</div>
   	<!-- 评价  -->
 	  <div class="v-evaluate">
@@ -43,7 +43,7 @@
 	  		type: Object,
 	  		default() {
 	  			return {
-	  				isFree: false,
+	  				is_free: false,
 	  				
 	  			}
 	  		}
@@ -58,7 +58,7 @@
 	  	// 点击voice后的动作
 	  	voiceAction(){
 	  		// 免费
-	  		if(this.data.isFree){}
+	  		if(this.data.is_free){}
 	  			// 还没评价
 	  			// if (!this.isEva)
 	  				// this.$el.style.height="6.5rem"

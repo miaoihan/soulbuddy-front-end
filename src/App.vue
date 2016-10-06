@@ -3,9 +3,7 @@
   <!-- <component :is="currentPage"></component> -->
   <div id="app">
    <nav-header title="新灵伙伴"></nav-header>
-   <!-- <router-view></router-view> -->
-   <home></home>
-
+   <router-view></router-view>
    <nav-bottom></nav-bottom>
   </div>
 </template>
@@ -19,30 +17,30 @@ export default {
     }
   },
   components: {
-    EvaCard:require('components/funComp/EvaCard'),
-    Login: require('pages/Login'),
-    BindPhone: require('pages/BindPhone'),
-    Home: require('pages/home/Home'),
-    Evaluation: require('pages/home/Evaluation'),
-    SelfEva: require('pages/home/SelfEva'),
-    Science: require('pages/home/Science'),
-    ScienceDetail: require('pages/home/ScienceDetail'),
-    SerchList: require('pages/home/SerchList'),
-    Ask: require('pages/home/Ask'),
-    QuestionDetail: require('pages/home/QuestionDetail'),
-    QuestionCon: require('pages/consultant/QuestionCon'),
-    Consultant: require('pages/consultant/Consultant'),
-    History: require('pages/me/History'),
-    HomeQue: require('pages/HomeQue'),
-    PersonMsg: require('pages/me/PersonMsg'),
-    MinePage: require('pages/me/MinePage'),
-    QuestionCon: require('pages/consultant/QuestionCon'),
-    Kol: require('pages/consultant/Kol'),
-    About: require('pages/consultant/About'),
-    Favorite: require('pages/me/Favorite'),
-    Apply: require('pages/me/Apply'),
-    ApplyJydr:require('pages/me/ApplyJydr'),
-    Profile:require('pages/me/Profile'),
+    // EvaCard:require('components/funComp/EvaCard'),
+    // Login: require('pages/Login'),
+    // BindPhone: require('pages/BindPhone'),
+    // Home: require('pages/home/Home'),
+    // Evaluation: require('pages/home/Evaluation'),
+    // SelfEva: require('pages/home/SelfEva'),
+    // Science: require('pages/home/Science'),
+    // ScienceDetail: require('pages/home/ScienceDetail'),
+    // SerchList: require('pages/home/SerchList'),
+    // Ask: require('pages/home/Ask'),
+    // QuestionDetail: require('pages/home/QuestionDetail'),
+    // QuestionCon: require('pages/consultant/QuestionCon'),
+    // Consultant: require('pages/consultant/Consultant'),
+    // History: require('pages/me/History'),
+    // HomeQue: require('pages/HomeQue'),
+    // PersonMsg: require('pages/me/PersonMsg'),
+    // MinePage: require('pages/me/MinePage'),
+    // QuestionCon: require('pages/consultant/QuestionCon'),
+    // Kol: require('pages/consultant/Kol'),
+    // About: require('pages/consultant/About'),
+    // Favorite: require('pages/me/Favorite'),
+    // Apply: require('pages/me/Apply'),
+    // ApplyJydr:require('pages/me/ApplyJydr'),
+    // Profile:require('pages/me/Profile'),
 
     NavHeader:require('components/funComp/NavHeader.vue'),
     NavBottom:require('components/funComp/NavBottom.vue'),

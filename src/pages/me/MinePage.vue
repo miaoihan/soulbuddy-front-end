@@ -92,7 +92,7 @@ export default {
           url: this.url1,
           type:'GET', 
           dataType: 'json',
-          cache: false,
+          cache: true,
           async:false,
           success: function(data) {
             this.token = data.data
@@ -107,9 +107,10 @@ export default {
           url: this.url2,
           type:'POST', 
           dataType: 'json',
+          cache: true,
           data: {
-          	u_id:1,
-			token:this.token,
+          u_id:1,
+					token:this.token,
 		  },
           cache: false,
           success: function(data) {

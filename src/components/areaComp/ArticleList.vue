@@ -51,10 +51,6 @@
 				.a-content
 					font-size: 12px
 					
-	.art-label
-		height 0.85rem
-		line-height: 0.76rem
-		font-size: 10px
-		background-color #316aa3
+	
 
 </style>
