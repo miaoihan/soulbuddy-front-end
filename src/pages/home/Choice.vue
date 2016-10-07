@@ -15,7 +15,7 @@
   		</div>
   	</div> <!-- end article-list -->
   	<div class="eva">
-  		<eva-card></eva-card>
+  		<eva-card :data="evaList"></eva-card>
   	</div>
   	<aside class="pangbai">
 			<span class="heng"></span>
@@ -43,60 +43,36 @@
       return {
         
         // token: '',
+        domain: 'http://xinling.songtaxihuan.com',
   			url1:"http://xinling.songtaxihuan.com/test/test?uid=3",
         lunboURL:'http://xinling.songtaxihuan.com/article/get_top_article',
         readURL:'http://xinling.songtaxihuan.com/article/get_choice_article',
         queURL:'http://xinling.songtaxihuan.com/question/get_choice_question',
 
-  			swiperList:[],
   			queList:[],  			
   			readList:[],
+        evaList: []
 
       }
     },
-	  created(){
-	  	// 异步获取token
-	  	$.ajax({
-          url: this.url1,
+	  ready(){
+      
+      // 异步获取token
+      $.ajax({
+          url: "http://xinling.songtaxihuan.com/test/test?uid=3",
           type:'GET', 
           dataType: 'json',
           cache: true,
           async:false,
           success: function(data) {
             this.token = data.data
-            // console.log( typeof this.token);	
+            // console.log( typeof this.token); 
           }.bind(this),
           error: function(xhr, status, err) {
             console.error(this.token, status, err.toString());
           }.bind(this)
         });
-	  	// 获取轮播
-	  	$.ajax({
-          url: this.lunboURL,
-          type:'POST', 
-          dataType: 'json',
-          cache: true,
-          async:false,
-          // async:false,
-          success: function(data) {
-          	// console.log(data)
-            let lunboArr = data.data
-            // console.log("title is "+lunboArr[0].title)
-            for (var i = 0; i < lunboArr.length; i++) {
-            	this.swiperList.$set(i,{
-                
-            		contitle:lunboArr[i].title,
-            		imgurl: lunboArr[i].img_file,
-            		href: ''
-            	});
-            }
-          }.bind(this),
-          error: function(xhr, status, err) {
-            console.error(lunboArr, status, err.toString());
-          }.bind(this)
-        });
-	  },
-	  ready(){
+
 	  	// 阅读精选
 	  	$.ajax({
           url: this.readURL,
@@ -114,6 +90,7 @@
             console.error(readList, status, err.toString());
           }.bind(this)
         });
+
 	  	// 问答精选
 	  	$.ajax({
           url: this.queURL,
@@ -131,6 +108,20 @@
             console.error(this.queList, status, err.toString());
           }.bind(this)
         });
+
+      // 测评精选
+      $.ajax({
+          url: this.domain +'/access/get_choice_access',
+          type:'POST', 
+          dataType: 'json',
+          cache: true,
+          data:{
+            count: 3,
+          },
+          success: data => this.evaList = data.data,
+          error: err => err.toString()
+        });
+
 	  	// 一条问答信息
 	  	$.ajax({
           url: 'http://xinling.songtaxihuan.com/question/get_question_info',
@@ -154,43 +145,11 @@
 
     props: {
       token: '',
-      data2: {
+      swiperList: {
         type: Array,
         default() {
           return [
-              {
-                content: '是这些球星的第一次夺冠，为啥勇士都没人哭呢。特别是新FMVP比库里更淡定的样子',
-                pay: 5,
-                role:0,
-                isFree: false,
-                answer:
-                  {
-                    name:'许雯',
-                    desc:'国家心理二级咨询师',
-                    isbest:true,
-                    time: 35,
-                    like: 168,
-                    date: '08-17',
-                    isFree: true,
-                  }
-                
-              },
-              {
-                content: '在Windows操作系统上显示良好。但是仅限于12像素和14像素。超出14像素的字基本就会出现字不够方正，锯齿明显的现象',
-                pay: 1,
-                role:0,
-                isFree: true,
-                answer:
-                  {
-                    name:'米兰',
-                    desc:'经验达人',
-                    isbest:false,
-                    time: 78,
-                    like: 79,
-                    date: '08-17',
-                    isFree: false,
-                  }
-              },
+            
             ]
         }
       }

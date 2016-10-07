@@ -189,7 +189,7 @@ export default {
   display inline-block
   border-radius 50%
   // 部署的时候删除
-  border 1px solid #e7e7e7
+  // border 1px solid #e7e7e7
 }
 // 底部固定条
 .fixed-bottom
@@ -215,6 +215,10 @@ export default {
 
 .fixed{
   position: fixed
+}
+
+.far-bom{
+  margin-bottom 4.0rem
 }
 /*****************
 *                 *

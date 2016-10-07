@@ -3,25 +3,29 @@
 <!-- 此组件暂时不用 -->
   	<section class="sel-item part">
 	  	<div class="sel-title">
-	  		{{ +1 }}.{{data.title}}
+	  		{{ +1 }}.{{data.question}}
 	  	</div>
 			<ul>
 				<li @click="select(1)">
-					{{data.item1}} <span class="iconfont pull-right"
-															v-if="sel_index==(1)" 
-															>&#xe60e;</span></li>
+					{{data.item1}} 
+					<span class="iconfont pull-right"
+								v-if="sel_index==(1)" 
+								>&#xe60e;</span></li>
 				<li @click="select(2)">
-					{{data.item2}} <span class="iconfont pull-right"
-															v-if="sel_index==(2)" 
-															>&#xe60e;</span></li>
+					{{data.item2}} 
+					<span class="iconfont pull-right"
+								v-if="sel_index==(2)" 
+								>&#xe60e;</span></li>
 				<li @click="select(3)">
-					{{data.item3}} <span class="iconfont pull-right"
-															v-if="sel_index==(3)" 
-															>&#xe60e;</span></li>
+					{{data.item3}} 
+					<span class="iconfont pull-right"
+								v-if="sel_index==(3)" 
+								>&#xe60e;</span></li>
 				<li @click="select(4)">
-					{{data.item4}} <span class="iconfont pull-right"
-															v-if="sel_index==(4)" 
-															>&#xe60e;</span></li>
+					{{data.item4}} 
+					<span class="iconfont pull-right"
+								v-if="sel_index==(4)" 
+								>&#xe60e;</span></li>
 			</ul>
 		</section><!-- end item -->
 </template>

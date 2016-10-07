@@ -6,14 +6,18 @@
 		  	<title class="que-content over-2">
 		  		{{que.title}}
 		  	</title>
+		  	<div class="meta" v-if="$route.name==='myque'">
+		  		<span>{{ que.answer_count }} 个回答</span>
+		  		<time>{{ que.create_time }}</time>
+		  	</div>
 		  	<!-- <div class="nock" v-if="que.role==0"> -->
 		  	<div class="nock">
 		  		<span class="label" v-if="que.is_free">免费</span>
-		  		<span class="nock-text" v-if="!que.is_free">
+		  		<span class="nock-text" v-if="!que.is_free && $route.name!='myque'">
 		  		￥{{ que.reward_money }} 解锁该问题的所有回答</span>
 		  	</div>
 			</div>
-			<answer-card :data="que"></answer-card>
+			<answer-card :data="que" v-if="que.answer_url"></answer-card>
 		</section>
   </div>
 </template>
@@ -69,12 +73,19 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
 		 .nock-text
 			 	display block
 			 	text-align center
-			 	font-size 14px
+			 	font-size 13px
 			 	color $ztc
 		
 	.que-content{
 		margin-bottom: 1rem
 		font-size 15px
 	}
-
+	
+	.meta
+		color #999
+		font-size: 12px
+		margin-top: -0.55rem
+		span
+			display inline-block
+			margin-right: 1.0rem
 </style>

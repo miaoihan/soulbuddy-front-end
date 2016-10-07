@@ -1,10 +1,10 @@
 <template>
-	<nav-header title="国际通用抑郁自评表（SDS）"></nav-header>
+	<!-- <nav-header title=""></nav-header> -->
 		<div class="sel-dec">
-			请根据过去的<strong>一周</strong>的情况选择。答案没有对错，<strong>真实</strong>反映自己的感受就好。 （共{{ data.number}}题）
+			请根据过去的<strong>一周</strong>的情况选择。答案没有对错，<strong>真实</strong>反映自己的感受就好。 （共{{ self.questions.length }}题）
 		</div>
   <div>
-  	<select-list :data="data.projects"></select-list>
+  	<select-list :data="self.questions"></select-list>
   </div>
   <footer>
   	<a href="#" class="button button-round btn-default f-btn">提交</a>
@@ -19,6 +19,25 @@ import SelectList from 'components/areaComp/SelectList.vue'
   	components: {
   		NavHeader,SelectList
 	  },
+	  data() {
+  		return{
+        self: {}
+  		}
+  	},
+	  ready(){
+      // 评测
+      $.ajax({
+          url: 'http://xinling.songtaxihuan.com/access/get_access_info',
+          type:'POST', 
+          dataType: 'json',
+          cache: true,
+          data:{
+            test_id: this.$route.params.id,
+          },
+          success: data => this.self = data.data,
+          error: err => err.toString()
+        });
+    },
 	  props:{
 	  	data: {
 	  		type: Object,
@@ -74,6 +93,10 @@ import SelectList from 'components/areaComp/SelectList.vue'
 	width: 60%;
 	margin: 0 auto 1.5rem;
 
+}
+
+footer{
+	margin-bottom: 4.0rem;
 }
 
 

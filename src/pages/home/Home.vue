@@ -1,12 +1,11 @@
 <template>
   <div>
-  	
   	<func-nav :index.sync="index"></func-nav>
     <div style="margin-top: 0.5rem">
-      <choice v-if="index==1"></choice>
+      <choice v-if="index==1" :swiper-list="swiperList"></choice>
       <question-list v-if="index==2" :data="queList"></question-list>
-      <reading v-if="index==3"></reading>
-      <evaluation v-if="index==4" style="margin-bottom: 80px"></evaluation>
+      <reading v-if="index==3" :data="readList"></reading>
+      <evaluation v-if="index==4" :data="evaList" style="margin-bottom: 80px"></evaluation>
     </div>
 
   </div>
@@ -30,6 +29,7 @@ import Evaluation from 'pages/home/Evaluation.vue'
         tokenURL: "http://xinling.songtaxihuan.com/test/test?uid=3",
         domain: 'http://xinling.songtaxihuan.com',
 
+        swiperList: [],
         queList: [],
         readList: [],
         evaList: [],
@@ -40,22 +40,50 @@ import Evaluation from 'pages/home/Evaluation.vue'
       //   // default: 2
       // }
     },
-    ready(){
+    created(){
+      // 没有缓存token再请求
+      if(''===this.token){
+        // 异步获取token
+        $.ajax({
+            url: this.tokenURL,
+            type:'GET', 
+            dataType: 'json',
+            cache: true,
+            async:false,
+            success: function(data) {
+              this.token = data.data
+              // console.log( typeof this.token); 
+            }.bind(this),
+            error: function(xhr, status, err) {
+              console.error(this.token, status, err.toString());
+            }.bind(this)
+          });
+      }
+      // 问答列表
+      $.ajax({
+          url: this.domain +'/question/get_question_list',
+          type:'POST', 
+          dataType: 'json',
+          // cache: true,
+          data:{
+            page: 1,
+            token: this.token
+          },
+          success: data => this.queList = data.data,
+          error: err => err.toString()
+        });
       // 获取轮播
       $.ajax({
-          url: this.lunboURL,
+          url: this.domain +'/article/get_top_article',
           type:'POST', 
           dataType: 'json',
           cache: true,
           async:false,
-          // async:false,
           success: function(data) {
-            // console.log(data)
             let lunboArr = data.data
             // console.log("title is "+lunboArr[0].title)
             for (var i = 0; i < lunboArr.length; i++) {
               this.swiperList.$set(i,{
-                
                 contitle:lunboArr[i].title,
                 imgurl: lunboArr[i].img_file,
                 href: ''
@@ -66,40 +94,40 @@ import Evaluation from 'pages/home/Evaluation.vue'
             console.error(lunboArr, status, err.toString());
           }.bind(this)
         });
-      // 异步获取token
+    },
+    ready(){
+      console.log(this)
+      console.log(this.$template)
+      // 阅读列表
       $.ajax({
-          url: this.tokenURL,
-          type:'GET', 
-          dataType: 'json',
-          cache: true,
-          async:false,
-          success: function(data) {
-            this.token = data.data
-            // console.log( typeof this.token); 
-          }.bind(this),
-          error: function(xhr, status, err) {
-            console.error(this.token, status, err.toString());
-          }.bind(this)
-        });
-
-      // 问答数据
-      $.ajax({
-          url: this.domain +'/question/get_question_list',
+          url: this.domain +'/article/get_article_list',
           type:'POST', 
           dataType: 'json',
-          cache: true,
+          cache: false,
           data:{
-            cat_id: 1,
-            token: this.token
+            page: 1,
           },
           success: function(data) {
-            this.queList = data.data;
-            console.log(this.readList)
+            this.readList = data.data;
           }.bind(this),
           error: function(xhr, status, err) {
             console.error(readList, status, err.toString());
           }.bind(this)
         });
+      // 测评列表
+      $.ajax({
+          url: this.domain +'/access/get_access_list',
+          type:'POST', 
+          dataType: 'json',
+          cache: true,
+          data:{
+            page: 1,
+            token: this.token
+          },
+          success: data => this.evaList = data.data,
+          error: err => err.toString()
+        });
+
     }
   }
 </script>
@@ -130,5 +158,9 @@ import Evaluation from 'pages/home/Evaluation.vue'
   font-size: 13px;
   color: #999;
 }
+
+a
+  color #444
+
 
 </style>

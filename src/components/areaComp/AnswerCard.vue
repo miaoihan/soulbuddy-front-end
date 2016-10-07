@@ -5,7 +5,7 @@
 				<div class="answer-inf wrapper">
 				<!-- 头像 -->
 					<div class="avator pull-left">
-							<img :src="data.logo" alt="头像">		
+							<img :src="data.logo" alt="头像" class="avator">		
 					</div>
 					<!-- 简介 -->
 					<div style="float: left;padding: 0.25rem 0.4rem">

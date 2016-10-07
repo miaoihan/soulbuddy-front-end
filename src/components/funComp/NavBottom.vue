@@ -8,7 +8,7 @@
       <i class="iconfont icon-zixun-copy"></i>
       <span class="tab-label">咨询</span>
     </a>
-    <a v-link="'/user'" class="tab-item external " :class="{ active: index === 2 }" @click="changClass(2)">
+    <a v-link="'/me'" class="tab-item external " :class="{ active: index === 2 }" @click="changClass(2)">
       <i class="iconfont icon-iconfontwode" style="margin-top:3px"></i>
       <span class="tab-label" style="margin-top:-10px">我的</span>
     </a>

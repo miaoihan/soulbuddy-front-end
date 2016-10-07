@@ -1,41 +1,19 @@
 <template>
   <div class="wrapper">
-  	<div class="yyzp body-eva wrapper">
-  		<img class="img-eva" src="" alt="">
+  	<div class="yyzp body-eva wrapper" v-for="eva of data">
+  		<img class="img-eva" :src="eva.img_file" alt="">
   		<i class="iconfont people">&#xe62b;</i>
-  		<span class="num-peo">{{peonumy}}</span>
-		<span class="function">国际通用抑郁自评表（SDS）</span>
-		<div class="startBtn" v-if="statusy==0">
-			开始
+  		<span class="num-peo">{{eva.test_count}}</span>
+		<span class="function">{{eva.title}}</span>
+		<div class="startBtn" v-if="!eva.is_tested">
+			<a v-link="{name:'eva', params:{id: eva.test_id} }" style="color:#fff">开始</a>	
 		</div>
-		<span class="status" v-if="statusy==1">
+		<span class="status" v-if="eva.is_tested">
 			您已完成测评
 		</span>
   	</div>
-  	<div class="jlzp body-eva wrapper">
-  		<img class="img-eva" src="" alt="">
-  		<i class="iconfont people">&#xe62b;</i>
-  		<span class="num-peo">{{peonumj}}</span>
-  		<span class="function">国际通用焦虑自评表（SDS）</span>
-  		<div class="startBtn" v-if="statusj==0">
-				开始
-			</div>
-			<span class="status" v-if="statusj==1">
-				您已完成测评
-			</span>
-  	</div>
-  	<div class="jlzp body-eva wrapper">
-  		<img class="img-eva" src="" alt="">
-  		<i class="iconfont people">&#xe62b;</i>
-  		<span class="num-peo">{{peonumj}}</span>
-  		<span class="function">国际通用焦虑自评表（SDS）</span>
-  		<div class="startBtn" v-if="statusj==0">
-				开始
-			</div>
-			<span class="status" v-if="statusj==1">
-				您已完成测评
-			</span>
-  	</div>
+  	
+  </div>
   	
   </div>
 </template>
@@ -47,10 +25,7 @@
     	
     },
     props:{
-    	statusy:{type:String,default:1},
-    	statusj:{type:String,default:0},
-    	peonumy:{type:String,default:231},
-    	peonumj:{type:String,default:132}
+    	data:[]
     }
   }
 </script>
@@ -81,7 +56,6 @@
 .num-peo{
 	position: absolute;
 	z-index: 10;
-	font-family: SFUIText-Medium;
 	font-size: 12px;
 	color: #FFFFFF;
 	right:1rem;
@@ -93,7 +67,6 @@
 	z-index: 10;
 	font-size: 0.75rem;
 	margin-top: 3.0rem;
-	font-family: .PingFang-SC-Medium;
 	color: #ffffff;
 }
 .startBtn{
@@ -106,19 +79,18 @@
 	margin-top: 1.0rem;
 	border: 1px solid #FFFFFF;
 	border-radius: 25px;
-	font-family: .PingFang-SC-Medium;
 	font-size: 13px;
 	color: #FFFFFF;
 	line-height: 1.4rem;
 }
 .status{
+	display: inline-block;
 	opacity: 0.5;
-	font-family: .PingFang-SC-Regular;
 	font-size: 13px;
 	color: #FFFFFF;
 	position: relative;
 	z-index: 10;
-	margin-top: 1.5rem;
+	margin-top: 1.2rem;
 }
 .img-eva{
 	position: absolute;
@@ -126,6 +98,8 @@
 	height: 100%;
 	width: 100%;
 	left: 0;
+	opacity:0.5;
+	filter:alpha(opacity=40); /* 针对 IE8 以及更早的版本 */
 }	
 
 </style>

@@ -9,13 +9,13 @@
 		    </a>
 	    </div>
 	    <div class="function-body font-center">
-		    <a href="#">
+		    <a v-link="'/me/evaluations'">
 		    	<i class="iconfont fun-img">&#xe604;</i>
 		    	<span class="fun-text">我的测评</span>
 		    </a>
 	    </div>
 	    <div class="function-body font-center">
-		    <a href="#">
+		    <a v-link="'/me/questions'">
 		    	<i class="iconfont fun-img">&#xe608;</i>
 		    	<span class="fun-text">我的提问</span>
 		    </a>

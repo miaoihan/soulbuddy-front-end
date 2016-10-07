@@ -36,8 +36,12 @@ var routes = {
     name: 'article',
     component: require('pages/home/ArticleDetail.vue')
   },
-  '/user': {
+  '/me': {
     component: require('pages/me/MinePage.vue')
+  },
+  '/me/questions': {
+    name:'myque',
+    component: require('pages/me/MyQuestion.vue')
   },
   '/me/profile': {
     component: require('pages/me/Profile.vue')
@@ -45,6 +49,23 @@ var routes = {
   '/consultants': {
     component: require('pages/consultant/Consultant.vue')
   },
+  '/consultants': {
+    component: require('pages/consultant/Consultant.vue')
+  },
+  '/user/:id': {
+    name: 'user',
+    component: require('pages/consultant/About.vue')
+  },
+  '/evaluation/:id': {
+    name: 'eva',
+    component: require('pages/home/SelfEva.vue')
+  },
+
+
+  
+
+
+
 
   
   

@@ -1,9 +1,9 @@
 <template>
 <!-- 咨询师 -->
-	<nav-header></nav-header>
+	<!-- <nav-header></nav-header> -->
   <div>
-	  <cst-list :data = "data" v-if="identity===2"></cst-list>
-	  <kol-list :data = "data" v-if="identity===3"></kol-list>
+	  <cst-list :data = "userList1" v-if="identity===1"></cst-list>
+	  <kol-list :data = "userList2" v-if="identity===2"></kol-list>
   </div>
 </template>
 
@@ -17,13 +17,16 @@
 	  data(){
 	  	return{
 	  		token: '',
-	  		identity: 2, //用户身份0普通用户1心理咨询师2经验答人
+	  		domain: 'http://xinling.songtaxihuan.com',
+	  		identity: 1, //0普通用户1心理咨询师2经验答人
+	  		userList1: [],
+	  		userList2: [],
 	  	}
 	  },
 	  ready(){
 	  	// 异步获取token
 	  	$.ajax({
-          url: this.url1,
+          url: "http://xinling.songtaxihuan.com/test/test?uid=3",
           type:'GET', 
           dataType: 'json',
           cache: true,
@@ -33,26 +36,41 @@
             // console.log( typeof this.token);	
           }.bind(this),
           error: function(xhr, status, err) {
-            console.error(this.token, status, err.toString());
           }.bind(this)
         });
 
 	  	$.ajax({
-          url: '/user/get_user_list',
+          url: this.domain +'/user/get_user_list',
           type:'POST', 
           dataType: 'json',
           cache: true,
           data:{
           	token: this.token,
-          	page: 1
-
+          	page: 1,
+          	identity: 1
           },
           success: function(data) {
-          	this.readList = data.data;
-          	console.log(this.readList)
+          	this.userList1 = data.data;
+          	console.log(this.userList1)
           }.bind(this),
           error: function(xhr, status, err) {
-            console.error(readList, status, err.toString());
+          }.bind(this)
+        });
+	  	$.ajax({
+          url: this.domain +'/user/get_user_list',
+          type:'POST', 
+          dataType: 'json',
+          cache: true,
+          data:{
+          	token: this.token,
+          	page: 1,
+          	identity: 2
+          },
+          success: function(data) {
+          	this.userList2 = data.data;
+          	console.log(this.userList1)
+          }.bind(this),
+          error: function(xhr, status, err) {
           }.bind(this)
         });
 	  },

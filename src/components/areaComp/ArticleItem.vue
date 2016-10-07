@@ -6,8 +6,10 @@
 			</div>
 			<div class="a-r">
 				<aside>
-					<span class="label art-label" v-if="data.isRec">推荐</span>
-					<span class="label-bg-grey" v-if="data.is_top==1">科普</span>
+					<span class="label art-label" v-if="data.is_recommend">推荐</span>
+					<span class="label-bg-grey" v-if="data.cat_id==1">科普</span>
+					<span class="label-bg-grey" v-if="data.cat_id==2">放松</span>
+					<span class="label-bg-grey" v-if="data.cat_id==3">案例</span>
 				</aside>
 				<h1 class="a-title over-2">
 					{{data.title}}
