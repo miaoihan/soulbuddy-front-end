@@ -67,11 +67,11 @@ import ChangeBtn from 'components/funComp/ChangeBtn'
 	width: 100%;
 }
 .input-text{
-	height: 1.0rem;
+	height: 1.2rem;
 	width:100%;
 	border:0;
 	/*color:#d4d4d4;*/
-	font-size: 1.0rem;
+	font-size: 0.95rem;
 	font-weight: 600;
 }
 .change-body{

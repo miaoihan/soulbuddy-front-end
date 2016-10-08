@@ -22,6 +22,7 @@ export default {
     }
   },
   components: {
+    ArticleDetail:require('pages/home/ArticleDetail'),
     Cash:require('pages/me/Cash'),
     CashAlipay:require('pages/me/CashAlipay'),
     Balance:require('pages/me/Balance'),

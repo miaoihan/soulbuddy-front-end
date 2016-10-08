@@ -106,14 +106,16 @@ import InputBox from 'components/funComp/InputBox'
 	line-height: 2.5rem;
 	font-size: 0.75rem;
 	color: black;
-	border-bottom: 0.025rem solid #e3e3e3
+	border-bottom: 0.025rem solid #e3e3e3;
+	/*margin-bottom: 1.1rem;*/
 }
 .money-body{
 	height: 6.0rem;
-	border-bottom: 0.025rem solid #e3e3e3
+	border-bottom: 0.025rem solid #e3e3e3;
+	padding-top: 1.1rem;
 }
 .money-sel{
-	width: 3.0rem;
+	width: 18%;
 	height: 1.6rem;
 	border:0.05rem solid #2b8ff7;
 	color:#2b8ff7;
