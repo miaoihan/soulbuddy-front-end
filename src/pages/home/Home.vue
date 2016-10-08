@@ -7,7 +7,6 @@
       <reading v-if="index==3" :data="readList"></reading>
       <evaluation v-if="index==4" :data="evaList" style="margin-bottom: 80px"></evaluation>
     </div>
-
   </div>
 </template>
 
@@ -28,7 +27,6 @@ import Evaluation from 'pages/home/Evaluation.vue'
         token: '',
         tokenURL: "http://xinling.songtaxihuan.com/test/test?uid=3",
         domain: 'http://xinling.songtaxihuan.com',
-
         swiperList: [],
         queList: [],
         readList: [],
@@ -39,6 +37,15 @@ import Evaluation from 'pages/home/Evaluation.vue'
       // index: {
       //   // default: 2
       // }
+    },
+    methods:{
+      // 得到地址栏参数值
+      getUrlParam(name)
+        {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+        if (r!=null) return unescape(r[2]); return null; //返回参数值
+        } 
     },
     created(){
       // 没有缓存token再请求
@@ -52,6 +59,7 @@ import Evaluation from 'pages/home/Evaluation.vue'
             async:false,
             success: function(data) {
               this.token = data.data
+              // document.cookie = 'token='+this.data,data
               // console.log( typeof this.token); 
             }.bind(this),
             error: function(xhr, status, err) {
@@ -96,8 +104,11 @@ import Evaluation from 'pages/home/Evaluation.vue'
         });
     },
     ready(){
-      console.log(this)
-      console.log(this.$template)
+
+      // 获取code
+      var code = this.getUrlParam(code);
+      console.log(code)
+      // alert(code)
       // 阅读列表
       $.ajax({
           url: this.domain +'/article/get_article_list',

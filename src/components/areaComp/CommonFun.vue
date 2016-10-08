@@ -21,7 +21,7 @@
 		    </a>
 	    </div>
 	    <div class="function-body font-center">
-		    <a href="#">
+		    <a  v-link="'/me/favorite'">
 		    	<i class="iconfont fun-img">&#xe606;</i>
 		    	<span class="fun-text">收藏</span>
 		    </a>

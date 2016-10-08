@@ -1,10 +1,16 @@
 <template>
-
   <!-- <component :is="currentPage"></component> -->
+
   <div id="app">
-   <nav-header title="新灵伙伴"></nav-header>
-   <router-view></router-view>
-   <nav-bottom></nav-bottom>
+    <div v-if="is_login">
+     <nav-header title="新灵伙伴"></nav-header>
+     <router-view></router-view>
+     <nav-bottom></nav-bottom>
+    </div>
+    <div v-if="!is_login">
+      <nav-header title="绑定手机"></nav-header>
+      <bind-phone></bind-phone>
+    </div>
   </div>
 </template>
 
@@ -14,37 +20,49 @@ export default {
   data(){
     return{
       currentPage: 'eva-card',
+      is_login: false,
+      appid: 'wx589465f8441939d3',
+      redirect_uri: ''
     }
   },
   components: {
-    // EvaCard:require('components/funComp/EvaCard'),
-    // Login: require('pages/Login'),
-    // BindPhone: require('pages/BindPhone'),
-    // Home: require('pages/home/Home'),
-    // Evaluation: require('pages/home/Evaluation'),
-    // SelfEva: require('pages/home/SelfEva'),
-    // Science: require('pages/home/Science'),
-    // ScienceDetail: require('pages/home/ScienceDetail'),
-    // SerchList: require('pages/home/SerchList'),
-    // Ask: require('pages/home/Ask'),
-    // QuestionDetail: require('pages/home/QuestionDetail'),
-    // QuestionCon: require('pages/consultant/QuestionCon'),
-    // Consultant: require('pages/consultant/Consultant'),
-    // History: require('pages/me/History'),
-    // HomeQue: require('pages/HomeQue'),
-    // PersonMsg: require('pages/me/PersonMsg'),
-    // MinePage: require('pages/me/MinePage'),
-    // QuestionCon: require('pages/consultant/QuestionCon'),
-    // Kol: require('pages/consultant/Kol'),
-    // About: require('pages/consultant/About'),
-    // Favorite: require('pages/me/Favorite'),
-    // Apply: require('pages/me/Apply'),
-    // ApplyJydr:require('pages/me/ApplyJydr'),
-    // Profile:require('pages/me/Profile'),
-
     NavHeader:require('components/funComp/NavHeader.vue'),
     NavBottom:require('components/funComp/NavBottom.vue'),
+    BindPhone:require('pages/BindPhone.vue'),
+
   },
+  methods:{
+  // 得到地址栏参数值
+    getUrlParam(name)
+      {
+      var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+      var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+      if (r!=null) return unescape(r[2]); return null; //返回参数值
+      } 
+  },
+  ready(){
+     
+    /* 用户微信登录部分
+      1.获取code
+      2.通过code获取access_token
+      3.通过access_token获取用户信息
+    */
+
+    // 1.获取code
+    var code = this.getUrlParam('code');
+    if(null==code) {
+      // alert('请在微信客户端打开应用');
+      window.document.innerHTML('请在微信客户端打开应用');
+      return;
+    }
+    console.log(code);
+    // 2.获取access_token
+    var access_token = '';
+    $.get("https://api.weixin.qq.com/sns/oauth2/access_token?appid="+ this.appid +"&secret=SECRET&code="+ this.code +"&grant_type=authorization_code", 
+      function(result){
+        alert(result)
+      });
+  }
 
 }
 </script>
