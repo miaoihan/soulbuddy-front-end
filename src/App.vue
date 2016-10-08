@@ -18,7 +18,7 @@
 export default {
   data(){
     return{
-      currentPage: 'cash',
+      currentPage: 'balance',
     }
   },
   components: {

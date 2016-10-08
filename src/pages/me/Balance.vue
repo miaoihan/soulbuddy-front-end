@@ -10,7 +10,15 @@
   	<div class="recharge wrapper bal-padding">
   		<div class="recharge-title wrapper">充值(微信钱包)</div>
   		<div class="money-body wrapper">
+  			<div class="top-money wrapper">
+  				<div class="money-sel margin-right wrapper">￥5</div>
+	  			<div class="money-sel margin-right wrapper">￥10</div>
+	  			<div class="money-sel margin-right wrapper">￥50</div>
+	  			<div class="money-sel margin-right wrapper">￥100</div>
+  			</div>
   			
+  			<div class="money-sel margin-right margin-top wrapper">￥200</div>
+  			<div class="money-sel margin-right margin-top wrapper">￥500</div>
   		</div>
   		<input type="submit" value="立即充值" class="chongzhi">
   	</div>
@@ -91,6 +99,15 @@ import InputBox from 'components/funComp/InputBox'
 	height: 6.0rem;
 	border-bottom: 0.025rem solid #e3e3e3
 }
+.money-sel{
+	width: 3.0rem;
+	height: 1.6rem;
+	border:0.05rem solid #2b8ff7;
+	color:#2b8ff7;
+	border-radius: 0.25rem;
+	line-height: 1.6rem;
+	text-align: center;
+}
 .chongzhi{
 	height:2.5rem;
 	width: 100%;
@@ -99,5 +116,15 @@ import InputBox from 'components/funComp/InputBox'
 	font-size: 0.7rem;
 	color: #2b8ff7;
 	font-weight: 600
+}
+.margin-right{
+	margin-right: 0.75rem;
+	float: left;
+}
+.margin-top{
+	/*display: block;*/
+	margin-top: 0.8rem;
+	/*margin-right: 0.75rem;*/
+	/*float: left;*/
 }
 </style>
