@@ -110,7 +110,7 @@ import QuestionList from 'components/areaComp/QuestionList.vue'
   z-index: 10;
   float: right;
   margin-right: 1rem;
-  font-size: 0.25rem;
+  font-size: 0.3rem;
   color:#fff;
 }
 .checkall{

@@ -1,13 +1,13 @@
 <template>
 
-  <!-- <component :is="currentPage"></component> -->
-  <div id="app">
+  <component :is="currentPage"></component>
+  <!-- <div id="app">
    <nav-header title="新灵伙伴"></nav-header>
-   <!-- <router-view></router-view> -->
+   <router-view></router-view>
    <home></home>
 
    <nav-bottom></nav-bottom>
-  </div>
+  </div> -->
 </template>
 
 <script>
@@ -15,10 +15,13 @@
 export default {
   data(){
     return{
-      currentPage: 'eva-card',
+      currentPage: 'cash',
     }
   },
   components: {
+    Cash:require('pages/me/Cash'),
+    CashAlipay:require('pages/me/CashAlipay'),
+    Balance:require('pages/me/Balance'),
     EvaCard:require('components/funComp/EvaCard'),
     Login: require('pages/Login'),
     BindPhone: require('pages/BindPhone'),
