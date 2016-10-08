@@ -87,7 +87,7 @@ input:focus{
 	width: 4.75rem;
 	right: 0.6rem;
 	border-radius: 1.4rem;
-	background-color: #29abe2;
+	background-color: #2b8ff7;
 	color: #fff;
 	border:0;
 	margin-top: 0.55rem;

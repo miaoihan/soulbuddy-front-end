@@ -46,6 +46,9 @@ var routes = {
   '/me/profile': {
     component: require('pages/me/Profile.vue')
   },
+  '/me/favorite': {
+    component: require('pages/me/favorite.vue')
+  },
   '/consultants': {
     component: require('pages/consultant/Consultant.vue')
   },
