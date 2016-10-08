@@ -6,6 +6,15 @@ import routes from './routes.js'
 // install router
 Vue.use(Router)
 
+// filter
+Vue.filter('str2arr', function (value) {
+	if(value)
+		return value.split(';')
+})
+
+// equal to above
+Vue.filter('str2arrLambal', (v)=>v&&v.split(';'))
+
 // routing
 var router = new Router()
 

@@ -1,14 +1,11 @@
 <template>
   <div>
-  	
   	<func-nav :index.sync="index"></func-nav>
-  	<!-- <question-list></question-list> -->
-    <div class="cst-list" style="margin-top: 0.5rem">
-
-      <choice v-if="index==1"></choice>
-      <question-list v-if="index==2"></question-list>
-      <reading  v-if="index==3"></reading>
-      
+    <div style="margin-top: 0.5rem">
+      <choice v-if="index==1" :swiper-list="swiperList"></choice>
+      <question-list v-if="index==2" :data="queList"></question-list>
+      <reading v-if="index==3" :data="readList"></reading>
+      <evaluation v-if="index==4" :data="evaList" style="margin-bottom: 80px"></evaluation>
     </div>
 
   </div>
@@ -20,19 +17,117 @@ import FuncNav from 'components/areaComp/FuncNav.vue'
 import QuestionList from 'components/areaComp/QuestionList.vue'
 import Reading from 'pages/home/Reading.vue'
 import Choice from 'pages/home/Choice.vue'
+import Evaluation from 'pages/home/Evaluation.vue'
   export default{
     components: {
-    	NavHeader,FuncNav,QuestionList,Reading,Choice
+    	NavHeader,FuncNav,QuestionList,Reading,Choice,Evaluation
     },
     data(){
       return{
         index: 1,
+        token: '',
+        tokenURL: "http://xinling.songtaxihuan.com/test/test?uid=3",
+        domain: 'http://xinling.songtaxihuan.com',
+
+        swiperList: [],
+        queList: [],
+        readList: [],
+        evaList: [],
       }
     },
     props:{
       // index: {
       //   // default: 2
       // }
+    },
+    created(){
+      // 没有缓存token再请求
+      if(''===this.token){
+        // 异步获取token
+        $.ajax({
+            url: this.tokenURL,
+            type:'GET', 
+            dataType: 'json',
+            cache: true,
+            async:false,
+            success: function(data) {
+              this.token = data.data
+              // console.log( typeof this.token); 
+            }.bind(this),
+            error: function(xhr, status, err) {
+              console.error(this.token, status, err.toString());
+            }.bind(this)
+          });
+      }
+      // 问答列表
+      $.ajax({
+          url: this.domain +'/question/get_question_list',
+          type:'POST', 
+          dataType: 'json',
+          // cache: true,
+          data:{
+            page: 1,
+            token: this.token
+          },
+          success: data => this.queList = data.data,
+          error: err => err.toString()
+        });
+      // 获取轮播
+      $.ajax({
+          url: this.domain +'/article/get_top_article',
+          type:'POST', 
+          dataType: 'json',
+          cache: true,
+          async:false,
+          success: function(data) {
+            let lunboArr = data.data
+            // console.log("title is "+lunboArr[0].title)
+            for (var i = 0; i < lunboArr.length; i++) {
+              this.swiperList.$set(i,{
+                contitle:lunboArr[i].title,
+                imgurl: lunboArr[i].img_file,
+                href: ''
+              });
+            }
+          }.bind(this),
+          error: function(xhr, status, err) {
+            console.error(lunboArr, status, err.toString());
+          }.bind(this)
+        });
+    },
+    ready(){
+      console.log(this)
+      console.log(this.$template)
+      // 阅读列表
+      $.ajax({
+          url: this.domain +'/article/get_article_list',
+          type:'POST', 
+          dataType: 'json',
+          cache: false,
+          data:{
+            page: 1,
+          },
+          success: function(data) {
+            this.readList = data.data;
+          }.bind(this),
+          error: function(xhr, status, err) {
+            console.error(readList, status, err.toString());
+          }.bind(this)
+        });
+      // 测评列表
+      $.ajax({
+          url: this.domain +'/access/get_access_list',
+          type:'POST', 
+          dataType: 'json',
+          cache: true,
+          data:{
+            page: 1,
+            token: this.token
+          },
+          success: data => this.evaList = data.data,
+          error: err => err.toString()
+        });
+
     }
   }
 </script>
@@ -42,6 +137,8 @@ import Choice from 'pages/home/Choice.vue'
 .pangbai{
   text-align:center;
   margin: 30px 0 15px 0
+  color #999
+  font-size: 14px
 }
 
 .heng{
@@ -56,10 +153,14 @@ import Choice from 'pages/home/Choice.vue'
   margin: 10px 10% 0;
   height: 30px;
   line-height: 32px;
-  background: #E3E3E3;
+  // background: #E3E3E3;
   border-radius: 15px;
   font-size: 13px;
   color: #999;
 }
+
+a
+  color #444
+
 
 </style>

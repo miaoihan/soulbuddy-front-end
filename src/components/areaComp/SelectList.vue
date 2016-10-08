@@ -40,6 +40,7 @@ import SelectItem from '../areaComp/SelectItem'
 		    return false;  
 			}
   	},
+    
   	
 	  props:{
 	  	data: {

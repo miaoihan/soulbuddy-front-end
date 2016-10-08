@@ -4,8 +4,11 @@
   <!-- <div id="app">
    <nav-header title="新灵伙伴"></nav-header>
    <router-view></router-view>
+<<<<<<< HEAD
    <home></home>
 
+=======
+>>>>>>> e6b9e8a5159f89a276f649a3314bc4b95cc16083
    <nav-bottom></nav-bottom>
   </div> -->
 </template>
@@ -29,7 +32,7 @@ export default {
     Evaluation: require('pages/home/Evaluation'),
     SelfEva: require('pages/home/SelfEva'),
     Science: require('pages/home/Science'),
-    ScienceDetail: require('pages/home/ScienceDetail'),
+    // ScienceDetail: require('pages/home/ScienceDetail'),
     SerchList: require('pages/home/SerchList'),
     Ask: require('pages/home/Ask'),
     QuestionDetail: require('pages/home/QuestionDetail'),
@@ -46,6 +49,32 @@ export default {
     Apply: require('pages/me/Apply'),
     ApplyJydr:require('pages/me/ApplyJydr'),
     Profile:require('pages/me/Profile'),
+
+    // EvaCard:require('components/funComp/EvaCard'),
+    // Login: require('pages/Login'),
+    // BindPhone: require('pages/BindPhone'),
+    // Home: require('pages/home/Home'),
+    // Evaluation: require('pages/home/Evaluation'),
+    // SelfEva: require('pages/home/SelfEva'),
+    // Science: require('pages/home/Science'),
+    // ScienceDetail: require('pages/home/ScienceDetail'),
+    // SerchList: require('pages/home/SerchList'),
+    // Ask: require('pages/home/Ask'),
+    // QuestionDetail: require('pages/home/QuestionDetail'),
+    // QuestionCon: require('pages/consultant/QuestionCon'),
+    // Consultant: require('pages/consultant/Consultant'),
+    // History: require('pages/me/History'),
+    // HomeQue: require('pages/HomeQue'),
+    // PersonMsg: require('pages/me/PersonMsg'),
+    // MinePage: require('pages/me/MinePage'),
+    // QuestionCon: require('pages/consultant/QuestionCon'),
+    // Kol: require('pages/consultant/Kol'),
+    // About: require('pages/consultant/About'),
+    // Favorite: require('pages/me/Favorite'),
+    // Apply: require('pages/me/Apply'),
+    // ApplyJydr:require('pages/me/ApplyJydr'),
+    // Profile:require('pages/me/Profile'),
+
 
     NavHeader:require('components/funComp/NavHeader.vue'),
     NavBottom:require('components/funComp/NavBottom.vue'),
@@ -194,7 +223,7 @@ export default {
   display inline-block
   border-radius 50%
   // 部署的时候删除
-  border 1px solid #e7e7e7
+  // border 1px solid #e7e7e7
 }
 // 底部固定条
 .fixed-bottom
@@ -220,6 +249,10 @@ export default {
 
 .fixed{
   position: fixed
+}
+
+.far-bom{
+  margin-bottom 4.0rem
 }
 /*****************
 *                 *

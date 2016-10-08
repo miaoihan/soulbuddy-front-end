@@ -1,21 +1,25 @@
 <template>
   <div>
-  	<div class="a-l">
-			<img :src="data.img_file" alt="">
-		</div>
-		<div class="a-r">
-			<aside>
-				<span class="label art-label" v-if="data.isRec">推荐</span>
-				<span class="label-bg-grey" v-if="article.is_top==1">科普</span>
-			</aside>
-			<h1 class="a-title over-2">
-				{{data.title}}
-			</h1>
-			<div class="a-content over-2">
-				<!-- content自带标签 -->
-				{{{article.content}}}
+	  <a v-link="{ name:'article', params:{ art_id: data.art_id }  }">
+	  	<div class="a-l">
+				<img :src="data.img_file" alt="">
 			</div>
-		</div>
+			<div class="a-r">
+				<aside>
+					<span class="label art-label" v-if="data.is_recommend">推荐</span>
+					<span class="label-bg-grey" v-if="data.cat_id==1">科普</span>
+					<span class="label-bg-grey" v-if="data.cat_id==2">放松</span>
+					<span class="label-bg-grey" v-if="data.cat_id==3">案例</span>
+				</aside>
+				<h1 class="a-title over-2">
+					{{data.title}}
+				</h1>
+				<div class="a-content over-2">
+					<!-- content自带标签 -->
+					{{{data.content}}}
+				</div>
+			</div>
+		</a>
   </div>
 </template>
 
@@ -37,25 +41,6 @@
 		  	}
 	  	}
 	  },
-	  ready(){
-	  	$.ajax({
-          url: 'http://xinling.songtaxihuan.com/article/get_article_info',
-          type:'POST', 
-          dataType: 'json',
-          cache: true,
-          data:{
-          	art_id: this.data.art_id,
-          },
-          success: function(data) {
-          	console.log(data)
-           	this.article = data.data
-          }.bind(this),
-          error: function(xhr, status, err) {
-            console.error(lunboArr, status, err.toString());
-          }.bind(this)
-        });
-	  }
-	  
   }
 </script>
 
@@ -83,4 +68,7 @@
 		line-height: 0.76rem
 		font-size: 10px
 		background-color #316aa3
+		
+	a 
+		color #444
 </style>

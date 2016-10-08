@@ -1,31 +1,33 @@
 <template>
   <div class="zxs-list wrapper">
 		  <div class="zxs-item part" v-for="item in data">
-		  	<div class="z-avator">
-		  		<img src="" alt="">
-		  	</div>
-		  	<div class="z-desc container-16">
-		  		<div class="desc-l1">
-		  			<span class="d-l1-name">{{item.name}}</span>
-		  			<span><i></i></span>
-		  			<span class="pull-right" style="font-size:0.6rem;color: #999">
-		  				<strong style="color: #2b8ff7;font-size:0.65rem">
-		  				{{ item.num }}</strong>
-		  				人收藏了这位咨询师
-		  			</span>
-		  		</div>
-		  		<div class="desc-l2">
-		  			<span style="font-size:0.6rem;color: #999">
-		  				{{item.desc}}
-		  			</span>
-		  		</div>
-		  		<div class="desc-l3">
-		  			<span class="label-grey" style="margin-right: 0.5rem" 
-		  						v-for="it in item.label">
-		  				{{it.name}}
-		  			</span>
-		  		</div>
-		  	</div>
+			  <a v-link="{name:'user', params:{ id: item.u_id }}">
+			  	<div class="z-avator">
+			  		<img :src="item.logo" alt="">
+			  	</div>
+			  	<div class="z-desc container-16">
+			  		<div class="desc-l1">
+			  			<span class="d-l1-name">{{item.user_name}}</span>
+			  			<span><i></i></span>
+			  			<span class="pull-right" style="font-size:0.6rem;color: #999">
+			  				<strong style="color: #2b8ff7;font-size:0.65rem">
+			  				{{ item.fav_count }}</strong>
+			  				人收藏了这位咨询师
+			  			</span>
+			  		</div>
+			  		<div class="desc-l2">
+			  			<span style="font-size:0.6rem;color: #999">
+			  				{{item.intro}}
+			  			</span>
+			  		</div>
+			  		<div class="desc-l3">
+			  			<span class="label-grey" style="margin-right: 0.5rem" 
+			  						v-for="skill in item.skill | str2arr">
+			  				{{ skill }}
+			  			</span>
+			  		</div>
+			  	</div>
+			  </a>
 		  </div><!-- end zxs-item -->
   	</div><!-- end zxs-list -->
 </template>
@@ -47,6 +49,12 @@
 		  	}
 	  	}
 	  },
+	  ready(){
+	  	console.log('sk '+this.data.skill)
+	  	console.log('sadsda '+'a;b;c'.split(';'))
+	  	// console.log(this.data.skill.split(';') )
+	  	// console.log(this.data.skill | string2arr)
+	  }
 	  
   }
 </script>
@@ -64,4 +72,6 @@
 	.desc-l3
 		margin-top: 0.7rem
 
+	a
+		width 100%
 </style>

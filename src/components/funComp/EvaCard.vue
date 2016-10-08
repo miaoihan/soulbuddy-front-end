@@ -1,19 +1,19 @@
 <template>
   <div class="card-body relative wrapper">
-  	<img src="" class="img-evac">
+  	<img :src="" class="img-evac">
     <div class="top-title wrapper relative">
       <i class="iconfont title-test relative">&#xe604;</i>
       <span class="relative title-test-text">心理测评</span>
       <i class="iconfont title-next relative">&#xe60d;</i>
-      <span class="checkall relative">查看全部评测</span>
+      <a v-link="'eva'" class="checkall relative">查看全部评测</a>
     </div>
-    <div class="swiper-container" style="margin-top:1.5rem">
+    <div class="swiper-container" style="margin-top:0.8rem">
       <div class="swiper-wrapper">
-          <div class="swiper-slide card-rall" style="height:5rem;text-align:center;" v-for="data in data">
+          <div class="swiper-slide card-rall" style="height:5rem;text-align:center;" v-for="eva in data">
           <div class="opacityback">
             
           </div>
-            <span class="eva-title">{{data.evaTitle}}</span>
+            <span class="eva-title">{{eva.title}}</span>
             <div class="start-btn">开始</div>
           </div>
           
@@ -41,15 +41,7 @@ import QuestionList from 'components/areaComp/QuestionList.vue'
         type:Array,
         default(){
           return[
-            {
-              evaTitle:"国际通用抑郁症检测表(SDS)1"
-            },//是否连接
-            {
-              evaTitle:"国际通用抑郁症检测表(SDS)2"
-            },
-            {
-              evaTitle:"国际通用抑郁症检测表(SDS)3"
-            },
+
           ]
         }
       },
@@ -72,7 +64,6 @@ import QuestionList from 'components/areaComp/QuestionList.vue'
   position:relative
 }
 .card-body{
-  position:absolute;
   height:11.5rem;
   width:100%;
 }
@@ -80,7 +71,7 @@ import QuestionList from 'components/areaComp/QuestionList.vue'
   width: 100%;
   height: 100%;
   position:absolute;
-  z-index: 1;
+  z-index: -1;
   left: 0
 }
 .top-title{

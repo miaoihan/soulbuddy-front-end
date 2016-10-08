@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div id="aa">
     <div class="person-msg-body">
     	<div class="person-msg-basic">
     		<div class="img-body">
@@ -19,18 +19,19 @@
     	<counselor-fun></counselor-fun>
     </div>
     <div v-if="user.UserType==='common'">
-    	<common-fun></common-fun>
+    	<common-fun :data="queList"></common-fun>
     </div>
     <!-- <common-fun v-if="user.UserType===common"></common-fun> -->
 
     <change-btn :btntext="btntext"
-	    	style="margin-top:1rem;padding-left:1rem;padding-right:1rem;background:#2b8ff7"
-			text-color="#fff" icon-color="#fff"
-			@click="handleClick" v-if="person.identity==0">
+	    					style="margin-top:1rem;padding-left:1rem;padding-right:1rem;background:#2b8ff7"
+								text-color="#fff" icon-color="#fff"
+								@click="handleClick" v-if="person.identity==0">
 	</change-btn>
 	<change-btn btntext="申请成为咨询师或经验答人"
-	    	style="margin-top:1rem;padding-left:1rem;padding-right:1rem;background:#fff"
-			text-color="#2b8ff7" v-if="person.identity==1"
+	    				style="margin-top:1rem;padding-left:1rem;padding-right:1rem;background:#fff"
+							text-color="#2b8ff7" 
+							v-if="person.identity==1"
 			url="/123/321"
 			>
 	</change-btn>
@@ -45,6 +46,9 @@ export default {
 	components:{
 		ChangeBtn,CounselorFun,CommonFun
 	},
+	el:'#me',
+	 template: '<p class="bar">replaced</p>',
+	 c:'',
 	props:{
 		data:{
   		type:Array,
@@ -80,6 +84,7 @@ export default {
   		url1:'http://xinling.songtaxihuan.com/test/test?uid=3',
   		url2:'http://xinling.songtaxihuan.com/user/get_user_info',
   		person:{},
+  		queList: []
     }
   },
   ready:function(){
@@ -92,7 +97,7 @@ export default {
           url: this.url1,
           type:'GET', 
           dataType: 'json',
-          cache: false,
+          cache: true,
           async:false,
           success: function(data) {
             this.token = data.data
@@ -107,10 +112,11 @@ export default {
           url: this.url2,
           type:'POST', 
           dataType: 'json',
+          cache: true,
           data: {
-          	u_id:1,
-			token:this.token,
-		  },
+	          u_id:1,
+						token:this.token,
+		  		},
           cache: false,
           success: function(data) {
           	console.log(data)
@@ -120,6 +126,20 @@ export default {
           error: function(xhr, status, err) {
             console.error(this.questionList, status, err.toString());
           }.bind(this)
+        });
+
+	  	// 我的提问
+      $.ajax({
+          url: 'http://xinling.songtaxihuan.com/user/get_my_question',
+          type:'POST', 
+          dataType: 'json',
+          cache: true,
+          data:{
+            page: 1,
+            token: this.token
+          },
+          success: data => this.queList = data.data,
+          error: err => err.toString()
         });
   },
 

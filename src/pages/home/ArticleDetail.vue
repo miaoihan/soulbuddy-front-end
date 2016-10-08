@@ -4,18 +4,18 @@
    		<!-- 文章头部 -->
       <section class="art-top ztc">
           <h1 class="art-title over-2">
-            干货: 别说你真的会用抑郁药物！别说你真的会用抑郁药物
+            {{data.title}}
           </h1>
+          <!-- {{data.tags | str2arr}} -->
           <!-- 标签组 -->
           <p class="art-label">
-            <span class="label label-border">抑郁症</span>
-            <span class="label label-border">焦虑症</span>
+            <span class="label label-border" v-for="tag of tags">{{ tag }}</span>
           </p>
           <!-- 信息 -->
           <article class="art-meta">
             <span>{{data.author}}</span>
-            <time>{{data.date}}</time>
-            <aside class="pull-right">来源：{{data.laiyuan}}</aside>
+            <time>{{data.create_time}}</time>
+            <aside class="pull-right">来源：{{data.from}}</aside>
           </article>
       </section>
       <!-- 文章主体 -->
@@ -37,7 +37,8 @@
      },
      data(){
      	return{
-     		tips:'本网站所有注明“来源：丁香园”的文字、图片和音视频资料，版权均属于丁香园所有，非经授权，任何媒体、网站或个人不得转载'
+     		tips:'本网站所有注明“来源：丁香园”的文字、图片和音视频资料，版权均属于丁香园所有，非经授权，任何媒体、网站或个人不得转载',
+        tags:[]
      	}
      },
      props:{
@@ -55,6 +56,26 @@
            }
          }
        },
+     ready(){
+      $.ajax({
+        url: 'http://xinling.songtaxihuan.com/article/get_article_info',
+        type:'POST', 
+        dataType: 'json',
+        cache: true,
+        data:{
+          art_id: this.$route.params.art_id
+        },
+        // async:false,
+        success: function(data) {
+          // console.log(data)
+          this.data = data.data
+          this.tags = data.data.tags.split(";")
+        }.bind(this),
+        error: function(xhr, status, err) {
+          console.error(lunboArr, status, err.toString());
+        }.bind(this)
+      });
+     },
 
     }
 </script>
@@ -68,6 +89,8 @@
     .art-label
       margin 0.5rem 0 0.6rem 0
       font-size: 12px
+      span
+        margin-right: 0.6rem
     .art-meta
      	font-size: 13px
   .art-main

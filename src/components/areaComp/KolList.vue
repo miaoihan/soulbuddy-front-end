@@ -32,7 +32,7 @@
 				  			<span style="font-size:0.6rem;color: #999" >
 				  				<strong style="color: #2b8ff7;font-size:0.65rem">
 				  				{{ item.num }}</strong>
-				  				人收藏了这位咨询师
+				  				人收藏了这位经验达人
 				  			</span>
 				  		</div>
 				  	</div>
