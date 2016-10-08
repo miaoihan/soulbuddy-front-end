@@ -81,7 +81,6 @@ export default {
     return {
     	btntext:"",
     	token:'',
-  		url1:'http://xinling.songtaxihuan.com/test/test?uid=3',
   		url2:'http://xinling.songtaxihuan.com/user/get_user_info',
   		person:{},
   		queList: []
@@ -94,7 +93,7 @@ export default {
   		this.btntext='切换到咨询师身份'
   	}
   	$.ajax({
-          url: this.url1,
+          url: 'http://xinling.songtaxihuan.com/test/test?uid=3',
           type:'GET', 
           dataType: 'json',
           cache: true,

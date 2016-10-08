@@ -22,9 +22,8 @@ export default {
     return{
 
       currentPage: 'eva-card',
-      is_login: false,
-      appid: 'wx589465f8441939d3',
-      redirect_uri: ''
+      is_login: true,
+      domain: 'http://xinling.songtaxihuan.com'
     }
   },
   components: {
@@ -44,7 +43,18 @@ export default {
       } 
   },
   ready(){
-     
+    // 获取用户token
+     $.ajax({
+          url: 'http://xinling.songtaxihuan.com/test/test?uid=3',
+          type:'GET', 
+          dataType: 'json',
+          cache: true,
+          async:false,
+          success: (data) => {
+            global.token = data.data
+            console.log(global.token);  
+          }});
+
     /* 用户微信登录部分
       1.获取code
       2.通过code获取access_token
@@ -53,18 +63,24 @@ export default {
 
     // 1.获取code
     var code = this.getUrlParam('code');
-    if(null==code) {
+    if(!code) {
       // alert('请在微信客户端打开应用');
-      window.document.innerHTML('请在微信客户端打开应用');
+      // document.body.innerHTML = '请在微信客户端打开此应用';
       return;
     }
     console.log(code);
-    // 2.获取access_token
-    var access_token = '';
-    $.get("https://api.weixin.qq.com/sns/oauth2/access_token?appid="+ this.appid +"&secret=SECRET&code="+ this.code +"&grant_type=authorization_code", 
-      function(result){
-        alert(result)
+    $.post(this.domain +"/register/reguser", 
+      {code:code},
+      function(v){
+        console.log(v)
       });
+    // 暂时不可用，acess_token从后台获取
+    // 2.获取access_token
+    // var access_token = '';
+    // $.get("https://api.weixin.qq.com/sns/oauth2/access_token?appid="+ this.appid +"&secret=SECRET&code="+ this.code +"&grant_type=authorization_code", 
+    //   function(result){
+    //     alert(result)
+    //   });
   }
 
 }

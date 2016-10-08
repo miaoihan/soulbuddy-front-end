@@ -33,20 +33,6 @@ import Evaluation from 'pages/home/Evaluation.vue'
         evaList: [],
       }
     },
-    props:{
-      // index: {
-      //   // default: 2
-      // }
-    },
-    methods:{
-      // 得到地址栏参数值
-      getUrlParam(name)
-        {
-        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-        var r = window.location.search.substr(1).match(reg);  //匹配目标参数
-        if (r!=null) return unescape(r[2]); return null; //返回参数值
-        } 
-    },
     created(){
       // 没有缓存token再请求
       if(''===this.token){
@@ -105,10 +91,6 @@ import Evaluation from 'pages/home/Evaluation.vue'
     },
     ready(){
 
-      // 获取code
-      var code = this.getUrlParam(code);
-      console.log(code)
-      // alert(code)
       // 阅读列表
       $.ajax({
           url: this.domain +'/article/get_article_list',

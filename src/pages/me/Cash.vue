@@ -4,7 +4,7 @@
   	  	<span class="num-title">账户余额（元）：</span>
   	  	<span class="num">{{balance}}</span>
   	  </div>
-  	  <div class="input-body wrapper">
+  	  <div class="input-body ">
   	  	<input class="input-text" type="text" placeholder="请输入提取金额数（元）">
   	  </div>
   </div>
