@@ -27,6 +27,7 @@ author：long
 export default {
 	props:{
 		title:{type:String},//输入框的标题
+		TitleSize:{type:String},
 		btnname:{type:String,default:''},//右侧是否有按钮如果有则写上
 		placeholder:{type:String},//输入框默认值
 		placewhere:{type:String,default:'right'},

@@ -12,6 +12,7 @@
       <bind-phone></bind-phone>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -19,6 +20,7 @@
 export default {
   data(){
     return{
+
       currentPage: 'eva-card',
       is_login: false,
       appid: 'wx589465f8441939d3',
@@ -26,6 +28,7 @@ export default {
     }
   },
   components: {
+
     NavHeader:require('components/funComp/NavHeader.vue'),
     NavBottom:require('components/funComp/NavBottom.vue'),
     BindPhone:require('pages/BindPhone.vue'),
