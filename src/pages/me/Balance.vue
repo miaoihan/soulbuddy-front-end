@@ -11,14 +11,14 @@
   		<div class="recharge-title wrapper">充值(微信钱包)</div>
   		<div class="money-body wrapper">
   			<div class="top-money wrapper">
-  				<div class="money-sel margin-right wrapper">￥5</div>
-	  			<div class="money-sel margin-right wrapper">￥10</div>
-	  			<div class="money-sel margin-right wrapper">￥50</div>
-	  			<div class="money-sel margin-right wrapper">￥100</div>
+  				<div class="money-sel margin-right wrapper" :v-if="status===0">￥5</div>
+	  			<div class="money-sel margin-right wrapper" :v-if="status===0">￥10</div>
+	  			<div class="money-sel margin-right wrapper" :v-if="status===0">￥50</div>
+	  			<div class="money-sel margin-right wrapper" :v-if="status===0">￥100</div>
   			</div>
   			
-  			<div class="money-sel margin-right margin-top wrapper">￥200</div>
-  			<div class="money-sel margin-right margin-top wrapper">￥500</div>
+  			<div class="money-sel margin-right margin-top wrapper" :v-if="status===0">￥200</div>
+  			<div class="money-sel margin-right margin-top wrapper" :v-if="status===0">￥500</div>
   		</div>
   		<input type="submit" value="立即充值" class="chongzhi">
   	</div>
@@ -33,7 +33,7 @@ import InputBox from 'components/funComp/InputBox'
     },
     data(){
       return{
-        
+        status:0
       }
     },
     props:{
