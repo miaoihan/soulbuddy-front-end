@@ -11,14 +11,14 @@
   		<div class="recharge-title wrapper">充值(微信钱包)</div>
   		<div class="money-body wrapper">
   			<div class="top-money wrapper">
-  				<div class="money-sel margin-right wrapper" :v-if="status===0">￥5</div>
-	  			<div class="money-sel margin-right wrapper" :v-if="status===0">￥10</div>
-	  			<div class="money-sel margin-right wrapper" :v-if="status===0">￥50</div>
-	  			<div class="money-sel margin-right wrapper" :v-if="status===0">￥100</div>
+  				<div class="money-sel margin-right wrapper" @click="change(1)"><div :class="{la:status==1}">￥5</div></div>
+	  			<div class="money-sel margin-right wrapper" @click="change(2)"><div :class="{la:status==2}">￥10</div></div>
+	  			<div class="money-sel margin-right wrapper" @click="change(3)"><div :class="{la:status==3}">￥50</div></div>
+	  			<div class="money-sel margin-right wrapper" @click="change(4)"><div :class="{la:status==4}">￥100</div></div>
   			</div>
   			
-  			<div class="money-sel margin-right margin-top wrapper" :v-if="status===0">￥200</div>
-  			<div class="money-sel margin-right margin-top wrapper" :v-if="status===0">￥500</div>
+  			<div class="money-sel margin-right margin-top wrapper" @click="change(5)"><div :class="{la:status==5}">￥200</div></div>
+  			<div class="money-sel margin-right margin-top wrapper" @click="change(6)"><div :class="{la:status==6}">￥500</div></div>
   		</div>
   		<input type="submit" value="立即充值" class="chongzhi">
   	</div>
@@ -38,11 +38,24 @@ import InputBox from 'components/funComp/InputBox'
     },
     props:{
       balance:{type:String,default:325}
-    }
+    },
+    methods:{
+	  	change(i){
+	  		this.status = i;
+	  		console.log(this.status)
+	  	}
+	  },
   }
 </script>
 
 <style>
+.la{
+	background:  #2b8ff7;
+	color: #fff;
+	height: 100%;
+	width: 100%;
+	
+}
 .bal-padding{
 	background:#fff;
 	padding-left: 1.0rem;
@@ -104,6 +117,19 @@ import InputBox from 'components/funComp/InputBox'
 	height: 1.6rem;
 	border:0.05rem solid #2b8ff7;
 	color:#2b8ff7;
+	border-radius: 0.25rem;
+	line-height: 1.6rem;
+	text-align: center;
+}
+.click-on{
+	background:  #2b8ff7;
+	/*color: #fff;*/
+	/*width: 3.0rem;*/
+	/*height: 1.6rem;*/
+	width: 3.0rem;
+	height: 1.6rem;
+	border:0.05rem solid #2b8ff7;
+	color:#fff;
 	border-radius: 0.25rem;
 	line-height: 1.6rem;
 	text-align: center;
