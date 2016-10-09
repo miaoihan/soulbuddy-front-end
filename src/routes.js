@@ -39,6 +39,9 @@ var routes = {
   '/me': {
     component: require('pages/me/MinePage.vue')
   },
+  '/me/profilephone': {
+    component: require('pages/me/ProfilePhone.vue')
+  },
   '/me/questions': {
     name:'myque',
     component: require('pages/me/MyQuestion.vue')
@@ -57,6 +60,18 @@ var routes = {
   },
   '/me/cash/ali': {
     component: require('pages/me/CashAlipay.vue')
+  },
+  'me/personedit':{
+    component:require('pages/me/PersonMsg.vue')
+  },
+  'me/apply':{
+    component:require('pages/me/Apply.vue')
+  },
+  'me/applyjydr':{
+    component:require('pages/me/ApplyJydr.vue')
+  },
+  'me/history':{
+    component:require('pages/me/History.vue')
   },
   '/setting/profile': {
     name: 'setme',

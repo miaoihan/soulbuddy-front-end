@@ -1,10 +1,10 @@
 <!-- 长条形功能按钮 -->
 <template>
   <div class="changebtn-body"> 
-  <a style="width:100%" v-link="{path:url}">
+  <a style="width:100%" v-link="url">
 	    <span class="text" :style="{color:TextColor}">{{btntext}}</span>
 	    
-	    <i class="icon-img iconfont" :style="{color:IconColor}">&#xe603;</i>
+	    <i class="icon-img iconfont" :style="{color:IconColor}">&#xe60d;</i>
 	    <span class="placeholder">{{placeholder}}</span>
   </a>
   </div>

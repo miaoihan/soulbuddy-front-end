@@ -26,9 +26,10 @@ export default {
     return{
       currentPage: 'eva-card',
       // is_login: false,
-      is_new: true,
-      is_bind: null,
-      headData: {title:'新灵伙伴'}
+      // is_new: true,
+      // is_bind: null,
+      // headData: {title:'新灵伙伴'}
+      // is_bind: true 
     }
   },
   methods:{

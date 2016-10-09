@@ -1,5 +1,5 @@
 <template>
-  <div id="aa">
+  <div id="aa" class="far-bom wrapper">
     <div class="person-msg-body">
     	<div class="person-msg-basic">
     		<div class="img-body">
@@ -32,7 +32,7 @@
 	    				style="margin-top:1rem;padding-left:1rem;padding-right:1rem;background:#fff"
 							text-color="#2b8ff7" 
 							v-if="person.identity==1"
-			url="/123/321"
+			url="/me/apply"
 			>
 	</change-btn>
   </div>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="far-bom">
   	<div class="balance-body bal-padding wrapper">
   		<span class="bal-title">账户余额（元）</span>
   		<div class="bal-num">

@@ -3,19 +3,19 @@
 	<div class="counselor">
   		<div class="person-msg-fun part">
     		<div class="function-body font-center">
-	    		<a href="#">
+	    		<a v-link="'/me/balance'">
 	    			<i class="iconfont fun-img">&#xe609;</i>
 	    			<span class="fun-text">余额</span>
 	    		</a>
     		</div>
     		<div class="function-body font-center">
-	    		<a href="/foo">
+	    		<a v-link="'me/history'">
 	    			<i class="iconfont fun-img">&#xe608;</i>
 	    			<span class="fun-text">我的回答</span>
 	    		</a>
     		</div>
     		<div class="function-body font-center">
-	    		<a href="#">
+	    		<a v-link="'me/personedit'">
 	    			<i class="iconfont fun-img" style="font-weight:700">&#xe607;</i>
 	    			<span class="fun-text">设置</span>
 	    		</a>

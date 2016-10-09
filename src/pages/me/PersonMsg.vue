@@ -7,12 +7,13 @@
     		<span class="sub-text">上传真实头像</span>
     	</div>
     </div>
+    <form action="post">
     <input-box title="真实姓名" 
     	placeholder='请填写' 
     	title-color="black" text-color="black"
     	style="padding:0 1rem">
    	</input-box>
-   	<div class="part top-20 wrapper" style="padding:0 1rem">
+   	<div class="part top-20 wrapper" style="padding:0 1rem" v-if="person.identity==0">
    		<card-photo></card-photo>
    	</div>
    	<span class="lab-name">
@@ -30,7 +31,9 @@
    	<div class="save-box">
    		<input class="save-body" type="submit" value="保存" name="savemsg">
    	</div>
+   	</form>
    	<!-- <div style="height:5.0rem"></div> -->
+   	<!-- <input type="submit" name="" value="保存"> -->
   </div>
 </template>
 
@@ -42,13 +45,35 @@ export default {
 		InputBox,CardPhoto
 	},
 	props:{
-		PersonPhoto:{type:String}
+		PersonPhoto:{type:String},
+		UserType:{type:String}
 	},
   data () {
     return {
-      
+      person:{}
     }
-  }
+  },
+  ready:function(){
+	  	$.post(global.domain +'/user/get_my_info',
+        { token: global.token },
+        v => this.person = v.data ,'json');
+
+	  	// 我的提问
+      $.ajax({
+          url: 'http://xinling.songtaxihuan.com/user/get_user_info',
+          type:'POST', 
+          dataType: 'json',
+          cache: true,
+          data:{
+            u_id: 1,
+            token: this.token
+          },
+          success: data => this.user = data.data,
+          error: err => err.toString(),
+          
+        });
+      console.log("user:",this.person)
+  },
 }
 </script>
 
@@ -120,5 +145,6 @@ input::-webkit-input-placeholder {text-align:right}
 	color:#fff;
 	font-size:0.8rem;
 	margin-top:1.5rem;
+	margin-bottom:2.25rem
 }
 </style>
