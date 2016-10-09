@@ -39,6 +39,9 @@ var routes = {
   '/me': {
     component: require('pages/me/MinePage.vue')
   },
+  '/me/profilephone': {
+    component: require('pages/me/ProfilePhone.vue')
+  },
   '/me/questions': {
     name:'myque',
     component: require('pages/me/MyQuestion.vue')

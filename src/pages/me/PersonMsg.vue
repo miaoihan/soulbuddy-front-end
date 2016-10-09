@@ -7,6 +7,7 @@
     		<span class="sub-text">上传真实头像</span>
     	</div>
     </div>
+    <form action="post">
     <input-box title="真实姓名" 
     	placeholder='请填写' 
     	title-color="black" text-color="black"
@@ -30,7 +31,9 @@
    	<div class="save-box">
    		<input class="save-body" type="submit" value="保存" name="savemsg">
    	</div>
+   	</form>
    	<!-- <div style="height:5.0rem"></div> -->
+   	<!-- <input type="submit" name="" value="保存"> -->
   </div>
 </template>
 
@@ -142,5 +145,6 @@ input::-webkit-input-placeholder {text-align:right}
 	color:#fff;
 	font-size:0.8rem;
 	margin-top:1.5rem;
+	margin-bottom:2.25rem
 }
 </style>

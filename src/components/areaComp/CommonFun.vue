@@ -28,7 +28,7 @@
 	    </div>   
 	</div>
 	<div class="funbtn-body">
-	    <change-btn btntext="我听过的问题" 
+	    <change-btn btntext="我听过的问题" url="me/history" 
 	    	style="border-bottom:0.05rem solid #eee">	    	
 	    </change-btn>
 	    <change-btn btntext="设置" url="/me/personedit"></change-btn>	

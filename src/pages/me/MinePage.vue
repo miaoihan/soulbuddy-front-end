@@ -26,12 +26,12 @@
     <change-btn :btntext="btntext"
 	    					style="margin-top:1rem;padding-left:1rem;padding-right:1rem;background:#2b8ff7"
 								text-color="#fff" icon-color="#fff"
-								@click="handleClick" v-if="person.identity==1">
+								@click="handleClick" v-if="person.identity==0">
 	</change-btn>
 	<change-btn btntext="申请成为咨询师或经验答人"
 	    				style="margin-top:1rem;padding-left:1rem;padding-right:1rem;background:#fff"
 							text-color="#2b8ff7" 
-							v-if="person.identity==0"
+							v-if="person.identity==1"
 			url="/me/apply"
 			>
 	</change-btn>

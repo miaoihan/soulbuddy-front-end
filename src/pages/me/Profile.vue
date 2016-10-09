@@ -6,17 +6,18 @@
     </div>
     <div class="nik-body wrapper">
       <div class="nikname wrapper">
-        {{myinfo.user_name}}
+      <input id="user-name" class="nikname-val" style="width:5.0rem" :value="myinfo.user_name">
+        <!-- {{myinfo.user_name}} -->
       </div>
       <div class="border">   
       </div>
       <div class="nikname-make wrapper">
-        <a href="" style="color:#999999">修改昵称</a>
+        <span style="color:#999999" @click="handleclick">修改昵称</span>
       </div>
     </div>
   </div>
   <div class="profile-list wrapper">
-    <change-btn btntext="绑定手机" url="/foo" title-color="black" :placeholder="phonenum" class="change-btn-pro"></change-btn>
+    <change-btn btntext="绑定手机" url="/me/profilephone" title-color="black" :placeholder="phonenum" class="change-btn-pro"></change-btn>
     <select-btn class="change-btn-pro" :values="age" title="年龄" ></select-btn>
     <select-btn class="change-btn-pro" :values="sex" title="性别" ></select-btn>
     <select-btn class="change-btn-pro" :values="qualifications" title="学历" ></select-btn>
@@ -80,7 +81,20 @@ import SelectBtn from 'components/funComp/SelectBtn'
       console.log("arr is",this.age);
     },
     methods:{
-      
+      handleclick(){
+        // document.getElementById('user-name').focus();
+        var obj=document.getElementById('user-name');
+        obj.focus(); 
+        var len = obj.value.length; 
+        if (document.selection) { 
+        var sel = obj.createTextRange(); 
+        sel.moveStart('character',len); 
+        sel.collapse(); 
+        sel.select(); 
+        } else if (typeof obj.selectionStart == 'number' && typeof obj.selectionEnd == 'number') { 
+        obj.selectionStart = obj.selectionEnd = len; 
+        }
+      }
     }
   }
 </script>
@@ -110,10 +124,14 @@ import SelectBtn from 'components/funComp/SelectBtn'
 }
 .nikname{
   /*float: left;*/
-  height: 0.7rem;
+  /*height: 0.7rem;*/
   margin-top: 0.35rem;
   font-size: 0.7rem;
   /*margin-left: 0.5rem;*/
+}
+.nikname-val{
+  border:0;
+  font-size: 0.85rem
 }
 .border{
   height: 0.05rem;
