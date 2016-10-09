@@ -97,16 +97,12 @@ import Evaluation from 'pages/home/Evaluation.vue'
   font-size: 14px
 }
 
-.fenge{
-  margin:0 10px 0
-  
-}
-
-.fenge:before
+.heng{
   width:20px;
   display:inline-block;
   margin-bottom:4px 
   border-bottom:1px solid #b1b1b1;
+}
 
 .seemore{
   text-align:center;
