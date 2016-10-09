@@ -100,7 +100,7 @@ export default {
           cache: true,
           data:{
             page: 1,
-            token: this.token
+            token: global.token
           },
           success: data => this.queList = data.data,
           error: err => err.toString()

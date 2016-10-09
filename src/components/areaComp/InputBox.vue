@@ -30,9 +30,12 @@ export default {
 		TitleColor:{type:String},//标题颜色
 		TextColor:{type:String}//输入字体颜色
 	},
+	action:{
+		
+	},
 	methods:{
 		handleClick(){
-			console.log("click the button")
+			// console.log("click the button")
 		}
 	},
 	ready:function(){

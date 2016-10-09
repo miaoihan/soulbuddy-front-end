@@ -1,8 +1,9 @@
 <template>
   <header class="nav-header" 
   				id="navHeader" :class="{fixed: fixed}">
+  	<!-- 导航左部分	 -->
 	  <span class="nav-left">
-	  	<i class="iconfont" v-if="title=='新灵伙伴'">&#xe600;</i>
+	  	<i class="iconfont" v-if="title=='新灵伙伴'">&#xe600;</i><!-- 搜索图标 -->
 	  </span>
 	  <span class="nav-right">
 	  	<a class="btn-nav" v-if="title=='新灵伙伴'"
