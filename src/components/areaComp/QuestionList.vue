@@ -2,6 +2,7 @@
   <div class="wrapper">
   <!-- 问题列表 -->
   	<section class="question-item part" v-for="que in data">
+  	<a v-link="'/question/' + que.q_id " id="aa">
 		  <div class="q-i-title">
 		  	<title class="que-content over-2">
 		  		{{que.title}}
@@ -11,13 +12,14 @@
 		  		<time>{{ que.create_time }}</time>
 		  	</div>
 		  	<!-- <div class="nock" v-if="que.role==0"> -->
-		  	<div class="nock">
+		  	<div :class="que.answer_url? 'nock':'' ">
 		  		<span class="label" v-if="que.is_free">免费</span>
-		  		<span class="nock-text" v-if="!que.is_free && $route.name!='myque'">
+		  		<span class="nock-text" v-if="!que.is_free && $route.name!='myque' && que.answer_url">
 		  		￥{{ que.reward_money }} 解锁该问题的所有回答</span>
 		  	</div>
 			</div>
-			<answer-card :data="que" v-if="que.answer_url"></answer-card>
+				<answer-card :data="que" v-if="que.answer_url"></answer-card>
+			</a>
 		</section>
   </div>
 </template>
@@ -77,7 +79,7 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
 			 	color $ztc
 		
 	.que-content{
-		margin-bottom: 1rem
+		margin-bottom: 0.75rem
 		font-size 15px
 	}
 	
@@ -88,4 +90,6 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
 		span
 			display inline-block
 			margin-right: 1.0rem
+	a 
+		width 100%
 </style>

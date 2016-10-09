@@ -10,7 +10,7 @@
   </div>
   <div class="wrapper cash-padding">
   	<div class="change-body" style="border-bottom:0.05rem solid #e3e3e3">
-  	<change-btn class="btn" btntext="提现到支付宝" text-color="black"></change-btn>
+  	<change-btn class="btn" btntext="提现到支付宝" text-color="black" url="/me/cash/ali"></change-btn>
 	</div>
 	<div class="change-body">
 	  	<change-btn class="btn" btntext="提现到银行账户" text-color="black"></change-btn>

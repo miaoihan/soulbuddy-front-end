@@ -12,9 +12,9 @@
   				文章</li>
   	</ul>
   	<div class="cst-list" style="margin-top: 0.5rem">
-  		<cst-list :data="data1" v-if="index==1"></cst-list>
-  		<kol-list :data="data2" v-if="index==2"></kol-list>
-  		<article-list :data="data3" v-if="index==3"></article-list>
+  		<cst-list :data="data1" v-if="index==1" class="far-bom"></cst-list>
+  		<kol-list :data="data2" v-if="index==2" class="far-bom"></kol-list>
+  		<article-list :data="data3" v-if="index==3" class="far-bom"></article-list>
   	</div>
   </div>
 </template>
@@ -42,19 +42,20 @@
 	  },
 	  ready(){
 	  	//咨询师
-	  	$.post(this.domain +"/user/get_my_favorite",
+	  	$.post(global.domain +'/user/get_my_favorite',
 	  		{ token: global.token ,
 	  		  page: 1 ,
-	  		  type: 1 },
+	  		  type: 1 ,
+	  		},
 	  		v => this.data1 = v.data ,'json');
   		//经验达人
-	  	$.post(this.domain +"/user/get_my_favorite",
+	  	$.post(global.domain +'/user/get_my_favorite',
 	  		{ token: global.token ,
 	  			page: 1 ,
 	  			type: 2 },
 	  		v => this.data2 = v.data ,'json');
   		//文章
-	  	$.post(this.domain +"/user/get_my_favorite",
+	  	$.post(global.domain +'/user/get_my_favorite',
 	  		{ token: global.token ,
 	  			page: 1 ,
 	  			type: 3 },

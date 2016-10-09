@@ -3,7 +3,7 @@
 <div class="common">
 	<div class="person-msg-fun part">
 	    <div class="function-body font-center">
-		    <a v-link="'/me/cash'">
+		    <a v-link="'/me/balance'">
 		    	<i class="iconfont fun-img">&#xe609;</i>
 		    	<span class="fun-text">余额</span>
 		    </a>

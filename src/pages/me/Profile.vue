@@ -1,11 +1,12 @@
 <template>
+<div class="far-bom">
   <div class="top wrapper">
     <div class="person-photo-pro wrapper">
-      <img :src="photo" alt="">
+      <img :src="myinfo.logo" alt="" class="avator">
     </div>
     <div class="nik-body wrapper">
       <div class="nikname wrapper">
-        笔三
+        {{myinfo.user_name}}
       </div>
       <div class="border">   
       </div>
@@ -24,24 +25,30 @@
   </div>
   <div class="textarea-pro">
       <textarea class="inputarea-pro" maxlength="150" name="evaluation" placeholder="请填写自我评价（最多150个字）"></textarea>
-    </div>
+  </div>
   <!-- <div style="height:5.0rem;margin-top:1.0rem"> -->
     
   <!-- </div> -->
-  
+  </div>
 </template>
 
 <script>
-import InputBox from '../../components/funComp/InputBox'
-import ChangeBtn from '../../components/funComp/ChangeBtn'
+import InputBox from 'components/funComp/InputBox'
+import ChangeBtn from 'components/funComp/ChangeBtn'
   export default{
     components: {
     	InputBox,ChangeBtn
     },
-    props:{
-      photoo:{type:String},
-      phonenum:{type:String,default:"156156156"}
-  },
+    data(){
+      return{
+        myinfo: {}
+      }
+    },
+    ready(){
+      $.post(global.domain +'/user/get_my_info',
+        { token: global.token },
+        v => this.myinfo = v.data ,'json');
+    },
   }
 </script>
 

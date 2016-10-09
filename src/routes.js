@@ -49,8 +49,18 @@ var routes = {
   '/me/favorite': {
     component: require('pages/me/favorite.vue')
   },
+  '/me/balance': {
+    component: require('pages/me/Balance.vue')
+  },
   '/me/cash': {
     component: require('pages/me/Cash.vue')
+  },
+  '/me/cash/ali': {
+    component: require('pages/me/CashAlipay.vue')
+  },
+  '/setting/profile': {
+    name: 'setme',
+    component: require('pages/me/Profile.vue')
   },
   '/consultants': {
     component: require('pages/consultant/Consultant.vue')
@@ -65,6 +75,10 @@ var routes = {
   '/evaluation/:id': {
     name: 'eva',
     component: require('pages/home/SelfEva.vue')
+  },
+  '/question/:id': {
+    name: 'question',
+    component: require('pages/home/QuestionDetail.vue')
   },
 
 

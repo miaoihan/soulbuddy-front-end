@@ -7,7 +7,7 @@
     		</div>
     		<div class="person-msg-name">
     			<span class="name-text">{{person.user_name}}</span>
-				<a href="#" class="button button-round btnstyle">编辑个人资料</a>
+				<a v-link="'/setting/profile'" class="button button-round btnstyle">编辑个人资料</a>
     		</div>
     		<div class="hint-img">
     			<i class="iconfont imgimg">&#xe605;</i>
@@ -19,7 +19,7 @@
     	<counselor-fun></counselor-fun>
     </div>
     <div v-if="user.UserType==='common'">
-    	<common-fun :data="queList"></common-fun>
+    	<common-fun></common-fun>
     </div>
     <!-- <common-fun v-if="user.UserType===common"></common-fun> -->
 
@@ -46,9 +46,6 @@ export default {
 	components:{
 		ChangeBtn,CounselorFun,CommonFun
 	},
-	el:'#me',
-	 template: '<p class="bar">replaced</p>',
-	 c:'',
 	props:{
 		data:{
   		type:Array,
@@ -80,8 +77,6 @@ export default {
   data () {
     return {
     	btntext:"",
-    	token:'',
-  		url2:'http://xinling.songtaxihuan.com/user/get_user_info',
   		person:{},
   		queList: []
     }
@@ -91,41 +86,11 @@ export default {
   		this.btntext='切换到普通用户'
   	}else if (this.user.UserType=="common") {
   		this.btntext='切换到咨询师身份'
-  	}
-  	$.ajax({
-          url: 'http://xinling.songtaxihuan.com/test/test?uid=3',
-          type:'GET', 
-          dataType: 'json',
-          cache: true,
-          async:false,
-          success: function(data) {
-            this.token = data.data
-            console.log(this.token);	
-          }.bind(this),
-          error: function(xhr, status, err) {
-            console.error(this.token, status, err.toString());
-          }.bind(this)
-        });
-
-	  	$.ajax({
-          url: this.url2,
-          type:'POST', 
-          dataType: 'json',
-          cache: true,
-          data: {
-	          u_id:1,
-						token:this.token,
-		  		},
-          cache: false,
-          success: function(data) {
-          	console.log(data)
-            this.person = data.data
-            console.log('person: '+this.person.identity);
-          }.bind(this),
-          error: function(xhr, status, err) {
-            console.error(this.questionList, status, err.toString());
-          }.bind(this)
-        });
+  	}	
+  	// 获取用户信息
+	  	$.post(global.domain +'/user/get_my_info',
+        { token: global.token },
+        v => this.person = v.data ,'json');
 
 	  	// 我的提问
       $.ajax({
