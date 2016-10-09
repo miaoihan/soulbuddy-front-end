@@ -106,7 +106,7 @@ import InputBox from 'components/funComp/InputBox'
 	line-height: 2.5rem;
 	font-size: 0.75rem;
 	color: black;
-	border-bottom: 0.025rem solid #e3e3e3;
+	border-bottom: 0.05rem solid #e3e3e3;
 	/*margin-bottom: 1.1rem;*/
 }
 .money-body{

@@ -19,7 +19,7 @@
     	<counselor-fun></counselor-fun>
     </div>
     <div v-if="user.UserType==='common'">
-    	<common-fun :data="queList"></common-fun>
+    	<common-fun></common-fun>
     </div>
     <!-- <common-fun v-if="user.UserType===common"></common-fun> -->
 
