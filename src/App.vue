@@ -1,14 +1,17 @@
 <template>
 <div id="app">
-    <div v-if="!is_bind">
-      <nav-header title="绑定手机"></nav-header>
-      <bind-phone></bind-phone>
-    </div> 
-    <div v-if="is_bind">
+    <!-- <div v-if="!is_new">
      <nav-header title="新灵伙伴"></nav-header>
      <router-view></router-view>
      <nav-bottom></nav-bottom>
     </div>
+    <div v-if="is_new">
+      <nav-header title="绑定手机"></nav-header>
+      <bind-phone></bind-phone>
+    </div>  -->
+     <!-- <nav-header :head-data="headData"></nav-header> -->
+     <router-view></router-view>
+     <nav-bottom></nav-bottom>
   </div>
 </template>
 
@@ -23,7 +26,9 @@ export default {
     return{
       currentPage: 'eva-card',
       // is_login: false,
-      is_bind: false 
+      is_new: true,
+      is_bind: null,
+      headData: {title:'新灵伙伴'}
     }
   },
   methods:{
@@ -37,8 +42,7 @@ export default {
   created(){
      //定义全局数据
     global.domain = 'http://xinling.songtaxihuan.com'
-
-
+    
     // 测试用token
       // $.ajax({
       //     url: global.domain +'/test/test?uid=3',
@@ -66,12 +70,15 @@ export default {
         console.log(v)
         // 判断是否绑定了手机
         let phone = v.data.userinfo.mobile;
-        if(null == phone) this.is_bing = false;
+        if(null == phone) {
+          this.is_bing = false;
+          this.$router.go('/bind')
+        }
         else this.is_bind = true
-        this.userinfo = v.data.userinfo;
-        this.is_new = v.data.is_new;
         global.user = v.data.userinfo
         global.token = v.data.token;
+        this.userinfo = v.data.userinfo;
+        this.is_new = v.data.is_new;
       },'json');
 
     // 暂时不可用，acess_token从后台获取
