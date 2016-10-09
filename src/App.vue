@@ -1,32 +1,31 @@
 <template>
 <div id="app">
-    <div v-if="is_login">
+    <div v-if="!is_bind">
+      <nav-header title="绑定手机"></nav-header>
+      <bind-phone></bind-phone>
+    </div> 
+    <div v-if="is_bind">
      <nav-header title="新灵伙伴"></nav-header>
      <router-view></router-view>
      <nav-bottom></nav-bottom>
     </div>
-    <div v-if="!is_login">
-    <nav-header title="绑定手机"></nav-header>
-      <bind-phone></bind-phone>
-    </div> 
   </div>
 </template>
 
 <script>
 export default {
-  data(){
-    return{
-      currentPage: 'eva-card',
-      is_login: true,
-    }
-  },
   components: {
-
     NavHeader:require('components/funComp/NavHeader.vue'),
     NavBottom:require('components/funComp/NavBottom.vue'),
     BindPhone:require('pages/BindPhone.vue'),
   },
-
+  data(){
+    return{
+      currentPage: 'eva-card',
+      // is_login: false,
+      is_bind: true 
+    }
+  },
   methods:{
   // 得到地址栏参数值
     getUrlParam(name){
@@ -35,26 +34,25 @@ export default {
       if (r!=null) return unescape(r[2]); return null; //返回参数值
     } 
   },
-  ready(){
-    //定义全局数据
+  created(){
+     //定义全局数据
     global.domain = 'http://xinling.songtaxihuan.com'
 
-    // 获取用户token
-     $.ajax({
-          url: 'http://xinling.songtaxihuan.com/test/test?uid=3',
-          type:'GET', 
-          dataType: 'json',
-          cache: true,
-          async:false,
-          success: data => global.token = data.data
-          });
 
+    // 测试用token
+      // $.ajax({
+      //     url: global.domain +'/test/test?uid=3',
+      //     type:'get', 
+      //     dataType: 'json',
+      //     async: false,
+      //     success: data => global.token = data.data,
+      //     error: err => err.toString()
+      //   });
     /* 用户微信登录部分
       1.获取code
       2.通过code获取access_token
       3.通过access_token获取用户信息
     */
-
     // 1.获取code
     var code = this.getUrlParam('code');
     if(!code) {
@@ -62,12 +60,20 @@ export default {
       // document.body.innerHTML = '请在微信客户端打开此应用';
       return;
     }
-    console.log(code);
     $.post(global.domain +"/register/reguser", 
       {code:code},
-      function(v){
+      v =>{
         console.log(v)
-      });
+        // 判断是否绑定了手机
+        let phone = v.data.userinfo.mobile;
+        if(null == phone) this.is_bing = false;
+        else this.is_bind = true
+        this.userinfo = v.data.userinfo;
+        this.is_new = v.data.is_new;
+        global.user = v.data.userinfo
+        global.token = v.data.token;
+      },'json');
+
     // 暂时不可用，acess_token从后台获取
     // 2.获取access_token
     // var access_token = '';
@@ -75,6 +81,11 @@ export default {
     //   function(result){
     //     alert(result)
     //   });
+
+
+  },
+  ready(){
+   
   }
 
 }

@@ -3,7 +3,7 @@
   <div class="ask wrapper">
   <form action="http://xinling.songtaxihuan.com/question/add_question" 
   			method="post"	id="askForm">
-  	<input type="hidden" name="token" value="{{ token }}">
+  	<input type="hidden" name="token" value="{{ globle.token }}">
   	<input type="hidden" name="q_type" value="{{ is_qiangda? 0:1 }}">
   	<input type="hidden" name="is_public" value="{{ is_public? 1:0 }}">
   	<div class="ask-title tbar">
@@ -73,7 +73,6 @@
             this.$router.go({ path:'/' })
           }.bind(this),
           error: function(xhr, status, err) {
-            console.error(this.token, status, err.toString());
           }.bind(this)
         });
 			   }
@@ -91,22 +90,6 @@
 		  	}
 	  	}
 	  },
-	  created(){
-	  	$.ajax({
-          url: "http://xinling.songtaxihuan.com/test/test?uid=3",
-          type:'GET', 
-          dataType: 'json',
-          cache: true,
-          async:false,
-          success: function(data) {
-            this.token = data.data
-            // console.log( typeof this.token);	
-          }.bind(this),
-          error: function(xhr, status, err) {
-            console.error(this.token, status, err.toString());
-          }.bind(this)
-        });
-	  }
 	  
   }
 </script>

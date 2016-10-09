@@ -110,6 +110,7 @@ import SelectBtn from 'components/funComp/SelectBtn'
 }
 .nikname{
   /*float: left;*/
+  height: 0.7rem;
   margin-top: 0.35rem;
   font-size: 0.7rem;
   /*margin-left: 0.5rem;*/

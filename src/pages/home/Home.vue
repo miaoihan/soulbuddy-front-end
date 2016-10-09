@@ -62,7 +62,7 @@ import Evaluation from 'pages/home/Evaluation.vue'
             page: 1,
             token: global.token
           },
-          success: data => this.queList = data.data,
+          success: data => {this.queList = data.data; console.log(data)},
           error: err => err.toString()
         });
 

@@ -36,7 +36,7 @@
 	height:8.0rem;
 	width: 100%;
 	background-color:#e6e6e6;
-	margin-top:0.5rem;
+	margin-bottom:0.5rem;
 	text-align:center;
 }
 .yyzp{
