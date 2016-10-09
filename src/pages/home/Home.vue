@@ -24,72 +24,22 @@ import Evaluation from 'pages/home/Evaluation.vue'
     data(){
       return{
         index: 1,
-        token: '',
-        tokenURL: "http://xinling.songtaxihuan.com/test/test?uid=3",
-        domain: 'http://xinling.songtaxihuan.com',
         swiperList: [],
         queList: [],
         readList: [],
         evaList: [],
       }
     },
-    props:{
-      // index: {
-      //   // default: 2
-      // }
-    },
-    methods:{
-      // 得到地址栏参数值
-      getUrlParam(name)
-        {
-        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-        var r = window.location.search.substr(1).match(reg);  //匹配目标参数
-        if (r!=null) return unescape(r[2]); return null; //返回参数值
-        } 
-    },
     created(){
-      // 没有缓存token再请求
-      if(''===this.token){
-        // 异步获取token
-        $.ajax({
-            url: this.tokenURL,
-            type:'GET', 
-            dataType: 'json',
-            cache: true,
-            async:false,
-            success: function(data) {
-              this.token = data.data
-              // document.cookie = 'token='+this.data,data
-              // console.log( typeof this.token); 
-            }.bind(this),
-            error: function(xhr, status, err) {
-              console.error(this.token, status, err.toString());
-            }.bind(this)
-          });
-      }
-      // 问答列表
-      $.ajax({
-          url: this.domain +'/question/get_question_list',
-          type:'POST', 
-          dataType: 'json',
-          // cache: true,
-          data:{
-            page: 1,
-            token: this.token
-          },
-          success: data => this.queList = data.data,
-          error: err => err.toString()
-        });
+      
       // 获取轮播
       $.ajax({
-          url: this.domain +'/article/get_top_article',
+          url: global.domain +'/article/get_top_article',
           type:'POST', 
           dataType: 'json',
-          cache: true,
           async:false,
-          success: function(data) {
+          success: data => {
             let lunboArr = data.data
-            // console.log("title is "+lunboArr[0].title)
             for (var i = 0; i < lunboArr.length; i++) {
               this.swiperList.$set(i,{
                 contitle:lunboArr[i].title,
@@ -97,43 +47,38 @@ import Evaluation from 'pages/home/Evaluation.vue'
                 href: ''
               });
             }
-          }.bind(this),
-          error: function(xhr, status, err) {
-            console.error(lunboArr, status, err.toString());
-          }.bind(this)
+          },error: err => console.error(err.toString())
         });
     },
     ready(){
 
-      // 获取code
-      var code = this.getUrlParam(code);
-      console.log(code)
-      // alert(code)
-      // 阅读列表
+      // 问答列表
       $.ajax({
-          url: this.domain +'/article/get_article_list',
+          url: global.domain +'/question/get_question_list',
           type:'POST', 
           dataType: 'json',
-          cache: false,
+          // cache: true,
           data:{
             page: 1,
+            token: global.token
           },
-          success: function(data) {
-            this.readList = data.data;
-          }.bind(this),
-          error: function(xhr, status, err) {
-            console.error(readList, status, err.toString());
-          }.bind(this)
+          success: data => this.queList = data.data,
+          error: err => err.toString()
         });
+
+      // 阅读列表
+      $.post(global.domain +'/article/get_article_list',
+        { page: 1 },
+        v => this.readList = v.data ,'json');
+      
       // 测评列表
       $.ajax({
-          url: this.domain +'/access/get_access_list',
+          url: global.domain +'/access/get_access_list',
           type:'POST', 
           dataType: 'json',
-          cache: true,
           data:{
             page: 1,
-            token: this.token
+            token: global.token
           },
           success: data => this.evaList = data.data,
           error: err => err.toString()

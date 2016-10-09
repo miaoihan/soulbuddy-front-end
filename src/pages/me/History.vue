@@ -1,11 +1,10 @@
 <template>
-  <nav-header title="我的回答"></nav-header>
   <div class="wrapper">
   <!-- 问题列表 -->
-  	<section class="question-item part" v-for="que in data">
+  	<section class="question-item part" v-for="que in questions">
 		  <div class="q-i-title">
 		  	<div class="que-content">
-		  		{{que.content}}
+		  		{{que.title}}
 		  	</div>
 		  	<div class="nock">
 		  
@@ -29,7 +28,7 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
   			token:'',
 	  		url1:'http://xinling.songtaxihuan.com/test/test?uid=3',
 	  		url2:'http://xinling.songtaxihuan.com/user/get_my_answer',
-	  		questions:{},
+	  		questions:[],
   		}
   	},
 	  props: {

@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="far-bom">
   	<div class="balance-body bal-padding wrapper">
   		<span class="bal-title">账户余额（元）</span>
   		<div class="bal-num">
   			<span class="money-count">{{balance}}</span>
-  			<button class="tixian-btn">提现</button>
+  			<a v-link="'/me/cash'" class="tixian-btn">提现</a>
   		</div>
   	</div>
   	<div class="recharge wrapper bal-padding">
@@ -89,15 +89,16 @@ import InputBox from 'components/funComp/InputBox'
 	height:1.3rem;
 	font-size: 0.55rem;
 	color:#fff;
-	line-height: 1.3rem;
+	line-height: 1.4rem;
 	border:0;
 	border-radius: 0.25rem;
 	width: 2.6rem;
 	background: #2b8ff7;
+	text-align: center;
 }
 .recharge{
 	margin-top: 1.0rem;
-	height: 11.0rem;
+	/*height: 11.0rem;*/
 	width:100%;
 }
 .recharge-title{
@@ -106,14 +107,16 @@ import InputBox from 'components/funComp/InputBox'
 	line-height: 2.5rem;
 	font-size: 0.75rem;
 	color: black;
-	border-bottom: 0.05rem solid #e3e3e3;
-	/*margin-bottom: 1.1rem;*/
+	/*border-bottom: 1px solid #e3e3e3*/
 }
 .money-body{
 	height: 6.0rem;
+	border-bottom: 1px solid #e3e3e3;
+	/*margin-top: 1.5rem;*/
 	border-bottom: 0.025rem solid #e3e3e3;
-	padding-top: 1.1rem;
+	/*margin-bottom: 1.1rem;*/
 }
+
 .money-sel{
 	width: 18%;
 	height: 1.6rem;

@@ -1,11 +1,12 @@
 <template>
+<div class="far-bom">
   <div class="top wrapper">
     <div class="person-photo-pro wrapper">
-      <img :src="photo" alt="">
+      <img :src="myinfo.logo" alt="" class="avator">
     </div>
     <div class="nik-body wrapper">
       <div class="nikname wrapper">
-        笔三
+        {{myinfo.user_name}}
       </div>
       <div class="border">   
       </div>
@@ -15,33 +16,72 @@
     </div>
   </div>
   <div class="profile-list wrapper">
-    <change-btn btntext="绑定手机" title-color="black" :placeholder="phonenum" class="change-btn-pro"></change-btn>
-    <change-btn btntext="年龄" title-color="black" placeholder="请选择" class="change-btn-pro"></change-btn>
+    <change-btn btntext="绑定手机" url="/foo" title-color="black" :placeholder="phonenum" class="change-btn-pro"></change-btn>
+    <select-btn class="change-btn-pro" :values="age" title="年龄" ></select-btn>
+    <select-btn class="change-btn-pro" :values="sex" title="性别" ></select-btn>
+    <select-btn class="change-btn-pro" :values="qualifications" title="学历" ></select-btn>
+    <select-btn class="change-btn-pro" :values="marriage" title="婚姻状况" ></select-btn>
+    <!-- <change-btn btntext="年龄" title-color="black" placeholder="请选择" class="change-btn-pro"></change-btn>
     <change-btn btntext="性别" title-color="black" placeholder="请选择" class="change-btn-pro"></change-btn>
     <change-btn btntext="学历" title-color="black" placeholder="请选择" class="change-btn-pro"></change-btn>
-    <change-btn btntext="婚姻状况" title-color="black" placeholder="请选择" class="change-btn-pro"></change-btn>
-    <input-box title="工作" name="job" title-color="black" placeholder="请填写" class="input-box"></input-box>
+    <change-btn btntext="婚姻状况" title-color="black" placeholder="请选择" class="change-btn-pro"></change-btn> -->
+    <input-box title="工作" name="job" title-color="black" text-color="black" placeholder="请填写" class="input-box"></input-box>
+    
   </div>
   <div class="textarea-pro">
       <textarea class="inputarea-pro" maxlength="150" name="evaluation" placeholder="请填写自我评价（最多150个字）"></textarea>
-    </div>
+  </div>
   <!-- <div style="height:5.0rem;margin-top:1.0rem"> -->
     
   <!-- </div> -->
-  
+  </div>
 </template>
 
 <script>
-import InputBox from '../../components/funComp/InputBox'
-import ChangeBtn from '../../components/funComp/ChangeBtn'
+import InputBox from 'components/funComp/InputBox'
+import ChangeBtn from 'components/funComp/ChangeBtn'
+import SelectBtn from 'components/funComp/SelectBtn'
   export default{
     components: {
-    	InputBox,ChangeBtn
+    	InputBox,ChangeBtn,SelectBtn
+    },
+    data(){
+      return{
+        myinfo: {},
+        age:[],
+        sex:["男","女"],
+        qualifications:["大专","本科","硕士","博士"],
+        marriage:["已婚","未婚"],
+        phonenum:""   
+      }
     },
     props:{
-      photoo:{type:String},
-      phonenum:{type:String,default:"156156156"}
-  },
+      // values:{
+      //   type:Array,
+      //   default(){
+      //     return["ada","asdf","adf"] 
+      //   }      
+      // },
+    },
+    ready(){
+
+      $.post(global.domain +'/user/get_my_info',
+        { token: global.token },
+        v => this.myinfo = v.data ,'json');
+
+      // this.phonenum = global.user.mobile;
+      
+
+    },
+    compiled(){
+      for (var i = 1; i <= 100; i++) {
+        this.age.push(i);
+      }
+      console.log("arr is",this.age);
+    },
+    methods:{
+      
+    }
   }
 </script>
 

@@ -3,7 +3,7 @@
 <div class="common">
 	<div class="person-msg-fun part">
 	    <div class="function-body font-center">
-		    <a href="#">
+		    <a v-link="'/me/balance'">
 		    	<i class="iconfont fun-img">&#xe609;</i>
 		    	<span class="fun-text">余额</span>
 		    </a>
@@ -31,7 +31,7 @@
 	    <change-btn btntext="我听过的问题" 
 	    	style="border-bottom:0.05rem solid #eee">	    	
 	    </change-btn>
-	    <change-btn btntext="设置"></change-btn>	
+	    <change-btn btntext="设置" url="/me/personedit"></change-btn>	
 	</div>
 </div>
 </template>

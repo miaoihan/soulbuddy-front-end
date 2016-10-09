@@ -50,10 +50,6 @@
 	  	}
 	  },
 	  ready(){
-	  	console.log('sk '+this.data.skill)
-	  	console.log('sadsda '+'a;b;c'.split(';'))
-	  	// console.log(this.data.skill.split(';') )
-	  	// console.log(this.data.skill | string2arr)
 	  }
 	  
   }

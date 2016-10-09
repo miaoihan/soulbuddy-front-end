@@ -5,13 +5,13 @@
 	  		<a href="">
 	  			<div class="k-i-l">
 	  				<i class="avator" style="height:2.85rem;width:2.85rem">
-	  					<img src="" alt="">
+	  					<img :src="item.logo" alt="头像" class="avator">
 	  				</i>
 	  			</div>
 	  			<div class="k-i-r">
 	  				<div class="z-desc">
 				  		<div class="desc-l1">
-				  			<span class="d-l1-name">{{item.name}}</span>
+				  			<span class="d-l1-name">{{item.user_name}}</span>
 				  			<!-- 认证标志 -->
 				  			<span>
 				  				<i></i>
@@ -19,19 +19,19 @@
 				  		</div>
 				  		<div class="desc-l2">
 				  			<span style="font-size:0.6rem;color: #999">
-				  				{{item.desc}}
+				  				{{item.intro}}
 				  			</span>
 				  		</div>
 				  		<div class="desc-l3" style="margin-top: 0.40rem">
 				  			<span class="label-grey" style="margin-right: 0.5rem" 
-				  						v-for="it in item.label">
-				  				{{it.name}}
+				  						v-for="it in item.skill | str2arr">
+				  				{{it}}
 				  			</span>
 				  		</div>
 				  		<div class="desc-l4" style="margin-top:0.6rem">
 				  			<span style="font-size:0.6rem;color: #999" >
 				  				<strong style="color: #2b8ff7;font-size:0.65rem">
-				  				{{ item.num }}</strong>
+				  				{{ item.fav_count }}</strong>
 				  				人收藏了这位经验达人
 				  			</span>
 				  		</div>

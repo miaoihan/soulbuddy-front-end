@@ -12,8 +12,8 @@
 						<div style="font-size: 13px">{{data.user_name}}</div>
 						<div style="font-size: 12px; color: #999">{{data.intro}}</div>
 					</div>
-					<div class="pull-right" v-if="data.is_best">
-						<a href="#" class="button ">最佳答案</a>
+					<div class="pull-right" v-if="data.is_best==1">
+						<a class="button ">最佳答案</a>
 					</div>
 				</div>
 				<!-- voice组件 -->

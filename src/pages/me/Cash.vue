@@ -4,13 +4,13 @@
   	  	<span class="num-title">账户余额（元）：</span>
   	  	<span class="num">{{balance}}</span>
   	  </div>
-  	  <div class="input-body wrapper">
+  	  <div class="input-body ">
   	  	<input class="input-text" type="text" placeholder="请输入提取金额数（元）">
   	  </div>
   </div>
   <div class="wrapper cash-padding">
   	<div class="change-body" style="border-bottom:0.05rem solid #e3e3e3">
-  	<change-btn class="btn" btntext="提现到支付宝" text-color="black"></change-btn>
+  	<change-btn class="btn" btntext="提现到支付宝" text-color="black" url="/me/cash/ali"></change-btn>
 	</div>
 	<div class="change-body">
 	  	<change-btn class="btn" btntext="提现到银行账户" text-color="black"></change-btn>

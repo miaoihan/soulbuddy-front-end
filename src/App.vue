@@ -1,91 +1,88 @@
 <template>
-
-  <component :is="currentPage"></component>
-  <!-- <div id="app">
-   <nav-header title="新灵伙伴"></nav-header>
-   <router-view></router-view>
-<<<<<<< HEAD
-   <home></home>
-
-=======
->>>>>>> e6b9e8a5159f89a276f649a3314bc4b95cc16083
-   <nav-bottom></nav-bottom>
-  </div> -->
+<div id="app">
+    <div v-if="is_login">
+     <nav-header title="新灵伙伴"></nav-header>
+     <router-view></router-view>
+     <nav-bottom></nav-bottom>
+    </div>
+    <div v-if="!is_login">
+    <nav-header title="绑定手机"></nav-header>
+      <bind-phone></bind-phone>
+    </div> 
+  </div>
 </template>
 
 <script>
-// import routes from 'src/routes.js'
 export default {
   data(){
     return{
-      currentPage: 'balance',
+      currentPage: 'eva-card',
+      is_login: true,
     }
   },
   components: {
-    ArticleDetail:require('pages/home/ArticleDetail'),
-    Cash:require('pages/me/Cash'),
-    CashAlipay:require('pages/me/CashAlipay'),
-    Balance:require('pages/me/Balance'),
-    EvaCard:require('components/funComp/EvaCard'),
-    Login: require('pages/Login'),
-    BindPhone: require('pages/BindPhone'),
-    Home: require('pages/home/Home'),
-    Evaluation: require('pages/home/Evaluation'),
-    SelfEva: require('pages/home/SelfEva'),
-    Science: require('pages/home/Science'),
-    // ScienceDetail: require('pages/home/ScienceDetail'),
-    SerchList: require('pages/home/SerchList'),
-    Ask: require('pages/home/Ask'),
-    QuestionDetail: require('pages/home/QuestionDetail'),
-    QuestionCon: require('pages/consultant/QuestionCon'),
-    Consultant: require('pages/consultant/Consultant'),
-    History: require('pages/me/History'),
-    HomeQue: require('pages/HomeQue'),
-    PersonMsg: require('pages/me/PersonMsg'),
-    MinePage: require('pages/me/MinePage'),
-    QuestionCon: require('pages/consultant/QuestionCon'),
-    Kol: require('pages/consultant/Kol'),
-    About: require('pages/consultant/About'),
-    Favorite: require('pages/me/Favorite'),
-    Apply: require('pages/me/Apply'),
-    ApplyJydr:require('pages/me/ApplyJydr'),
-    Profile:require('pages/me/Profile'),
-
-    // EvaCard:require('components/funComp/EvaCard'),
-    // Login: require('pages/Login'),
-    // BindPhone: require('pages/BindPhone'),
-    // Home: require('pages/home/Home'),
-    // Evaluation: require('pages/home/Evaluation'),
-    // SelfEva: require('pages/home/SelfEva'),
-    // Science: require('pages/home/Science'),
-    // ScienceDetail: require('pages/home/ScienceDetail'),
-    // SerchList: require('pages/home/SerchList'),
-    // Ask: require('pages/home/Ask'),
-    // QuestionDetail: require('pages/home/QuestionDetail'),
-    // QuestionCon: require('pages/consultant/QuestionCon'),
-    // Consultant: require('pages/consultant/Consultant'),
-    // History: require('pages/me/History'),
-    // HomeQue: require('pages/HomeQue'),
-    // PersonMsg: require('pages/me/PersonMsg'),
-    // MinePage: require('pages/me/MinePage'),
-    // QuestionCon: require('pages/consultant/QuestionCon'),
-    // Kol: require('pages/consultant/Kol'),
-    // About: require('pages/consultant/About'),
-    // Favorite: require('pages/me/Favorite'),
-    // Apply: require('pages/me/Apply'),
-    // ApplyJydr:require('pages/me/ApplyJydr'),
-    // Profile:require('pages/me/Profile'),
-
 
     NavHeader:require('components/funComp/NavHeader.vue'),
     NavBottom:require('components/funComp/NavBottom.vue'),
+    BindPhone:require('pages/BindPhone.vue'),
   },
+
+  methods:{
+  // 得到地址栏参数值
+    getUrlParam(name){
+      var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+      var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+      if (r!=null) return unescape(r[2]); return null; //返回参数值
+    } 
+  },
+  ready(){
+    //定义全局数据
+    global.domain = 'http://xinling.songtaxihuan.com'
+
+    // 获取用户token
+     $.ajax({
+          url: 'http://xinling.songtaxihuan.com/test/test?uid=3',
+          type:'GET', 
+          dataType: 'json',
+          cache: true,
+          async:false,
+          success: data => global.token = data.data
+          });
+
+    /* 用户微信登录部分
+      1.获取code
+      2.通过code获取access_token
+      3.通过access_token获取用户信息
+    */
+
+    // 1.获取code
+    var code = this.getUrlParam('code');
+    if(!code) {
+      // alert('请在微信客户端打开应用');
+      // document.body.innerHTML = '请在微信客户端打开此应用';
+      return;
+    }
+    console.log(code);
+    $.post(global.domain +"/register/reguser", 
+      {code:code},
+      function(v){
+        console.log(v)
+      });
+    // 暂时不可用，acess_token从后台获取
+    // 2.获取access_token
+    // var access_token = '';
+    // $.get("https://api.weixin.qq.com/sns/oauth2/access_token?appid="+ this.appid +"&secret=SECRET&code="+ this.code +"&grant_type=authorization_code", 
+    //   function(result){
+    //     alert(result)
+    //   });
+  }
 
 }
 </script>
 
 <style lang="stylus">
 @import 'assets/stylus.styl'
+@import 'assets/init.css'
 /*
 * 公共样式部分
 *
@@ -255,108 +252,10 @@ export default {
 .far-bom{
   margin-bottom 4.0rem
 }
-/*****************
-*                 *
-*   初始化浏览器     *
-*                 *
-******************/
-  body {
-    position: relative;
-    margin: 0;
-    background: $bg;
-    font-size: 0.75rem
-  }
-  html {
-    font-size: 20px;
-  }
-  * {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    outline: none;
-    font-family: "Helvetica Neue", Arial, verdana, sans-serif;
-  }
-  a {
-    display: inline-block;
-  }
-  /*
-  KISSY CSS Reset
-  理念：1. reset 的目的不是清除浏览器的默认样式，这仅是部分工作。清除和重置是紧密不可分的。
-  2. reset 的目的不是让默认样式在所有浏览器下一致，而是减少默认样式有可能带来的问题。
-  3. reset 期望提供一套普适通用的基础样式。但没有银弹，推荐根据具体需求，裁剪和修改后再使用。
-  特色：1. 适应中文；2. 基于最新主流浏览器。
-   */
-  /** 清除内外边距 **/
-  body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, /* structural elements 结构元素 */
-  dl, dt, dd, ul, ol, li, /* list elements 列表元素 */
-  pre, /* text formatting elements 文本格式元素 */
-  form, fieldset, legend, button, input, textarea, /* form elements 表单元素 */
-  th, td /* table elements 表格元素 */
-  {
-    margin: 0;
-    padding: 0;
-  }
-  // 取消聚焦和textarea放大
-  input,button,select,textarea{
-  outline:none
-  }textarea{resize:none}
-  /** 设置默认字体 **/
-  body,
-  button, input, select, textarea /* for ie */
-  {
-    font: 12px / 1.5 tahoma, arial, \5b8b\4f53, sans-serif;
-  }
-  h1, h2, h3, h4, h5, h6 {
-    font-size: 100%;
-  }
-  address, cite, dfn, em, var {
-    font-style: normal;
-  }
-  /* 将斜体扶正 */
-  code, kbd, pre, samp {
-    font-family: courier new, courier, monospace;
-  }
-  /* 统一等宽字体 */
-  small {
-    font-size: 12px;
-  }
-  /* 小于 12px 的中文很难阅读，让 small 正常化 */
-  /** 重置列表元素 **/
-  ul, ol {
-    list-style: none;
-  }
-  /** 重置文本格式元素 **/
-  a {
-    text-decoration: none;
-    /** 去除阴影*/
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    &:hover, &:active {
-      text-decoration: none;
-    }
-  }
-  /** 重置表单元素 **/
-  legend {
-    color: #000;
-  }
-  /* for ie6 */
-  fieldset, img {
-    border: 0;
-  }
-  /* img 搭车：让链接里的 img 无边框 */
-  button, input, select, textarea {
-    font-size: 100%;
-  }
-  /* 使得表单元素在 ie 下能继承字体大小 */
-  /* 注：optgroup 无法扶正 */
-  /** 重置表格元素 **/
-  table {
-    border-collapse: collapse;
-    border-spacing: 0;
-  }
-  html {
-    box-sizing: border-box;
-  }
-  *, *:before, *:after {
-    box-sizing: inherit;
-  }
+
+.far-top{
+  margin-top 2.2rem
+}
+
+
 </style>
