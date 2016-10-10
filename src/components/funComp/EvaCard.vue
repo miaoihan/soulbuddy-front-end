@@ -14,7 +14,7 @@
             
           </div>
             <span class="eva-title">{{eva.title}}</span>
-            <div class="start-btn">开始</div>
+            <a v-link="'/home/selfeva'" class="start-btn">开始</a>
           </div>
           
       </div>
@@ -141,6 +141,8 @@ import QuestionList from 'components/areaComp/QuestionList.vue'
   margin-top: 0.75rem;
 }
 .start-btn{
+  position: relative;
+  z-index: 100;
   width: 3.2rem;
   height: 1.4rem;
   line-height: 1.4rem;

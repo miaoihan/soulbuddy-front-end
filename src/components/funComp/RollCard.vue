@@ -39,6 +39,7 @@ export default {
    	var mySwiper = new Swiper ('.swiper-container', {
 		    direction: 'horizontal',
 		    loop: true,
+		    slidesPerView:1,
 		    // autoplay: 3000,
 		    pagination: '.swiper-pagination',
 	})
