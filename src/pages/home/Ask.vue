@@ -1,6 +1,6 @@
 <template>
 <!-- 提问 -->
-	<nav-header title="提问" :ispub="true" :method="sub"></nav-header>
+	<nav-header title="提问" :ispub="true" :method="sub" left="cancel"></nav-header>
   <div class="ask wrapper">
   <form action="http://xinling.songtaxihuan.com/question/add_question" 
   			method="post"	id="askForm">

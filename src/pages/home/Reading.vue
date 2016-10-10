@@ -7,31 +7,40 @@
   			</div>
   			<div class="type-box">
   				<div class="type-item">
-	  				<div class="t-wrap">
-	  					<div class="item-bg">
-	  						
+  					<a v-link="{path:'/science'}">
+		  				<div class="t-wrap">
+		  					<div class="item-bg">
+		  						
+		  					</div>
+		  					<div class="item-txt">
+		  						科普
+		  					</div>
 	  					</div>
-	  					<div class="item-txt">
-	  						科普
-	  					</div>
-  					</div>
+  					</a>
   				</div>
-  				<div class="type-item"><div class="t-wrap">
-	  					<div class="item-bg">
-	  						
+  				<div class="type-item">
+						<a v-link="{path:'/relax'}">
+	  					<div class="t-wrap">
+		  					<div class="item-bg">
+		  						
+		  					</div>
+		  					<div class="item-txt">
+		  						放松
+		  					</div>
 	  					</div>
-	  					<div class="item-txt">
-	  						放松
-	  					</div>
-  					</div></div>
-  				<div class="type-item"><div class="t-wrap">
-	  					<div class="item-bg">
-	  						
-	  					</div>
-	  					<div class="item-txt">
-	  						案例
-	  					</div>
-  					</div></div>
+  					</a>
+  				</div>
+  				<div class="type-item">
+  					<a v-link="{path:'/relax'}">
+	  					<div class="t-wrap">
+		  					<div class="item-bg">
+		  						
+		  					</div>
+		  					<div class="item-txt">
+		  						案例
+		  					</div>
+	  					</div></a>
+  					</div>
   			</div>
   		</div>
   	</div> <!-- end type -->
@@ -136,15 +145,6 @@
 		text-align:center;
 		font-size: 14px;
 	}
-	.label-box{
-		display: flex;
-		justify-content: flex-start;
-		flex-wrap: wrap;
-		padding: 20px 0 10px 0;
 
-	}
-	.label-box span{
-		margin: 0 0 15px 15px;
-	}
 
 </style>
