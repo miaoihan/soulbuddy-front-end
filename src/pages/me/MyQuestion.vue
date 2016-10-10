@@ -1,13 +1,16 @@
 <template>
+<nav-header title="我的提问" left="back"></nav-header>
   <div class="far-bom">
   	<question-list :data="queList"></question-list>
   </div>
 </template>
 
 <script>
+import NavHeader from 'components/funComp/NavHeader';
   export default{
   	components: {
-  		questionList: require('components/areaComp/QuestionList')
+  		questionList: require('components/areaComp/QuestionList'),
+      NavHeader: require('components/funComp/NavHeader')
 	  },
 		data(){
 			return{
