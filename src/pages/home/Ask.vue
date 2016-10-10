@@ -4,7 +4,7 @@
   <div class="ask wrapper">
   <form action="http://xinling.songtaxihuan.com/question/add_question" 
   			method="post"	id="askForm">
-  	<input type="hidden" name="token" value="{{ globle.token }}">
+  	<input type="hidden" name="token" value="{{ token }}">
   	<input type="hidden" name="q_type" value="{{ is_qiangda? 0:1 }}">
   	<input type="hidden" name="is_public" value="{{ is_public? 1:0 }}">
   	<div class="ask-title tbar">
@@ -71,7 +71,8 @@
           data: $('#askForm').serialize(),//序列化
           success: function(data) {
             // console.log( data);	
-            this.$router.go({ path:'/' })
+            this.$router.go('/')
+            console.log(this.$router)
           }.bind(this),
           error: function(xhr, status, err) {
           }.bind(this)
@@ -81,6 +82,7 @@
 	  },
 	  created(){
 	  	this.sub = this.subAndCheck
+	  	this.token = global.token
 	  	// console.log(this.sub)
 	  	// console.log(this.subAndCheck)
 	  	// console.log(111)

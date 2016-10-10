@@ -10,7 +10,7 @@
       <bind-phone></bind-phone>
     </div>  -->
      <!-- <nav-header :head-data="headData"></nav-header> -->
-     <router-view ></router-view>
+     <router-view v-if="is_bind"></router-view>
      <nav-bottom></nav-bottom>
   </div>
 </template>
@@ -29,7 +29,7 @@ export default {
       // is_new: true,
       // is_bind: false,
       // headData: {title:'新灵伙伴'}
-      // is_bind: true 
+      is_bind: true 
     }
   },
   methods:{
@@ -70,19 +70,20 @@ export default {
       url: global.domain +'/register/reguser',
       type:'POST', 
       dataType: 'json',
-      async: false,
+      // async: false,
       // cache: true,
       data:{ code:code },
       success: v => {
         console.log(v)
         // 登陆后存储用户信息
-        global.user = v.data.userinfo;
         global.token = v.data.token;
+        global.user = v.data.userinfo;
         // 判断是否绑定了手机
         let phone = v.data.userinfo.mobile;
         // 如果没有绑定，跳转到绑定手机页面
         if(null == phone) {
           this.is_bing = false;
+          console.log(this.$router)
           this.$router.go('/bind')
         }
         // 绑定过，直接登录

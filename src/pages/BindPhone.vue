@@ -1,6 +1,6 @@
 <template>
-<nav-header title="绑定手机" left="back"></nav-header>
-	<div class="wrapper">
+<nav-header title="绑定手机"></nav-header>
+	<div class="wrapper" style="margin-top: 1.0rem">
 		<div class="inputbox-body">
       <!-- <span class="inputbox-title" :style="{color:TitleColor}">{{title}}</span> -->
       <input type="text" class="inputbox-text" 
@@ -12,7 +12,6 @@
       </button>
     </div>
   </div>
-  <a v-link="{path:'/'}">gogogo</a>
 	</div>
   <div class="inputbox-body">
       <!-- <span class="inputbox-title" :style="{color:TitleColor}">{{title}}</span> -->
@@ -21,7 +20,7 @@
     </div>
   </div>
     <div class="finish-body">
-      <button class="finishBtn" @click="bindAndLogin">
+      <button class="finishBtn" @click="bindAndLogin" id="">
         完成
       </button>
 
@@ -40,50 +39,54 @@ export default {
   data () {
     return {
       code: null,
-      mobile: null,
+      mobile: '',
       is_send: false
     }
   },
   methods:{
     sendCode(){
-      // let mobile = $('#mobile').val()
-      if(''== this.mobile) { alert('手机号码不能为空！'); return}
-      if(!this.checkMobile(this.mobile)){
-        alert('请填写正确的手机号！');
-        return
-      }
-      else{
-        $.post(global.domain +"/register/mobile_verify_randnum", 
-          { mobile:  this.mobile,
-            type  : 'reg'},
-          v =>{
-            if (v.code==1) {
-              console.log('发送成功')
-              this.is_send = true;
-           }else if(v.msg=='您的手机号已经被注册'){
-              alert('您的手机号已经被注册')}
-          },'json');
-       }
+      if (this.checkPhone()) {
+      $.post(global.domain +"/register/mobile_verify_randnum", 
+        { mobile:  this.mobile,
+          type  : 'reg'},
+        v =>{
+          if (v.code==1) {
+            alert('发送成功')
+
+            this.is_send = true;
+         }else if(v.msg=='您的手机号已经被注册'){
+            alert('您的手机号已经被注册')}
+        },'json');}
     },
     bindAndLogin(){
-      $.post(global.domain +"/user/bindmobile", 
-          { token : global.token,
-            mobile: this.mobile,
-            code  : this.code
-             },
-          v =>{
-            if (v.code==1) {
-              console.log('绑定成功')
-              this.$router.go({ path:'/' })
-              alert('验证成功！')
-           }
-           else{
-            alert('验证失败，请重新输入')
-            this.code = ''
-           }
-          },'json');
+      if (this.checkPhone()) {
+        $.post(global.domain +"/user/bindmobile", 
+            { token : global.token,
+              mobile: this.mobile,
+              code  : this.code
+               },
+            v =>{
+              if (v.code==1) {
+                console.log('绑定成功')
+                this.$router.go({ path:'/' })
+                alert('验证成功！')
+             }
+             else{
+              alert('验证失败，请重新输入')
+              this.code = ''
+             }
+            },'json');}
     },
-    checkMobile( s ){   
+    checkPhone(){
+      if(''== this.mobile) { alert('手机号码不能为空！'); return false}
+      if(!this.isMobile(this.mobile)){
+        alert('请填写正确的手机号！');
+        return false
+      }else{
+        return true;
+      }
+    },
+    isMobile( s ){   
       let regu =/^[1][345678][0-9]{9}$/; 
       let re = new RegExp(regu); 
       if (re.test(s)) return true; 
@@ -157,7 +160,7 @@ input:focus{
   width: 100%;
   background-color: $ztc;
   font-size: 0.8rem;
-  color: #6cc5eb;
+  color: #fff;
   text-align: center;
   line-height: 2.25rem;
   border: 0;
