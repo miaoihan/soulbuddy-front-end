@@ -1,4 +1,5 @@
 <template>
+<nav-header title="绑定手机" left="back"></nav-header>
 	<div class="wrapper">
 		<div class="inputbox-body">
       <!-- <span class="inputbox-title" :style="{color:TitleColor}">{{title}}</span> -->
@@ -31,9 +32,10 @@
 <script>
 import InputBox from 'components/areaComp/InputBox';
 import TopBar from 'components/areaComp/TopBar';
+import NavHeader from 'components/funComp/NavHeader';
 export default {
   components: {
-    InputBox,TopBar,
+    InputBox,TopBar,NavHeader
   },
   data () {
     return {

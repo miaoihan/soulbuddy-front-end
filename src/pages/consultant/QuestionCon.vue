@@ -1,5 +1,5 @@
 <template>
-  <nav-header title="问题详情"></nav-header>
+  <nav-header title="问题详情" left="back"></nav-header>
   <div class="que-content wrapper">
     <question-card :data="datas" type="public" :is-content=true></question-card>
   </div>

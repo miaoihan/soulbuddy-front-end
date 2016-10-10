@@ -1,4 +1,5 @@
 <template>
+<nav-header title="编辑个人资料" left="back"></nav-header>
 <div class="far-bom">
   <div class="top wrapper">
     <div class="person-photo-pro wrapper">
@@ -42,9 +43,10 @@
 import InputBox from 'components/funComp/InputBox'
 import ChangeBtn from 'components/funComp/ChangeBtn'
 import SelectBtn from 'components/funComp/SelectBtn'
+import NavHeader from 'components/funComp/NavHeader';
   export default{
     components: {
-    	InputBox,ChangeBtn,SelectBtn
+    	InputBox,ChangeBtn,SelectBtn,NavHeader
     },
     data(){
       return{

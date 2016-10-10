@@ -1,4 +1,5 @@
 <template>
+<nav-header title="我的余额" left="back"></nav-header>
   <div class="far-bom">
   	<div class="balance-body bal-padding wrapper">
   		<span class="bal-title">账户余额（元）</span>
@@ -27,9 +28,10 @@
 
 <script>
 import InputBox from 'components/funComp/InputBox'
+import NavHeader from 'components/funComp/NavHeader';
   export default{
     components: {
-    	InputBox
+    	InputBox,NavHeader
     },
     data(){
       return{

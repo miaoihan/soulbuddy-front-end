@@ -1,4 +1,5 @@
 <template>
+<nav-header title="我听过的问题" left="back"></nav-header>
   <div class="wrapper">
   <!-- 问题列表 -->
   	<section class="question-item part" v-for="que in questions">

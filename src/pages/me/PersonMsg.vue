@@ -1,4 +1,5 @@
 <template>
+<nav-header title="编辑个人资料" left="back" right=""></nav-header>
   <div class="wrapper">
     <div class="person-photo1">
     	<img class="photo-img" :src="PersonPhoto" >
@@ -40,9 +41,10 @@
 <script>
 import InputBox from 'components/funComp/InputBox'
 import CardPhoto from 'components/areaComp/CardPhoto'
+import NavHeader from 'components/funComp/NavHeader';
 export default {
 	components:{
-		InputBox,CardPhoto
+		InputBox,CardPhoto,NavHeader
 	},
 	props:{
 		PersonPhoto:{type:String},

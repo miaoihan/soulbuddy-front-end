@@ -1,4 +1,5 @@
 <template>
+	<nav-header title="申请" left="back" right=""></nav-header>
   <div class="top-20 part">
 	<i class="iconfont float-left">&#xe618;</i>
   	<change-btn class="float-right" btntext="申请成为咨询师" url="/me/personedit"></change-btn>

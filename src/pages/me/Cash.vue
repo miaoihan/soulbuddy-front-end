@@ -1,4 +1,5 @@
 <template>
+<nav-header title="提现" left="back"></nav-header>
   <div class="wrapper top-body cash-padding">
   	  <div class="wrapper balance">
   	  	<span class="num-title">账户余额（元）：</span>
@@ -21,9 +22,10 @@
 
 <script>
 import ChangeBtn from 'components/funComp/ChangeBtn'
+import NavHeader from 'components/funComp/NavHeader';
   export default{
     components: {
-    	ChangeBtn
+    	ChangeBtn,NavHeader
     },
     data(){
       return{

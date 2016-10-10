@@ -1,4 +1,5 @@
 <template>
+<nav-header title="申请成为经验答人" left="back"></nav-header>
   <div class="wrapper">
    	<div class="part top-20 wrapper" style="padding:0 1rem">
    		<card-photo></card-photo>

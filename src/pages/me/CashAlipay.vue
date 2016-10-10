@@ -1,4 +1,5 @@
 <template>
+<nav-header title="提现到支付宝" left="back"></nav-header>
   <div class="wrapper">
   	<form action="post">
   		<input-box class="draw-amount padding-alipay" title="提取金额（元）：" title-color="black" text-color="black">
@@ -16,9 +17,10 @@
 
 <script>
 import InputBox from 'components/funComp/InputBox'
+import NavHeader from 'components/funComp/NavHeader'
   export default{
     components: {
-    	InputBox
+    	InputBox,NavHeader
     },
     data(){
       return{

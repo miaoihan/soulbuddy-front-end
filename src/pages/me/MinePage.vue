@@ -1,4 +1,5 @@
 <template>
+  <!-- <nav-header title="新灵伙伴"></nav-header> -->
   <div id="aa" class="far-bom wrapper">
     <div class="person-msg-body">
     	<div class="person-msg-basic">
@@ -26,12 +27,12 @@
     <change-btn :btntext="btntext"
 	    					style="margin-top:1rem;padding-left:1rem;padding-right:1rem;background:#2b8ff7"
 								text-color="#fff" icon-color="#fff"
-								@click="handleClick" v-if="person.identity==0">
+								@click="handleClick" v-if="user.isCounselor==true">
 	</change-btn>
 	<change-btn btntext="申请成为咨询师或经验答人"
 	    				style="margin-top:1rem;padding-left:1rem;padding-right:1rem;background:#fff"
 							text-color="#2b8ff7" 
-							v-if="person.identity==1"
+							v-if="user.isCounselor==false"
 			url="/me/apply"
 			>
 	</change-btn>
@@ -42,9 +43,10 @@
 import ChangeBtn from 'components/funComp/ChangeBtn';
 import CounselorFun from 'components/areaComp/CounselorFun';
 import CommonFun from 'components/areaComp/CommonFun';
+import NavHeader from 'components/funComp/NavHeader';
 export default {
 	components:{
-		ChangeBtn,CounselorFun,CommonFun
+		ChangeBtn,CounselorFun,CommonFun,NavHeader
 	},
 	props:{
 		data:{
@@ -57,7 +59,8 @@ export default {
   					href:"null"
           },//是否连接
         ]
-  		}
+  		},
+  		user_identity_test:{type:String,default:1},
   	},
   	textColor:{type:String,default:"black"},
 	  	user:{
@@ -68,11 +71,12 @@ export default {
 					imgurl:"",
 					username:"陈雪琴",
 					UserType:'common',//用户当前的身份
-					isCounselor:false,//是否已经成为咨询师
+					isCounselor:true,//是否已经成为咨询师
 	  			}
 	  		}
 	  	},
 	  	hintnum:{type:Number,default:2},
+	  	
 	},
   data () {
     return {

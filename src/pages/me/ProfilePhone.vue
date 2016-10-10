@@ -1,4 +1,5 @@
 <template>
+<nav-header title="原手机号码" left="back"></nav-header>
   <div class="wrapper">
   	<input-box class="phonenum" placewhere="left" text-color="black" placeholder="请完整输入原手机号码"></input-box>
   </div>
@@ -6,9 +7,10 @@
 
 <script>
 import InputBox from 'components/areaComp/InputBox'
+import NavHeader from 'components/funComp/NavHeader';
   export default{
     components: {
-    	InputBox
+    	InputBox,NavHeader
     },
     data(){
       return{
