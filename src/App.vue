@@ -5,7 +5,7 @@
       <bind-phone></bind-phone>
     </div> 
     <div v-if="is_bind">
-     <nav-header title="新灵伙伴"></nav-header>
+     <nav-header title="我的评测" right='true'></nav-header>
      <router-view></router-view>
      <nav-bottom></nav-bottom>
     </div>
