@@ -78,7 +78,8 @@ export default {
     return {
     	btntext:"",
   		person:{},
-  		queList: []
+  		queList: [],
+  		// person.identity:1
     }
   },
   ready:function(){

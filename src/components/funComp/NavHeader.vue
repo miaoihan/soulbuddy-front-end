@@ -17,14 +17,29 @@
 	  			v-link="url">重新评测</a>
 	  	<input type="submit" class="next-btn" v-if="title=='编辑个人资料'" value="保存" name="">
 	  	<i class="iconfont" style="float:right;color:#fff;font-size:0.9rem" v-if="title==''">&#xe62c;</i><!-- 分享图标 -->
-	  	<i class="iconfont" style="float:right;color:#fff;font-size:0.9rem;margin-right:1.35rem;" v-if="title==''">&#xe606;</i>
-	  	<!-- 收藏图标 -->
-	  	<i class="iconfont" style="float:right;color:#fff;font-size:0.9rem" v-if="title=='问题详情'">&#xe62d;</i>
-	  	<!-- 三个点 -->
-	  </span>
-	  <h1 class="nav-title">{{ title }}</h1>
+	  	<i class="iconfont" style="float:right;color:#fff;font-size:0.9rem;margin-right:1.35rem;" v-if="title==''">&#xe606;</i><!-- 收藏图标 -->  	
+	  	<i class="iconfont" style="float:right;color:#fff;font-size:0.9rem" v-if="title=='问题详情'">&#xe62d;</i><!-- 三个点 --> 
+	  	<a class="btn-nav" v-if="title=='新灵伙伴'"
+	  		 v-link="{path: '/ask'}">提问</a>
+			<a class="btn-nav" v-if="ispub"
+				 @click="method">发布</a>	
+	  <!-- 导航右部分	 -->
+	  <!-- <span class="nav-right">
+	  	<a class="btn-nav" v-if="title=='新灵伙伴'"
+	  		 v-link="{path: '/ask'}">提问</a>
+			<a class="btn-nav" v-if="ispub"
+				 @click="method">发布</a>
+	  </span> -->
+	  <h1 class="nav-title" v-if="title">{{ title }}</h1>
+		<div class="tag-wrapper" v-if="iscst">
+			<span class="btn-left" :class=" identity===1 ? 'active' : '' " 
+						@click="click(1)"
+						>咨询师</span>
+			<span class="btn-right" :class="{ active: identity === 2 }"
+						@click="click(2)"
+						>经验达人</span>
+		</div>
 	</header>
-
 </template>
 
 <script>
@@ -40,7 +55,20 @@
 			},
 			url:{type:String},
 			right:{type:String,default:'true'},
-			left:{type:String,default:'return'}
+			left:{type:String,default:'return'},
+			iscst:{ type: Boolean },
+			ispub:{ type: Boolean },
+			identity: { type: Number, default: 1 },
+			method: { type: Function },
+		},
+		methods:{
+			click(i){
+				console.log(this.identity)
+				this.identity = i
+			},
+			t(){
+				console.log($('#t').val() )
+			}
 		},
 
     components: {}
@@ -50,7 +78,6 @@
 
 <style scoped lang="stylus">
 @import '../../assets/stylus.styl'
-
 .nav-header
 	height 2.2rem
 	line-height: 2.2rem
@@ -92,4 +119,28 @@
 	background-color $ztc
 	color #fff
 	font-size: 0.8rem
+	
+.tag-wrapper
+	text-align: center
+	span
+		display inline-block
+		margin-top 7px
+		height 1.5rem
+		line-height: 1.5rem
+		width 4.0rem
+		border 1px solid #fff
+		color #fff
+		font-size: 14px
+	.btn-left
+		border-radius 6px 0 0 6px
+		margin-right: -4px
+	.btn-right
+		border-radius 0px 6px 6px 0px
+	.active
+		background-color: #FFF
+		color: $ztc
 </style>
+
+
+
+

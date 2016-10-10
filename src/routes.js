@@ -2,7 +2,7 @@
 * 路由配置
 */
 var routes = {
-  '/foo': {
+  '/bind': {
     component: require('pages/BindPhone.vue')
   },
   '/': {
@@ -97,12 +97,6 @@ var routes = {
   },
 
 
-  
-
-
-
-
-  
   
 }
 

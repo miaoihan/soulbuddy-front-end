@@ -11,6 +11,7 @@
       </button>
     </div>
   </div>
+  <a v-link="{path:'/'}">gogogo</a>
 	</div>
   <div class="inputbox-body">
       <!-- <span class="inputbox-title" :style="{color:TitleColor}">{{title}}</span> -->
@@ -22,6 +23,7 @@
       <button class="finishBtn" @click="bindAndLogin">
         完成
       </button>
+
     </div>    
   </div>
 </template>
@@ -55,7 +57,7 @@ export default {
           v =>{
             if (v.code==1) {
               console.log('发送成功')
-              this,is_send = true;
+              this.is_send = true;
            }else if(v.msg=='您的手机号已经被注册'){
               alert('您的手机号已经被注册')}
           },'json');
@@ -70,8 +72,8 @@ export default {
           v =>{
             if (v.code==1) {
               console.log('绑定成功')
-              alert('验证成功！')
               this.$router.go({ path:'/' })
+              alert('验证成功！')
            }
            else{
             alert('验证失败，请重新输入')

@@ -1,14 +1,17 @@
 <template>
 <div id="app">
-    <div v-if="!is_bind">
-      <nav-header title="绑定手机"></nav-header>
-      <bind-phone></bind-phone>
-    </div> 
-    <div v-if="is_bind">
-     <nav-header title="我的评测" right='true'></nav-header>
+    <!-- <div v-if="!is_new">
+     <nav-header title="新灵伙伴"></nav-header>
      <router-view></router-view>
      <nav-bottom></nav-bottom>
     </div>
+    <div v-if="is_new">
+      <nav-header title="绑定手机"></nav-header>
+      <bind-phone></bind-phone>
+    </div>  -->
+     <!-- <nav-header :head-data="headData"></nav-header> -->
+     <router-view ></router-view>
+     <nav-bottom></nav-bottom>
   </div>
 </template>
 
@@ -23,7 +26,10 @@ export default {
     return{
       currentPage: 'eva-card',
       // is_login: false,
-      is_bind: true 
+      // is_new: true,
+      // is_bind: false,
+      // headData: {title:'新灵伙伴'}
+      // is_bind: true 
     }
   },
   methods:{
@@ -37,8 +43,7 @@ export default {
   created(){
      //定义全局数据
     global.domain = 'http://xinling.songtaxihuan.com'
-
-
+    
     // 测试用token
       // $.ajax({
       //     url: global.domain +'/test/test?uid=3',
@@ -60,19 +65,34 @@ export default {
       // document.body.innerHTML = '请在微信客户端打开此应用';
       return;
     }
-    $.post(global.domain +"/register/reguser", 
-      {code:code},
-      v =>{
+    // 登录部分
+    $.ajax({
+      url: global.domain +'/register/reguser',
+      type:'POST', 
+      dataType: 'json',
+      async: false,
+      // cache: true,
+      data:{ code:code },
+      success: v => {
         console.log(v)
-        // 判断是否绑定了手机
-        let phone = v.data.userinfo.mobile;
-        if(null == phone) this.is_bing = false;
-        else this.is_bind = true
+      // 判断是否绑定了手机
+      let phone = v.data.userinfo.mobile;
+      // 如果没有绑定，跳转到绑定手机页面
+      if(null == phone) {
+        this.is_bing = false;
+        this.$router.go('/bind')
+      }
+      // 绑定过，直接登录
+      else {
+        // 登陆后存储用户信息
+        global.user = v.data.userinfo;
+        global.token = v.data.token;
+        this.is_bind = true;
         this.userinfo = v.data.userinfo;
         this.is_new = v.data.is_new;
-        global.user = v.data.userinfo
-        global.token = v.data.token;
-      },'json');
+        }},
+        error: err => err.toString()
+      });
 
     // 暂时不可用，acess_token从后台获取
     // 2.获取access_token
