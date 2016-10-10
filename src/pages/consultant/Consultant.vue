@@ -1,6 +1,6 @@
 <template>
 <!-- 咨询师 -->
-	<nav-header :identity.sync="identity"></nav-header>
+	<nav-header :identity.sync="identity" :iscst="true"></nav-header>
   <div>
 	  <cst-list :data = "userList1" v-if="identity===1"></cst-list>
 	  <kol-list :data = "userList2" v-if="identity===2"></kol-list>
@@ -18,7 +18,8 @@
 	  	return{
 	  		token: '',
 	  		domain: 'http://xinling.songtaxihuan.com',
-	  		identity: -1, //0普通用户1心理咨询师2经验答人
+	  		iscst: true,
+	  		identity: 1, //0普通用户1心理咨询师2经验答人
 	  		userList1: [],
 	  		userList2: [],
 	  	}
@@ -35,8 +36,10 @@
           	identity: 1
           },
           success: function(data) {
-          	this.userList1 = data.data;
-          	console.log(this.userList1)
+          	if (data.code != -1) {
+          		this.userList1 = data.data;
+	          	console.log(this.userList1)
+          	}
           }.bind(this),
           error: function(xhr, status, err) {
           }.bind(this)
@@ -52,8 +55,10 @@
           	identity: 2
           },
           success: function(data) {
-          	this.userList2 = data.data;
-          	console.log(this.userList1)
+          	if (data.code != -1) {
+          		this.userList2 = data.data;
+	          	console.log(this.userList2)
+          	}
           }.bind(this),
           error: function(xhr, status, err) {
           }.bind(this)

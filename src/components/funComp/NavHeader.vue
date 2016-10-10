@@ -11,8 +11,7 @@
 	  			v-link="{path: '/ask'}">提问</a>
 	  </span>
 	  <h1 class="nav-title" v-if="title">{{ title }}</h1>
-
-		<div class="tag-wrap" v-if="iscst">
+		<div class="tag-wrapper" v-if="iscst">
 			<span class="btn-left" :class=" identity===1 ? 'active' : '' " 
 						@click="click(1)"
 						>咨询师</span>
@@ -53,7 +52,8 @@
 
 <style scoped lang="stylus">
 @import '../../assets/stylus.styl'
-
+.aaa
+	color #fff
 .nav-header
 	height 2.2rem
 	line-height: 2.2rem

@@ -1,6 +1,7 @@
 <template>
   <div>
   <nav-header title="新灵伙伴"></nav-header>
+  <nav-header title="新灵"></nav-header>
   	<func-nav :index.sync="index"></func-nav>
     <div style="margin-top: 0.5rem">
       <choice v-if="index==1" :swiper-list="swiperList"></choice>
