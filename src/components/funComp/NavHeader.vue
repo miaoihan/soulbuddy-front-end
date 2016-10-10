@@ -8,7 +8,9 @@
 	  <!-- 导航右部分	 -->
 	  <span class="nav-right">
 	  	<a class="btn-nav" v-if="title=='新灵伙伴'"
-	  			v-link="{path: '/ask'}">提问</a>
+	  		 v-link="{path: '/ask'}">提问</a>
+			<a class="btn-nav" v-if="ispub"
+				 @click="method">发布</a>
 	  </span>
 	  <h1 class="nav-title" v-if="title">{{ title }}</h1>
 		<div class="tag-wrapper" v-if="iscst">
@@ -20,7 +22,6 @@
 						>经验达人</span>
 		</div>
 	</header>
-
 </template>
 
 <script>
@@ -35,13 +36,17 @@
 				default: false
 			},
 			iscst:{ type: Boolean },
-			identity: { type: Number, default: 1 }
+			ispub:{ type: Boolean },
+			identity: { type: Number, default: 1 },
+			method: { type: Function },
 		},
-
 		methods:{
 			click(i){
 				console.log(this.identity)
 				this.identity = i
+			},
+			t(){
+				console.log($('#t').val() )
 			}
 		},
 
@@ -52,8 +57,6 @@
 
 <style scoped lang="stylus">
 @import '../../assets/stylus.styl'
-.aaa
-	color #fff
 .nav-header
 	height 2.2rem
 	line-height: 2.2rem
@@ -112,3 +115,7 @@
 		color: $ztc
 
 </style>
+
+
+
+

@@ -1,5 +1,4 @@
 <template>
-	<nav-header title=""></nav-header>
   <div class="wrapper">
   	<div class="yyzp body-eva wrapper" v-for="eva of data">
   		<img class="img-eva" :src="eva.img_file" alt="">
@@ -23,7 +22,6 @@
 
   export default{
     components: {
-    	
     },
     props:{
     	data:[]
