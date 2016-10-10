@@ -120,8 +120,19 @@ import Evaluation from 'pages/home/Evaluation.vue'
   color: #999;
 }
 
+.label-box{
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 20px 0 10px 0;
+  background-color: #fff
+}
+
+.label-box span
+  margin: 0 0 15px 15px;
+  
 a
   color #444
-
+  width 100%
 
 </style>

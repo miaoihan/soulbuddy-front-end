@@ -75,23 +75,23 @@ export default {
       data:{ code:code },
       success: v => {
         console.log(v)
-      // 判断是否绑定了手机
-      let phone = v.data.userinfo.mobile;
-      // 如果没有绑定，跳转到绑定手机页面
-      if(null == phone) {
-        this.is_bing = false;
-        this.$router.go('/bind')
-      }
-      // 绑定过，直接登录
-      else {
         // 登陆后存储用户信息
         global.user = v.data.userinfo;
         global.token = v.data.token;
-        this.is_bind = true;
-        this.userinfo = v.data.userinfo;
-        this.is_new = v.data.is_new;
-        }},
-        error: err => err.toString()
+        // 判断是否绑定了手机
+        let phone = v.data.userinfo.mobile;
+        // 如果没有绑定，跳转到绑定手机页面
+        if(null == phone) {
+          this.is_bing = false;
+          this.$router.go('/bind')
+        }
+        // 绑定过，直接登录
+        else {
+          // this.is_bind = true;
+          this.userinfo = v.data.userinfo;
+          // this.is_new = v.data.is_new;
+          }},
+          error: err => err.toString()
       });
 
     // 暂时不可用，acess_token从后台获取

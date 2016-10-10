@@ -17,8 +17,14 @@ var routes = {
   '/home/evaluation': {
     component: require('pages/home/Evaluation.vue')
   },
-  '/home/science': {
+  '/science': {
     component: require('pages/home/Science.vue')
+  },
+  '/relax': {
+    component: require('pages/home/Relax.vue')
+  },
+  '/case': {
+    component: require('pages/home/Case.vue')
   },
   '/ask': {
     component: require('pages/home/Ask.vue')

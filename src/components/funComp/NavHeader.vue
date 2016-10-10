@@ -4,32 +4,30 @@
   	<!-- 导航左部分	 -->
 	  <span class="nav-left">
 	  	<i class="iconfont" v-if="title=='新灵伙伴'">&#xe600;</i><!-- 搜索图标 -->
-	  	<a v-link="url" v-if="left=='return'">
-	  		<i class="iconfont" style="font-size:0.9rem;color:#fff" >&#xe602;</i>
+	  	<i class="iconfont icon-icon27" v-if="left=='cancel' "
+	  		 @click="confirm"></i><!-- 叉图标 -->
+	  	<a v-link="url" v-if="left=='back'">
+	  		<i class="iconfont icon-back" style="font-size:0.9rem;color:#fff"
+	  			 onclick="window.history.go(-1)"></i>
 	  	</a><!-- 返回图标 -->
 	  </span>
-	  <span class="nav-right" v-if="right=='true'">
-	  	<a class="btn-nav" v-if="title=='新灵伙伴'"
-	  			v-link="{path: '/ask'}">提问</a>
+
+	  <!-- 导航右部分	 -->
+	  <span class="nav-right" v-if="right">
 	  	<a class="next-btn" v-if="title=='原手机号码'"
 	  			v-link="url">下一步</a>
 	  	<a class="next-btn" v-if="title=='我的评测'"
 	  			v-link="url">重新评测</a>
 	  	<input type="submit" class="next-btn" v-if="title=='编辑个人资料'" value="保存" name="">
-	  	<i class="iconfont" style="float:right;color:#fff;font-size:0.9rem" v-if="title==''">&#xe62c;</i><!-- 分享图标 -->
-	  	<i class="iconfont" style="float:right;color:#fff;font-size:0.9rem;margin-right:1.35rem;" v-if="title==''">&#xe606;</i><!-- 收藏图标 -->  	
-	  	<i class="iconfont" style="float:right;color:#fff;font-size:0.9rem" v-if="title=='问题详情'">&#xe62d;</i><!-- 三个点 --> 
+	  	<i class="iconfont" class="r-func" v-if="title==''">&#xe62c;</i><!-- 分享图标 -->
+	  	<i class="iconfont" class="r-func" v-if="title==''">&#xe606;</i><!-- 收藏图标 -->  	
+	  	<i class="iconfont" class="r-func" v-if="title=='问题详情'">&#xe62d;</i><!-- 三个点 --> 
 	  	<a class="btn-nav" v-if="title=='新灵伙伴'"
 	  		 v-link="{path: '/ask'}">提问</a>
 			<a class="btn-nav" v-if="ispub"
 				 @click="method">发布</a>	
-	  <!-- 导航右部分	 -->
-	  <!-- <span class="nav-right">
-	  	<a class="btn-nav" v-if="title=='新灵伙伴'"
-	  		 v-link="{path: '/ask'}">提问</a>
-			<a class="btn-nav" v-if="ispub"
-				 @click="method">发布</a>
-	  </span> -->
+	  </span>
+
 	  <h1 class="nav-title" v-if="title">{{ title }}</h1>
 		<div class="tag-wrapper" v-if="iscst">
 			<span class="btn-left" :class=" identity===1 ? 'active' : '' " 
@@ -54,8 +52,8 @@
 				default: false
 			},
 			url:{type:String},
-			right:{type:String,default:'true'},
-			left:{type:String,default:'return'},
+			right:{type:String,default:true},
+			left:{type:String,default:''},
 			iscst:{ type: Boolean },
 			ispub:{ type: Boolean },
 			identity: { type: Number, default: 1 },
@@ -68,6 +66,12 @@
 			},
 			t(){
 				console.log($('#t').val() )
+			},
+			confirm(){
+				if (confirm('确定取消？')) {
+					window.history.go(-1)
+				}
+				
 			}
 		},
 
@@ -139,6 +143,9 @@
 	.active
 		background-color: #FFF
 		color: $ztc
+
+.r-func
+	float:right;color:#fff;font-size:0.9rem;
 </style>
 
 
