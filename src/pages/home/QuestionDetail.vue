@@ -1,5 +1,6 @@
 <template>
 <!-- 问题详情 -->
+<nav-header title="问题详情" left="back"></nav-header>
   <div>
   	<section class="qd-top part">
 	  	<div class="container-20" style="border-bottom: 1px solid #e3e3e3">
@@ -39,9 +40,10 @@
 </template>
 
 <script>
+import NavHeader from 'components/funComp/NavHeader'
   export default{
   	components: {
-  		AnswerCard: require('components/areaComp/AnswerCard')
+  		AnswerCard: require('components/areaComp/AnswerCard'),NavHeader
 	  },
 	  data(){
 	  	return{
