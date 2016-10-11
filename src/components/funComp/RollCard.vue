@@ -1,5 +1,5 @@
 <template>
-  <div class="swiper-container part wrapper">
+  <div class="swiper-container1 part wrapper">
 		<div class="swiper-wrapper ">
 		    <div class="swiper-slide fullscr" v-for="obj in data">
 		    	<a v-if="obj.href===null" class="fullscr">
@@ -36,7 +36,7 @@ export default {
   },
   ready:function(){
   	// console.log("in swiper loader")
-   	var mySwiper = new Swiper ('.swiper-container', {
+   	var mySwiper = new Swiper ('.swiper-container1', {
 		    direction: 'horizontal',
 		    loop: true,
 		    slidesPerView:1,
@@ -54,7 +54,7 @@ export default {
 	height: 100%;
 	width: 100%;
 }
-.swiper-container{
+.swiper-container1{
 	position: relative;
 	height: 8.0rem;
 	padding-bottom: 0;

@@ -1,5 +1,6 @@
 <template>
 <!-- 文章详情 -->
+<nav-header title="文章详情" left="back"></nav-header>
    <div class="wrapper">
    		<!-- 文章头部 -->
       <section class="art-top ztc">
@@ -31,9 +32,10 @@
 </template> 
 
 <script>
+import NavHeader from 'components/funComp/NavHeader'
    export default{
      components:{
-       
+       NavHeader
      },
      data(){
      	return{

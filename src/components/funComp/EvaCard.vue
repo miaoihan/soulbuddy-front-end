@@ -14,7 +14,7 @@
             
           </div>
             <span class="eva-title">{{eva.title}}</span>
-            <a v-link="'/home/selfeva'" class="start-btn">开始</a>
+            <a v-link="{name:'eva', params:{id: eva.test_id} }" class="start-btn">开始</a>
           </div>
           
       </div>
