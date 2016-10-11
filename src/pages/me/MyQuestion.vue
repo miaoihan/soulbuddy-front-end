@@ -28,7 +28,7 @@ import NavHeader from 'components/funComp/NavHeader';
             page: 1,
             token: global.token
           },
-          success: data => {this.queList = data.data;console.log(data)},
+          success: data => {this.queList = data.data;},
           error: err => err.toString()
         });
 		}	  

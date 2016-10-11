@@ -27,38 +27,18 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
   		return{
   			ztc: '#2b8ff7',
   			token:'',
-	  		url1:'http://xinling.songtaxihuan.com/test/test?uid=3',
 	  		url2:'http://xinling.songtaxihuan.com/user/get_my_answer',
 	  		questions:[],
   		}
   	},
-	  props: {
-	  	data: {
-	  		type: Array,
-	  	}
-	  },
 	  ready(){
-	  	$.ajax({
-          url: this.url1,
-          type:'GET', 
-          dataType: 'json',
-          cache: false,
-          async:false,
-          success: function(data) {
-            this.token = data.data
-            // console.log( typeof this.token);	
-          }.bind(this),
-          error: function(xhr, status, err) {
-            console.error(this.token, status, err.toString());
-          }.bind(this)
-        });
 	  	$.ajax({
           url: this.url2,
           type:'POST', 
           dataType: 'json',
           data: {
-          	page:1,
-			token:this.token,
+          page:1,
+					token:global.token,
 		  },
           cache: false,
           success: function(data) {
