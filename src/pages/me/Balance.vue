@@ -36,7 +36,7 @@ import NavHeader from 'components/funComp/NavHeader';
     data(){
       return{
         status:0,
-        balance: 0
+        balance:""
       }
     },
     ready(){

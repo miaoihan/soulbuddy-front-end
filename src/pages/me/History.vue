@@ -31,7 +31,6 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
 	  		questions:[],
   		}
   	},
-	  
 	  ready(){
 	  	$.ajax({
           url: this.url2,

@@ -18,7 +18,7 @@
     </div>
   </div>
   <div class="profile-list wrapper">
-    <change-btn btntext="绑定手机" url="/me/profilephone" title-color="black" :placeholder="phonenum" class="change-btn-pro"></change-btn>
+    <change-btn btntext="绑定手机" url="/me/profilephone" title-color="black" :placeholder="mobile" class="change-btn-pro"></change-btn>
     <select-btn class="change-btn-pro" :values="age" title="年龄" ></select-btn>
     <select-btn class="change-btn-pro" :values="sex" title="性别" ></select-btn>
     <select-btn class="change-btn-pro" :values="qualifications" title="学历" ></select-btn>
@@ -55,7 +55,7 @@ import NavHeader from 'components/funComp/NavHeader';
         sex:["男","女"],
         qualifications:["大专","本科","硕士","博士"],
         marriage:["已婚","未婚"],
-        phonenum:""   
+        mobile:""   
       }
     },
     props:{
@@ -73,7 +73,7 @@ import NavHeader from 'components/funComp/NavHeader';
         v => this.myinfo = v.data ,'json');
 
       // this.phonenum = global.user.mobile;
-      
+      this.mobile=global.user.mobile
 
     },
     compiled(){

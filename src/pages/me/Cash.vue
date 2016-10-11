@@ -30,7 +30,12 @@ import NavHeader from 'components/funComp/NavHeader';
     data(){
       return{
         index: 1,
+        balance:0
       }
+    },
+    ready(){
+    	this.balance = global.user.balance;
+    	// console.log(global.user);
     },
     props:{
       balance:{type:String,default:15.3}

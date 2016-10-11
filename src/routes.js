@@ -38,6 +38,9 @@ var routes = {
   '/home/questiondetail': {
     component: require('pages/home/QuestionDetail.vue')
   },
+  '/home/evaluation': {
+    component: require('pages/home/Evaluation.vue')
+  },
   '/article/:art_id' : {
     name: 'article',
     component: require('pages/home/ArticleDetail.vue')

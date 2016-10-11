@@ -7,12 +7,12 @@
     			<img :src="person.logo" class="img-imgs">
     		</div>
     		<div class="person-msg-name">
-    			<span class="name-text">{{person.user_name}}</span>
+    			<span class="name-text">{{user_name}}</span>
 				<a v-link="'/setting/profile'" class="button button-round btnstyle">编辑个人资料</a>
     		</div>
     		<div class="hint-img">
     			<i class="iconfont imgimg">&#xe605;</i>
-    			<div class="hint-text" v-if="hintnum<=99">{{person.fav_count}}</div>
+    			<div class="hint-text" v-if="hintnum<=99">{{fav_count}}</div>
     		</div>
     	</div>
     </div>
@@ -27,12 +27,12 @@
     <change-btn :btntext="btntext"
 	    					style="margin-top:1rem;padding-left:1rem;padding-right:1rem;background:#2b8ff7"
 								text-color="#fff" icon-color="#fff"
-								@click="handleClick" v-if="user.isCounselor==true">
+								@click="handleClick" v-if="identity==1">
 	</change-btn>
 	<change-btn btntext="申请成为咨询师或经验答人"
 	    				style="margin-top:1rem;padding-left:1rem;padding-right:1rem;background:#fff"
 							text-color="#2b8ff7" 
-							v-if="user.isCounselor==false"
+							v-if="identity==0"
 			url="/me/apply"
 			>
 	</change-btn>
@@ -49,41 +49,26 @@ export default {
 		ChangeBtn,CounselorFun,CommonFun,NavHeader
 	},
 	props:{
-		data:{
-  		type:Array,
-  		default(){
-  			return[
-          {
-            contitle:"",//图中标题
-  					imgurl:'',//背景图
-  					href:"null"
-          },//是否连接
-        ]
-  		},
-  		user_identity_test:{type:String,default:1},
-  	},
-  	textColor:{type:String,default:"black"},
+  		textColor:{type:String,default:"black"},
 	  	user:{
 	  		type:Array,
 	  		default(){
 	  			return{
-	  				id:1,
-					imgurl:"",
-					username:"陈雪琴",
 					UserType:'common',//用户当前的身份
 					isCounselor:true,//是否已经成为咨询师
 	  			}
 	  		}
 	  	},
-	  	hintnum:{type:Number,default:2},
-	  	
+	  	hintnum:{type:Number,default:2},	  	
 	},
   data () {
     return {
     	btntext:"",
   		person:{},
   		queList: [],
-  		// person.identity:1
+  		identity:0,
+  		user_name:"",
+  		fav_count:0
     }
   },
   ready:function(){
@@ -93,10 +78,9 @@ export default {
   		this.btntext='切换到咨询师身份'
   	}	
   	// 获取用户信息
-	  	$.post(global.domain +'/user/get_my_info',
-        { token: global.token },
-        v => this.person = v.data ,'json');
-
+	  this.identity=global.user.identity;
+	  this.user_name=global.user.user_name;
+	  this.fav_count=global.user.fav_count;
 	  	// 我的提问
       $.ajax({
           url: 'http://xinling.songtaxihuan.com/user/get_my_question',
