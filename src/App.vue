@@ -11,6 +11,7 @@
     </div>  -->
      <!-- <nav-header :head-data="headData"></nav-header> -->
      <router-view v-if="is_bind && token"></router-view>
+     <!-- <router-view ></router-view> -->
      <nav-bottom></nav-bottom>
   </div>
 </template>
@@ -29,8 +30,8 @@ export default {
       // is_new: true,
       // is_bind: false,
       // headData: {title:'新灵伙伴'}
-      is_bind: true ,
-      token: '' //做判断用，有了token才渲染
+      is_bind: false ,
+      token: false //做判断用，有了token才渲染
     }
   },
   methods:{
@@ -78,7 +79,7 @@ export default {
         console.log(v)
         // 登陆后存储用户信息
         global.token = v.data.token;
-        this.token = v.data.token
+        this.token = true
         global.user = v.data.userinfo;
         console.log(global.user)
         // 判断是否绑定了手机
