@@ -1,5 +1,6 @@
 <template>
 <!-- 咨询师详情 -->
+<nav-header title=""></nav-header>
   <div>
   	<div class="at-top part container-20"
   			 :class="user.identity == 1? 'ztc' : 'ab-kol' ">
@@ -61,9 +62,10 @@
 </template>
 
 <script>
+import NavHeader from 'components/funComp/NavHeader';
   export default{
   	components: {
-  		QuestionList: require('components/areaComp/QuestionList'),
+  		QuestionList: require('components/areaComp/QuestionList'),NavHeader
 	  },
 	  data(){
 	  	return{

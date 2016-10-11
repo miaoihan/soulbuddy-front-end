@@ -1,4 +1,5 @@
 <template>
+<nav-header title="收藏"></nav-header>
   <div>
   	<ul class="nav-tab">
   		<li :class="{active: index == 1}"
@@ -20,11 +21,13 @@
 </template>
 
 <script>
+import NavHeader from 'components/funComp/NavHeader';
   export default{
   	components: {
   		CstList: require('components/areaComp/CstList'),
   		KolList: require('components/areaComp/KolList'),
-  		ArticleList: require('components/areaComp/ArticleList')	
+  		ArticleList: require('components/areaComp/ArticleList'),
+  		NavHeader
 	  },
 	  methods:{
 	  	change(i){

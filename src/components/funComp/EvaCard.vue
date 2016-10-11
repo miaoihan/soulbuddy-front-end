@@ -5,7 +5,7 @@
       <i class="iconfont title-test relative">&#xe604;</i>
       <span class="relative title-test-text">心理测评</span>
       <i class="iconfont title-next relative">&#xe60d;</i>
-      <a v-link="'eva'" class="checkall relative">查看全部评测</a>
+      <a v-link="'/'" class="checkall relative">查看全部评测</a>
     </div>
     <div class="swiper-container" style="margin-top:0.8rem">
       <div class="swiper-wrapper">
@@ -59,7 +59,7 @@ import QuestionList from 'components/areaComp/QuestionList.vue'
   }
 </script>
 
-<style>
+<style scoped>
 .relative{
   position:relative
 }
@@ -112,7 +112,8 @@ import QuestionList from 'components/areaComp/QuestionList.vue'
   font-size: 12px;
   color: #FFFFFF;
   margin-right: 0.25rem;
-  line-height: 2.8rem
+  line-height: 2.8rem;
+  width: 3.6rem;
 }
 /*.swiper-container{
   height: 5.0rem;
