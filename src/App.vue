@@ -29,7 +29,7 @@ export default {
       // is_new: true,
       // is_bind: false,
       // headData: {title:'新灵伙伴'}
-      is_bind: true 
+      is_bind: false 
     }
   },
   methods:{
@@ -88,7 +88,7 @@ export default {
         }
         // 绑定过，直接登录
         else {
-          // this.is_bind = true;
+          this.is_bind = true;
           this.userinfo = v.data.userinfo;
           // this.is_new = v.data.is_new;
           }},
