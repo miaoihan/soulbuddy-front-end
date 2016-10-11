@@ -30,7 +30,6 @@ import Evaluation from 'pages/home/Evaluation.vue'
         readList: [],
         evaList: [],
         headData: {
-          title: '新灵伙伴',
         }
       }
     },
@@ -48,7 +47,7 @@ import Evaluation from 'pages/home/Evaluation.vue'
               this.swiperList.$set(i,{
                 contitle:lunboArr[i].title,
                 imgurl: lunboArr[i].img_file,
-                href: ''
+                href: '#!/article/' + lunboArr[i].art_id,
               });
             }
           },error: err => console.error(err.toString())

@@ -35,11 +35,13 @@ import NavHeader from 'components/funComp/NavHeader';
     },
     data(){
       return{
-        status:0
+        status:0,
+        balance: 0
       }
     },
-    props:{
-      balance:{type:String,default:325}
+    ready(){
+    	this.balance = global.user.balance;
+    	// console.log(global.user);
     },
     methods:{
 	  	change(i){

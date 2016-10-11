@@ -10,7 +10,7 @@
       <bind-phone></bind-phone>
     </div>  -->
      <!-- <nav-header :head-data="headData"></nav-header> -->
-     <router-view v-if="is_bind"></router-view>
+     <router-view v-if="is_bind && token"></router-view>
      <nav-bottom></nav-bottom>
   </div>
 </template>
@@ -29,7 +29,8 @@ export default {
       // is_new: true,
       // is_bind: false,
       // headData: {title:'新灵伙伴'}
-      is_bind: false 
+      is_bind: true ,
+      token: '' //做判断用，有了token才渲染
     }
   },
   methods:{
@@ -43,7 +44,6 @@ export default {
   created(){
      //定义全局数据
     global.domain = 'http://xinling.songtaxihuan.com'
-    
     // 测试用token
       // $.ajax({
       //     url: global.domain +'/test/test?uid=3',
@@ -60,6 +60,7 @@ export default {
     */
     // 1.获取code
     var code = this.getUrlParam('code');
+    // alert(code)
     if(!code) {
       // alert('请在微信客户端打开应用');
       // document.body.innerHTML = '请在微信客户端打开此应用';
@@ -77,7 +78,9 @@ export default {
         console.log(v)
         // 登陆后存储用户信息
         global.token = v.data.token;
+        this.token = v.data.token
         global.user = v.data.userinfo;
+        console.log(global.user)
         // 判断是否绑定了手机
         let phone = v.data.userinfo.mobile;
         // 如果没有绑定，跳转到绑定手机页面
@@ -92,7 +95,7 @@ export default {
           this.userinfo = v.data.userinfo;
           // this.is_new = v.data.is_new;
           }},
-          error: err => err.toString()
+          error: err => console.log(err.toString())
       });
 
     // 暂时不可用，acess_token从后台获取

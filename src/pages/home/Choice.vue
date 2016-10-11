@@ -56,23 +56,7 @@
       }
     },
 	  ready(){
-      
-      // 异步获取token
-      $.ajax({
-          url: "http://xinling.songtaxihuan.com/test/test?uid=3",
-          type:'GET', 
-          dataType: 'json',
-          cache: true,
-          async:false,
-          success: function(data) {
-            this.token = data.data
-            // console.log( typeof this.token); 
-          }.bind(this),
-          error: function(xhr, status, err) {
-            console.error(this.token, status, err.toString());
-          }.bind(this)
-        });
-
+    
 	  	// 阅读精选
 	  	$.ajax({
           url: this.readURL,
@@ -122,25 +106,7 @@
           error: err => err.toString()
         });
 
-	  	// 一条问答信息
-	  	$.ajax({
-          url: 'http://xinling.songtaxihuan.com/question/get_question_info',
-          type:'POST', 
-          dataType: 'json',
-          cache: true,
-          data:{
-          	token: this.token,
-          	// q_id: this.data.q_id,
-          	q_id: 2,
-          },
-          success: function(data) {
-          	this.question = data.data;
-          	console.log("que:"+this.question)
-          }.bind(this),
-          error: function(xhr, status, err) {
-            console.error(this.question, status, err.toString());
-          }.bind(this)
-        });
+	  	
 	  },
 
     props: {
