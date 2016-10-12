@@ -82,6 +82,9 @@ var routes = {
   'me/history':{
     component:require('pages/me/History.vue')
   },
+  'me/listen':{
+    component:require('pages/me/Listen.vue')
+  },
   '/setting/profile': {
     name: 'setme',
     component: require('pages/me/Profile.vue')

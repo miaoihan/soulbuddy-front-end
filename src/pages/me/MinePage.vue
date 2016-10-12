@@ -16,16 +16,16 @@
     		</div>
     	</div>
     </div>
-    <div v-if="identity == 1">
+    <div v-if="identityb == 1">
     	<counselor-fun></counselor-fun>
     </div>
 
-    <div v-if="identity == 0">
+    <div v-if="identityb == 0">
     	<common-fun></common-fun>
     </div>
     <!-- <common-fun v-if="user.UserType===common"></common-fun> -->
 
-    <change-btn :btntext="identity == 0 ? '切换到咨询师身份' : '切换到普通用户' "
+    <change-btn :btntext="identityb == 0 ? '切换到咨询师身份' : '切换到普通用户' "
 	    					style="margin-top:1rem;padding-left:1rem;padding-right:1rem;background:#2b8ff7"
 								text-color="#fff" icon-color="#fff"
 								@click="handleClick" v-if="isdaren">
@@ -68,7 +68,6 @@ export default {
     	btntext:"",
   		person:{},
   		queList: [],
-  		// identity:0,
   		user_name:"",
   		fav_count:0,
   		identity: 0,
@@ -80,9 +79,10 @@ export default {
   },
   ready:function(){
 	  	// 获取用户信息
-		  this.identity=global.user.identity;
+		  // this.identity = global.user.identity;
+		  // this.identityb = global.user.identity;
 		  console.log(this.identity);
-		  if(this.identity == 1) this.isdaren = true;
+		  if(global.user.identity == 1) this.isdaren = true;
 		  this.user_name=global.user.user_name;
 		  this.fav_count=global.user.fav_count;
 	  	// 我的提问
