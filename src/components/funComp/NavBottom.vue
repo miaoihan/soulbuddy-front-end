@@ -1,6 +1,6 @@
 <template>
   <nav class="bar bar-tab fixed">
-    <a v-link="'/'" class="tab-item external" :class="{ active: index === 0 }" @click="changClass(0)">
+    <a v-link="'/home'" class="tab-item external" :class="{ active: index === 0 }" @click="changClass(0)">
       <i class="iconfont icon-htmal5icon06"></i>
       <span class="tab-label">首页</span>
     </a>

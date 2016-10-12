@@ -71,7 +71,7 @@
           data: $('#askForm').serialize(),//序列化
           success: function(data) {
             // console.log( data);	
-            this.$router.go('/')
+            this.$router.go('/home')
             console.log(this.$router)
           }.bind(this),
           error: function(xhr, status, err) {

@@ -1,18 +1,14 @@
 <template>
 <div id="app">
-    <!-- <div v-if="!is_new">
-     <nav-header title="新灵伙伴"></nav-header>
+    <div v-if="bind && token">
      <router-view></router-view>
      <nav-bottom></nav-bottom>
     </div>
-    <div v-if="is_new">
-      <nav-header title="绑定手机"></nav-header>
-      <bind-phone></bind-phone>
-    </div>  -->
-     <!-- <nav-header :head-data="headData"></nav-header> -->
-     <router-view v-if="is_bind && token"></router-view>
-     <!-- <router-view ></router-view> -->
-     <nav-bottom></nav-bottom>
+    <div v-if="!bind">
+      <bind-phone :bind.sync="bind"></bind-phone>
+    </div> 
+     <!-- <router-view v-if="token"></router-view>
+     <nav-bottom v-if="bind"></nav-bottom> -->
   </div>
 </template>
 
@@ -28,10 +24,9 @@ export default {
       currentPage: 'eva-card',
       // is_login: false,
       // is_new: true,
-      // is_bind: false,
-      // headData: {title:'新灵伙伴'}
-      is_bind: false ,
-      token: false //做判断用，有了token才渲染
+      bind: true,
+      token: false, //做判断用，有了token才渲染
+      weixin: [],
     }
   },
   methods:{
@@ -45,72 +40,92 @@ export default {
   created(){
      //定义全局数据
     global.domain = 'http://xinling.songtaxihuan.com'
-    // 测试用token
-      // $.ajax({
-      //     url: global.domain +'/test/test?uid=3',
-      //     type:'get', 
-      //     dataType: 'json',
-      //     async: false,
-      //     success: data => global.token = data.data,
-      //     error: err => err.toString()
-      //   });
-    /* 用户微信登录部分
-      1.获取code
-      2.通过code获取access_token
-      3.通过access_token获取用户信息
-    */
+    //获取当前URL
+    let url = document.URL
     // 1.获取code
     var code = this.getUrlParam('code');
     // alert(code)
     if(!code) {
       // alert('请在微信客户端打开应用');
-      // document.body.innerHTML = '请在微信客户端打开此应用';
+      document.body.innerHTML = '请在微信客户端打开此应用';
       return;
     }
     // 登录部分
     $.ajax({
       url: global.domain +'/register/reguser',
-      type:'POST', 
-      dataType: 'json',
-      // async: false,
-      // cache: true,
-      data:{ code:code },
-      success: v => {
-        console.log(v)
-        // 登陆后存储用户信息
-        global.token = v.data.token;
-        this.token = true
+      type:'POST', dataType: 'json',
+      data:{ code:code },success: v => {
+        // console.log(v)
         global.user = v.data.userinfo;
         console.log(global.user)
         // 判断是否绑定了手机
         let phone = v.data.userinfo.mobile;
         // 如果没有绑定，跳转到绑定手机页面
         if(null == phone) {
-          this.is_bing = false;
-          console.log(this.$router)
-          this.$router.go('/bind')
+          this.bind = false;
+          // console.log(this.$router)
+          // this.$router.go({path:'/bind'})
         }
         // 绑定过，直接登录
         else {
-          this.is_bind = true;
+          this.bind = true;
           this.userinfo = v.data.userinfo;
+          this.$router.go({path:'/home'})
           // this.is_new = v.data.is_new;
-          }},
+        }
+        // 登陆后存储用户信息
+        global.token = v.data.token;
+        this.token = true
+      },
           error: err => console.log(err.toString())
       });
 
-    // 暂时不可用，acess_token从后台获取
-    // 2.获取access_token
-    // var access_token = '';
-    // $.get("https://api.weixin.qq.com/sns/oauth2/access_token?appid="+ this.appid +"&secret=SECRET&code="+ this.code +"&grant_type=authorization_code", 
-    //   function(result){
-    //     alert(result)
-    //   });
-
+      //获取微信js凭证
+      // $.ajax({
+      //     url: global.domain +'/thirdparty/wechat',
+      //     type:'post', 
+      //     dataType: 'json',
+      //     async: false,
+      //     data:{
+      //       url: encodeURIComponent(location.href.split('#')[0])
+      //       // 'url': location.href
+      //     },
+      //     success: data => {this.weixin = data.data;console.log(data)},
+      //     error: err => console.error(err)
+      //   });
 
   },
   ready(){
-   
+    // // 微信配置
+    //   console.log('wx: '+this.weixin)
+    //   wx.config({
+    //     debug: true,
+    //     appId: this.weixin.appId,
+    //     timestamp: this.weixin.timestamp,
+    //     nonceStr: this.weixin.nonceStr,
+    //     signature: this.weixin.signature,
+    //     jsApiList: [
+    //       'chooseImage',
+    //     ]
+    //   });
+    //   wx.ready(function(){
+    //       // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
+    //       alert('成功')
+
+    //       // 4 音频接口
+    //       // 4.2 开始录音
+    //       document.querySelector('#avator').onclick = function () {
+    //         wx.chooseImage({
+    //           count: 1, // 默认9
+    //           sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+    //           sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+    //           success: function (res) {
+    //               var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+    //               this.avator = localIds
+    //           }
+    //       });
+    //       };
+    //   });
   }
 
 }
@@ -200,6 +215,7 @@ export default {
   border-radius 0.25rem
   background $ztc;
 }
+
 .label-grey{
   display inline-block
   height 1.05rem 
@@ -207,6 +223,7 @@ export default {
   padding 0 0.3rem
   border-radius 0.25rem
   font-size: 0.65rem
+  background-color: #f3f3f3
   color #999
 }
 .label-bg-grey{

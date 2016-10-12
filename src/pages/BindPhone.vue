@@ -43,6 +43,9 @@ export default {
       is_send: false
     }
   },
+  props: {
+    bind: { type: Boolean, default: null },
+  },
   methods:{
     sendCode(){
       if (this.checkPhone()) {
@@ -68,7 +71,10 @@ export default {
             v =>{
               if (v.code==1) {
                 console.log('绑定成功')
-                this.$router.go({ path:'/' })
+                // 将手机号码添加到user
+                global.user['mobile'] = this.mobile
+                this.bind = true
+                this.$router.go({ path:'/home' })
                 alert('验证成功！')
              }
              else{
