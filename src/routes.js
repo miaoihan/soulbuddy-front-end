@@ -5,9 +5,9 @@ var routes = {
   '/bind': {
     component: require('pages/BindPhone.vue')
   },
-  // '/': {
-  //   component: require('pages/home/Home.vue')
-  // },
+  '/': {
+    component: require('pages/home/Home.vue')
+  },
   'search/get_search_list': {
     component: require('pages/home/SerchList.vue')
   },
@@ -89,8 +89,8 @@ var routes = {
   '/consultants': {
     component: require('pages/consultant/Consultant.vue')
   },
-  '/consultants': {
-    component: require('pages/consultant/Consultant.vue')
+  '/wenda': {
+    component: require('pages/consultant/HomeQue.vue')
   },
   '/user/:id': {
     name: 'user',

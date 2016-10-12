@@ -1,8 +1,10 @@
 <template>
 <div id="app">
+    <wenda></wenda>
     <div v-if="bind && token">
-     <router-view></router-view>
-     <nav-bottom></nav-bottom>
+    <!-- <div v-if="token"> -->
+     <router-view :identityb.sync="identity"></router-view>
+     <nav-bottom :identityb.sync="identity"></nav-bottom>
     </div>
     <div v-if="!bind">
       <bind-phone :bind.sync="bind"></bind-phone>
@@ -18,6 +20,7 @@ export default {
     NavHeader:require('components/funComp/NavHeader.vue'),
     NavBottom:require('components/funComp/NavBottom.vue'),
     BindPhone:require('pages/BindPhone.vue'),
+    HomeQue:require('pages/consultant/HomeQue'),
   },
   data(){
     return{
@@ -27,7 +30,11 @@ export default {
       bind: true,
       token: false, //做判断用，有了token才渲染
       weixin: [],
+      identity: 0,
     }
+  },
+  watch:{
+
   },
   methods:{
   // 得到地址栏参数值
@@ -47,10 +54,20 @@ export default {
     // alert(code)
     if(!code) {
       // alert('请在微信客户端打开应用');
-      document.body.innerHTML = '请在微信客户端打开此应用';
+      // document.body.innerHTML = '请在微信客户端打开此应用';
       return;
     }
-    // 登录部分
+    // 本地测试用token
+    // $.ajax({
+    //       url: global.domain +'/test/test?uid=3',
+    //       type:'get', 
+    //       dataType: 'json',
+    //       // async: false,
+    //       success: data => {global.token = data.data},
+    //       error: err => console.error(err)
+    //     });
+
+    // 微信登录部分
     $.ajax({
       url: global.domain +'/register/reguser',
       type:'POST', dataType: 'json',

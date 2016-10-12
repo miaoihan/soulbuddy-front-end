@@ -1,7 +1,7 @@
 <template>
 <!-- 咨询师 -->
 	<nav-header :identity.sync="identity" :iscst="true" :right="false"></nav-header>
-  <div>
+  <div class="far-bom">
 	  <cst-list :data = "userList1" v-if="identity===1"></cst-list>
 	  <kol-list :data = "userList2" v-if="identity===2"></kol-list>
   </div>
