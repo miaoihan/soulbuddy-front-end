@@ -44,7 +44,6 @@
         
         // token: '',
         domain: 'http://xinling.songtaxihuan.com',
-  			url1:"http://xinling.songtaxihuan.com/test/test?uid=3",
         lunboURL:'http://xinling.songtaxihuan.com/article/get_top_article',
         readURL:'http://xinling.songtaxihuan.com/article/get_choice_article',
         queURL:'http://xinling.songtaxihuan.com/question/get_choice_question',
@@ -59,7 +58,7 @@
     
 	  	// 阅读精选
 	  	$.ajax({
-          url: this.readURL,
+          url: global.domain +'/article/get_choice_article',
           type:'POST', 
           dataType: 'json',
           cache: true,
@@ -77,12 +76,12 @@
 
 	  	// 问答精选
 	  	$.ajax({
-          url: this.queURL,
+          url: global.domain +'/question/get_choice_question',
           type:'POST', 
           dataType: 'json',
           cache: true,
           data:{
-          	token: this.token
+          	token: global.token
           },
           success: function(data) {
           	this.queList = data.data;
@@ -95,7 +94,7 @@
 
       // 测评精选
       $.ajax({
-          url: this.domain +'/access/get_choice_access',
+          url: global.domain +'/access/get_choice_access',
           type:'POST', 
           dataType: 'json',
           cache: true,
@@ -103,7 +102,7 @@
             count: 3,
           },
           success: data => this.evaList = data.data,
-          error: err => err.toString()
+          error: err => console.log(err)
         });
 
 	  	

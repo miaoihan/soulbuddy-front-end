@@ -1,6 +1,6 @@
 <template>
 <!-- 文章详情 -->
-<nav-header title="文章详情" left="back"></nav-header>
+<nav-header left="back"></nav-header>
    <div class="wrapper">
    		<!-- 文章头部 -->
       <section class="art-top ztc">
