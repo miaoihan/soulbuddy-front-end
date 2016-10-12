@@ -20,7 +20,6 @@ export default {
     NavHeader:require('components/funComp/NavHeader.vue'),
     NavBottom:require('components/funComp/NavBottom.vue'),
     BindPhone:require('pages/BindPhone.vue'),
-    HomeQue:require('pages/consultant/HomeQue'),
   },
   data(){
     return{
