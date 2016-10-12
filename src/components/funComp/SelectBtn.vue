@@ -2,9 +2,9 @@
   <div class="wrapper select-body">
 	<div class="sel-title float-left">{{title}}</div>
 	<i class="sel-img iconfont" :style="{color:IconColor}">&#xe60d;</i>
-  	<select class="select-text"name="dad" id="">
-  	  <option value ="placeholder" style="color:#bbb">请选择</option>
-      <option value ="value"  v-for="value in values">{{value}}</option>
+  	<select class="select-text" :name="name" :id="id" style="width:4.1rem;">
+  	  <option value ="placeholder" selected="selected" style="color:#bbb">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;请选择</option>
+      <option :value ="value"  v-for="value in values">{{value}}</option>
     </select>
   </div>
 </template>
@@ -21,8 +21,10 @@ import Evaluation from 'pages/home/Evaluation.vue'
     	NavHeader,FuncNav,QuestionList,Reading,Choice,Evaluation
     },
     props:{
-    	values:{type:Array,default:["fdsf","2","3","dd"]},
+    	// values:{type:Array,default:["fdsf","2","3","dd"]},
     	title:{type:String,default:"姓名"},
+      name:{type:String},
+      id:{type:String}
     },
     data(){
       return{
@@ -31,6 +33,7 @@ import Evaluation from 'pages/home/Evaluation.vue'
         queList: [],
         readList: [],
         evaList: [],
+        // select_width:'2.25rem'
         // datas:[12,13,14,15] 
       }
     },
@@ -38,8 +41,19 @@ import Evaluation from 'pages/home/Evaluation.vue'
       
       
     },
-    ready(){
+    compiled(){
+      
+    },
+    attached(){
 
+    },
+    ready(){
+      var currSelectValue = document.all.objSelect.value; 
+
+      // if(currSelectText!="请选择"){
+      //   this.select_width='4.0rem';
+      // }
+      console.log(currSelectValue)
     }
   }
 </script>

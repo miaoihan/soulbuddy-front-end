@@ -11,6 +11,7 @@
     </div>  -->
      <!-- <nav-header :head-data="headData"></nav-header> -->
      <router-view v-if="is_bind && token"></router-view>
+     <!-- <profile></profile> -->
      <nav-bottom></nav-bottom>
   </div>
 </template>
@@ -21,6 +22,8 @@ export default {
     NavHeader:require('components/funComp/NavHeader.vue'),
     NavBottom:require('components/funComp/NavBottom.vue'),
     BindPhone:require('pages/BindPhone.vue'),
+    PersonMsg:require('pages/me/PersonMsg.vue'),
+    Profile:require('pages/me/Profile.vue')
   },
   data(){
     return{

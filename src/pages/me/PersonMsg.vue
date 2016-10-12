@@ -1,9 +1,10 @@
 <template>
 <nav-header title="编辑个人资料" left="back" right=""></nav-header>
   <div class="wrapper">
-    <div class="person-photo1">
+    <div class="person-photo1" id="per-photo">
     	<img class="photo-img" :src="PersonPhoto" >
     	<div class="sub-photo">
+        <input type="file" class="getphoto">
     		<i class="iconfont craicon">&#xe60c;</i>
     		<span class="sub-text">上传真实头像</span>
     	</div>
@@ -24,12 +25,12 @@
    		<textarea class="inputarea" name="personlable" placeholder="输入我的擅长标签（用分号隔开，如：抑郁症；焦虑症；自杀倾向）"></textarea>
    	</div>
    	<span class="lab-name">
-   		擅长标签
+   		自我评价
    	</span>
    	<div class="textarea">
    		<textarea class="inputarea" maxlength="150" name="evaluation" placeholder="请填写自我评价（最多150个字）"></textarea>
    	</div>
-   	<div class="save-box">
+   	<div class="save-box far-bom">
    		<input class="save-body" type="submit" value="保存" name="savemsg">
    	</div>
    	</form>
@@ -76,6 +77,24 @@ export default {
         });
       console.log("user:",this.person)
   },
+  methods:{
+      addPhoto(){ 
+        var prevDiv = document.getElementById("photos");        
+        var fileInput = document.getElementById('tt');
+        // console.log(fileInput);
+        var reader = new FileReader();
+        reader.onload = function(evt){
+                console.log(prevDiv)
+                var child=document.createElement("div");
+                // console.log(evt.target.result)
+              child.innerHTML = '<div style="overflow:hidden;height:3.0rem;width:3.0rem;border-radius: 0.3rem;background-color:#eee;margin-right:1rem;margin-bottom:0.5rem;float:left"><img src="' + evt.target.result + '" /></div>';
+              prevDiv.appendChild(child)
+            
+            }
+      reader.readAsDataURL(fileInput.files[0]);
+        this.num=this.num+1;
+      },
+    },
 }
 </script>
 
@@ -103,6 +122,11 @@ input::-webkit-input-placeholder {text-align:right}
 	right:0.75rem;
 	// display:block;
 	
+}
+.getphoto{
+  position:absolute;
+  opacity:0; 
+  width:100%;
 }
 .sub-text{
 	float:right
