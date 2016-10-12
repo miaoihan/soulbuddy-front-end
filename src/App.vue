@@ -1,6 +1,5 @@
 <template>
 <div id="app">
-    <wenda></wenda>
     <div v-if="bind && token">
     <!-- <div v-if="token"> -->
      <router-view :identityb.sync="identity"></router-view>
