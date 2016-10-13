@@ -55,11 +55,6 @@
     },
     methods:{
     	addPhoto(){	
-    		// let num = this.num
-    		// this.ids.push(num);
-    		// console.log('num is:',num);
-    		// let item = "photo"+num;
-    		// console.log('id is:',item);
     		var prevDiv = document.getElementById("photos");    		
     		var fileInput = document.getElementById('tt');
     		// console.log(fileInput);
@@ -72,13 +67,6 @@
             	prevDiv.appendChild(child)
             
             }
-            // prevDiv.innerHTML = '<div style="overflow:hidden;height:3.0rem;width:3.0rem;border-radius: 0.3rem;background-color:#eee;margin-right:1rem;float:left" class="photo-box float-left" ><img src="' + evt.target.result + '" /></div>';
- //            overflow:hidden
-	// height 3.0rem
-	// width 3.0rem
-	// border-radius 0.3rem
-	// background-color #eee
-	// margin-right 1rem
 			reader.readAsDataURL(fileInput.files[0]);
     		this.num=this.num+1;
     	},

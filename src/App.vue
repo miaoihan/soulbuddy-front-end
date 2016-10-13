@@ -1,15 +1,6 @@
 <template>
 <div id="app">
-    <div v-if="bind && token">
-    <!-- <div v-if="token"> -->
-     <router-view :identityb.sync="identity"></router-view>
-     <nav-bottom :identityb.sync="identity"></nav-bottom>
-    </div>
-    <div v-if="!bind">
-      <bind-phone :bind.sync="bind"></bind-phone>
-    </div> 
-     <!-- <router-view v-if="token"></router-view>
-     <nav-bottom v-if="bind"></nav-bottom> -->
+    
   </div>
 </template>
 
@@ -153,6 +144,13 @@ export default {
 * 公共样式部分
 *
 **/
+.margin-right-30{
+  margin-right:1.5rem
+}
+.fixed-bot{
+  position fixed
+  margin-bottom 2.5rem
+}
 .text-center{
   text-align: center //文字水平居中
 }

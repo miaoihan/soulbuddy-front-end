@@ -9,7 +9,7 @@
     		<span class="sub-text">上传真实头像</span>
     	</div>
     </div>
-    <form action="post">
+    <form action="" method="post">
     <input-box title="真实姓名" 
     	placeholder='请填写' 
     	title-color="black" text-color="black"
@@ -30,7 +30,7 @@
    	<div class="textarea">
    		<textarea class="inputarea" maxlength="150" name="evaluation" placeholder="请填写自我评价（最多150个字）"></textarea>
    	</div>
-   	<div class="save-box far-bom">
+   	<div class="save-box" style="margin-bottom:0rem">
    		<input class="save-body" type="submit" value="保存" name="savemsg">
    	</div>
    	</form>

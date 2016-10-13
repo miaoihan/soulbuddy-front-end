@@ -3,7 +3,7 @@
   				id="navHeader" :class="{fixed: fixed}">
   	<!-- 导航左部分	 -->
 	  <span class="nav-left">
-	  	<a v-link="'/home/search'">
+	  	<a v-link="'/home/search'" style="color:#fff" v-if="title=='新灵伙伴'">
 	  		<i class="iconfont" v-if="title=='新灵伙伴'">&#xe600;</i>
 	  	</a><!-- 搜索图标 -->
 	  	<i class="iconfont icon-icon27" v-if="left=='cancel' "
@@ -21,8 +21,16 @@
 	  	<a class="next-btn" v-if="title=='我的评测'"
 	  			v-link="url">重新评测</a>
 	  	<input type="submit" class="next-btn" v-if="title=='编辑个人资料'" value="保存" name="save_btn">
-	  	<i class="iconfont" class="r-func" v-if="title==''">&#xe62c;</i><!-- 分享图标 -->
-	  	<i class="iconfont" class="r-func" v-if="title==''">&#xe606;</i><!-- 收藏图标 -->  	
+	  	
+	  	<i class="iconfont margin-right-30" class="r-func" 
+	  	v-if="title==''&&collected==false" @click="Collect">&#xe606;</i>
+	  	<i class="iconfont margin-right-30" class="r-func" style="color:red;" 
+	  	v-if="title==''&&collected==true" @click="Collect">&#xe633;</i>
+	  	<div class="collect-num-body" v-if="fav_count>1&&collected==true">
+	  	<sapn class="collect-num">{{fav_count}}</sapn>
+	  	</div>
+	  	<!-- 收藏图标 -->
+	  	<i class="iconfont" class="r-func" v-if="title==''">&#xe62c;</i><!-- 分享图标 -->  	
 	  	<i class="iconfont" class="r-func" v-if="title=='问题详情'">&#xe62d;</i><!-- 三个点 --> 
 	  	<a class="btn-nav" v-if="title=='新灵伙伴'"
 	  		 v-link="{path: '/ask'}">提问</a>
@@ -44,10 +52,20 @@
 
 <script>
   export default{
+  	data(){
+  		return{
+  			collected:false,
+  			fav_count:0,
+  		}
+  	},
 		props:{
 			title:{
 				type: String,
 				default: ''
+			},
+			fav_count:{
+				type:String,
+				default:0
 			},
 			fixed:{
 				type: Boolean,
@@ -74,7 +92,13 @@
 					window.history.go(-1)
 				}
 				
+			},
+			Collect(){
+				this.collected=!this.collected
 			}
+		},
+		ready(){
+
 		},
 
     components: {}
@@ -84,6 +108,21 @@
 
 <style scoped lang="stylus">
 @import '../../assets/stylus.styl'
+.collect-num-body{
+	position absolute
+	height 0.75rem
+	width 0.75rem
+	border-radius 0.75rem
+	top: 0.5rem;
+    right: 2.3rem;
+	background $ztc
+	// text-align: center
+	line-height 0.75rem
+}
+.collect-num{
+	font-size 0.6rem
+	margin-left 0.1rem
+}
 .nav-header
 	height 2.2rem
 	line-height: 2.2rem
