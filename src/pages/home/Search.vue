@@ -7,7 +7,8 @@
   			<input class="input-ser" type="text" v-model="search_title">
   		</div>  		
   	</div>
-	<a class="back" onclick="window.history.go(-1)">取消</a>
+	<a class="back" v-if="search_title==''" onclick="window.history.go(-1)">取消</a>
+	<a class="back" v-if="search_title!=''" @click="SearchBtn">确定</a>
   </header>
   <serch-list :data="search_list" style="background-color:#fff"></serch-list>
   <!-- <p>{{search_title}}</p> -->
@@ -29,7 +30,8 @@ import SerchList from 'pages/home/SerchList.vue'
     data(){
     	return{
     		search_list:[],
-    		search_title:""
+    		search_title:"",
+    		// btn_name:"取消"
     	}  	
     },
     ready(){
@@ -75,13 +77,14 @@ import SerchList from 'pages/home/SerchList.vue'
 	height 1.4rem
 	width 80.5%
 	// margin-left 0.25rem
-	background-color #2499ca
+	background-color #fff
 .sear-img
 	opacity 0.8
 	float left
 	margin-left 0.6rem
 	margin-top 0.1rem
 	font-size 0.8rem
+	color black
 .input-body-head{
 	
 	margin-left 1.8rem
@@ -95,8 +98,9 @@ import SerchList from 'pages/home/SerchList.vue'
 	border-radius 0.25rem
 	width 100%
 	height 100%
-	background-color #2499ca
+	background-color #fff
 	font-size 0.7rem
+	color black
 .back
 	float right
 	width 1.6rem

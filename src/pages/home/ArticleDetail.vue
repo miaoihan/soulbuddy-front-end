@@ -1,6 +1,6 @@
 <template>
 <!-- 文章详情 -->
-<nav-header left="back"></nav-header>
+<nav-header left="back" :fav-count="data.fav_count" :fav-id="data.art_id" :fav-type="3"></nav-header>
    <div class="wrapper">
    		<!-- 文章头部 -->
       <section class="art-top ztc">
@@ -40,7 +40,7 @@ import NavHeader from 'components/funComp/NavHeader'
      data(){
      	return{
      		tips:'本网站所有注明“来源：丁香园”的文字、图片和音视频资料，版权均属于丁香园所有，非经授权，任何媒体、网站或个人不得转载',
-        tags:[]
+        tags:[],
      	}
      },
      props:{
