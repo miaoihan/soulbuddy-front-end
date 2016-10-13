@@ -17,6 +17,9 @@ var routes = {
   '/home/evaluation': {
     component: require('pages/home/Evaluation.vue')
   },
+  '/home/search': {
+    component: require('pages/home/Search.vue')
+  },
   '/science': {
     component: require('pages/home/Science.vue')
   },
@@ -82,9 +85,6 @@ var routes = {
   'me/history':{
     component:require('pages/me/History.vue')
   },
-  'me/listen':{
-    component:require('pages/me/Listen.vue')
-  },
   '/setting/profile': {
     name: 'setme',
     component: require('pages/me/Profile.vue')
@@ -92,8 +92,8 @@ var routes = {
   '/consultants': {
     component: require('pages/consultant/Consultant.vue')
   },
-  '/wenda': {
-    component: require('pages/consultant/HomeQue.vue')
+  '/consultants': {
+    component: require('pages/consultant/Consultant.vue')
   },
   '/user/:id': {
     name: 'user',

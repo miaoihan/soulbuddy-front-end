@@ -131,6 +131,13 @@ export default {
 * 公共样式部分
 *
 **/
+.margin-right-30{
+  margin-right:1.5rem
+}
+.fixed-bot{
+  position fixed
+  margin-bottom 2.5rem
+}
 .text-center{
   text-align: center //文字水平居中
 }

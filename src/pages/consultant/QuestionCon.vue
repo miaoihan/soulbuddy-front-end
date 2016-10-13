@@ -3,15 +3,15 @@
   <div class="que-content wrapper">
     <question-card :data="datas" type="public" :is-content=true></question-card>
   </div>
-  <div class="bottom-record wrapper">
+  <div class="bottom-record wrapper fixed-bot">
     <div class="record-box" v-if="isbox===true">
       <div class="record-left">
         <i class="iconfont record-icon" @click="recordbgn" v-if="isStart===false">&#xe610;</i>
         <i class="iconfont record-icon2" @click="recordfin" v-if="isStart===true">&#xe614;</i>
       </div>
       <div class="record-right">
-        <span class="hint-text" v-if="isStart===false">点击一下，开始录音</span>
-        <span class="hint-text" v-if="isStart===true">再次点击结束录音</span>
+        <span class="hint-text" v-if="isStart==false">点击一下，开始录音</span>
+        <span class="hint-text" v-if="isStart==true">再次点击结束录音</span>
         <span class="time">0:00</span>
       </div>
     </div>
@@ -24,7 +24,7 @@
       </span>
     </button>
   </div>
-  <div class="bottom-record wrapper" v-if="isFinish===true">
+  <div class="bottom-record wrapper fixed-bot" v-if="isFinish===true">
     <div class="record-box  font-center">
       <span class="shiting-text">点击试听</span>
       <div class="test-voice">
