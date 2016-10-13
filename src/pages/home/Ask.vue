@@ -80,7 +80,6 @@
 	  	}
 	  },
 	  created(){
-	  	this.sub = this.subAndCheck
 	  	this.token = global.token
 	  	// console.log(this.sub)
 	  	// console.log(this.subAndCheck)

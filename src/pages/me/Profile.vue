@@ -1,13 +1,14 @@
 <template>
-<nav-header title="编辑个人资料" left="back" :method="subme"></nav-header>
+<nav-header title="编辑个人资料" left="back" :method="subAndCheck2"></nav-header>
 <div class="far-bom">
 <form action="http://xinling.songtaxihuan.com/user/edit_info" method="post" id="editform">
   <input type="hidden" name="token" :value="token">
-  <input type="hidden" name="serverId" :value="serverId">
+  <input type="hidden" name="serverId" :value="serverId" id="sid">
+  <!-- {{serverId}} -->
   <div class="top wrapper">
   <!-- 头像 -->
     <div class="person-photo-pro wrapper" id="avator">
-      <img :src="logo" alt="" class="avator" id="logo">
+      <img :src="logo" alt="" class="avator" id="logo" name="logo">
     </div>
     <div class="nik-body wrapper">
       <div class="nikname wrapper">
@@ -64,15 +65,8 @@ import NavHeader from 'components/funComp/NavHeader';
         mobile:"",
         logo: '',
         token: '', 
+        index: 2
       }
-    },
-    props:{
-      // values:{
-      //   type:Array,
-      //   default(){
-      //     return["ada","asdf","adf"] 
-      //   }      
-      // },
     },
     ready(){
       // console.log(global.user.mobile)
@@ -81,8 +75,8 @@ import NavHeader from 'components/funComp/NavHeader';
       this.logo = global.user.logo
       this.token = localStorage.token
 
-    $('#avator').click(function () {
-      // alert(2111)
+      document.querySelector('#avator').onclick = function () {
+        var that = this
         wx.chooseImage({
             count: 1, // 默认9
             sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -92,22 +86,22 @@ import NavHeader from 'components/funComp/NavHeader';
                 let localId = res.localIds.toString();
                 $('#logo').attr('src',res.localIds);
                 // alert(this.localId)
-                console.log(this.localId)
+                // alert('chenggong:' +that.serverId)
                 setTimeout(function () {
                     wx.uploadImage({
                         localId: localId, // 需要上传的图片的本地ID，由chooseImage接口获得
                         isShowProgressTips: 1, // 默认为1，显示进度提示
                         success: function (res) {
                             console.log(res.serverId);// 返回图片的服务器端ID
-                            this.serverId = res.serverId
+                            that.serverId = res.serverId
+                            // alert('zhi:' +this.serverId)
+                            // $('#sid').val(res.localIds);
                         }
                     });
                 }, 100);
             }
         });
-    });
-      
-      
+      }
     },
     compiled(){
       for (var i = 1; i <= 100; i++) {
@@ -116,22 +110,76 @@ import NavHeader from 'components/funComp/NavHeader';
       // console.log("arr is",this.age);
     },
     methods:{
+      chose(){
+        // alert(2111)
+        // 指向this
+        
+        wx.chooseImage({
+            count: 1, // 默认9
+            sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+            sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+            success: function (res) {
+                // alert(3333)
+                let localId = res.localIds.toString();
+                $('#logo').attr('src',res.localIds);
+                // alert(this.localId)
+                // alert('chenggong:' +that.serverId)
+                setTimeout(function () {
+                    wx.uploadImage({
+                        localId: localId, // 需要上传的图片的本地ID，由chooseImage接口获得
+                        isShowProgressTips: 1, // 默认为1，显示进度提示
+                        success: function (res) {
+                            console.log(res.serverId);// 返回图片的服务器端ID
+                            that.serverId = res.serverId
+                            // alert('zhi:' +this.serverId)
+                            // $('#sid').val(res.localIds);
+                        }
+                    });
+                }, 100);
+            }
+        });
+        // setTimeout(function(){this.serverId = serverId;alert(this.serverId)},180)
+      },
       handleclick(){
         // document.getElementById('user-name').focus();
         var obj=document.getElementById('user-name');
         obj.focus(); 
         var len = obj.value.length; 
         if (document.selection) { 
-        var sel = obj.createTextRange(); 
-        sel.moveStart('character',len); 
-        sel.collapse(); 
-        sel.select(); 
+          var sel = obj.createTextRange(); 
+          sel.moveStart('character',len); 
+          sel.collapse(); 
+          sel.select(); 
         } else if (typeof obj.selectionStart == 'number' && typeof obj.selectionEnd == 'number') { 
         obj.selectionStart = obj.selectionEnd = len; 
         }
       },
-      subme(){
-        alert('sub')
+      subAndCheck2(){
+        if($('[name="user_name"]').val()===''){
+          alert('昵称不能为空！')
+          return false 
+        }
+        if($('[name="serverId"]').val()===''){
+          alert('头像不能为空！')
+          return false 
+        }
+        if($('[name="borth_date"]').val()===''){
+          alert('年龄不能为空！')
+          return false 
+        }
+        if($('[name="sex"]').val()===''){
+          alert('性别不能为空！')
+          return false 
+        }
+        if($('[name="education"]').val()===''){
+          alert('学历不能为空！')
+          return false 
+        }
+        if($('[name="marital_status"]').val()===''){
+          alert('婚姻不能为空！')
+          return false 
+        }
+        else{
         $.ajax({
             url: global.domain +"/user/edit_info",
             type:'post', 
@@ -143,9 +191,10 @@ import NavHeader from 'components/funComp/NavHeader';
               this.$router.go('/me')
             }.bind(this),
             error: function(xhr, status, err) {
-              console.err(err.toString())
+              console.error(err.toString())
             }.bind(this)
           });
+        }
       }
     }
   }

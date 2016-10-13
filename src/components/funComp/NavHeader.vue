@@ -24,8 +24,6 @@
 	  	<div type="submit" class="next-btn" v-if="title=='编辑个人资料'"
 	  			 @click="method">保存</div>
 
-	  	<input type="submit" class="next-btn" v-if="title=='编辑个人资料'" value="保存" name="save_btn">
-	  	
 	  	<!-- 收藏 -->
 	  	<i class="iconfont margin-right-30" class="r-func" 
 	  	   v-if="title==''&&collected==false" @click="Collect">&#xe606;</i>
@@ -35,7 +33,7 @@
 	  	<sapn class="collect-num">{{fav_count}}</sapn>
 	  	</div>
 	  	<!-- 收藏图标 -->
-	  	
+
 	  	<i class="iconfont" class="r-func" v-if="title==''">&#xe62c;</i><!-- 分享图标 -->  
 	  	<i class="iconfont" class="r-func" v-if="title=='问题详情'">&#xe62d;</i><!-- 三个点 --> 
 	  	<a class="btn-nav" v-if="title=='新灵伙伴'"
@@ -61,7 +59,6 @@
   	data(){
   		return{
   			collected:false,
-  			fav_count:0,
   		}
   	},
 		props:{

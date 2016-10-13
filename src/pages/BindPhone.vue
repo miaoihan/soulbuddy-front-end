@@ -44,7 +44,7 @@ export default {
     }
   },
   props: {
-    bind: { type: Boolean, default: null },
+    bind: { type: Boolean, default: false },
   },
   methods:{
     sendCode(){
