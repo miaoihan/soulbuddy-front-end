@@ -16,7 +16,8 @@
 				</h1>
 				<div class="a-content over-2">
 					<!-- content自带标签 -->
-					{{{data.content}}}
+					{{{data.content | passAll}}}
+
 				</div>
 			</div>
 		</a>

@@ -1,4 +1,4 @@
-<template>
+passImg<template>
   <div>
   	<div class="swiper wrapper">
       <roll-card :data="swiperList"></roll-card>
@@ -81,7 +81,7 @@
           dataType: 'json',
           cache: true,
           data:{
-          	token: global.token
+          	token: localStorage.token
           },
           success: function(data) {
           	this.queList = data.data;

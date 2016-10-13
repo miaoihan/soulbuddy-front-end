@@ -21,7 +21,7 @@ import Evaluation from 'pages/home/Evaluation.vue'
     	NavHeader,FuncNav,QuestionList,Reading,Choice,Evaluation
     },
     props:{
-    	// values:{type:Array,default:["fdsf","2","3","dd"]},
+    	values:{type:Array,default:[]},
     	title:{type:String,default:"姓名"},
       name:{type:String},
       id:{type:String}
@@ -48,12 +48,12 @@ import Evaluation from 'pages/home/Evaluation.vue'
 
     },
     ready(){
-      var currSelectValue = document.all.objSelect.value; 
+      // var currSelectValue = document.all.objSelect.value; 
 
       // if(currSelectText!="请选择"){
       //   this.select_width='4.0rem';
       // }
-      console.log(currSelectValue)
+      // console.log(currSelectValue)
     }
   }
 </script>

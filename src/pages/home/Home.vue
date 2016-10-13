@@ -54,8 +54,8 @@ import Evaluation from 'pages/home/Evaluation.vue'
         });
     },
     ready(){
-      console.log(global.domain)
-      console.log(global.token)
+      // console.log(global.domain)
+      console.log(localStorage.token+'tttttttttt')
       // 问答列表
       $.ajax({
           url: global.domain +'/question/get_question_list',
@@ -64,7 +64,7 @@ import Evaluation from 'pages/home/Evaluation.vue'
           // cache: true,
           data:{
             page: 1,
-            token: global.token
+            token: localStorage.token
           },
           success: data => this.queList = data.data,
           error: err => console.error(err.toString())
@@ -82,7 +82,7 @@ import Evaluation from 'pages/home/Evaluation.vue'
           dataType: 'json',
           data:{
             page: 1,
-            token: global.token
+            token: localStorage.token
           },
           success: data => this.evaList = data.data,
           error: err => console.error(err.toString())

@@ -1,6 +1,7 @@
 <template>
 <div id="app">
     <div v-if="bind && token">
+    <!-- <div v-if="token"> -->
      <router-view :identityb.sync="identity"></router-view>
      <nav-bottom :identityb.sync="identity"></nav-bottom>
     </div>
@@ -25,7 +26,7 @@ export default {
       // is_login: false,
       // is_new: true,
       bind: true,
-      token: '', //做判断用，有了token才渲染
+      token: false, //做判断用，有了token才渲染
       weixin: [],
       identity: 0,
     }
@@ -42,59 +43,66 @@ export default {
     } 
   },
   created(){
-  	var code = this.getUrlParam('code');
-    //storage存储全局数据
+    //storage存储
     var ku = window.localStorage
-    ku.domain = 'http://xinling.songtaxihuan.com'
-    this.token = ku.token
+    //定义全局数据
     global.domain = 'http://xinling.songtaxihuan.com'
-   
-
-    // if (!ku.token) {
-      // alert(2222)
-      
+    //定义域名，跳转需要
+    const url = 'http://han.s3.natapp.cc/home'
+    // 1.获取code
+    var code = this.getUrlParam('code');
+    // alert(code)
+    if(!code) {
+      // alert('请在微信客户端打开应用');
+      // document.body.innerHTML = '请在微信客户端打开此应用';
+      return;
+    }
+    // 本地测试用token
+    // $.ajax({
+    //       url: global.domain +'/test/test?uid=3',
+    //       type:'get', 
+    //       dataType: 'json',
+    //       // async: false,
+    //       success: data => {global.token = data.data},
+    //       error: err => console.error(err)
+    //     });
+    console.log(ku.token)
+    if (!ku.token) {
       // 微信登录部分
-      //第二次页面没有code，全局user失效
       $.ajax({
-        url: localStorage.domain +'/register/reguser',
-        type:'POST', dataType: 'json',async:'false',
+        url: global.domain +'/register/reguser',
+        type:'POST', dataType: 'json',
         data:{ code:code },success: v => {
-          if(v.msg=='获取code失败') return
           // console.log(v)
-          // alert('ajax:'+code)
-          // global.user = v.data.userinfo;
-          // console.log(global.user+'*******')
-          // alert(global.user)
+          global.user = v.data.userinfo;
+          console.log(global.user)
           // 判断是否绑定了手机
-          let phone = v.data.userinfo.mobile
           // 如果没有绑定，跳转到绑定手机页面
-          if(!phone) {
+          if(!v.data.userinfo.mobile) {
             this.bind = false;
             // console.log(this.$router)
             // this.$router.go({path:url})
-            location.href = 'http://han.s3.natapp.cc/#!/bind'
           }
           // 绑定过，直接登录
           else {
             this.bind = true;
             this.userinfo = v.data.userinfo;
-            location.href = 'http://han.s3.natapp.cc/#!/home'
+            location.href = url
             // this.is_new = v.data.is_new;
           }
           // 登陆后存储用户信息
           ku.token = v.data.token;
-          // this.token = true
+          this.token = true
         },
             error: err => console.log(err.toString())
         });
-      // };
-      //定义域名，跳转需要
-    
+      }
+
       // 配置微信jssdk
       $.post( global.domain +'/thirdparty/wechat', 
           {'url': location.href.split('#')[0]},function (res) {
             wx.config({
-                debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
                 appId: res.data.appId, // 必填，公众号的唯一标识
                 timestamp: res.data.timestamp, // 必填，生成签名的时间戳
                 nonceStr: res.data.nonceStr, // 必填，生成签名的随机串
@@ -105,20 +113,26 @@ export default {
 
   },
   ready(){
-    $.ajax({
-        url: localStorage.domain +'/user/get_my_info',
-        type:'POST', dataType: 'json',
-        data:{ token:localStorage.token },success: v => {
-          global.user = v.data.userinfo
-        },
-            error: err => console.log(err.toString())
-        });
-    
-      
-    // alert(this.$route.path)
     // 微信配置
+      console.log('wx: '+this.weixin)
+      wx.ready(function(){
+          // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
+          alert('成功')
 
-      
+          // 4 音频接口
+          // 4.2 开始录音
+          document.querySelector('#avator').onclick = function () {
+            wx.chooseImage({
+              count: 1, // 默认9
+              sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+              sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+              success: function (res) {
+                  var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+                  this.avator = localIds
+              }
+          });
+          };
+      });
   }
 
 }

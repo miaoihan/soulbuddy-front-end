@@ -1,5 +1,5 @@
 <template>
-<nav-header title="收藏"></nav-header>
+<nav-header title="收藏" left="back"></nav-header>
   <div>
   	<ul class="nav-tab">
   		<li :class="{active: index == 1}"

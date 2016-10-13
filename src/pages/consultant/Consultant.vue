@@ -31,7 +31,7 @@
           dataType: 'json',
           cache: true,
           data:{
-          	token: global.token,
+          	token: localStorage.token,
           	page: 1,
           	identity: 1
           },
@@ -50,7 +50,7 @@
           dataType: 'json',
           cache: true,
           data:{
-          	token: global.token,
+          	token: localStorage.token,
           	page: 1,
           	identity: 2
           },

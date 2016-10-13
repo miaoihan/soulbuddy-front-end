@@ -4,7 +4,7 @@
     <div class="person-msg-body">
     	<div class="person-msg-basic">
     		<div class="img-body">
-    			<img :src="person.logo" class="img-imgs">
+    			<img :src="user.logo" class="img-imgs">
     		</div>
     		<div class="person-msg-name">
     			<span class="name-text">{{user_name}}</span>
@@ -51,15 +51,15 @@ export default {
 	},
 	props:{
   		textColor:{type:String,default:"black"},
-	  	user:{
-	  		type:Array,
-	  		default(){
-	  			return{
-					UserType:'common',//用户当前的身份
-					isCounselor:true,//是否已经成为咨询师
-	  			}
-	  		}
-	  	},
+	  	// user:{
+	  	// 	type:Array,
+	  	// 	default(){
+	  	// 		return{
+				// 	UserType:'common',//用户当前的身份
+				// 	isCounselor:true,//是否已经成为咨询师
+	  	// 		}
+	  	// 	}
+	  	// },
 	  	hintnum:{type:Number,default:2},	
 	  	identityb:{type:Number,default:0},	    	
 	},
@@ -71,20 +71,23 @@ export default {
   		user_name:"",
   		fav_count:0,
   		identity: 0,
-  		isdaren: true
+  		isdaren: true,
+  		user: {}
     }
   },
   created(){
-  	
+  	$.post(global.domain +'/user/get_my_info',
+        { token: localStorage.token },
+        v => {global.user=v.data;this.user=v.data} ,'json');
   },
   ready:function(){
 	  	// 获取用户信息
 		  // this.identity = global.user.identity;
 		  // this.identityb = global.user.identity;
 		  console.log(this.identity);
-		  if(global.user.identity == 1) this.isdaren = true;
-		  this.user_name=global.user.user_name;
-		  this.fav_count=global.user.fav_count;
+		  if(this.user.identity == 1) this.isdaren = true;
+		  this.user_name=this.user.user_name;
+		  this.fav_count=this.user.fav_count;
 	  	// 我的提问
       $.ajax({
           url: 'http://xinling.songtaxihuan.com/user/get_my_question',
@@ -93,7 +96,7 @@ export default {
           cache: true,
           data:{
             page: 1,
-            token: global.token
+            token: localStorage.token
           },
           success: data => this.queList = data.data,
           error: err => err.toString()

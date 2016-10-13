@@ -64,7 +64,7 @@ export default {
     bindAndLogin(){
       if (this.checkPhone()) {
         $.post(global.domain +"/user/bindmobile", 
-            { token : global.token,
+            { token : localStorage.token,
               mobile: this.mobile,
               code  : this.code
                },
@@ -74,7 +74,8 @@ export default {
                 // 将手机号码添加到user
                 global.user['mobile'] = this.mobile
                 this.bind = true
-                this.$router.go({ path:'/home' })
+                // this.$router.go({ path:'/home' })
+                location.href = 'http://han.s3.natapp.cc/#!/home'
                 alert('验证成功！')
              }
              else{

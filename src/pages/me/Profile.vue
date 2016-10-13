@@ -1,15 +1,18 @@
 <template>
-<nav-header title="编辑个人资料" left="back"></nav-header>
+<nav-header title="编辑个人资料" left="back" :method="subme"></nav-header>
 <div class="far-bom">
-<form action="http://xinling.songtaxihuan.com/user/edit_info" method="post">
+<form action="http://xinling.songtaxihuan.com/user/edit_info" method="post" id="editform">
+  <input type="hidden" name="token" :value="token">
+  <input type="hidden" name="serverId" :value="serverId">
   <div class="top wrapper">
+  <!-- 头像 -->
     <div class="person-photo-pro wrapper" id="avator">
-      <img :src="avator" alt="" class="avator">
+      <img :src="logo" alt="" class="avator" id="logo">
     </div>
     <div class="nik-body wrapper">
       <div class="nikname wrapper">
-      <input id="user-name" name="user_name" class="nikname-val" style="width:5.0rem" :value="myinfo.user_name">
-        <!-- {{myinfo.user_name}} -->
+      <input id="user-name" name="user_name" class="nikname-val" style="width:5.0rem" :value="user.user_name">
+        {{user.user_name}}
       </div>
       <div class="border">   
       </div>
@@ -52,14 +55,15 @@ import NavHeader from 'components/funComp/NavHeader';
     },
     data(){
       return{
-        myinfo: {},
-        avator: '',
+        user: {},
+        serverId: '',
         age:[],
         sex:["男","女"],
         qualifications:["初中及以下","高中","大学及以上"],
         marriage:["单身","恋爱中","婚姻中","离异","分居","丧偶"],
         mobile:"",
-        logo:""   
+        logo: '',
+        token: '', 
       }
     },
     props:{
@@ -70,19 +74,38 @@ import NavHeader from 'components/funComp/NavHeader';
       //   }      
       // },
     },
-    created(){
-      
-    },
     ready(){
-
-      $.post(global.domain +'/user/get_my_info',
-        { token: global.token },
-        v => this.myinfo = v.data ,'json');
-
-      // this.phonenum = global.user.mobile;
+      // console.log(global.user.mobile)
+      this.user = global.user
       this.mobile = global.user.mobile
-      this.avator = global.user.logo
+      this.logo = global.user.logo
+      this.token = localStorage.token
 
+    $('#avator').click(function () {
+      // alert(2111)
+        wx.chooseImage({
+            count: 1, // 默认9
+            sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+            sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+            success: function (res) {
+                // alert(3333)
+                let localId = res.localIds.toString();
+                $('#logo').attr('src',res.localIds);
+                // alert(this.localId)
+                console.log(this.localId)
+                setTimeout(function () {
+                    wx.uploadImage({
+                        localId: localId, // 需要上传的图片的本地ID，由chooseImage接口获得
+                        isShowProgressTips: 1, // 默认为1，显示进度提示
+                        success: function (res) {
+                            console.log(res.serverId);// 返回图片的服务器端ID
+                            this.serverId = res.serverId
+                        }
+                    });
+                }, 100);
+            }
+        });
+    });
       
       
     },
@@ -106,6 +129,23 @@ import NavHeader from 'components/funComp/NavHeader';
         } else if (typeof obj.selectionStart == 'number' && typeof obj.selectionEnd == 'number') { 
         obj.selectionStart = obj.selectionEnd = len; 
         }
+      },
+      subme(){
+        alert('sub')
+        $.ajax({
+            url: global.domain +"/user/edit_info",
+            type:'post', 
+            dataType: 'json',
+            cache: true,
+            data: $('#editform').serialize(),//序列化
+            success: function(data) {
+              // console.log( data);  
+              this.$router.go('/me')
+            }.bind(this),
+            error: function(xhr, status, err) {
+              console.err(err.toString())
+            }.bind(this)
+          });
       }
     }
   }

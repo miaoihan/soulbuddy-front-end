@@ -5,9 +5,9 @@ var routes = {
   '/bind': {
     component: require('pages/BindPhone.vue')
   },
-  '/': {
-    component: require('pages/home/Home.vue')
-  },
+  // '/': {
+  //   component: require('pages/home/Home.vue')
+  // },
   'search/get_search_list': {
     component: require('pages/home/SerchList.vue')
   },
