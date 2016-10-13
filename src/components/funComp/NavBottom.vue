@@ -4,9 +4,17 @@
       <i class="iconfont icon-htmal5icon06"></i>
       <span class="tab-label">首页</span>
     </a>
-    <a v-link="'/consultants'" class="tab-item external " :class="{ active: index === 1 }" @click="changClass(1)">
+    <a v-link="'/consultants'" class="tab-item external " 
+       :class="{ active: index === 1 }" @click="changClass(1)"
+       v-if="identityb === 0">
       <i class="iconfont icon-zixun-copy"></i>
       <span class="tab-label">咨询</span>
+    </a>
+    <a v-link="'/wenda'" class="tab-item external " 
+       :class="{ active: index === 1 }" @click="changClass(1)"
+       v-if="identityb === 1">
+      <i class="iconfont">&#xe630;</i>
+      <span class="tab-label">问答</span>
     </a>
     <a v-link="'/me'" class="tab-item external " :class="{ active: index === 2 }" @click="changClass(2)">
       <i class="iconfont icon-iconfontwode" style="margin-top:3px"></i>
@@ -23,14 +31,16 @@ export default {
         index: 0
       }
     },
-    components: {},
+    props:{
+      identityb:{type:Number,default:0}, 
+    },
     methods: {
       changClass(id) {
         this.index = id;
       }
     },
     ready() {
-      // console.log(index);
+      // console.log(this.identity);
     },
     created() {
       var index = 0;

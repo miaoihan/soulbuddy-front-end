@@ -17,6 +17,9 @@ var routes = {
   '/home/evaluation': {
     component: require('pages/home/Evaluation.vue')
   },
+  '/home/search': {
+    component: require('pages/home/Search.vue')
+  },
   '/science': {
     component: require('pages/home/Science.vue')
   },

@@ -71,18 +71,7 @@ import NavHeader from 'components/funComp/NavHeader';
       // },
     },
     created(){
-      //获取微信js凭证
-      $.ajax({
-          url: global.domain +'/thirdparty/wechat',
-          type:'get', 
-          dataType: 'json',
-          async: false,
-          data:{
-            url: location.origin + location.search
-          },
-          success: data => {this.weixin = data.data;console.log(data)},
-          error: err => console.error(err)
-        });
+      
     },
     ready(){
 
@@ -95,36 +84,7 @@ import NavHeader from 'components/funComp/NavHeader';
       this.avator = global.user.logo
 
       
-      console.log('wx: '+this.weixin)
-      // 微信配置
-      wx.config({
-        debug: true,
-        appId: this.weixin.appId,
-        timestamp: this.weixin.timestamp,
-        nonceStr: this.weixin.nonceStr,
-        signature: this.weixin.signature,
-        jsApiList: [
-          'chooseImage',
-        ]
-      });
-      wx.ready(function(){
-          // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
-          alert('成功')
-
-          // 4 音频接口
-          // 4.2 开始录音
-          document.querySelector('#avator').onclick = function () {
-            wx.chooseImage({
-              count: 1, // 默认9
-              sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-              sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-              success: function (res) {
-                  var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
-                  this.avator = localIds
-              }
-          });
-          };
-      });
+      
     },
     compiled(){
       for (var i = 1; i <= 100; i++) {

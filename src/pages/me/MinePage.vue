@@ -16,23 +16,24 @@
     		</div>
     	</div>
     </div>
-    <div v-if="user.UserType==='counselor'">
+    <div v-if="identityb == 1">
     	<counselor-fun></counselor-fun>
     </div>
-    <div v-if="user.UserType==='common'">
+
+    <div v-if="identityb == 0">
     	<common-fun></common-fun>
     </div>
     <!-- <common-fun v-if="user.UserType===common"></common-fun> -->
 
-    <change-btn :btntext="btntext"
+    <change-btn :btntext="identityb == 0 ? '切换到咨询师身份' : '切换到普通用户' "
 	    					style="margin-top:1rem;padding-left:1rem;padding-right:1rem;background:#2b8ff7"
 								text-color="#fff" icon-color="#fff"
-								@click="handleClick" v-if="identity==1">
+								@click="handleClick" v-if="isdaren">
 	</change-btn>
 	<change-btn btntext="申请成为咨询师或经验答人"
 	    				style="margin-top:1rem;padding-left:1rem;padding-right:1rem;background:#fff"
 							text-color="#2b8ff7" 
-							v-if="identity==0"
+							v-if="!isdaren"
 			url="/me/apply"
 			>
 	</change-btn>
@@ -59,28 +60,31 @@ export default {
 	  			}
 	  		}
 	  	},
-	  	hintnum:{type:Number,default:2},	  	
+	  	hintnum:{type:Number,default:2},	
+	  	identityb:{type:Number,default:0},	    	
 	},
   data () {
     return {
     	btntext:"",
   		person:{},
   		queList: [],
-  		identity:0,
   		user_name:"",
-  		fav_count:0
+  		fav_count:0,
+  		identity: 0,
+  		isdaren: true
     }
   },
+  created(){
+  	
+  },
   ready:function(){
-  	if (this.user.UserType=="counselor") {
-  		this.btntext='切换到普通用户'
-  	}else if (this.user.UserType=="common") {
-  		this.btntext='切换到咨询师身份'
-  	}	
-  	// 获取用户信息
-	  this.identity=global.user.identity;
-	  this.user_name=global.user.user_name;
-	  this.fav_count=global.user.fav_count;
+	  	// 获取用户信息
+		  // this.identity = global.user.identity;
+		  // this.identityb = global.user.identity;
+		  console.log(this.identity);
+		  if(global.user.identity == 1) this.isdaren = true;
+		  this.user_name=global.user.user_name;
+		  this.fav_count=global.user.fav_count;
 	  	// 我的提问
       $.ajax({
           url: 'http://xinling.songtaxihuan.com/user/get_my_question',
@@ -94,6 +98,8 @@ export default {
           success: data => this.queList = data.data,
           error: err => err.toString()
         });
+
+
   },
 
   // destroyed:function(){
@@ -105,13 +111,8 @@ export default {
   // },
   methods:{
   	handleClick(){
-  		if (this.user.UserType=="counselor") {
-  			this.btntext='切换到咨询师身份';
-  			this.user.UserType="common"
-  		}else if (this.user.UserType=="common") {
-  			this.btntext='切换到普通用户';
-  			this.user.UserType="counselor"
-  		}
+  		if (this.identity == 1) {this.identity = 0;this.identityb = 0}
+  		else if (this.identity == 0) {this.identity = 1;this.identityb = 1}
   	}
   }
 }

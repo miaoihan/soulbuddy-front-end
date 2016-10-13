@@ -20,8 +20,8 @@
 	  			v-link="url">下一步</a>
 	  	<a class="next-btn" v-if="title=='我的评测'"
 	  			v-link="url">重新评测</a>
-	  	<input type="submit" class="next-btn" v-if="title=='编辑个人资料'" value="保存" name="">
-	  	<!-- <i class="iconfont" class="r-func" v-if="title==''">&#xe62c;</i> --><!-- 分享图标 -->
+	  	<input type="submit" class="next-btn" v-if="title=='编辑个人资料'" value="保存" name="save_btn">
+	  	<i class="iconfont" class="r-func" v-if="title==''">&#xe62c;</i><!-- 分享图标 -->
 	  	<i class="iconfont" class="r-func" v-if="title==''">&#xe606;</i><!-- 收藏图标 -->  	
 	  	<i class="iconfont" class="r-func" v-if="title=='问题详情'">&#xe62d;</i><!-- 三个点 --> 
 	  	<a class="btn-nav" v-if="title=='新灵伙伴'"
