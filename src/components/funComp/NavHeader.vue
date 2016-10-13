@@ -20,20 +20,17 @@
 	  			v-link="url">下一步</a>
 	  	<a class="next-btn" v-if="title=='我的评测'"
 	  			v-link="url">重新评测</a>
-
 	  	<div type="submit" class="next-btn" v-if="title=='编辑个人资料'"
 	  			 @click="method">保存</div>
-
 	  	<!-- 收藏 -->
 	  	<i class="iconfont margin-right-30" class="r-func" 
-	  	   v-if="title==''&&collected==false" @click="Collect">&#xe606;</i>
+	  	v-if="title==''&&collected==false" @click="subme">&#xe606;</i>
 	  	<i class="iconfont margin-right-30" class="r-func" style="color:red;" 
-	  	   v-if="title==''&&collected==true" @click="Collect">&#xe633;</i>
-	  	<div class="collect-num-body" v-if="fav_count>1&&collected==true">
-	  	<sapn class="collect-num">{{fav_count}}</sapn>
+	  	v-if="title==''&&collected==true" @click="Collect">&#xe633;</i>
+	  	<div class="collect-num-body" v-if="FavCount>1&&title==''">
+	  	<sapn class="collect-num">{{FavCount}}</sapn>
 	  	</div>
 	  	<!-- 收藏图标 -->
-
 	  	<i class="iconfont" class="r-func" v-if="title==''">&#xe62c;</i><!-- 分享图标 -->  
 	  	<i class="iconfont" class="r-func" v-if="title=='问题详情'">&#xe62d;</i><!-- 三个点 --> 
 	  	<a class="btn-nav" v-if="title=='新灵伙伴'"
@@ -66,21 +63,22 @@
 				type: String,
 				default: ''
 			},
-			fav_count:{
+			FavCount:{
 				type:String,
-				default:0
 			},
 			fixed:{
 				type: Boolean,
 				default: false
 			},
 			url:{type:String},
+			right:{type:String,default:true},
 			left:{type:String,default:''},
-			right:{type:Boolean,default:true},
 			iscst:{ type: Boolean },
 			ispub:{ type: Boolean },
 			identity: { type: Number, default: 1 },
 			method: { type: Function },
+			FavType:{type:Number},
+			FavId:{type:Number},
 		},
 		methods:{
 			click(i){
@@ -97,8 +95,28 @@
 				
 			},
 			Collect(){
-				this.collected=!this.collected
-			}
+				// this.collected=!this.collected
+			},
+			subme(){				
+	        	$.ajax({
+		            url: global.domain +"/user/add_favorite",
+		            type:'post', 
+		            dataType: 'json',
+		            cache: true,
+		            data: {
+		              token:localStorage.token,
+		              fav_type:this.FavType,
+		              fav_id:this.FavId,
+		            }	,//序列化
+		            success: function(data) {
+		            	this.collected=!this.collected
+		              // console.log( data);  
+		            }.bind(this),
+		            error: function(xhr, status, err) {
+		              console.err(err.toString())
+		            }.bind(this)
+	          	});
+      		}
 		},
 		ready(){
 

@@ -95,6 +95,9 @@ var routes = {
   '/consultants': {
     component: require('pages/consultant/Consultant.vue')
   },
+  '/wenda': {
+    component: require('pages/consultant/HomeQue.vue')
+  },
   '/user/:id': {
     name: 'user',
     component: require('pages/consultant/About.vue')
@@ -107,6 +110,7 @@ var routes = {
     name: 'question',
     component: require('pages/home/QuestionDetail.vue')
   },
+
 
 
   

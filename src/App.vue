@@ -4,9 +4,9 @@
      <router-view :identityb.sync="identity" :bind.sync="bind"></router-view>
      <nav-bottom :identityb.sync="identity" v-if="bind"></nav-bottom>
     </div>
-    <!-- <div v-if="!bind">
+    <div v-if="!bind">
       <bind-phone :bind.sync="bind"></bind-phone>
-    </div>  -->
+    </div> 
      <!-- <router-view v-if="token"></router-view>
      <nav-bottom v-if="bind"></nav-bottom> -->
   </div>
