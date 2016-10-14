@@ -4,8 +4,6 @@
      <router-view :identityb.sync="identity" :bind.sync="bind"></router-view>
      <nav-bottom :identityb.sync="identity" v-if="bind"></nav-bottom>
     </div>
-     <!-- <router-view v-if="token"></router-view>
-     <nav-bottom v-if="bind"></nav-bottom> -->
   </div>
 </template>
 

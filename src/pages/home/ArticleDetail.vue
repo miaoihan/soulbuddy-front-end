@@ -64,7 +64,7 @@ import NavHeader from 'components/funComp/NavHeader'
      ready(){
       this.art_id_fav=this.$route.params.art_id.toString()
       $.ajax({
-        url: 'http://xinling.songtaxihuan.com/article/get_article_info',
+        url: global.domain+'/article/get_article_info',
         type:'POST', 
         dataType: 'json',
         cache: true,
@@ -82,7 +82,7 @@ import NavHeader from 'components/funComp/NavHeader'
         }.bind(this)
       });
       $.ajax({
-            url: 'http://xinling.songtaxihuan.com/user/get_my_favorite',
+            url: global.domain+'/user/get_my_favorite',
             type:'POST', 
             dataType: 'json',
             cache: true,
@@ -90,19 +90,22 @@ import NavHeader from 'components/funComp/NavHeader'
               token:global.token,
               type:3
             },
-            success: data => this.article_info = data.data,
+            success: data => {
+              this.article_info = data.data;
+              var arr=[];
+              for(var i = 0;i < this.article_info.length;i++){
+                arr.push(this.article_info[i].art_id)
+              }
+              var test=arr.indexOf(this.art_id_fav);
+              console.log(this.art_id_fav)
+              if(test!=-1){
+                this.collected=true
+              }
+            },
             error: err => err.toString(),
       });
       console.log(this.article_info);
-      var arr=[];
-      for(var i = 0;i < this.article_info.length;i++){
-        arr.push(this.article_info[i].art_id)
-      }
-      var test=arr.indexOf(this.art_id_fav);
-      console.log(this.art_id_fav)
-      if(test!=-1){
-        this.collected=true
-      }      
+            
      },
 
     }
