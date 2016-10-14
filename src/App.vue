@@ -1,9 +1,9 @@
 <template>
 <div id="app">
-    <!-- <div v-if="bind && token"> -->
+    <div v-if="bind && token">
      <router-view :identityb.sync="identity"></router-view>
      <nav-bottom :identityb.sync="identity"></nav-bottom>
-    <!-- </div> -->
+    </div>
     <div v-if="!bind">
       <bind-phone :bind.sync="bind"></bind-phone>
     </div> 
