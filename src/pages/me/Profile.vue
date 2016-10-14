@@ -4,10 +4,9 @@
 <form action="http://xinling.songtaxihuan.com/user/edit_info" method="post" id="editform">
   <input type="hidden" name="token" :value="token">
   <input type="hidden" name="serverId" :value="serverId" id="sid">
-  <!-- {{serverId}} -->
   <div class="top wrapper">
   <!-- 头像 -->
-    <div class="person-photo-pro wrapper" id="avator">
+    <div class="person-photo-pro wrapper" id="avator" >
       <img :src="logo" alt="" class="avator" id="logo" name="logo">
     </div>
     <div class="nik-body wrapper">
@@ -74,9 +73,8 @@ import NavHeader from 'components/funComp/NavHeader';
       this.mobile = global.user.mobile
       this.logo = global.user.logo
       this.token = localStorage.token
-
+      var that = this
       document.querySelector('#avator').onclick = function () {
-        var that = this
         wx.chooseImage({
             count: 1, // 默认9
             sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -94,8 +92,8 @@ import NavHeader from 'components/funComp/NavHeader';
                         success: function (res) {
                             console.log(res.serverId);// 返回图片的服务器端ID
                             that.serverId = res.serverId
-                            // alert('zhi:' +this.serverId)
-                            // $('#sid').val(res.localIds);
+                            // alert('zhi: ' +this.serverId)
+
                         }
                     });
                 }, 100);
@@ -110,36 +108,36 @@ import NavHeader from 'components/funComp/NavHeader';
       // console.log("arr is",this.age);
     },
     methods:{
-      chose(){
-        // alert(2111)
-        // 指向this
-        
-        wx.chooseImage({
-            count: 1, // 默认9
-            sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-            sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-            success: function (res) {
-                // alert(3333)
-                let localId = res.localIds.toString();
-                $('#logo').attr('src',res.localIds);
-                // alert(this.localId)
-                // alert('chenggong:' +that.serverId)
-                setTimeout(function () {
-                    wx.uploadImage({
-                        localId: localId, // 需要上传的图片的本地ID，由chooseImage接口获得
-                        isShowProgressTips: 1, // 默认为1，显示进度提示
-                        success: function (res) {
-                            console.log(res.serverId);// 返回图片的服务器端ID
-                            that.serverId = res.serverId
-                            // alert('zhi:' +this.serverId)
-                            // $('#sid').val(res.localIds);
-                        }
-                    });
-                }, 100);
-            }
-        });
-        // setTimeout(function(){this.serverId = serverId;alert(this.serverId)},180)
-      },
+      // chose(){
+      //   // alert(2111)
+      //   // 指向this
+      //   let that = this
+      //   wx.chooseImage({
+      //       count: 1, // 默认9
+      //       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      //       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      //       success: function (res) {
+      //           // alert(3333)
+      //           let localId = res.localIds.toString();
+      //           $('#logo').attr('src',res.localIds);
+      //           // alert(this.localId)
+      //           // alert('chenggong:' +that.serverId)
+      //           setTimeout(function () {
+      //               wx.uploadImage({
+      //                   localId: localId, // 需要上传的图片的本地ID，由chooseImage接口获得
+      //                   isShowProgressTips: 1, // 默认为1，显示进度提示
+      //                   success: function (res) {
+      //                       console.log(res.serverId);// 返回图片的服务器端ID
+      //                       that.serverId = res.serverId
+      //                       // alert('zhi:' +this.serverId)
+      //                       // $('#sid').val(res.localIds);
+      //                   }
+      //               });
+      //           }, 100);
+      //       }
+      //   });
+      //   // setTimeout(function(){this.serverId = serverId;alert(this.serverId)},180)
+      // },
       handleclick(){
         // document.getElementById('user-name').focus();
         var obj=document.getElementById('user-name');
@@ -159,10 +157,11 @@ import NavHeader from 'components/funComp/NavHeader';
           alert('昵称不能为空！')
           return false 
         }
-        if($('[name="serverId"]').val()===''){
+        if($('#sid').val()===''){
           alert('头像不能为空！')
           return false 
         }
+
         if($('[name="borth_date"]').val()===''){
           alert('年龄不能为空！')
           return false 

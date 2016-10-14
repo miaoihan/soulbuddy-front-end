@@ -82,7 +82,7 @@ import SerchList from 'pages/home/SerchList.vue'
 	opacity 0.8
 	float left
 	margin-left 0.6rem
-	margin-top 0.1rem
+	margin-top 3px
 	font-size 0.8rem
 	color black
 .input-body-head{

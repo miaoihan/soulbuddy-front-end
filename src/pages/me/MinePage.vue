@@ -28,14 +28,14 @@
     <change-btn :btntext="identityb == 0 ? '切换到咨询师身份' : '切换到普通用户' "
 	    					style="margin-top:1rem;padding-left:1rem;padding-right:1rem;background:#2b8ff7"
 								text-color="#fff" icon-color="#fff"
-								@click="handleClick" v-if="isdaren">
+								@click="handleClick" 
+								v-if="isdaren">
 	</change-btn>
 	<change-btn btntext="申请成为咨询师或经验答人"
 	    				style="margin-top:1rem;padding-left:1rem;padding-right:1rem;background:#fff"
 							text-color="#2b8ff7" 
 							v-if="!isdaren"
-							url="/me/apply"
-			>
+							url="/me/apply">
 	</change-btn>
   </div>
 </template>
@@ -71,21 +71,21 @@ export default {
   		user_name:"",
   		fav_count:0,
   		identity: 0,
-  		isdaren: false,
+  		isdaren: null,
   		user: {}
     }
   },
   created(){
   	$.post(global.domain +'/user/get_my_info',
         { token: localStorage.token },
-        v => {global.user=v.data;this.user=v.data} ,'json');
+        v => {global.user=v.data;this.user=v.data
+        			if (v.data.identity == 1) this.isdaren = true;
+        	} ,'json');
   },
   ready:function(){
 	  	// 获取用户信息
 		  // this.identity = global.user.identity;
 		  // this.identityb = global.user.identity;
-		  console.log(this.identity);
-		  if(this.user.identity == 1) this.isdaren = true;
 		  this.user_name=this.user.user_name;
 		  this.fav_count=this.user.fav_count;
 	  	// 我的提问

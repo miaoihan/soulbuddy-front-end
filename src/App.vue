@@ -106,6 +106,8 @@ export default {
 
   },
   ready(){
+      console.log(this.$el+'**********')
+
     $.ajax({
         url: localStorage.domain +'/user/get_my_info',
         type:'POST', dataType: 'json',

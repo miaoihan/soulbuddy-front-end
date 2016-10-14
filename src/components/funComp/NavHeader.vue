@@ -55,7 +55,7 @@
   export default{
   	data(){
   		return{
-  			collected:false,
+  			my_favorite:[],
   		}
   	},
 		props:{
@@ -78,7 +78,8 @@
 			identity: { type: Number, default: 1 },
 			method: { type: Function },
 			FavType:{type:Number},
-			FavId:{type:Number},
+			FavId:{type:String},
+			collected:{type:Boolean,default:false},
 		},
 		methods:{
 			click(i){
@@ -97,7 +98,8 @@
 			Collect(){
 				// this.collected=!this.collected
 			},
-			subme(){				
+			subme(){
+			// alert('dsfsfdfsdf')				
 	        	$.ajax({
 		            url: global.domain +"/user/add_favorite",
 		            type:'post', 
@@ -109,6 +111,7 @@
 		              fav_id:this.FavId,
 		            }	,//序列化
 		            success: function(data) {
+		            	// alert(this.title)
 		            	this.collected=!this.collected
 		              // console.log( data);  
 		            }.bind(this),
@@ -116,10 +119,25 @@
 		              console.err(err.toString())
 		            }.bind(this)
 	          	});
+	          	// alert(1231233)
       		}
 		},
 		ready(){
-
+			// if(this.FavId!=null){
+			// 	$.ajax({
+		 //          url: 'http://xinling.songtaxihuan.com/user/get_my_favorite',
+		 //          type:'POST', 
+		 //          dataType: 'json',
+		 //          cache: true,
+		 //          data:{
+		 //            u_id:this.FavId,
+		 //            type:this.FavType,
+		 //            token: localStorage.token
+		 //          },
+		 //          success: data => this.my_favorite = data.data,
+		 //          error: err => err.toString(),	          
+		 //        });
+			// }			
 		},
 
     components: {}

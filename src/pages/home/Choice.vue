@@ -1,4 +1,4 @@
-passImg<template>
+<template>
   <div>
   	<div class="swiper wrapper">
       <roll-card :data="swiperList"></roll-card>
@@ -14,6 +14,7 @@ passImg<template>
   			查看更多精选阅读
   		</div>
   	</div> <!-- end article-list -->
+    <!-- 测评精选 -->
   	<div class="eva">
   		<eva-card :data="evaList"></eva-card>
   	</div>
