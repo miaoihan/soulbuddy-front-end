@@ -34,7 +34,7 @@
 	    				style="margin-top:1rem;padding-left:1rem;padding-right:1rem;background:#fff"
 							text-color="#2b8ff7" 
 							v-if="!isdaren"
-			url="/me/apply"
+							url="/me/apply"
 			>
 	</change-btn>
   </div>
@@ -71,7 +71,7 @@ export default {
   		user_name:"",
   		fav_count:0,
   		identity: 0,
-  		isdaren: true,
+  		isdaren: false,
   		user: {}
     }
   },

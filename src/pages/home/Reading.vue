@@ -10,7 +10,7 @@
   					<a v-link="{path:'/science'}">
 		  				<div class="t-wrap">
 		  					<div class="item-bg">
-		  						
+		  						<img src="../../../src/assets/imgs/kepu.png" alt="">
 		  					</div>
 		  					<div class="item-txt">
 		  						科普
@@ -22,7 +22,7 @@
 						<a v-link="{path:'/relax'}">
 	  					<div class="t-wrap">
 		  					<div class="item-bg">
-		  						
+		  						<img src="../../../src/assets/imgs/fangsong.png" alt="">
 		  					</div>
 		  					<div class="item-txt">
 		  						放松
@@ -34,7 +34,7 @@
   					<a v-link="{path:'/relax'}">
 	  					<div class="t-wrap">
 		  					<div class="item-bg">
-		  						
+		  						<img src="../../../src/assets/imgs/case.png" alt="">
 		  					</div>
 		  					<div class="item-txt">
 		  						案例
@@ -139,6 +139,9 @@
 	.item-bg{
 		height: 3.0rem;
 		width: 100%;
+	}
+	.item-bg img{
+		border-radius: 6px 6px 0 0;
 	}
 	.item-txt{
 		line-height: 2.0rem;

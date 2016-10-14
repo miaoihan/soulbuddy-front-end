@@ -92,4 +92,9 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
 			margin-right: 1.0rem
 	a 
 		width 100%
+		
+	a:hover, a:visited, a:link, a:active {
+    text-decoration: none;
+    color: #444
+}
 </style>

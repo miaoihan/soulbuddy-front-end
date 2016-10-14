@@ -1,13 +1,13 @@
 <template>
   <div class="card-body relative wrapper">
-  	<img :src="" class="img-evac">
+  	<img src="../../../src/assets/imgs/xl8.jpeg" height="517" width="690" class="img-evac">
     <div class="top-title wrapper relative">
       <i class="iconfont title-test relative">&#xe604;</i>
       <span class="relative title-test-text">心理测评</span>
       <i class="iconfont title-next relative">&#xe60d;</i>
       <a v-link="'/'" class="checkall relative">查看全部评测</a>
     </div>
-    <div class="swiper-container" style="margin-top:0.8rem">
+    <div class="swiper-container" style="margin-top:0.8rem" id="swp2">
       <div class="swiper-wrapper">
           <div class="swiper-slide card-rall" style="height:5rem;text-align:center;" v-for="eva in data">
           <div class="opacityback">
@@ -46,15 +46,17 @@ import QuestionList from 'components/areaComp/QuestionList.vue'
         }
       },
     },
-    ready:function(){
-      console.log(123);
-      var mySwiper = new Swiper ('.swiper-container', {
-          freeMode : true,
-          loop: true,
-          slidesPerView:1.54,
-          paginationClickable: true,
-          spaceBetween: 10
-      })
+    ready(){
+      // setTimeout(function(){
+        console.log(123);
+        var mySwiper = new Swiper ('#swp2', {
+            freeMode : true,
+            loop: true,
+            slidesPerView:1.54,
+            paginationClickable: true,
+            spaceBetween: 10
+        })
+      // },100);
     }
   }
 </script>

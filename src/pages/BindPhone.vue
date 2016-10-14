@@ -7,7 +7,7 @@
              placeholder="手机号码" id="mobile"
              v-model="mobile"></input>
     <div class="button-body">
-      <button class="inputbox-button" :class="is_send ? 'issend':'' " @click="sendCode">
+      <button class="inputbox-button" :class="is_send ? 'issend':'' " @click="sendCode" :disabled="false">
         发送验证码
       </button>
     </div>
@@ -40,11 +40,14 @@ export default {
     return {
       code: null,
       mobile: '',
-      is_send: false
+      is_send: false,
     }
   },
   props: {
     bind: { type: Boolean, default: false },
+  },
+  created(){
+    this.bind = false
   },
   methods:{
     sendCode(){
@@ -54,9 +57,12 @@ export default {
           type  : 'reg'},
         v =>{
           if (v.code==1) {
-            alert('发送成功')
-
+            console.log('ok')
             this.is_send = true;
+            alert('发送成功')
+         }
+         else if(v.code==0){
+          alert('发送过于频繁，请稍后重试')
          }else if(v.msg=='您的手机号已经被注册'){
             alert('您的手机号已经被注册')}
         },'json');}
@@ -70,13 +76,15 @@ export default {
                },
             v =>{
               if (v.code==1) {
-                console.log('绑定成功')
-                // 将手机号码添加到user
-                global.user['mobile'] = this.mobile
+                // 将手机号码添加到user,后面主动获取了
+                // global.user['mobile'] = this.mobile
                 this.bind = true
                 // this.$router.go({ path:'/home' })
-                location.href = 'http://han.s3.natapp.cc/#!/home'
+                console.log('chenggong')
                 alert('验证成功！')
+                // location.href = 'http://han.s3.natapp.cc/#!/home'
+                this.$router.go('/home')
+
              }
              else{
               alert('验证失败，请重新输入')
@@ -101,6 +109,7 @@ export default {
     } 
   },
   ready(){
+    this.bind = false
   }
 }
 </script>

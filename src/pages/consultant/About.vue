@@ -41,7 +41,7 @@
 	  		</div>
 	  		<div class="cst-desc">
 	  			<p>
-	  				简介：哥伦比亚哦大学心理博士，主修人际心理学；擅长托马斯催眠疗法，获得2014年度心理咨询评定委员会心理咨询师称号
+	  				{{简介：哥伦比亚哦大学心理博士，主修人际心理学；擅长托马斯催眠疗法，获得2014年度心理咨询评定委员会心理咨询师称号}}
 	  			</p>
 	  			<div class="t-location" style="margin-top: 0.5rem;">
 	  				<i class="iconfont">&#58903;</i>
@@ -74,21 +74,6 @@ import NavHeader from 'components/funComp/NavHeader';
 	  	}
 	  },
 	  ready(){
-	  	// 异步获取token
-      $.ajax({
-          url: "http://xinling.songtaxihuan.com/test/test?uid=3",
-          type:'GET', 
-          dataType: 'json',
-          cache: true,
-          async:false,
-          success: function(data) {
-            this.token = data.data
-            // console.log( typeof this.token); 
-          }.bind(this),
-          error: function(xhr, status, err) {
-            console.error(this.token, status, err.toString());
-          }.bind(this)
-        });
 
 	  	// 用户信息
 	  	$.ajax({
@@ -97,7 +82,7 @@ import NavHeader from 'components/funComp/NavHeader';
           dataType: 'json',
           cache: true,
           data:{
-          	token: this.token,
+          	token: localStorage.token,
           	u_id: this.$route.params.id
           },
           success: function(data) {
@@ -108,60 +93,7 @@ import NavHeader from 'components/funComp/NavHeader';
           }.bind(this)
         });
 	  },
-	  props:{
-	  	data: {
-	  		type: Object,
-		  	default(){
-		  		return{
-		  			name: '陈雪晴',
-		  			money: 20,
-		  			desc:'国家心理二级咨询师',
-		  			role: 1,
-	  				label: [
-	  				{
-	  					name: '自杀倾向',
-	  				},
-	  				{
-	  					name: '自残',
-	  				},
-	  				],
-	  				num: 89,
-	  				location: '上海',
-		  			answerList:
-			  		[
-			  			{
-		  						content: '是这些球星的第一次夺冠，为啥勇士都没人哭呢。特别是新FMVP比库里更淡定的样子',
-		  						pay: 5,
-		  						isFree: true,
-		  						answer:
-		  							{
-		  							
-		  								isbest:true,
-		  								time: 35,
-		  								like: 168,
-		  								date: '08-17',
-		  								isFree: true,
-		  							}
-		  						
-		  					},
-		  					{
-		  						content: '在Windows操作系统上显示良好。但是仅限于12像素和14像素。超出14像素的字基本就会出现字不够方正，锯齿明显的现象',
-		  						pay: 1,
-		  						isFree: false,
-		  						answer:
-		  							{
-		  								isbest:false,
-		  								time: 78,
-		  								like: 79,
-		  								date: '08-17',
-		  								isFree: false,
-		  							}
-		  					},
-			  			]
-		  		}
-		  	}
-	  	}
-	  },
+	  
 	  
   }
 </script>

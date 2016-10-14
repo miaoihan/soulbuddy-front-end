@@ -22,7 +22,7 @@
   	<!-- 最佳回答 -->
   	<answer-card :data="ans_best" v-if="best_answer_id"></answer-card>	
   	<aside class="m-other">
-  		 {{ question.answers.length>0? '其他'+ans_other.length : 0}} 个回答
+  		 {{ question.answers.length>0? '其他 '+ans_other.length : 0}} 个回答
   	</aside>
   	<!-- 回答列表 -->
   	<section class="qd-middle" style="margin-bottom: 5.0rem">
@@ -34,7 +34,7 @@
   	<footer class="qd-footer fixed-bottom ztc"
   					@click="unlock"
   					v-if="lock">
-  		￥{{ quesion.reward_money }} 解锁该问题的所有回答
+  		￥{{ question.reward_money }} 解锁该问题的所有回答
   	</footer>
   </div>
 </template>

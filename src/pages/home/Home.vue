@@ -33,6 +33,12 @@ import Evaluation from 'pages/home/Evaluation.vue'
         }
       }
     },
+    props: {
+      bind: {
+        type: Boolean, // String, Number, Boolean, Function, Object, Array
+        default: true
+      }
+    },
     created(){
       
       // 获取轮播
@@ -54,8 +60,8 @@ import Evaluation from 'pages/home/Evaluation.vue'
         });
     },
     ready(){
+      this.bind = true
       // console.log(global.domain)
-      console.log(localStorage.token+'tttttttttt')
       // 问答列表
       $.ajax({
           url: global.domain +'/question/get_question_list',

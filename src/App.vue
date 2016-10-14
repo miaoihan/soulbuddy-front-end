@@ -4,9 +4,6 @@
      <router-view :identityb.sync="identity" :bind.sync="bind"></router-view>
      <nav-bottom :identityb.sync="identity" v-if="bind"></nav-bottom>
     </div>
-    <div v-if="!bind">
-      <bind-phone :bind.sync="bind"></bind-phone>
-    </div> 
      <!-- <router-view v-if="token"></router-view>
      <nav-bottom v-if="bind"></nav-bottom> -->
   </div>
@@ -24,10 +21,12 @@ export default {
       currentPage: 'eva-card',
       // is_login: false,
       // is_new: true,
-      bind: true,
+      bind: null,
       token: '', //做判断用，有了token才渲染
       weixin: [],
       identity: 0,
+      // host: 'http://120.27.122.131'
+      host: 'http://han.s3.natapp.cc'
     }
   },
   watch:{
@@ -47,6 +46,7 @@ export default {
     var ku = window.localStorage
     ku.domain = 'http://xinling.songtaxihuan.com'
     this.token = ku.token
+    global.token = ku.token
     global.domain = 'http://xinling.songtaxihuan.com'
    
 
@@ -65,24 +65,25 @@ export default {
           // global.user = v.data.userinfo;
           // console.log(global.user+'*******')
           // alert(global.user)
+          // 登陆后存储用户信息
+          ku.token = v.data.token;
           // 判断是否绑定了手机
           let phone = v.data.userinfo.mobile
           // 如果没有绑定，跳转到绑定手机页面
           if(!phone) {
-            this.bind = false;
+            // this.bind = false;
             // console.log(this.$router)
             // this.$router.go({path:url})
-            location.href = 'http://han.s3.natapp.cc/#!/bind'
+            location.href = this.host +'/#!/bind'
           }
           // 绑定过，直接登录
           else {
             this.bind = true;
             this.userinfo = v.data.userinfo;
-            location.href = 'http://han.s3.natapp.cc/#!/home'
+            location.href = this.host +'/#!/home'
             // this.is_new = v.data.is_new;
           }
-          // 登陆后存储用户信息
-          ku.token = v.data.token;
+          
           // this.token = true
         },
             error: err => console.log(err.toString())

@@ -3,7 +3,7 @@
   <div class="wrapper"
   		 :class=" data.is_free ? 'voice' : 'voice-locked' "
   		 :style="{width: data.time>60 ? '100%' : (data.time)*5/6+50+'%' }"
-  		 @click="voiceAction"
+  		 @click="voiceAction($event)"
   		 >
   	<div class="v-inner">
   	<!-- 计时 -->
@@ -56,7 +56,9 @@
 	  },
 	  methods:{
 	  	// 点击voice后的动作
-	  	voiceAction(){
+	  	voiceAction(e){
+	  		console.log(e)
+	  		e.preventDefault();
 	  		// 免费
 	  		if(this.data.is_free){}
 	  			// 还没评价
@@ -105,11 +107,11 @@
 	  },
 	  ready(){
 	  	$(".voice").blur(function(){
-  			alert(111)
+  			// alert(111)
   			this.$el.style.height="1.8rem"
 			}); 
 			$(".v-inner").blur(function(){
-  			alert(111222	)
+  			// alert(111222	)
   			this.$el.style.height="1.8rem"
 			}); 
 	  },

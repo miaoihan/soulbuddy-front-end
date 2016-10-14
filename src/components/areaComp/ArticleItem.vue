@@ -17,7 +17,6 @@
 				<div class="a-content over-2">
 					<!-- content自带标签 -->
 					{{{data.content | passAll}}}
-
 				</div>
 			</div>
 		</a>
@@ -50,6 +49,7 @@
 	.a-l
 		float: left
 		width 33.3%
+		height 6rem
 	.a-r
 		// float left
 		display table-cell
