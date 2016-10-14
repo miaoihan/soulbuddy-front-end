@@ -16,7 +16,7 @@
             <span class="eva-title">{{eva.title}}</span>
             <a v-link="{name:'eva', params:{id: eva.test_id} }" class="start-btn">开始</a>
           </div>
-          
+
       </div>
     </div>
   </div>
@@ -121,6 +121,7 @@ import QuestionList from 'components/areaComp/QuestionList.vue'
 .swiper-slide{
   overflow: hidden;
   border-radius: 5px;
+  width:64%;
 }
 .opacityback{
   position: absolute;

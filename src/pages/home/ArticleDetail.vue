@@ -1,6 +1,6 @@
 <template>
 <!-- 文章详情 -->
-<nav-header left="back" :fav-count="data.fav_count" :fav-id="data.art_id" :fav-type="3"></nav-header>
+<nav-header left="back" :fav-count="data.fav_count" :fav-id="art_id_fav" :fav-type="3" :collected="collected"></nav-header>
    <div class="wrapper">
    		<!-- 文章头部 -->
       <section class="art-top ztc">
@@ -41,6 +41,9 @@ import NavHeader from 'components/funComp/NavHeader'
      	return{
      		tips:'本网站所有注明“来源：丁香园”的文字、图片和音视频资料，版权均属于丁香园所有，非经授权，任何媒体、网站或个人不得转载',
         tags:[],
+        art_id_fav:"",
+        collected:false,
+        article_info:[],
      	}
      },
      props:{
@@ -59,6 +62,7 @@ import NavHeader from 'components/funComp/NavHeader'
          }
        },
      ready(){
+      this.art_id_fav=this.$route.params.art_id.toString()
       $.ajax({
         url: 'http://xinling.songtaxihuan.com/article/get_article_info',
         type:'POST', 
@@ -77,6 +81,28 @@ import NavHeader from 'components/funComp/NavHeader'
           console.error(lunboArr, status, err.toString());
         }.bind(this)
       });
+      $.ajax({
+            url: 'http://xinling.songtaxihuan.com/user/get_my_favorite',
+            type:'POST', 
+            dataType: 'json',
+            cache: true,
+            data:{
+              token:global.token,
+              type:3
+            },
+            success: data => this.article_info = data.data,
+            error: err => err.toString(),
+      });
+      console.log(this.article_info);
+      var arr=[];
+      for(var i = 0;i < this.article_info.length;i++){
+        arr.push(this.article_info[i].art_id)
+      }
+      var test=arr.indexOf(this.art_id_fav);
+      console.log(this.art_id_fav)
+      if(test!=-1){
+        this.collected=true
+      }      
      },
 
     }

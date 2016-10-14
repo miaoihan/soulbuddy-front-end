@@ -1,8 +1,9 @@
 <template>
 <!-- 提问 -->
-	<nav-header title="提问" :ispub="true" :method="subAndCheck" left="cancel"></nav-header>
+	<nav-header title="提问" :ispub="true" :method="sub" left="cancel"></nav-header>
   <div class="ask wrapper">
-  <form method="post"	id="askForm">
+  <form action="http://xinling.songtaxihuan.com/question/add_question" 
+  			method="post"	id="askForm">
   	<input type="hidden" name="token" value="{{ token }}">
   	<input type="hidden" name="q_type" value="{{ is_qiangda? 0:1 }}">
   	<input type="hidden" name="is_public" value="{{ is_public? 1:0 }}">
@@ -63,19 +64,19 @@
 	  		}
 	  		else{
 	  			$.ajax({
-	          url: "http://xinling.songtaxihuan.com/question/add_question",
-	          type:'post', 
-	          dataType: 'json',
-	          cache: true,
-	          data: $('#askForm').serialize(),//序列化
-	          success: function(data) {
-	            // console.log( data);	
-	            this.$router.go('/home')
-	            console.log(this.$router)
-	          }.bind(this),
-	          error: function(xhr, status, err) {
-	          }.bind(this)
-	        });
+          url: "http://xinling.songtaxihuan.com/question/add_question",
+          type:'post', 
+          dataType: 'json',
+          cache: true,
+          data: $('#askForm').serialize(),//序列化
+          success: function(data) {
+            // console.log( data);	
+            this.$router.go('/home')
+            console.log(this.$router)
+          }.bind(this),
+          error: function(xhr, status, err) {
+          }.bind(this)
+        });
 			   }
 	  	}
 	  },
