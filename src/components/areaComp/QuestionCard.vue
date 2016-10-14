@@ -1,35 +1,37 @@
 <template>
   <div class="card-body">
-    <div class="head">
-		<div class="person-img quer-top">
-			<img :src="data.logo" class="img-body">
+	  <a v-link="{ name:'answer', params:{ qid: data.q_id }}">
+	    <div class="head">
+			<div class="person-img quer-top">
+				<img :src="data.logo" class="img-body">
+			</div>
+			<div class="quername quer-top">
+				{{data.user_name}}
+			</div>
+			<div class="paymoney" v-if="type=='private'">
+				已支付￥{{data.pay}}
+			</div>
+			<div class="paymoney" v-if="type=='public'">
+				悬赏￥{{data.reward_money}}，{{data.answernum}}人抢答
+			</div>
 		</div>
-		<div class="quername quer-top">
-			{{data.user_name}}
+		<div class="que-title">
+			<h1>{{data.title}}</h1>
 		</div>
-		<div class="paymoney" v-if="type=='private'">
-			已支付￥{{data.pay}}
+		<div class="que-content" v-if="isContent===true">
+			<p>{{data.content}}</p>
 		</div>
-		<div class="paymoney" v-if="type=='public'">
-			悬赏￥{{data.reward_money}}，{{data.answernum}}人抢答
+		<div class="card-bottom">
+			<span class="answer-num" v-if="type=='public'">					
+				已有{{data.answer_count}}个回答
+			</span>
+			<span class="answer-num" v-if="type=='private'">
+				{{data.qname}} 直接咨询你
+			</span>
+			<time class="que-data">发起于{{data.create_time}}</time>
+			<span class="dian" v-if="isContent===false">•••</span>
 		</div>
-	</div>
-	<div class="que-title">
-		<h1>{{data.title}}</h1>
-	</div>
-	<div class="que-content" v-if="isContent===true">
-		<p>{{data.content}}</p>
-	</div>
-	<div class="card-bottom">
-		<span class="answer-num" v-if="type=='public'">					
-			已有{{data.answer_count}}个回答
-		</span>
-		<span class="answer-num" v-if="type=='private'">
-			{{data.qname}} 直接咨询你
-		</span>
-		<time class="que-data">发起于{{data.create_time}}</time>
-		<span class="dian" v-if="isContent===false">•••</span>
-	</div>
+		</a>
   </div>
 </template>
 
@@ -39,6 +41,9 @@ export default {
     return {
       
     }
+  },
+  ready(){
+  	console.log(this.data.q_id)
   },
   props:{
   	data:{

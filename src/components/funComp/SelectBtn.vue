@@ -4,7 +4,7 @@
 	<i class="sel-img iconfont" :style="{color:IconColor}">&#xe60d;</i>
   	<select class="select-text" :name="name" :id="id" style="width:4.1rem;">
   	  <option value ="" selected="selected" style="color:#bbb">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;请选择</option>
-      <option :value ="$index" v-for="value in values">{{value}}</option>
+      <option :value ="$index+1" v-for="value in values">{{value}}</option>
     </select>
   </div>
 </template>

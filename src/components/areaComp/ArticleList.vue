@@ -31,7 +31,8 @@
 </script>
 
 <style scoped lang="stylus">
-	
+		.art-list
+			min-height 6.5rem
 	
 		.article-item
 			height 6.0rem
