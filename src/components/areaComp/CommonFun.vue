@@ -31,7 +31,7 @@
 	    <change-btn btntext="我听过的问题" url="me/listen" 
 	    	style="border-bottom:0.05rem solid #eee">	    	
 	    </change-btn>
-	    <change-btn btntext="设置" url="/me/personedit"></change-btn>	
+	    <change-btn btntext="设置" url="/me/personedit/0"></change-btn>	
 	</div>
 </div>
 </template>

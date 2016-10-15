@@ -73,7 +73,8 @@ var routes = {
   '/me/cash/ali': {
     component: require('pages/me/CashAlipay.vue')
   },
-  'me/personedit':{
+  'me/personedit/:id':{
+    name:'perapply',
     component:require('pages/me/PersonMsg.vue')
   },
   'me/apply':{

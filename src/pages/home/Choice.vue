@@ -10,13 +10,13 @@
   	</aside>
   	<div class="article-list">
   		<article-list :data="readList"></article-list>
-  		<div class="seemore">
+  		<div class="seemore" @click="addRead">
   			查看更多精选阅读
   		</div>
   	</div> <!-- end article-list -->
     <!-- 测评精选 -->
   	<div class="eva">
-  		<eva-card :data="evaList"></eva-card>
+  		<eva-card :data="evaList" :index.sync="index"></eva-card>
   	</div>
   	<aside class="pangbai">
 			<span class="heng"></span>
@@ -25,7 +25,7 @@
   	</aside>
   	<div class="que-list">
   		<question-list :data="queList"></question-list>	
-  		<div class="seemore">
+  		<div class="seemore" @click="addQue">
   			查看更多精选问答
   		</div>
   	</div>
@@ -69,6 +69,14 @@
           error: err => console.log(err)
         });
     },
+    methods:{
+      addRead(){
+        console.log('click the addread')
+      },
+      addQue(){
+
+      }
+    },
 	  ready(){
     
 	  	// 阅读精选
@@ -111,6 +119,7 @@
 	  },
 
     props: {
+      index:{type:Number,default:1},
       token: '',
       swiperList: {
         type: Array,
