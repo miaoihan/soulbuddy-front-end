@@ -12,7 +12,7 @@
 				已支付￥{{data.pay}}
 			</div>
 			<div class="paymoney" v-if="type=='public'">
-				悬赏￥{{data.reward_money}}，{{data.answernum}}人抢答
+				悬赏￥{{data.reward_money}}，{{data.answers.length}}人抢答
 			</div>
 		</div>
 		<div class="que-title">
@@ -23,7 +23,7 @@
 		</div>
 		<div class="card-bottom">
 			<span class="answer-num" v-if="type=='public'">					
-				已有{{data.answer_count}}个回答
+				已有 {{data.answers.length}} 个回答
 			</span>
 			<span class="answer-num" v-if="type=='private'">
 				{{data.qname}} 直接咨询你
@@ -43,7 +43,7 @@ export default {
     }
   },
   ready(){
-  	console.log(this.data.q_id)
+  	// console.log(this.data.q_id)
   },
   props:{
   	data:{

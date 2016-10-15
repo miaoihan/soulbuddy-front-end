@@ -92,6 +92,7 @@ import NavHeader from 'components/funComp/NavHeader'
             },
             success: data => {
               this.article_info = data.data;
+              // 判断收藏
               var arr=[];
               for(var i = 0;i < this.article_info.length;i++){
                 arr.push(this.article_info[i].art_id)

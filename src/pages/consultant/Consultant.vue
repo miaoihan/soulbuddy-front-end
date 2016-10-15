@@ -17,7 +17,6 @@
 	  data(){
 	  	return{
 	  		token: '',
-	  		domain: 'http://xinling.songtaxihuan.com',
 	  		iscst: true,
 	  		identity: 1, //0普通用户1心理咨询师2经验答人
 	  		userList1: [],
@@ -26,7 +25,7 @@
 	  },
 	  ready(){
 	  	$.ajax({
-          url: this.domain +'/user/get_user_list',
+          url: global.domain +'/user/get_user_list',
           type:'POST', 
           dataType: 'json',
           cache: true,
@@ -45,7 +44,7 @@
           }.bind(this)
         });
 	  	$.ajax({
-          url: this.domain +'/user/get_user_list',
+          url: global.domain +'/user/get_user_list',
           type:'POST', 
           dataType: 'json',
           cache: true,

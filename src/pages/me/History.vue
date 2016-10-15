@@ -27,13 +27,12 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
   		return{
   			ztc: '#2b8ff7',
   			token:'',
-	  		url2:'http://xinling.songtaxihuan.com/user/get_my_answer',
 	  		questions:[],
   		}
   	},
 	  ready(){
 	  	$.ajax({
-          url: this.url2,
+          url: global.domain +'/user/get_my_answer',
           type:'POST', 
           dataType: 'json',
           data: {

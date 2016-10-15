@@ -50,31 +50,9 @@
 	  			热门标签
 	  		</div>
 	  		<div class="label-box">
-	  			<span class="label-big-border">
-	  				抑郁症
+	  			<span class="label-big-border" v-for="tag in tags">
+	  				{{tag}}
 	  			</span>
-	  			<span class="label-big-border">
-	  				焦虑症
-	  			</span>
-	  			<span class="label-big-border">
-	  				抑郁症
-	  			</span>
-	  			<span class="label-big-border">
-	  				焦虑
-	  			</span>
-	  			<span class="label-big-border">
-	  				抑郁症
-	  			</span>
-	  			<span class="label-big-border">
-	  				焦虑症阿萨
-	  			</span>
-	  			<span class="label-big-border">
-	  				抑郁症
-	  			</span>
-	  			<span class="label-big-border">
-	  				焦虑症
-	  			</span>
-
 	  		</div>
 	  	</div>
   	</div><!-- end tag -->
@@ -103,6 +81,22 @@
 		  	}
 	  	}
 	  },
+	  data () {
+	    return {
+	      tags:{},
+	      a: 'sss'
+	    }
+	  },
+	  ready(){
+	  	$.ajax({
+          url: global.domain +'/question/get_tags_list',
+          type:'get', 
+          dataType: 'json',
+          cache: true,
+          success: v => {this.tags = v.data.index_tags;},
+          error: err => console.error(err.toString())
+        });
+	  }
 	  
   }
 </script>

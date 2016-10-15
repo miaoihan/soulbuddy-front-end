@@ -3,11 +3,11 @@
 <div class="far-bom">
 <form action="http://xinling.songtaxihuan.com/user/edit_info" method="post" id="editform">
   <input type="hidden" name="token" :value="token">
-  <input type="hidden" name="serverId" :value="serverId" id="sid">
+  <input type="hidden" name="logo" :value="serverId" id="sid">
   <div class="top wrapper">
   <!-- 头像 -->
     <div class="person-photo-pro wrapper" id="avator" >
-      <img :src="logo" alt="" class="avator" id="logo" name="logo">
+      <img :src="logo" alt="" class="avator" id="logo" name="logo2">
     </div>
     <div class="nik-body wrapper">
       <div class="nikname wrapper">

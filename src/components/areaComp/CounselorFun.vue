@@ -9,7 +9,7 @@
 	    		</a>
     		</div>
     		<div class="function-body font-center">
-	    		<a v-link="'me/history'">
+	    		<a v-link="'me/answer'">
 	    			<i class="iconfont fun-img">&#xe608;</i>
 	    			<span class="fun-text">我的回答</span>
 	    		</a>

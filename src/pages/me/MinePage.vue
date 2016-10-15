@@ -24,19 +24,20 @@
     	<common-fun></common-fun>
     </div>
     <!-- <common-fun v-if="user.UserType===common"></common-fun> -->
-
-    <change-btn :btntext="identityb == 0 ? '切换到咨询师身份' : '切换到普通用户' "
-	    					style="margin-top:1rem;padding-left:1rem;padding-right:1rem;background:#2b8ff7"
-								text-color="#fff" icon-color="#fff"
-								@click="handleClick" 
-								v-if="isdaren">
-	</change-btn>
-	<change-btn btntext="申请成为咨询师或经验答人"
-	    				style="margin-top:1rem;padding-left:1rem;padding-right:1rem;background:#fff"
-							text-color="#2b8ff7" 
-							v-if="!isdaren"
-							url="/me/apply">
-	</change-btn>
+		<div v-if="isdaren">
+		    <change-btn :btntext="identityb == 0 ? '切换到咨询师身份' : '切换到普通用户' "
+			    					style="margin-top:1rem;padding-left:1rem;padding-right:1rem;background:#2b8ff7"
+										text-color="#fff" icon-color="#fff"
+										@click="handleClick" 
+										v-if="isdaren">
+			</change-btn>
+			<change-btn btntext="申请成为咨询师或经验答人"
+			    				style="margin-top:1rem;padding-left:1rem;padding-right:1rem;background:#fff"
+									text-color="#2b8ff7" 
+									v-if="!isdaren"
+									url="/me/apply">
+			</change-btn>
+		</div>
   </div>
 </template>
 

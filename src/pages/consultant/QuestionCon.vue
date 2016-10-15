@@ -21,7 +21,7 @@
       <span v-if="!isbox">
         <i class="iconfont">&#xe608;</i> 开始回答
       </span>
-      <span v-if="isbox">
+      <span v-if="isbox" @click.stop="cancle" style="display:inline-block;width: 100%">
         取消
       </span>
     </button>
@@ -29,22 +29,26 @@
   <div class="bottom-record wrapper fixed-bot" v-if="isFinish===true">
     <div class="record-box  font-center">
       <span class="shiting-text">点击试听</span>
+
       <!-- voice组件 -->
       <div class="test-voice">
-        <voice @click="playVoice" id="playVoice" color:'#fff'></voice>
+        <voicep @click="playVoice" id="playVoice" 
+               :data="voice">
+        </voicep>
       </div>
+
     </div>
     <div class="record-finishbtn btn">
       <div class="finish"><button class="btn" @click="cancle">取消</button></div>
       <div class="finish"><button class="btn" @click="again">重新录制</button></div>
-      <div class="finish"><input class="btn submit" type="submit" name="submit" value="发布答案" @click="submit"></div>
+      <div class="finish"><input class="btn submit" type="text" value="发布答案" @click="submit"></div>
     </div>
   </div>
 </template>
 
 <script>
 import QuestionCard from 'components/areaComp/QuestionCard'
-import Voice from 'components/funComp/Voice'
+import Voicep from 'components/funComp/Voicep'
 import NavHeader from 'components/funComp/NavHeader'
 import TopBar from 'components/areaComp/TopBar'
 export default {
@@ -59,7 +63,8 @@ export default {
       voice:{
         localId:'',
         serverId: '',
-        time: '0:00'
+        time: '0:00',
+        is_free: true
       },
       //时间计数
       t: 0,
@@ -67,7 +72,7 @@ export default {
     }
   },
   components:{
-  	QuestionCard,Voice,TopBar,NavHeader
+  	QuestionCard,Voicep,TopBar,NavHeader
   },
   ready(){
     $.ajax({
@@ -109,6 +114,7 @@ export default {
     },
     stopTime(){
       clearTimeout(this.flag);
+      this.t = 0;
     },
     // test(){
     //   // alert(this.t)
@@ -164,6 +170,26 @@ export default {
       this.isFinish=false;
       this.isbox=false;
       this.isStart=false;
+      // 停止录音
+      this.stopTime();
+      wx.stopRecord({
+        fail: function (res) {
+          // alert(JSON.stringify(res));
+        }
+      });
+      // 清空
+      this.voice={
+        localId:'',
+        serverId: '',
+        time: '0:00'
+      };
+
+    },
+    again(){
+      this.isFinish=false;
+      this.isbox=true;
+      this.isStart=false;
+      this.stopTime();
       // 清空
       this.voice={
         localId:'',
@@ -171,20 +197,16 @@ export default {
         time: '0:00'
       };
     },
-    again(){
-      this.isFinish=false;
-      this.isbox=true;
-      this.isStart=false;
-    },
     submit(){
       this.isFinish=false;
       this.isbox=false;
       this.isStart=false;
       var that = this
-      if (voice.localId == '') {
+      if (this.voice.localId == '') {
         alert('请先使用 startRecord 接口录制一段声音');
         return;
       }
+      // alert(111)
       wx.uploadVoice({
         localId: that.voice.localId,
         success: function (res) {
@@ -298,7 +320,8 @@ export default {
 .submit{
   height: 1.5rem;
   width: 3.7rem;
-  background-color: #53d769;
+  background-color: #299FFF;
   border-radius: 0.3rem;
+  text-align center
 }
 </style>

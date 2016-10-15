@@ -3,7 +3,7 @@
   <div class="far-bom">
 	  <div class="quecard wrapper">
 	    <span class="card-name">询问我的问题</span>
-	    <div class="swiper-container">
+	    <div class="swiper-container" id="swp5">
 			<div class="swiper-wrapper">
 			    <div class="swiper-slide" v-for="data in topdata">
 			    	<a href="3">
@@ -45,14 +45,13 @@ export default {
   data () {
     return {
       token:'',
-  		url2:'http://xinling.songtaxihuan.com/question/get_need_answer_list',
   		myQues:[],
   		otherQues:[],
     }
   },
    ready:function(){
    	console.log(123);
-   	var mySwiper = new Swiper ('.swiper-container', {
+   	var mySwiper = new Swiper ('#swp5', {
 		    freeMode : true,
 		    loop: true,
 		    slidesPerView:1.42,
@@ -61,7 +60,7 @@ export default {
 	})
 
 	  	$.ajax({
-          url: this.url2,
+          url: global.domain +'/question/get_need_answer_list',
           type:'POST', 
           dataType: 'json',
           data: {
@@ -80,7 +79,7 @@ export default {
           }.bind(this)
         });
         $.ajax({
-          url: this.url2,
+          url: global.domain +'/question/get_need_answer_list',
           type:'POST', 
           dataType: 'json',
           data: {
