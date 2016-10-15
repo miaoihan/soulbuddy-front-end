@@ -82,7 +82,7 @@
   		  所有文章 
   	</aside>
   	<article-list :data="data"></article-list>
-  	<div class="seemore" style="margin-bottom: 80px">查看更多</div>
+  	<div class="seemore" style="margin-bottom: 80px" @click="addArt">查看更多</div>
   </div>
 </template>
 
@@ -103,6 +103,11 @@
 		  	}
 	  	}
 	  },
+	  methods:{
+	  	addArt(){
+	  		
+	  	}
+	  }
 	  
   }
 </script>

@@ -4,6 +4,8 @@
 			  <a v-link="{name:'user', params:{ id: item.u_id }}">
 			  	<div class="z-avator">
 			  		<img :src="item.logo" alt="">
+			  		<i class="iconfont col-img" @click="subme" v-if="collect==false">&#xe606;</i>
+				  	<i class="iconfont col-img" style="color:red;" @click="Collect" v-if="collect==true">&#xe633;</i>
 			  	</div>
 			  	<div class="z-desc container-16">
 			  		<div class="desc-l1">
@@ -61,6 +63,12 @@
 		margin-bottom: 1.0rem
 	.z-avator
 		height 10.0rem
+		position relative
+	.col-img
+		position absolute
+		bottom 0.75rem
+		right 1.0rem
+		font-size 1.0rem
 	.d-l1-name
 		font-size:0.7rem
 		font-weight: 700

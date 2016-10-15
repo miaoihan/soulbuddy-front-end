@@ -28,7 +28,7 @@ export default {
       // host: 'http://120.27.122.131'
       host: 'http://han.s3.natapp.cc',
       // 测试开关
-      test:false
+      test:true
     }
   },
   watch:{
@@ -145,8 +145,8 @@ export default {
 * 公共样式部分
 *
 **/
-.margin-right-30{
-  margin-right:1.5rem
+.margin-right-10{
+  margin-right:0.5rem
 }
 .fixed-bot{
   position fixed

@@ -23,15 +23,13 @@
 	  	<div type="submit" class="next-btn" v-if="title=='编辑个人资料'"
 	  			 @click="method">保存</div>
 	  	<!-- 收藏 -->
-	  	<i class="iconfont margin-right-30" class="r-func" 
+	  	<i class="iconfont margin-right-10" class="r-func" 
 	  	v-if="title==''&&collected==false" @click="subme">&#xe606;</i>
-	  	<i class="iconfont margin-right-30" class="r-func" style="color:red;" 
+	  	<i class="iconfont margin-right-10" class="r-func" style="color:red;" 
 	  	v-if="title==''&&collected==true" @click="Collect">&#xe633;</i>
 	  	<div class="collect-num-body" v-if="FavCount>1&&title==''">
 	  	<sapn class="collect-num">{{FavCount}}</sapn>
-	  	</div>
-	  	<!-- 收藏图标 -->
-	  	<i class="iconfont" class="r-func" v-if="title==''">&#xe62c;</i><!-- 分享图标 -->  
+	  	</div><!-- 收藏图标 -->
 	  	<i class="iconfont" class="r-func" v-if="title=='问题详情'">&#xe62d;</i><!-- 三个点 --> 
 	  	<a class="btn-nav" v-if="title=='新灵伙伴'"
 	  		 v-link="{path: '/ask'}">提问</a>
@@ -153,7 +151,7 @@
 	width 0.75rem
 	border-radius 0.75rem
 	top: 0.5rem;
-    right: 2.3rem;
+    right: 0.14rem;
 	background $ztc
 	// text-align: center
 	line-height 0.75rem

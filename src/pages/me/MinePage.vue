@@ -12,7 +12,7 @@
     		</div>
     		<div class="hint-img">
     			<i class="iconfont imgimg">&#xe605;</i>
-    			<div class="hint-text" v-if="hintnum<=99">{{fav_count}}</div>
+    			<div class="hint-text" v-if="fav_count>0">{{fav_count}}</div>
     		</div>
     	</div>
     </div>
