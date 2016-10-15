@@ -5,7 +5,7 @@
       <i class="iconfont title-test relative">&#xe604;</i>
       <span class="relative title-test-text">心理测评</span>
       <i class="iconfont title-next relative">&#xe60d;</i>
-      <a v-link="'/'" class="checkall relative">查看全部评测</a>
+      <span class="checkall relative" @click="changeIndex">查看全部评测</span>
     </div>
     <div class="swiper-container" style="margin-top:0.8rem" id="swp2">
       <div class="swiper-wrapper">
@@ -33,10 +33,10 @@ import QuestionList from 'components/areaComp/QuestionList.vue'
     },
     data(){
       return {
-        
       }
     },
     props:{
+      index:{type:Number,default:3},
       data:{
         type:Array,
         default(){
@@ -46,8 +46,15 @@ import QuestionList from 'components/areaComp/QuestionList.vue'
         }
       },
     },
+    methods:{
+      changeIndex(){
+        this.index=4
+        console.log("index"+this.index)
+      }
+    },
     ready(){
       // setTimeout(function(){
+        console.log("frist index:"+this.index)
         console.log(123);
         var mySwiper = new Swiper ('#swp2', {
             freeMode : true,

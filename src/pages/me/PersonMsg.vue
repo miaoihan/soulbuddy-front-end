@@ -1,5 +1,6 @@
 <template>
-<nav-header title="编辑个人资料" left="back" right=""></nav-header>
+<nav-header v-if="this.$route.params.id==0" title="编辑个人资料" left="back" right=""></nav-header>
+<nav-header v-if="this.$route.params.id==1" title="申请成为咨询师" left="back" right=""></nav-header>
   <div class="wrapper">
     <div class="person-photo1" id="per-photo">
     	<img class="photo-img" :src="PersonPhoto" >
@@ -15,7 +16,7 @@
     	title-color="black" text-color="black"
     	style="padding:0 1rem">
    	</input-box>
-   	<div class="part top-20 wrapper" style="padding:0 1rem" v-if="person.identity==0">
+   	<div class="part top-20 wrapper" style="padding:0 1rem" v-if="this.$route.params.id==1">
    		<card-photo></card-photo>
    	</div>
    	<span class="lab-name">
@@ -31,7 +32,8 @@
    		<textarea class="inputarea" maxlength="150" name="evaluation" placeholder="请填写自我评价（最多150个字）"></textarea>
    	</div>
    	<div class="save-box" style="margin-bottom:0rem">
-   		<input class="save-body" type="submit" value="保存" name="savemsg">
+   		<input class="save-body" type="submit" value="保存" name="savemsg" v-if="this.$route.params.id==0">
+      <input class="save-body" type="submit" value="提交申请" name="savemsg" v-if="this.$route.params.id==1">
    	</div>
    	</form>
    	<!-- <div style="height:5.0rem"></div> -->
