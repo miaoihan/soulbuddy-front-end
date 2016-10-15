@@ -4,7 +4,9 @@
   	<div class="wrapper search-body">
   		<i class="iconfont sear-img" @click="SearchBtn">&#xe600;</i>
   		<div class="input-body-head">
-  			<input class="input-ser" type="text" v-model="search_title">
+  			<form action="">
+  				<input class="input-ser" type="serch" v-model="search_title">
+  			</form>
   		</div>  		
   	</div>
 	<a class="back" v-if="search_title==''" onclick="window.history.go(-1)">取消</a>

@@ -1,7 +1,7 @@
 <template>
 <nav-header title="编辑个人资料" left="back" :method="subAndCheck2"></nav-header>
 <div class="far-bom">
-<form action="http://xinling.songtaxihuan.com/user/edit_info" method="post" id="editform">
+<form method="post" id="editform">
   <input type="hidden" name="token" :value="token">
   <input type="hidden" name="logo" :value="serverId" id="sid">
   <div class="top wrapper">
@@ -12,7 +12,7 @@
     <div class="nik-body wrapper">
       <div class="nikname wrapper">
       <input id="user-name" name="user_name" class="nikname-val" style="width:5.0rem" :value="user.user_name">
-        {{user.user_name}}
+        
       </div>
       <div class="border">   
       </div>
