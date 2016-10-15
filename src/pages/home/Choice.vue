@@ -74,7 +74,7 @@
         console.log('click the addread')
       },
       addQue(){
-
+        console.log('click the addque')
       }
     },
 	  ready(){

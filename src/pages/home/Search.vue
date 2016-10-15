@@ -13,6 +13,7 @@
 	<a class="back" v-if="search_title!=''" @click="SearchBtn">确定</a>
   </header>
   <serch-list :data="search_list" style="background-color:#fff"></serch-list>
+  <div class="noResult" v-if="result==false">没有你搜索的结果</div>
   <!-- <p>{{search_title}}</p> -->
 </template>
 
@@ -33,16 +34,17 @@ import SerchList from 'pages/home/SerchList.vue'
     	return{
     		search_list:[],
     		search_title:"",
+    		result:true,
     		// btn_name:"取消"
     	}  	
     },
     ready(){
-    	console.log("this.search_title")
+
     },
     methods:{
     	SearchBtn(){
     		$.ajax({
-	          url: 'http://xinling.songtaxihuan.com/search/get_search_list',
+	          url: global.domain +'/search/get_search_list',
 	          type:'POST', 
 	          dataType: 'json',
 	          cache: true,
@@ -50,11 +52,21 @@ import SerchList from 'pages/home/SerchList.vue'
 	            title: this.search_title,
 	            token: global.token
 	          },
-	          success: data => this.search_list = data.data,
+	          success: data => {
+	          	this.search_list = data.data
+	          	console.log(this.search_list)
+	          	 if(this.search_list.length==0){
+		        	this.result=false
+		        }else{
+		        	this.result=true
+		        }
+	          },
 	          error: err => err.toString(),
 	          
 	        });
-	        console.log(this.search_title)
+	        console.log('title is:'+this.search_title)
+	        
+
     	}
     }
 
@@ -109,4 +121,8 @@ import SerchList from 'pages/home/SerchList.vue'
 	color #fff
 	font-size 0.8rem
 	margin-top 0.5rem
+.noResult
+	margin-top 1.5rem
+	width 100%
+	text-align center
 </style>

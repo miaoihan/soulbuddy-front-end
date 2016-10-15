@@ -143,8 +143,8 @@ export default {
 * 公共样式部分
 *
 **/
-.margin-right-30{
-  margin-right:1.5rem
+.margin-right-10{
+  margin-right:0.5rem
 }
 .fixed-bot{
   position fixed
