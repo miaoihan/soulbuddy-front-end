@@ -28,7 +28,7 @@ export default {
       // host: 'http://120.27.122.131'
       host: 'http://han.s3.natapp.cc',
       // 测试开关
-      test:true
+      test:false
     }
   },
   watch:{

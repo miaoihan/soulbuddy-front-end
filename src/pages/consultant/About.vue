@@ -77,7 +77,7 @@ import NavHeader from 'components/funComp/NavHeader';
 
 	  	// 用户信息
 	  	$.ajax({
-          url: 'http://xinling.songtaxihuan.com/user/get_user_info',
+          url: global.domain +'/user/get_user_info',
           type:'POST', 
           dataType: 'json',
           cache: true,

@@ -2,7 +2,7 @@
 	
   <div class="wrapper"
   		 :class=" data.is_free ? 'voice' : 'voice-locked' "
-  		 :style="{width: data.time>60 ? '100%' : (data.time)*5/6+50+'%' }"
+  		 :style="{width: data.time>60 ? '100%' : (data.time)*5/6+50+'%';background-color:color }"
   		 @click="voiceAction($event)"
   		 >
   	<div class="v-inner">
@@ -47,7 +47,8 @@
 	  				
 	  			}
 	  		}
-	  	}
+	  	},
+	  	color:{type:String,default:'#2b8ff7'}
 	  },
 	  data(){
 	  	return{

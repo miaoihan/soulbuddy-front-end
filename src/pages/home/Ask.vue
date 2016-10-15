@@ -64,7 +64,7 @@
 	  		}
 	  		else{
 	  			$.ajax({
-          url: "http://xinling.songtaxihuan.com/question/add_question",
+          url: global.domain +"/question/add_question",
           type:'post', 
           dataType: 'json',
           cache: true,

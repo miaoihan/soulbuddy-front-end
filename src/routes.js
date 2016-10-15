@@ -86,6 +86,9 @@ var routes = {
   'me/history':{
     component:require('pages/me/History.vue')
   },
+  '/me/answer': {
+    component: require('pages/consultant/MyAnswer.vue')
+  },
   '/setting/profile': {
     name: 'setme',
     component: require('pages/me/Profile.vue')
@@ -93,10 +96,12 @@ var routes = {
   '/consultants': {
     component: require('pages/consultant/Consultant.vue')
   },
+  // 语音回答界面
   '/consultant/question/:qid': {
     name: 'answer',
     component: require('pages/consultant/QuestionCon.vue')
   },
+  
   '/wenda': {
     component: require('pages/consultant/HomeQue.vue')
   },
