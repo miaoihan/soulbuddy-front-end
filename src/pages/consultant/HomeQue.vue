@@ -44,7 +44,7 @@ export default {
 	
   data () {
     return {
-      	token:'',
+      token:'',
   		url2:'http://xinling.songtaxihuan.com/question/get_need_answer_list',
   		myQues:[],
   		otherQues:[],
@@ -68,7 +68,7 @@ export default {
           	page:1,
           	type:1,
 						token:global.token,
-		  },
+		  		},
           cache: false,
           success: function(data) {
           	console.log(data)

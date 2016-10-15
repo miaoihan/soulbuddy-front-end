@@ -4,10 +4,12 @@
     <question-card :data="datas" type="public" :is-content=true></question-card>
   </div>
   <div class="bottom-record wrapper fixed-bot">
-    <div class="record-box" v-if="isbox===true">
+    <div class="record-box" v-if="isbox">
       <div class="record-left">
-        <i class="iconfont record-icon" @click="recordbgn" v-if="isStart===false">&#xe610;</i>
-        <i class="iconfont record-icon2" @click="recordfin" v-if="isStart===true">&#xe614;</i>
+        <i class="iconfont record-icon" @click="recordbgn" 
+           v-if="isStart===false">&#xe610;</i>
+        <i class="iconfont record-icon2" @click="recordfin" 
+           v-if="isStart===true">&#xe614;</i>
       </div>
       <div class="record-right">
         <span class="hint-text" v-if="isStart==false">点击一下，开始录音</span>
@@ -16,10 +18,10 @@
       </div>
     </div>
     <button class="record-startbtn btn" @click="changebtn(event)">
-      <span v-if="isbox===false">
+      <span v-if="!isbox">
         <i class="iconfont">&#xe608;</i> 开始回答
       </span>
-      <span v-if="isbox===true">
+      <span v-if="isbox">
         取消
       </span>
     </button>
@@ -28,7 +30,7 @@
     <div class="record-box  font-center">
       <span class="shiting-text">点击试听</span>
       <div class="test-voice">
-        <voice></voice>
+        <voice @click="playVoice" id="playVoice"></voice>
       </div>
     </div>
     <div class="record-finishbtn btn">
@@ -51,52 +53,26 @@ export default {
       isStart:false,//是否开始录音，true时则开始录音，false时等待点击开始
       isFinish:false,//是否结束录音进入到试听阶段，true时录音结束进入到试听发布阶段
       token:'',
-      url1:'http://xinling.songtaxihuan.com/test/test?uid=3',
       url2:'http://xinling.songtaxihuan.com/question/get_question_info',
       datas:{},
+      voice:{
+        localId:'',
+        serverId: ''
+      },
     }
   },
   components:{
   	QuestionCard,Voice,TopBar,NavHeader
   },
-  props:{
-  	// data:{
-  	// 	type:Object,
-  	// 	default(){
-  	// 		return{qname: '王小喵33',
-  	// 			     queimg:require('assets/logo.png'),
-
-		 //       	   pay: '25',
-		 //       	   quetitle:'你可以在网上找到类似上述的其他脚本，它们不管多么优秀，其原理都是一样的，通过对keydown',
-		 //       	   quecontent:'是一个比较特殊的样式，我们可以用它代替我们通常所用的标题截取函数有300px的宽度。如果用标题截取函数，则标题不是完整的',
-		 //       	   type:'private',
-		 //       	   answernum:2,
-		 //       	   date:'08-14'}
-  	// 	}
-  	// },
-  },
-  ready:function(){
+  ready(){
+    
     $.ajax({
-          url: this.url1,
-          type:'GET', 
-          dataType: 'json',
-          cache: false,
-          async:false,
-          success: function(data) {
-            this.token = data.data
-            // console.log( typeof this.token); 
-          }.bind(this),
-          error: function(xhr, status, err) {
-            console.error(this.token, status, err.toString());
-          }.bind(this)
-        });
-      $.ajax({
-          url: this.url2,
+          url: global.domain +'/question/get_question_info',
           type:'POST', 
           dataType: 'json',
           data: {
-            q_id:1,
-            token:this.token,
+            q_id: this.$route.params.qid,
+            token: global.token,
           },
           cache: false,
           success: function(data) {
@@ -113,12 +89,46 @@ export default {
     changebtn(event){
       this.isbox=!this.isbox;
       console.log('isbox',this.isbox)
+      //微信录音
+
     },
+    //开始录音
     recordbgn(){
       this.isStart=!this.isStart;
+      
+      // document.querySelector('#startRecord').onclick = function () {
+        wx.startRecord({
+          cancel: function () {
+            alert('用户拒绝授权录音');
+          }
+        });
+      // };
     },
+    //停止录音
     recordfin(){
       this.isFinish=!this.isFinish;
+      var that = this  
+    // document.querySelector('#stopRecord').onclick = function () {
+      wx.stopRecord({
+        success: function (res) {
+          that.voice.localId = res.localId;
+        },
+        fail: function (res) {
+          alert(JSON.stringify(res));
+        }
+      });
+    // };
+    },
+    //播放音频
+    playVoice(){
+      var that = this  
+      if (that.voice.localId == '') {
+        alert('请先使用 startRecord 接口录制一段声音');
+        return;
+      }
+      wx.playVoice({
+        localId: that.voice.localId
+      });
     },
     cancle(){
       this.isFinish=false;

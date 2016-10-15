@@ -93,6 +93,10 @@ var routes = {
   '/consultants': {
     component: require('pages/consultant/Consultant.vue')
   },
+  '/consultant/question/:qid': {
+    name: 'answer',
+    component: require('pages/consultant/QuestionCon.vue')
+  },
   '/wenda': {
     component: require('pages/consultant/HomeQue.vue')
   },
