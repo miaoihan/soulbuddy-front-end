@@ -55,6 +55,20 @@
 
       }
     },
+    created(){
+      // 测评精选
+      $.ajax({
+          url: global.domain +'/access/get_choice_access',
+          type:'POST', 
+          dataType: 'json',
+          async:false,
+          data:{
+            count: 3,
+          },
+          success: data => this.evaList = data.data,
+          error: err => console.log(err)
+        });
+    },
     methods:{
       addRead(){
         console.log('click the addread')
@@ -72,7 +86,6 @@
           dataType: 'json',
           cache: true,
           data:{
-          	cat_id: 1
           },
           success: function(data) {
           	this.readList = data.data;
@@ -88,7 +101,6 @@
           url: global.domain +'/question/get_choice_question',
           type:'POST', 
           dataType: 'json',
-          cache: true,
           data:{
           	token: localStorage.token
           },
@@ -101,18 +113,7 @@
           }.bind(this)
         });
 
-      // 测评精选
-      $.ajax({
-          url: global.domain +'/access/get_choice_access',
-          type:'POST', 
-          dataType: 'json',
-          cache: true,
-          data:{
-            count: 3,
-          },
-          success: data => this.evaList = data.data,
-          error: err => console.log(err)
-        });
+      
 
 	  	
 	  },

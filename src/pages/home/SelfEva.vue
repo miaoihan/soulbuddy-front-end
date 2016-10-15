@@ -27,7 +27,7 @@ import SelectList from 'components/areaComp/SelectList.vue'
 	  ready(){
       // 评测
       $.ajax({
-          url: 'http://xinling.songtaxihuan.com/access/get_access_info',
+          url: global.domain +'/access/get_access_info',
           type:'POST', 
           dataType: 'json',
           cache: true,

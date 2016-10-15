@@ -1,9 +1,9 @@
 <template>
-<!-- select item -->
+<!-- seltect item -->
 <!-- 此组件暂时不用 -->
-  	<section class="sel-item part">
-	  	<div class="sel-title">
-	  		{{ +1 }}.{{data.question}}
+  	<section class="selt-item part">
+	  	<div class="selt-title">
+	  		{{ index+1 }}.{{data.question}}
 	  	</div>
 			<ul>
 				<li @click="select(1)">
@@ -52,15 +52,11 @@
 	  		type: Object,
 		  	default(){
 		  		return[
-		  			{
-		  				
-		  			},
-		  			{
-		  			
-		  			},
+		 
 		  		]
 		  	}
-	  	}
+	  	},
+	  	index: {type: Number, default: 0},
 	  },
 	  
   }
@@ -69,17 +65,17 @@
 <style scoped lang="stylus">
 @import '../../assets/stylus.styl'
 
-.sel-item
+.selt-item
 	margin-bottom: 1.5rem;
-	.sel-title
+	.selt-title
 		height: 3.0rem;
 		line-height: 3.0rem;
 		padding-left: 0.85rem;
 		font-weight: 600;
 		border-bottom: 1px solid #ebebeb;
 
-.sel-item ul li
-	height: 2.0rem;
+.selt-item ul li
+	min-height: 2.0rem;
 	line-height: 2.0rem;
 	font-size: 14px;
 	padding: 0 0.8rem	0	1.5rem;
