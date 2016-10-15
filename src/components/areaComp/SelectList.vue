@@ -1,7 +1,7 @@
 <template>
 <!-- 自测选择列表 -->
   <div class="sel-list">
-  	<select-item v-for="item in data" :data="item"></select-item>
+  	<select-item v-for="item in data" :data="item" :index="$index"></select-item>
   </div>
 </template>
 

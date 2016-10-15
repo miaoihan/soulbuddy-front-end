@@ -14,7 +14,7 @@
       <div class="record-right">
         <span class="hint-text" v-if="isStart==false">点击一下，开始录音</span>
         <span class="hint-text" v-if="isStart==true">再次点击结束录音</span>
-        <span class="time">0:00</span>
+        <span class="time" id="showtime">{{voice.time}}</span>
       </div>
     </div>
     <button class="record-startbtn btn" @click="changebtn(event)">
@@ -29,8 +29,9 @@
   <div class="bottom-record wrapper fixed-bot" v-if="isFinish===true">
     <div class="record-box  font-center">
       <span class="shiting-text">点击试听</span>
+      <!-- voice组件 -->
       <div class="test-voice">
-        <voice @click="playVoice" id="playVoice"></voice>
+        <voice @click="playVoice" id="playVoice" color:'#fff'></voice>
       </div>
     </div>
     <div class="record-finishbtn btn">
@@ -57,15 +58,18 @@ export default {
       datas:{},
       voice:{
         localId:'',
-        serverId: ''
+        serverId: '',
+        time: '0:00'
       },
+      //时间计数
+      t: 0,
+      flag: ''
     }
   },
   components:{
   	QuestionCard,Voice,TopBar,NavHeader
   },
   ready(){
-    
     $.ajax({
           url: global.domain +'/question/get_question_info',
           type:'POST', 
@@ -89,24 +93,50 @@ export default {
     changebtn(event){
       this.isbox=!this.isbox;
       console.log('isbox',this.isbox)
-      //微信录音
 
     },
+    // 时间计时器
+    startTime(){
+      // alert(111)
+      var minute = 0, second = 0;
+      minute = (Math.floor(this.t/60%60) + 100 + '').substr(1);
+      second = (Math.floor(this.t%60) + 100 + '').substr(1);
+      this.voice.time = minute+":"+second;
+      // document.getElementById('showtime').innerHTML=minute+":"+second;
+      this.t++;
+      // alert(this.voice.time)
+      this.flag = setTimeout(this.startTime, 1000);           
+    },
+    stopTime(){
+      clearTimeout(this.flag);
+    },
+    // test(){
+    //   // alert(this.t)
+    //   document.getElementById('txt').value=this.t
+    //   this.t=this.t+1
+    //   // alert(this.t)
+    //   setTimeout(this.test,1000)
+    // },
     //开始录音
     recordbgn(){
       this.isStart=!this.isStart;
-      
+      this.startTime()
+      var that = this
       // document.querySelector('#startRecord').onclick = function () {
         wx.startRecord({
           cancel: function () {
             alert('用户拒绝授权录音');
-          }
+          },
+          success: function (res) {
+            
+        },
         });
       // };
     },
     //停止录音
     recordfin(){
       this.isFinish=!this.isFinish;
+      this.stopTime();
       var that = this  
     // document.querySelector('#stopRecord').onclick = function () {
       wx.stopRecord({
@@ -134,6 +164,12 @@ export default {
       this.isFinish=false;
       this.isbox=false;
       this.isStart=false;
+      // 清空
+      this.voice={
+        localId:'',
+        serverId: '',
+        time: '0:00'
+      };
     },
     again(){
       this.isFinish=false;
@@ -144,6 +180,28 @@ export default {
       this.isFinish=false;
       this.isbox=false;
       this.isStart=false;
+      var that = this
+      if (voice.localId == '') {
+        alert('请先使用 startRecord 接口录制一段声音');
+        return;
+      }
+      wx.uploadVoice({
+        localId: that.voice.localId,
+        success: function (res) {
+          
+          that.voice.serverId = res.serverId;
+          //保存到服务器
+          $.post( global.domain +'/question/add_answer', 
+          { 'token'     :  global.token,
+            'q_id'      :  that.q_id,
+            'answer_url':  res.serverId,
+            'user_name' :  global.user.user_name,
+          },
+          function (res) {
+            alert('语音上传成功');
+          }, 'json');
+          }
+      });
     }
   }
 }
@@ -240,7 +298,7 @@ export default {
 .submit{
   height: 1.5rem;
   width: 3.7rem;
-  background-color: #48b7e6;
+  background-color: #53d769;
   border-radius: 0.3rem;
 }
 </style>

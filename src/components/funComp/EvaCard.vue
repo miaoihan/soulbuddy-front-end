@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import swiper from 'assets/swiper/swiper.min.js'
+// import swiper from 'assets/swiper/swiper.min.js'
 import NavHeader from 'components/funComp/NavHeader'
 import FuncNav from 'components/areaComp/FuncNav.vue'
 import QuestionList from 'components/areaComp/QuestionList.vue'

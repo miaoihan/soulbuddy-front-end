@@ -1,8 +1,9 @@
 <template>
   <div>
 	  <a v-link="{ name:'article', params:{ art_id: data.art_id }  }">
-	  	<div class="a-l">
-				<img :src="data.img_file" alt="">
+	  	<!-- <div class="a-l" :style="background-image: url(data.img_file) no-repeat 0"> -->
+	  	<div class="a-l" style="background: url({{data.img_file}}) no-repeat center top; background-size: cover">
+				<!-- <img :src="data.img_file" alt=""> -->
 			</div>
 			<div class="a-r">
 				<aside>
@@ -28,6 +29,13 @@
   	components: {
 
 	  },
+	  data () {
+	    return {
+	      imgCss:{
+	      	background:'url(data.img_file) no-repeat 0'
+	      }
+	    };
+	  },
 	  props:{
 	  	article:{},
 	  	data: {
@@ -50,6 +58,8 @@
 		float: left
 		width 33.3%
 		height 6rem
+		// 裁剪
+		background-size: cover
 	.a-r
 		// float left
 		display table-cell
