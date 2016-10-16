@@ -1,11 +1,12 @@
 <template>
   <div class="zxs-list wrapper">
 		  <div class="zxs-item part" v-for="item in data">
-			  <a v-link="{name:'user', params:{ id: item.u_id }}">
+		  	  <i class="iconfont col-img" @click="subme(item.u_id)" v-if="item.is_fav==0">&#xe606;</i>
+			  <i class="iconfont col-img" style="color:red;" @click="Collect" v-if="item.is_fav==1">&#xe633;</i>
+			  <a v-link="{name:'user', params:{ id: item.u_id },params:{ type: 1 }}">
 			  	<div class="z-avator">
 			  		<img :src="item.logo" alt="">
-			  		<i class="iconfont col-img" @click="subme" v-if="collect==false">&#xe606;</i>
-				  	<i class="iconfont col-img" style="color:red;" @click="Collect" v-if="collect==true">&#xe633;</i>
+			  		
 			  	</div>
 			  	<div class="z-desc container-16">
 			  		<div class="desc-l1">
@@ -39,6 +40,12 @@
   	components: {
 
 	  },
+	  data(){
+	  	return{
+	  		collected:false,
+	  		user_list:[]
+	  	}
+	  },
 	  props:{
 	  	data: {
 	  		type: Array,
@@ -52,6 +59,47 @@
 	  	}
 	  },
 	  ready(){
+
+	  },
+	  methods:{
+	  	getUserList(){
+	  		$.ajax({
+	          url: global.domain +'/user/get_user_list',
+	          type:'POST', 
+	          dataType: 'json',
+	          cache: true,
+	          data:{
+	          	token: localStorage.token,
+	          	page: 1,
+	          	identity: 1
+	          },
+	          success: function(data) {
+	          		this.data = data.data;	          		
+	          },
+	          error: function(xhr, status, err) {
+	          }
+	        })
+	  	},
+	  	subme(u_id){
+	  		// console.log("u_id is"+u_id)
+	  		$.ajax({
+		            url: global.domain +"/user/add_favorite",
+		            type:'post', 
+		            dataType: 'json',
+		            cache: true,
+		            data: {
+		              token:localStorage.token,
+		              fav_type:1,
+		              fav_id:u_id,
+		            },
+		            success: function(data) {
+		            	this.getUserList()
+		            },
+		            error: function(xhr, status, err) {
+		              console.err(err.toString())
+		            }
+	        });
+	  	}
 	  }
 	  
   }
@@ -61,12 +109,14 @@
 
 	.zxs-item
 		margin-bottom: 1.0rem
+		position relative
 	.z-avator
 		height 10.0rem
 		position relative
 	.col-img
 		position absolute
-		bottom 0.75rem
+		z-index 10
+		bottom 6.35rem
 		right 1.0rem
 		font-size 1.0rem
 	.d-l1-name

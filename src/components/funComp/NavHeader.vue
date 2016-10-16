@@ -102,7 +102,7 @@
 		            url: global.domain +"/user/add_favorite",
 		            type:'post', 
 		            dataType: 'json',
-		            cache: true,
+		            async:false,
 		            data: {
 		              token:localStorage.token,
 		              fav_type:this.FavType,

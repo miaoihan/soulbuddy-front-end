@@ -105,7 +105,7 @@ var routes = {
   '/wenda': {
     component: require('pages/consultant/HomeQue.vue')
   },
-  '/user/:id': {
+  '/user/:id/:type': {
     name: 'user',
     component: require('pages/consultant/About.vue')
   },

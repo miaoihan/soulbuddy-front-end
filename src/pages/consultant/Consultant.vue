@@ -30,7 +30,7 @@
           dataType: 'json',
           cache: true,
           data:{
-          	token: localStorage.token,
+          	token: "sWOrawNilWpbpETJZhzB06xCiUruLOAWBftELGUbwj8=",
           	page: 1,
           	identity: 1
           },
@@ -49,7 +49,7 @@
           dataType: 'json',
           cache: true,
           data:{
-          	token: localStorage.token,
+          	token: "sWOrawNilWpbpETJZhzB06xCiUruLOAWBftELGUbwj8=",
           	page: 1,
           	identity: 2
           },

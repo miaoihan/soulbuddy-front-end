@@ -1,6 +1,6 @@
 <template>
 <!-- 咨询师详情 -->
-<nav-header title="" left="back"></nav-header>
+<nav-header title="" left="back" :fav-type="user_type" :fav-id="user.u_id" :collected="collected" :fav-count="user.fav_count"></nav-header>
   <div>
   	<div class="at-top part container-20"
   			 :class="user.identity == 1? 'ztc' : 'ab-kol' ">
@@ -70,11 +70,14 @@ import NavHeader from 'components/funComp/NavHeader';
 	  data(){
 	  	return{
 	  		token: '',
-	  		user: {}
+	  		user: {},
+	  		collected:false,
+	  		user_type:""
 	  	}
 	  },
 	  ready(){
-
+	  	this.user_type=this.$route.params.type
+	  	console.log("user_type is"+this.user_type)
 	  	// 用户信息
 	  	$.ajax({
           url: global.domain +'/user/get_user_info',
@@ -87,6 +90,9 @@ import NavHeader from 'components/funComp/NavHeader';
           },
           success: function(data) {
           	this.user = data.data;
+          	if(this.user.is_fav=="1"){
+	        	this.collected=true
+	        }
           }.bind(this),
           error: function(xhr, status, err) {
             console.error(readList, status, err.toString());
