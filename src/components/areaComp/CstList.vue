@@ -3,7 +3,7 @@
 		  <div class="zxs-item part" v-for="item in data">
 		  	  <i class="iconfont col-img" @click="subme(item.u_id)" v-if="item.is_fav==0">&#xe606;</i>
 			  <i class="iconfont col-img" style="color:red;" @click="Collect" v-if="item.is_fav==1">&#xe633;</i>
-			  <a v-link="{name:'user', params:{ id: item.u_id },params:{ type: 1 }}">
+			  <a v-link="{name:'user', params:{ id: item.u_id }}">
 			  	<div class="z-avator">
 			  		<img :src="item.logo" alt="">
 			  		
@@ -75,13 +75,13 @@
 	          },
 	          success: function(data) {
 	          		this.data = data.data;	          		
-	          },
+	          }.bind(this),
 	          error: function(xhr, status, err) {
-	          }
+	          }.bind(this)
 	        })
 	  	},
 	  	subme(u_id){
-	  		// console.log("u_id is"+u_id)
+	  		console.log("u_id is"+u_id)
 	  		$.ajax({
 		            url: global.domain +"/user/add_favorite",
 		            type:'post', 
@@ -93,7 +93,22 @@
 		              fav_id:u_id,
 		            },
 		            success: function(data) {
-		            	this.getUserList()
+		            	$.ajax({
+				          url: global.domain +'/user/get_user_list',
+				          type:'POST', 
+				          dataType: 'json',
+				          cache: true,
+				          data:{
+				          	token: localStorage.token,
+				          	page: 1,
+				          	identity: 1
+				          },
+				          success: function(data) {
+				          		this.data = data.data;	          		
+				          },
+				          error: function(xhr, status, err) {
+				          }
+				        })
 		            },
 		            error: function(xhr, status, err) {
 		              console.err(err.toString())

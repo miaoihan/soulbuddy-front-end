@@ -131,6 +131,8 @@ export default {
       
     // alert(this.$route.path)
     // 微信配置
+
+      
   }
 
 }
