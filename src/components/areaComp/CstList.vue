@@ -2,7 +2,7 @@
   <div class="zxs-list wrapper">
 		  <div class="zxs-item part" v-for="item in data">
 		  	  <i class="iconfont col-img" @click="subme(item.u_id)" v-if="item.is_fav==0">&#xe606;</i>
-			  <i class="iconfont col-img" style="color:red;" @click="Collect" v-if="item.is_fav==1">&#xe633;</i>
+			  <i class="iconfont col-img" style="color:red;" v-if="item.is_fav==1">&#xe633;</i>
 			  <a v-link="{name:'user', params:{ id: item.u_id }}">
 			  	<div class="z-avator">
 			  		<img :src="item.logo" alt="">
