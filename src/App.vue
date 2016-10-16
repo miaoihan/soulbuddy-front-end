@@ -28,7 +28,8 @@ export default {
       // host: 'http://120.27.122.131',
       host: 'http://han.s3.natapp.cc',
       // 测试开关
-      test:false
+      test:false,
+      uid: 1
     }
   },
   watch:{
@@ -50,14 +51,16 @@ export default {
     this.token = ku.token
     global.token = ku.token
     global.domain = 'http://xinling.songtaxihuan.com'
-   
-
-    // if (!ku.token) {
-      // alert(2222)
+      
+      //测试环境
+      if (this.test) {
+        $.get(global.domain +'/test/test?uid='+this.uid,
+        v => global.token = v.data ,'json');
+      }
       
       // 微信登录部分
-      //第二次页面没有code，全局user失效
-      if (!this.test) {
+      //第二次页面没有code，全局user失效,可以调用
+      else {
       $.ajax({
         url: localStorage.domain +'/register/reguser',
         type:'POST', dataType: 'json',async:'false',
@@ -99,7 +102,7 @@ export default {
       $.post( global.domain +'/thirdparty/wechat', 
           {'url': location.href.split('#')[0]},function (res) {
             wx.config({
-                debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
                 appId: res.data.appId, // 必填，公众号的唯一标识
                 timestamp: res.data.timestamp, // 必填，生成签名的时间戳
                 nonceStr: res.data.nonceStr, // 必填，生成签名的随机串
