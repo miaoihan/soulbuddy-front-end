@@ -212,10 +212,14 @@ export default {
         success: function (res) {
           
           that.voice.serverId = res.serverId;
+          console.log('token: '+global.token)
+          console.log('q_id: '+that.$route.params.qid)
+          console.log('answer_url: '+res.serverId)
+          console.log('user_name: '+global.user.user_name)
           //保存到服务器
           $.post( global.domain +'/question/add_answer', 
           { 'token'     :  global.token,
-            'q_id'      :  that.q_id,
+            'q_id'      :  that.$route.params.qid,
             'answer_url':  res.serverId,
             'user_name' :  global.user.user_name,
           },

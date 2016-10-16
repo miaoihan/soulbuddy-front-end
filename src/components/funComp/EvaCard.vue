@@ -1,6 +1,6 @@
 <template>
   <div class="card-body relative wrapper">
-  	<img src="../../../src/assets/imgs/xl8.jpeg" height="517" width="690" class="img-evac">
+  	<img src="../../../src/assets/imgs/xl8.jpg" height="517" width="690" class="img-evac">
     <div class="top-title wrapper relative">
       <i class="iconfont title-test relative">&#xe604;</i>
       <span class="relative title-test-text">心理测评</span>

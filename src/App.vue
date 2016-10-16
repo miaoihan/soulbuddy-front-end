@@ -25,7 +25,7 @@ export default {
       token: '', //做判断用，有了token才渲染
       weixin: [],
       identity: 0,
-      // host: 'http://120.27.122.131'
+      // host: 'http://120.27.122.131',
       host: 'http://han.s3.natapp.cc',
       // 测试开关
       test:false
