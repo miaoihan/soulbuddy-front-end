@@ -3,9 +3,8 @@
 <nav-header v-if="this.$route.params.id==1" title="申请成为咨询师" left="back" right=""></nav-header>
   <div class="wrapper">
     <div class="person-photo1" id="per-photo">
-    	<img class="photo-img" :src="PersonPhoto" >
-    	<div class="sub-photo">
-        <input type="file" class="getphoto">
+    	<img class="photo-img" :src="PersonPhoto" id="logo" >
+    	<div class="sub-photo" id="avator">
     		<i class="iconfont craicon">&#xe60c;</i>
     		<span class="sub-text">上传真实头像</span>
     	</div>
@@ -55,7 +54,8 @@ export default {
 	},
   data () {
     return {
-      person:{}
+      person:{},
+      serverId: '',
     }
   },
   ready:function(){
@@ -77,7 +77,34 @@ export default {
           error: err => err.toString(),
           
         });
-      console.log("user:",this.person)
+      // console.log("user:",this.person)
+      var that = this
+      document.querySelector('#avator').onclick = function () {
+        wx.chooseImage({
+            count: 1, // 默认9
+            sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+            sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+            success: function (res) {
+                // alert(3333)
+                let localId = res.localIds.toString();
+                $('#logo').attr('src',res.localIds);
+                // alert(this.localId)
+                // alert('chenggong:' +that.serverId)
+                setTimeout(function () {
+                    wx.uploadImage({
+                        localId: localId, // 需要上传的图片的本地ID，由chooseImage接口获得
+                        isShowProgressTips: 1, // 默认为1，显示进度提示
+                        success: function (res) {
+                            console.log(res.serverId);// 返回图片的服务器端ID
+                            that.serverId = res.serverId
+                            // alert('zhi: ' +this.serverId)
+
+                        }
+                    });
+                }, 100);
+            }
+        });
+      }
   },
   methods:{
       addPhoto(){ 
@@ -173,6 +200,6 @@ input::-webkit-input-placeholder {text-align:right}
 	color:#fff;
 	font-size:0.8rem;
 	margin-top:1.5rem;
-	margin-bottom:2.25rem
+	margin-bottom:2.5rem
 }
 </style>
