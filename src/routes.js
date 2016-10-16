@@ -105,9 +105,13 @@ var routes = {
   '/wenda': {
     component: require('pages/consultant/HomeQue.vue')
   },
-  '/user/:id/:type': {
+  '/user/:id': {
     name: 'user',
     component: require('pages/consultant/About.vue')
+  },
+  '/user_daren/:id': {
+    name: 'user_daren',
+    component: require('pages/consultant/AboutJydr.vue')
   },
   '/evaluation/:id': {
     name: 'eva',
