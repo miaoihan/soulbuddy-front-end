@@ -2,7 +2,7 @@
 <!-- 咨询师 -->
 	<nav-header :identity.sync="identity" :iscst="true" :right="false"></nav-header>
   <div class="far-bom">
-	  <cst-list :data = "userList1" v-if="identity===1"></cst-list>
+	  <cst-list :item = "data" v-if="identity===1" v-for="data in userList1"></cst-list>
 	  <kol-list :data = "userList2" v-if="identity===2"></kol-list>
   </div>
 </template>
@@ -17,6 +17,7 @@
 	  data(){
 	  	return{
 	  		token: '',
+	  		domain: 'http://xinling.songtaxihuan.com',
 	  		iscst: true,
 	  		identity: 1, //0普通用户1心理咨询师2经验答人
 	  		userList1: [],
@@ -25,12 +26,12 @@
 	  },
 	  ready(){
 	  	$.ajax({
-          url: global.domain +'/user/get_user_list',
+          url: this.domain +'/user/get_user_list',
           type:'POST', 
           dataType: 'json',
           cache: true,
           data:{
-          	token: "sWOrawNilWpbpETJZhzB06xCiUruLOAWBftELGUbwj8=",
+          	token: localStorage.token,
           	page: 1,
           	identity: 1
           },
@@ -44,12 +45,12 @@
           }.bind(this)
         });
 	  	$.ajax({
-          url: global.domain +'/user/get_user_list',
+          url: this.domain +'/user/get_user_list',
           type:'POST', 
           dataType: 'json',
           cache: true,
           data:{
-          	token: "sWOrawNilWpbpETJZhzB06xCiUruLOAWBftELGUbwj8=",
+          	token: localStorage.token,
           	page: 1,
           	identity: 2
           },

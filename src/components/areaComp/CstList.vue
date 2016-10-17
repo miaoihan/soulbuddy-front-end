@@ -1,8 +1,8 @@
 <template>
   <div class="zxs-list wrapper">
-		  <div class="zxs-item part" v-for="item in data">
-		  	  <i class="iconfont col-img" @click="subme(item.u_id)" v-if="item.is_fav==0">&#xe606;</i>
-			  <i class="iconfont col-img" style="color:red;" v-if="item.is_fav==1">&#xe633;</i>
+		  <div class="zxs-item part">
+		  	  <i class="iconfont col-img" @click="subme(item.u_id)" v-if="collected==false">&#xe606;</i>
+			  <i class="iconfont col-img" style="color:red;" v-if="collected==true">&#xe633;</i>
 			  <a v-link="{name:'user', params:{ id: item.u_id }}">
 			  	<div class="z-avator">
 			  		<img :src="item.logo" alt="">
@@ -43,43 +43,48 @@
 	  data(){
 	  	return{
 	  		collected:false,
-	  		user_list:[]
+	  		user_list:[],
+	  		my_favorite:[]
 	  	}
 	  },
 	  props:{
-	  	data: {
-	  		type: Array,
+	  	item: {
+	  		type: Object,
 		  	default(){
-		  		return[
+		  		return
 		  			{
-		  				
-		  			},
-		  		]
+		  			}
 		  	}
 	  	}
 	  },
 	  ready(){
-
+	  	//获取我的收藏 判断是否已经收藏
+	  	$.ajax({
+            url: global.domain+'/user/get_my_favorite',
+            type:'POST', 
+            dataType: 'json',
+            cache: true,
+            data:{
+              token:global.token,
+              type:1
+            },
+            success: data => {
+              this.my_favorite = data.data;
+              // 判断收藏
+              var arr=[];
+              for(var i = 0;i < this.my_favorite.length;i++){
+                arr.push(this.my_favorite[i].u_id)
+              }
+              var test=arr.indexOf(this.item.u_id);
+              console.log(test)
+              if(test!=-1){
+                this.collected=true
+              }
+            },
+            error: err => err.toString(),
+      	});
 	  },
 	  methods:{
-	  	getUserList(){
-	  		$.ajax({
-	          url: global.domain +'/user/get_user_list',
-	          type:'POST', 
-	          dataType: 'json',
-	          cache: true,
-	          data:{
-	          	token: localStorage.token,
-	          	page: 1,
-	          	identity: 1
-	          },
-	          success: function(data) {
-	          		this.data = data.data;	          		
-	          }.bind(this),
-	          error: function(xhr, status, err) {
-	          }.bind(this)
-	        })
-	  	},
 	  	subme(u_id){
 	  		console.log("u_id is"+u_id)
 	  		$.ajax({
@@ -93,26 +98,27 @@
 		              fav_id:u_id,
 		            },
 		            success: function(data) {
-		            	$.ajax({
-				          url: global.domain +'/user/get_user_list',
-				          type:'POST', 
-				          dataType: 'json',
-				          cache: true,
-				          data:{
-				          	token: localStorage.token,
-				          	page: 1,
-				          	identity: 1
-				          },
-				          success: function(data) {
-				          		this.data = data.data;	          		
-				          },
-				          error: function(xhr, status, err) {
-				          }
-				        })
-		            },
+		            	this.collected=!this.collected
+		          //   	$.ajax({
+				        //   url: global.domain +'/user/get_user_list',
+				        //   type:'POST', 
+				        //   dataType: 'json',
+				        //   cache: true,
+				        //   data:{
+				        //   	token: localStorage.token,
+				        //   	page: 1,
+				        //   	identity: 1
+				        //   },
+				        //   success: function(data) {
+				        //   		this.data = data.data;	          		
+				        //   },
+				        //   error: function(xhr, status, err) {
+				        //   }
+				        // })
+		            }.bind(this),
 		            error: function(xhr, status, err) {
 		              console.err(err.toString())
-		            }
+		            }.bind(this)
 	        });
 	  	}
 	  }

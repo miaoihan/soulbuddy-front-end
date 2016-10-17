@@ -113,8 +113,8 @@ import NavHeader from 'components/funComp/NavHeader';
               for(var i = 0;i < this.about_info.length;i++){
                 arr.push(this.about_info[i].u_id)
               }
-              var test=arr.indexOf(this.this.$route.params.id);
-              console.log(this.this.$route.params.id)
+              var test=arr.indexOf(this.$route.params.id);
+              console.log(this.$route.params.id)
               if(test!=-1){
                 this.collected=true
               }
