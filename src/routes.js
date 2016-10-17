@@ -86,6 +86,9 @@ var routes = {
   '/me/answer': {
     component: require('pages/consultant/MyAnswer.vue')
   },
+  '/me/eva': {
+    component: require('pages/me/MyEva.vue')
+  },
   '/setting/profile': {
     name: 'setme',
     component: require('pages/me/Profile.vue')

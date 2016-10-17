@@ -9,7 +9,7 @@
 		    </a>
 	    </div>
 	    <div class="function-body font-center">
-		    <a v-link="'/me/evaluations'">
+		    <a v-link="'/me/eva'">
 		    	<i class="iconfont fun-img">&#xe604;</i>
 		    	<span class="fun-text">我的测评</span>
 		    </a>

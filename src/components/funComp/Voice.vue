@@ -64,7 +64,7 @@
 	  	// 点击voice后的动作
 	  	voiceAction(e){
 	  		// console.log(e)
-	  		let voice = document.getElementById("answer")
+	  		let voice = document.getElementById(this.aid)
 	  		e.preventDefault();
 			  if (voice.paused) {
 			    voice.play();
