@@ -53,7 +53,9 @@ import SelectList from 'components/areaComp/SelectList.vue'
 		            test_id:　this.$route.params.id,
 		            answers:  JSON.stringify(this.selarr)
 		          },
-		          success: data => {console.log(data)},
+		          success: data => {console.log(data);
+		          	this.$router.go({name:'evaResult',params:{id: this.$route.params.id}})
+		          },
 		          error: err => err.toString()
 		        });
     		}

@@ -50,7 +50,7 @@
 	  	like(u_id){
 	  		console.log("u_id is "+u_id)
 	  		this.is_like = true
-	  		this.data.fav_count+=1
+	  		this.data.fav_count++
 	  		$.ajax({
 		            url: global.domain +"/user/add_favorite",
 		            type:'post', 

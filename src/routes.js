@@ -98,7 +98,6 @@ var routes = {
     name: 'answer',
     component: require('pages/consultant/QuestionCon.vue')
   },
-  
   '/wenda': {
     component: require('pages/consultant/HomeQue.vue')
   },
@@ -113,6 +112,10 @@ var routes = {
   '/evaluation/:id': {
     name: 'eva',
     component: require('pages/home/SelfEva.vue')
+  },
+  '/evaluation/result/:id': {
+    name: 'evaResult',
+    component: require('pages/home/EvaResult.vue')
   },
   '/question/:id': {
     name: 'question',

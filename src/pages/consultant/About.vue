@@ -77,8 +77,8 @@ import NavHeader from 'components/funComp/NavHeader';
 	  	}
 	  },
 	  ready(){
-	  	this.user_type=this.$route.params.type
-	  	console.log("user_type is"+this.user_type)
+	  	// this.user_type=this.$route.params.type
+	  	// console.log("user_type is"+this.user_type)
 	  	// 用户信息
 	  	$.ajax({
           url: global.domain +'/user/get_user_info',
