@@ -71,7 +71,7 @@ import Evaluation from 'pages/home/Evaluation.vue'
           // cache: true,
           data:{
             page: 1,
-            token: localStorage.token
+            token: global.token
           },
           success: data => this.queList = data.data,
           error: err => console.error(err.toString())
@@ -89,7 +89,7 @@ import Evaluation from 'pages/home/Evaluation.vue'
           dataType: 'json',
           data:{
             page: 1,
-            token: localStorage.token
+            token: global.token
           },
           success: data => this.evaList = data.data,
           error: err => console.error(err.toString())

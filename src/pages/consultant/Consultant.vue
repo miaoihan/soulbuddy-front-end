@@ -24,13 +24,14 @@
 	  	}
 	  },
 	  ready(){
+      // 咨询师
 	  	$.ajax({
           url: global.domain +'/user/get_user_list',
           type:'POST', 
           dataType: 'json',
           cache: true,
           data:{
-          	token: "sWOrawNilWpbpETJZhzB06xCiUruLOAWBftELGUbwj8=",
+          	token: global.token,
           	page: 1,
           	identity: 1
           },
@@ -43,13 +44,14 @@
           error: function(xhr, status, err) {
           }.bind(this)
         });
+      // 经验达人
 	  	$.ajax({
           url: global.domain +'/user/get_user_list',
           type:'POST', 
           dataType: 'json',
           cache: true,
           data:{
-          	token: "sWOrawNilWpbpETJZhzB06xCiUruLOAWBftELGUbwj8=",
+          	token: global.token,
           	page: 1,
           	identity: 2
           },

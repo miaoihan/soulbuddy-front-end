@@ -38,9 +38,6 @@ var routes = {
   '/home/serchlist': {
     component: require('pages/home/SerchList.vue')
   },
-  '/home/questiondetail': {
-    component: require('pages/home/QuestionDetail.vue')
-  },
   '/home/evaluation': {
     component: require('pages/home/Evaluation.vue')
   },

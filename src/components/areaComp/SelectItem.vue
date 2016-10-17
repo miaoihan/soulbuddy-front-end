@@ -1,31 +1,17 @@
 <template>
 <!-- seltect item -->
-<!-- 此组件暂时不用 -->
   	<section class="selt-item part">
 	  	<div class="selt-title">
 	  		{{ index+1 }}.{{data.question}}
 	  	</div>
 			<ul>
-				<li @click="select(1)">
-					{{data.item1}} 
+				<li @click="select($index+1)" v-for="answer of data.answers">
+					{{answer}}
 					<span class="iconfont pull-right"
-								v-if="sel_index==(1)" 
-								>&#xe60e;</span></li>
-				<li @click="select(2)">
-					{{data.item2}} 
-					<span class="iconfont pull-right"
-								v-if="sel_index==(2)" 
-								>&#xe60e;</span></li>
-				<li @click="select(3)">
-					{{data.item3}} 
-					<span class="iconfont pull-right"
-								v-if="sel_index==(3)" 
-								>&#xe60e;</span></li>
-				<li @click="select(4)">
-					{{data.item4}} 
-					<span class="iconfont pull-right"
-								v-if="sel_index==(4)" 
-								>&#xe60e;</span></li>
+								v-if="sel_index ==  $index+1" 
+								>&#xe60e;</span>
+				</li>
+				
 			</ul>
 		</section><!-- end item -->
 </template>
@@ -37,15 +23,21 @@
 	  },
 	  data() {
   		return{
-  			sel_index: -1
+  			sel_index: -1,
   			
   		}
   	},
 	  methods:{
-  		select(index){
-  			console.log(index)
-  			this.sel_index = index;
+  		select(option){
+  			console.log(option)
+  			this.sel_index = option;
+  			// 将题的选项放到数组里
+  			this.selarr.$set(this.index,option)
+  			console.log(this.selarr)
   		}
+  	},
+  	ready(){
+  		this.data.answers = JSON.parse(this.data.answers)
   	},
 	  props:{
 	  	data: {
@@ -56,6 +48,8 @@
 		  		]
 		  	}
 	  	},
+	  	// 选择题数组
+	  	selarr: {type: Array, default: null},
 	  	index: {type: Number, default: 0},
 	  },
 	  

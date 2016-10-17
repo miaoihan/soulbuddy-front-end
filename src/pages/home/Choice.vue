@@ -72,6 +72,16 @@
     methods:{
       addRead(){
         console.log('click the addread')
+        $.ajax({
+          url: global.domain +'/access/get_choice_access',
+          type:'POST', 
+          dataType: 'json',
+          data:{
+            count: 3,
+          },
+          success: data => this.evaList = data.data,
+          error: err => console.log(err)
+        });
       },
       addQue(){
         console.log('click the addque')
@@ -102,7 +112,7 @@
           type:'POST', 
           dataType: 'json',
           data:{
-          	token: localStorage.token
+          	token: global.token
           },
           success: function(data) {
           	this.queList = data.data;

@@ -24,11 +24,11 @@
 	  			 @click="method">保存</div>
 	  	<!-- 收藏 -->
 	  	<i class="iconfont margin-right-10" class="r-func" 
-	  	v-if="title==''&&collected==false" @click="subme">&#xe606;</i>
+	  		 v-if="title==''&&collected==false" @click="subme">&#xe606;</i>
 	  	<i class="iconfont margin-right-10" class="r-func" style="color:red;" 
-	  	v-if="title==''&&collected==true" @click="Collect">&#xe633;</i>
+	  		 v-if="title==''&&collected==true" @click="Collect">&#xe633;</i>
 	  	<div class="collect-num-body" v-if="FavCount>1&&title==''">
-	  	<sapn class="collect-num">{{FavCount}}</sapn>
+	  		<span class="collect-num">{{FavCount}}</span>
 	  	</div><!-- 收藏图标 -->
 	  	<i class="iconfont" class="r-func" v-if="title=='问题详情'">&#xe62d;</i><!-- 三个点 --> 
 	  	<a class="btn-nav" v-if="title=='新灵伙伴'"
@@ -104,7 +104,7 @@
 		            dataType: 'json',
 		            async:false,
 		            data: {
-		              token:localStorage.token,
+		              token:global.token,
 		              fav_type:this.FavType,
 		              fav_id:this.FavId,
 		            }	,//序列化
