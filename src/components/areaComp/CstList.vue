@@ -1,31 +1,31 @@
 <template>
   <div class="zxs-list wrapper">
 		  <div class="zxs-item part">
-		  	  <i class="iconfont col-img" @click="subme(item.u_id)" v-if="collected==false">&#xe606;</i>
+		  	  <i class="iconfont col-img" @click="subme(data.u_id)" v-if="collected==false">&#xe606;</i>
 			  <i class="iconfont col-img" style="color:red;" v-if="collected==true">&#xe633;</i>
-			  <a v-link="{name:'user', params:{ id: item.u_id }}">
+			  <a v-link="{name:'user', params:{ id: data.u_id }}">
 			  	<div class="z-avator">
-			  		<img :src="item.logo" alt="">
+			  		<img :src="data.logo" alt="">
 			  		
 			  	</div>
 			  	<div class="z-desc container-16">
 			  		<div class="desc-l1">
-			  			<span class="d-l1-name">{{item.user_name}}</span>
+			  			<span class="d-l1-name">{{data.user_name}}</span>
 			  			<span><i></i></span>
 			  			<span class="pull-right" style="font-size:0.6rem;color: #999">
 			  				<strong style="color: #2b8ff7;font-size:0.65rem">
-			  				{{ item.fav_count }}</strong>
+			  				{{ data.fav_count }}</strong>
 			  				人收藏了这位咨询师
 			  			</span>
 			  		</div>
 			  		<div class="desc-l2">
 			  			<span style="font-size:0.6rem;color: #999">
-			  				{{item.intro}}
+			  				{{data.intro}}
 			  			</span>
 			  		</div>
 			  		<div class="desc-l3">
 			  			<span class="label-grey" style="margin-right: 0.5rem" 
-			  						v-for="skill in item.skill | str2arr">
+			  						v-for="skill in data.skill | str2arr">
 			  				{{ skill }}
 			  			</span>
 			  		</div>
@@ -48,7 +48,7 @@
 	  	}
 	  },
 	  props:{
-	  	item: {
+	  	data: {
 	  		type: Object,
 		  	default(){
 		  		return
@@ -75,7 +75,7 @@
               for(var i = 0;i < this.my_favorite.length;i++){
                 arr.push(this.my_favorite[i].u_id)
               }
-              var test=arr.indexOf(this.item.u_id);
+              var test=arr.indexOf(this.data.u_id);
               console.log(test)
               if(test!=-1){
                 this.collected=true

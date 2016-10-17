@@ -13,7 +13,7 @@
   				文章</li>
   	</ul>
   	<div class="cst-list" style="margin-top: 0.5rem">
-  		<cst-list :data="data1" v-if="index==1" class="far-bom"></cst-list>
+  		<cst-list :data="data" v-if="index==1" class="far-bom" v-for="data in data1"></cst-list>
   		<kol-list :data="data2" v-if="index==2" class="far-bom"></kol-list>
   		<article-list :data="data3" v-if="index==3" class="far-bom"></article-list>
   	</div>

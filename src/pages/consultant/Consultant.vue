@@ -2,7 +2,7 @@
 <!-- 咨询师 -->
 	<nav-header :identity.sync="identity" :iscst="true" :right="false"></nav-header>
   <div class="far-bom">
-	  <cst-list :item = "data" v-if="identity===1" v-for="data in userList1"></cst-list>
+	  <cst-list :data = "data" v-if="identity===1" v-for="data in userList1"></cst-list>
 	  <kol-list :data = "userList2" v-if="identity===2"></kol-list>
   </div>
 </template>
