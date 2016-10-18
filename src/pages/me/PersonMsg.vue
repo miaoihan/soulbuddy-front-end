@@ -19,7 +19,7 @@
     	title-color="black" text-color="black"
     	style="padding:0 1rem">
    	</input-box>
-   	<div class="part top-20 wrapper" style="padding:0 1rem">
+   	<div class="part top-20 wrapper" style="padding:0 1rem" v-if="this.$route.params.id==1">
    		<card-photo :ceid.sync="ceid"></card-photo>
    	</div>
    	<span class="lab-name">

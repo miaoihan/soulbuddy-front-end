@@ -12,10 +12,10 @@
 		
 	</div>
 		<div class="add-btn float-left text-center" >
-			<input class="getfile photo-box" 
-					id="addPhoto">
+			<div class="getfile photo-box" 
+					id="addPhoto"></div>
 			<i class="iconfont">&#xe61a;</i>
-			</input>
+			
 		</div>
 
 	</div>
