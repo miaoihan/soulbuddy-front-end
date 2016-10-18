@@ -1,22 +1,23 @@
 <template>
 	
-  <div class="wrapper"
-  		 :class=" data.is_free ? 'voice' : 'voice-locked' "
-  		 :style="{width: data.time>60 ? '100%' : (data.time)*5/6+50+'%';background-color:color }"
-  		 @click="voiceAction($event)"
-  		 >
+  <div class="wrapper" @click="voiceAction($event)"
+  		 :class=" is_free ? 'voice' : 'voice-locked' "
+  		 :style="{width: data.answer_time>60 ? '100%' : (data.answer_time)*5/6+50+'%';background-color:color }">
   	<div class="v-inner">
   	<!-- 计时 -->
-	  	<div :class=" data.is_free ? 'free' : 'unfree'"
+	  	<div :class=" is_free ? 'free' : 'unfree'"
 	  				style="display: inline-block">
-	  		<i class="iconfont">&#xe60a;</i>
+	  		<!-- 播放 暂停-->
+	  			<i class="iconfont" style="font-size:16px" v-if="!is_play">&#xe632;</i>
+	  			<i class="iconfont" style="font-size:16px" v-if="is_play">&#xe634;</i>
 	  		<span class="v-time">
-	  			{{min}}:{{sec}}
+	  			{{ time }}
+	  			<audio :src="data.answer_url" :id="aid"></audio>
 	  		</span>
 	  	</div>
 		<!-- 小锁 -->
 		<i class="iconfont pull-right"
-				v-if="!data.is_free"
+				v-if="!is_free"
 				style="color: #fff; margin-top:2px">&#xe60b;</i>
   	</div>
   	<!-- 评价  -->
@@ -43,23 +44,36 @@
 	  		type: Object,
 	  		default() {
 	  			return {
-	  				is_free: false,
 	  				
 	  			}
 	  		}
 	  	},
-	  	color:{type:String,default:'#2b8ff7'}
+	  	color: {type:String,default:'#2b8ff7'},
+	  	index: '',
 	  },
 	  data(){
 	  	return{
 	  		isEva: false,
+	  		is_free: true,
+	  		is_play: false,
+	  		time: '',
+	  		aid:''
 	  	}
 	  },
 	  methods:{
 	  	// 点击voice后的动作
 	  	voiceAction(e){
-	  		console.log(e)
+	  		// console.log(e)
+	  		let voice = document.getElementById(this.aid)
 	  		e.preventDefault();
+			  if (voice.paused) {
+			    voice.play();
+			    this.is_play = true
+			  } else {
+			    voice.pause();
+			    this.is_play = false
+			  }
+			
 	  		// 免费
 	  		if(this.data.is_free){}
 	  			// 还没评价
@@ -73,7 +87,7 @@
 	  	},
 
 	  	hasHelp(eve){
-	  		this.data.like++
+	  		this.data.praise_count++
 	  		// this.$el.style.height="1.8rem"
 	  		this.isEva = true  	
 	  		// 阻止事件传播、触发父组件
@@ -87,7 +101,7 @@
 	  computed: {
 	  	// 将秒转换成分秒
 	    min(){
-	    	let time = this.data.time;
+	    	let time = this.time;
 	      if (time>0 && time<60)
 	      	return 0
 	      else
@@ -95,7 +109,7 @@
 	      	return time
 	    },
 	    sec(){
-				let time = this.data.time;
+				let time = this.time;
 				if (time < 60)
 					return time
 				else
@@ -104,17 +118,45 @@
 						// 不足10前面加个0
 						time = '0' + time
 					return time
-	    }
+	    },
 	  },
 	  ready(){
-	  	$(".voice").blur(function(){
-  			// alert(111)
-  			this.$el.style.height="1.8rem"
-			}); 
-			$(".v-inner").blur(function(){
-  			// alert(111222	)
-  			this.$el.style.height="1.8rem"
-			}); 
+	  	this.aid = 'answer-'+this.index;
+	  	console.log(this.aid)
+	  	
+			var that = this
+	  	setTimeout(function(){
+	  		let t  = document.getElementById(that.aid).duration;
+	  		let minute = (Math.floor(t/60%60) + 100 + '').substr(1);
+      	let second = (Math.floor(t%60) + 100 + '').substr(1);
+      	that.time = minute+":"+second;
+	  		// console.log(that.time)
+	  	},500);
+
+			// var run = setInterval(function () {
+			// 	var aa = document.getElementById(that.aid)
+			// 	var time = document.getElementById(that.aid).duration;
+			// 	console.log(aa)
+			// 	console.log(time)
+			// 	if(!isNaN(time)){
+			// 		console.log(!isNaN(time))
+			// 		clearInterval(run);
+			// 		that.time = time
+			// 	}else{
+			// 		console.info("该歌曲的总时间为："+time+"秒")
+			// 	}
+			// 	}, 1000);
+
+
+
+	  // 	$(".voice").blur(function(){
+  	// 		// alert(111)
+  	// 		this.$el.style.height="1.8rem"
+			// }); 
+			// $(".v-inner").blur(function(){
+  	// 		// alert(111222	)
+  	// 		this.$el.style.height="1.8rem"
+			// }); 
 	  },
 
 	  components: {
@@ -147,6 +189,7 @@
 
 	.v-inner
 		margin: 0 1rem;
+		height 1.8rem
 		.free
 			color: #fff;
 		.unfree

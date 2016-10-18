@@ -206,11 +206,10 @@ export default {
         alert('请先使用 startRecord 接口录制一段声音');
         return;
       }
-      // alert(111)
+      // 语音上传,然后保存到服务器
       wx.uploadVoice({
         localId: that.voice.localId,
         success: function (res) {
-          
           that.voice.serverId = res.serverId;
           console.log('token: '+global.token)
           console.log('q_id: '+that.$route.params.qid)
@@ -218,10 +217,11 @@ export default {
           console.log('user_name: '+global.user.user_name)
           //保存到服务器
           $.post( global.domain +'/question/add_answer', 
-          { 'token'     :  global.token,
-            'q_id'      :  that.$route.params.qid,
-            'answer_url':  res.serverId,
-            'user_name' :  global.user.user_name,
+          { 'token'      :  global.token,
+            'q_id'       :  that.$route.params.qid,
+            'answer_url' :  res.serverId,
+            'user_name'  :  global.user.user_name,
+            'answer_time':  that.voice.time
           },
           function (res) {
             alert('语音上传成功');

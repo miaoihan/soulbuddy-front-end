@@ -1,7 +1,7 @@
 <template>
 <!-- 自测选择列表 -->
   <div class="sel-list">
-  	<select-item v-for="item in data" :data="item" :index="$index"></select-item>
+    <select-item v-for="item in data" :data="item" :selarr.sync="selarr" :index="$index"></select-item>
   </div>
 </template>
 
@@ -16,6 +16,9 @@ import SelectItem from '../areaComp/SelectItem'
   			checked_list: [],
   		}
   	},
+    created(){
+      this.selarr = new Array(this.data.length)
+    },
   	methods:{
   		select(index,str){
   			let code = index + str
@@ -41,7 +44,6 @@ import SelectItem from '../areaComp/SelectItem'
 			}
   	},
     
-  	
 	  props:{
 	  	data: {
 	  		type: Array,
@@ -50,7 +52,9 @@ import SelectItem from '../areaComp/SelectItem'
 		  		
 		  		]
 		  	}
-	  	}
+	  	},
+      // 选择题数组
+      selarr: {type: Array, default: null},
 	  },
 	  
   }

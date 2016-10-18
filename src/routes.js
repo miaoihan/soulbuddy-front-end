@@ -38,9 +38,6 @@ var routes = {
   '/home/serchlist': {
     component: require('pages/home/SerchList.vue')
   },
-  '/home/questiondetail': {
-    component: require('pages/home/QuestionDetail.vue')
-  },
   '/home/evaluation': {
     component: require('pages/home/Evaluation.vue')
   },
@@ -89,6 +86,9 @@ var routes = {
   '/me/answer': {
     component: require('pages/consultant/MyAnswer.vue')
   },
+  '/me/eva': {
+    component: require('pages/me/MyEva.vue')
+  },
   '/setting/profile': {
     name: 'setme',
     component: require('pages/me/Profile.vue')
@@ -101,7 +101,6 @@ var routes = {
     name: 'answer',
     component: require('pages/consultant/QuestionCon.vue')
   },
-  
   '/wenda': {
     component: require('pages/consultant/HomeQue.vue')
   },
@@ -116,6 +115,10 @@ var routes = {
   '/evaluation/:id': {
     name: 'eva',
     component: require('pages/home/SelfEva.vue')
+  },
+  '/evaluation/result/:id': {
+    name: 'evaResult',
+    component: require('pages/home/EvaResult.vue')
   },
   '/question/:id': {
     name: 'question',

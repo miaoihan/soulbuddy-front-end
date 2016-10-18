@@ -11,14 +11,16 @@
     </div>
     <form action="" method="post" id="editmsg">
     <input type="hidden" name="real_logo" :value="serverId" id="real_logo">
+    <input type="hidden" name="certificate"
+     :value="ceid" v-if="this.$route.params.id==1" >
     <input type="hidden" name="token" :value="token">
     <input-box title="真实姓名" name="true_name"
     	placeholder='请填写' 
     	title-color="black" text-color="black"
-    	style="padding:0 1rem" :model="true_name">{{true_name}}
+    	style="padding:0 1rem">
    	</input-box>
-   	<div class="part top-20 wrapper" style="padding:0 1rem" v-if="this.$route.params.id==1">
-   		<card-photo></card-photo>
+   	<div class="part top-20 wrapper" style="padding:0 1rem">
+   		<card-photo :ceid.sync="ceid"></card-photo>
    	</div>
    	<span class="lab-name">
    		擅长标签
@@ -33,8 +35,8 @@
    		<textarea class="inputarea" maxlength="150" name="intro" v-model="intro" placeholder="请填写自我评价（最多150个字）"></textarea>
    	</div>
    	<div class="save-box" style="margin-bottom:0rem">
-   		<input class="save-body" type="submit" value="保存" name="savemsg" v-if="this.$route.params.id==0" @click="subme1">
-      <input class="save-body" type="submit" value="提交申请" name="savemsg" v-if="this.$route.params.id==1" @click="subme2">
+   		<input class="save-body" type="button" value="保存" name="savemsg" v-if="this.$route.params.id==0" @click="subme1">
+      <input class="save-body" type="button" value="提交申请" name="savemsg" v-if="this.$route.params.id==1" @click="subme2">
    	</div>
    	</form>
    	<!-- <div style="height:5.0rem"></div> -->
@@ -58,6 +60,7 @@ export default {
     return {
       person:{},
       serverId:'',
+      ceid:'',
       certificate:'',
       true_name:'',
       real_logo:'',
@@ -141,6 +144,14 @@ export default {
           alert('真实姓名不能为空')
           return false
         }
+        if($('[name="skill"]').val()===''){
+          alert('擅长标签不能为空')
+          return false
+        }
+        if($('[name="intro"]').val()===''){
+          alert('简介不能为空')
+          return false
+        }
         else{
           $.ajax({
                 url: global.domain +"/user/edit_consultant_info",
@@ -183,7 +194,6 @@ export default {
                   console.err(err.toString())
                 }.bind(this)
               });
-              // alert(1231233)
       }
     },
 }

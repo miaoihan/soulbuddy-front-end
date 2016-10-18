@@ -2,8 +2,8 @@
 <!-- 咨询师 -->
 	<nav-header :identity.sync="identity" :iscst="true" :right="false"></nav-header>
   <div class="far-bom">
-	  <cst-list :data = "data" v-if="identity===1" v-for="data in userList1"></cst-list>
-	  <kol-list :data = "userList2" v-if="identity===2"></kol-list>
+	  <cst-list :data="userList1" v-if="identity===1"></cst-list>
+	  <kol-list :data="userList2" v-if="identity===2"></kol-list>
   </div>
 </template>
 
@@ -25,13 +25,14 @@
 	  	}
 	  },
 	  ready(){
+      // 咨询师
 	  	$.ajax({
           url: this.domain +'/user/get_user_list',
           type:'POST', 
           dataType: 'json',
           cache: true,
           data:{
-          	token: localStorage.token,
+          	token: global.token,
           	page: 1,
           	identity: 1
           },
@@ -44,13 +45,14 @@
           error: function(xhr, status, err) {
           }.bind(this)
         });
+      // 经验达人
 	  	$.ajax({
           url: this.domain +'/user/get_user_list',
           type:'POST', 
           dataType: 'json',
           cache: true,
           data:{
-          	token: localStorage.token,
+          	token: global.token,
           	page: 1,
           	identity: 2
           },

@@ -1,64 +1,31 @@
 <template>
   <div class="zxs-list wrapper">
-		  <div class="zxs-item part">
-		  	  <i class="iconfont col-img" @click="subme(data.u_id)" v-if="collected==false">&#xe606;</i>
-			  <i class="iconfont col-img" style="color:red;" v-if="collected==true">&#xe633;</i>
-			  <a v-link="{name:'user', params:{ id: data.u_id }}">
-			  	<div class="z-avator">
-			  		<img :src="data.logo" alt="">
-			  		
-			  	</div>
-			  	<div class="z-desc container-16">
-			  		<div class="desc-l1">
-			  			<span class="d-l1-name">{{data.user_name}}</span>
-			  			<span><i></i></span>
-			  			<span class="pull-right" style="font-size:0.6rem;color: #999">
-			  				<strong style="color: #2b8ff7;font-size:0.65rem">
-			  				{{ data.fav_count }}</strong>
-			  				人收藏了这位咨询师
-			  			</span>
-			  		</div>
-			  		<div class="desc-l2">
-			  			<span style="font-size:0.6rem;color: #999">
-			  				{{data.intro}}
-			  			</span>
-			  		</div>
-			  		<div class="desc-l3">
-			  			<span class="label-grey" style="margin-right: 0.5rem" 
-			  						v-for="skill in data.skill | str2arr">
-			  				{{ skill }}
-			  			</span>
-			  		</div>
-			  	</div>
-			  </a>
-		  </div><!-- end zxs-item -->
-  	</div><!-- end zxs-list -->
+  	<div class="cst-item"  v-for="item in data" >
+		 		<cst-item :data="item"></cst-item>
+		 </div>
+  </div><!-- end zxs-list -->
 </template>
 
 <script>
   export default{
   	components: {
-
+  		CstItem: require('components/areaComp/CstItem')
 	  },
 	  data(){
 	  	return{
 	  		collected:false,
 	  		user_list:[],
-	  		my_favorite:[]
 	  	}
 	  },
 	  props:{
 	  	data: {
-	  		type: Object,
+	  		type: Array,
 		  	default(){
-		  		return
-		  			{
-		  			}
 		  	}
 	  	}
 	  },
 	  ready(){
-	  	//获取我的收藏 判断是否已经收藏
+	  	//获取我的收藏 
 	  	$.ajax({
             url: global.domain+'/user/get_my_favorite',
             type:'POST', 
@@ -84,69 +51,13 @@
             error: err => err.toString(),
       	});
 	  },
-	  methods:{
-	  	subme(u_id){
-	  		console.log("u_id is"+u_id)
-	  		$.ajax({
-		            url: global.domain +"/user/add_favorite",
-		            type:'post', 
-		            dataType: 'json',
-		            cache: true,
-		            data: {
-		              token:localStorage.token,
-		              fav_type:1,
-		              fav_id:u_id,
-		            },
-		            success: function(data) {
-		            	this.collected=!this.collected
-		          //   	$.ajax({
-				        //   url: global.domain +'/user/get_user_list',
-				        //   type:'POST', 
-				        //   dataType: 'json',
-				        //   cache: true,
-				        //   data:{
-				        //   	token: localStorage.token,
-				        //   	page: 1,
-				        //   	identity: 1
-				        //   },
-				        //   success: function(data) {
-				        //   		this.data = data.data;	          		
-				        //   },
-				        //   error: function(xhr, status, err) {
-				        //   }
-				        // })
-		            }.bind(this),
-		            error: function(xhr, status, err) {
-		              console.err(err.toString())
-		            }.bind(this)
-	        });
-	  	}
-	  }
-	  
+
   }
 </script>
 
 <style scoped lang="stylus">
 
-	.zxs-item
+	.cst-item
 		margin-bottom: 1.0rem
-		position relative
-	.z-avator
-		height 10.0rem
-		position relative
-	.col-img
-		position absolute
-		z-index 10
-		bottom 6.35rem
-		right 1.0rem
-		font-size 1.0rem
-	.d-l1-name
-		font-size:0.7rem
-		font-weight: 700
-		color #444
-	.desc-l3
-		margin-top: 0.7rem
-
-	a
-		width 100%
+	
 </style>

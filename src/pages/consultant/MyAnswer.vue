@@ -1,6 +1,6 @@
 <template>
 <nav-header title="我的回答" left="back"></nav-header>
-  <div class="wrapper">
+  <div class="wrapper far-bom">
   <!-- 问题列表 -->
   	<section class="question-item part" v-for="que in questions">
 		  <div class="q-i-title">
@@ -11,7 +11,7 @@
 		  
 		  	</div>
 			</div>
-			<answer-card :data="que.answer"></answer-card>
+			<answer-card :data="que" :index="$index"></answer-card>
 		</section>
   </div>
 </template>
@@ -30,14 +30,15 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
 	  		questions:[],
   		}
   	},
+  	
 	  ready(){
 	  	$.ajax({
           url: global.domain +'/user/get_my_answer',
           type:'POST', 
           dataType: 'json',
           data: {
-          page:1,
-					token:global.token,
+	          page:1,
+						token:global.token,
 		  },
           cache: false,
           success: function(data) {

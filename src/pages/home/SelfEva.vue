@@ -1,13 +1,14 @@
 <template>
-	<nav-header :title="self.title" left="back" right=''></nav-header>
+	<nav-header :title="item.title" left="back" right=''></nav-header>
 		<div class="sel-dec">
-			请根据过去的<strong>一周</strong>的情况选择。答案没有对错，<strong>真实</strong>反映自己的感受就好。 （共{{ self.questions.length }}题）
+			请根据过去的<strong>一周</strong>的情况选择。答案没有对错，<strong>真实</strong>反映自己的感受就好。 （共{{ item.questions.length }}题）
 		</div>
   <div>
-  	<select-list :data="self.questions"></select-list>
+  	<select-list :data="item.questions" :selarr.sync="selarr"></select-list>
   </div>
   <footer>
-  	<a href="#" class="button button-round btn-default f-btn">提交</a>
+  	<button class="button button-round btn-default f-btn"
+  					@click="subAndCheck">提交</button>
   </footer>
 </template>
 
@@ -21,7 +22,8 @@ import SelectList from 'components/areaComp/SelectList.vue'
 	  },
 	  data() {
   		return{
-        self: {}
+        item: {},
+        selarr: [],
   		}
   	},
 	  ready(){
@@ -34,9 +36,33 @@ import SelectList from 'components/areaComp/SelectList.vue'
           data:{
             test_id: this.$route.params.id,
           },
-          success: data => this.self = data.data,
+          success: data => this.item = data.data,
           error: err => err.toString()
         });
+    },
+    methods:{
+    	subAndCheck(){
+    		if (this.check()) {
+    			// 提交测评结果
+		      $.ajax({
+		          url: global.domain +'/access/add_user_test',
+		          type:'POST', 
+		          dataType: 'json',
+		          data:{
+		            token: 		global.token,
+		            test_id:　this.$route.params.id,
+		            answers:  JSON.stringify(this.selarr)
+		          },
+		          success: data => {console.log(data);
+		          	this.$router.go({name:'evaResult',params:{id: this.$route.params.id}})
+		          },
+		          error: err => err.toString()
+		        });
+    		}
+    	},
+    	check(){
+    		return true
+    	}
     },
 	  props:{
 	  	data: {

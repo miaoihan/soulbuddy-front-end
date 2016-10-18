@@ -4,8 +4,9 @@
   		 @click="voiceAction($event)"
   		 >
   	<div class="v-inner">
-  		<!-- 播放图标 -->
-  		<i class="iconfont icon-plvoice">&#xe60a;</i>
+  		<!-- 播放 暂停-->
+			<i class="iconfont" v-if="!is_play">&#xe632;</i>
+			<i class="iconfont" v-if="is_play">&#xe634;</i>
   		<!-- 计时 -->
   		<span class="v-time">
   			{{ data.time }}
@@ -24,13 +25,20 @@
 	  data(){
 	  	return{
 	  		isEva: false,
+	  		is_play: false
 	  	}
 	  },
 	  methods:{
 	  	// 点击voice后的动作
 	  	voiceAction(e){
-	  		console.log(e)
-	  		e.preventDefault();
+	  		// console.log(e)
+	  		if (!is_play) {
+			    voice.play();
+			    this.is_play = true
+			  } else {
+			    voice.pause();
+			    this.is_play = false
+			  }
 	  		// 免费
 	  		if(this.data.is_free){}
 	  			// 还没评价
@@ -108,9 +116,11 @@
 	.v-inner
 		margin: 0 1rem;
 		color: $ztc;
-		.icon-plvoice
+		i
 			position absolute
 			left 2.25rem
+			font-size:16px
+			margin-top: 2px
 		.v-time
 			margin-left: -3.0rem;
 			margin-top: 2px

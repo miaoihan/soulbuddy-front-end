@@ -92,13 +92,16 @@ import NavHeader from 'components/funComp/NavHeader'
             },
             success: data => {
               this.article_info = data.data;
-              // 判断收藏
-              var arr=[];
-              for(var i = 0;i < this.article_info.length;i++){
-                arr.push(this.article_info[i].art_id)
+              // 判断是否收藏
+              // 已收藏的ID数组
+              let arr=[];
+              for(let it of this.article_info){
+                arr.push(it.art_id)
               }
-              var test=arr.indexOf(this.art_id_fav);
+              console.log(arr)
+              let test=arr.indexOf(this.art_id_fav);
               console.log(this.art_id_fav)
+              console.log(test)
               if(test!=-1){
                 this.collected=true
               }

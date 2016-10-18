@@ -1,10 +1,10 @@
 <template>
 <div id="app">
-    <div v-if="token || test">
+    <div v-if="token">
      <router-view :identityb.sync="identity" :bind.sync="bind"></router-view>
      <nav-bottom :identityb.sync="identity" v-if="bind"></nav-bottom>
     </div>
-    <!-- <question-con></question-con> -->
+    <!-- <eva-result></eva-result> -->
   </div>
 </template>
 
@@ -14,22 +14,24 @@ export default {
     NavHeader:require('components/funComp/NavHeader.vue'),
     NavBottom:require('components/funComp/NavBottom.vue'),
     BindPhone:require('pages/BindPhone.vue'),
-    // QuestionCon:require('pages/consultant/QuestionCon.vue'),
+    EvaResult:require('pages/home/EvaResult.vue'),
   },
   data(){
     return{
       currentPage: 'eva-card',
       // is_login: false,
       // is_new: true,
+      // weixin: [],
       bind: null,
       token: '', //做判断用，有了token才渲染
-      weixin: [],
       identity: 0,
       // host: 'http://120.27.122.131',
-      host: 'http://han.s3.natapp.cc',
+      // host: 'http://han.s3.natapp.cc',
+      host: 'http://m.soulbuddy.cn',
       // 测试开关
       test:true,
-      uid: 1
+      // test:true,
+      uid: 2
     }
   },
   watch:{
@@ -55,7 +57,8 @@ export default {
       //测试环境
       if (this.test) {
         $.get(global.domain +'/test/test?uid='+this.uid,
-        v => global.token = v.data ,'json');
+        v => {ku.token = v.data; global.token = v.data;this.token = v.data} 
+        ,'json');
       }
       
       // 微信登录部分
@@ -102,7 +105,7 @@ export default {
       $.post( global.domain +'/thirdparty/wechat', 
           {'url': location.href.split('#')[0]},function (res) {
             wx.config({
-                debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
                 appId: res.data.appId, // 必填，公众号的唯一标识
                 timestamp: res.data.timestamp, // 必填，生成签名的时间戳
                 nonceStr: res.data.nonceStr, // 必填，生成签名的随机串
@@ -120,16 +123,16 @@ export default {
 
   },
   ready(){
-      console.log(this.$el+'**********')
+      // console.log(this.$el+'**********')
 
-    $.ajax({
-        url: localStorage.domain +'/user/get_my_info',
-        type:'POST', dataType: 'json',
-        data:{ token:localStorage.token },success: v => {
-          global.user = v.data.userinfo
-        },
-            error: err => console.log(err.toString())
-        });
+    // $.ajax({
+    //     url: localStorage.domain +'/user/get_my_info',
+    //     type:'POST', dataType: 'json',
+    //     data:{ token:localStorage.token },success: v => {
+    //       global.user = v.data.userinfo
+    //     },
+    //         error: err => console.log(err.toString())
+    //     });
     
       
     // alert(this.$route.path)
@@ -294,7 +297,7 @@ export default {
   // border 1px solid #e7e7e7
 }
 // 底部固定条
-.fixed-bottom
+.fixed-bom
   height 2.2rem
   line-height 2.2rem
   width 100%
@@ -303,6 +306,15 @@ export default {
   background-color: $ztc
   text-align: center
   
+//因为底部还有导航栏
+.fixed-bottom
+  height 2.2rem
+  line-height 2.2rem
+  width 100%
+  margin-bottom 2.5rem
+  // background-color: $ztc
+  text-align: center
+
 //tab导航
 .nav-tab
   height 2.5rem

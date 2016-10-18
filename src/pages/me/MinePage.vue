@@ -7,12 +7,12 @@
     			<img :src="user.logo" class="img-imgs">
     		</div>
     		<div class="person-msg-name">
-    			<span class="name-text">{{user_name}}</span>
+    			<span class="name-text">{{user.user_name}}</span>
 				<a v-link="'/setting/profile'" class="button button-round btnstyle">编辑个人资料</a>
     		</div>
     		<div class="hint-img">
     			<i class="iconfont imgimg">&#xe605;</i>
-    			<div class="hint-text" v-if="fav_count>0">{{fav_count}}</div>
+    			<div class="hint-text" v-if="fav_count>0">{{user.fav_count}}</div>
     		</div>
     	</div>
     </div>
@@ -24,7 +24,7 @@
     	<common-fun></common-fun>
     </div>
     <!-- <common-fun v-if="user.UserType===common"></common-fun> -->
-		<div v-if="isdaren">
+		<div v-if="already">
 		    <change-btn :btntext="identityb == 0 ? '切换到咨询师身份' : '切换到普通用户' "
 			    					style="margin-top:1rem;padding-left:1rem;padding-right:1rem;background:#2b8ff7"
 										text-color="#fff" icon-color="#fff"
@@ -69,26 +69,27 @@ export default {
     	btntext:"",
   		person:{},
   		queList: [],
-  		user_name:"",
-  		fav_count:0,
   		identity: 0,
   		isdaren: null,
-  		user: {}
+  		user: {},
+  		already: false
     }
   },
   created(){
   	$.post(global.domain +'/user/get_my_info',
-        { token: localStorage.token },
-        v => {global.user=v.data;this.user=v.data
-        			if (v.data.identity == 1) this.isdaren = true;
+        { token: global.token },
+        v => {
+	        	global.user=v.data;this.user=v.data
+	        	if (v.data.identity == 1) this.isdaren = true;
+	        	this.already = true
         	} ,'json');
   },
   ready:function(){
 	  	// 获取用户信息
 		  // this.identity = global.user.identity;
 		  // this.identityb = global.user.identity;
-		  this.user_name=this.user.user_name;
-		  this.fav_count=this.user.fav_count;
+		  // this.user_name=this.user.user_name;
+		  // this.fav_count=this.user.fav_count;
 	  	// 我的提问
       $.ajax({
           url: 'http://xinling.songtaxihuan.com/user/get_my_question',
@@ -97,7 +98,7 @@ export default {
           cache: true,
           data:{
             page: 1,
-            token: localStorage.token
+            token: global.token
           },
           success: data => this.queList = data.data,
           error: err => err.toString()

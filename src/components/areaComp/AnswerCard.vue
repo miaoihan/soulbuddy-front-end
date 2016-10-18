@@ -5,21 +5,21 @@
 				<div class="answer-inf wrapper">
 				<!-- 头像 -->
 					<div class="avator pull-left">
-							<img :src="data.logo" alt="头像" class="avator">		
+							<img :src="user.logo" alt="头像" class="avator">		
 					</div>
 					<!-- 简介 -->
 					<div style="float: left;padding: 0.25rem 0.4rem">
-						<div style="font-size: 13px">{{data.user_name}}</div>
-						<div style="font-size: 12px; color: #999">{{data.intro}}</div>
+						<div style="font-size: 13px">{{user.user_name}}</div>
+						<div style="font-size: 12px; color: #999">{{user.intro}}</div>
 					</div>
 					<div class="pull-right" v-if="data.is_best==1">
-						<span class="button ">最佳答案</span>
+						<span class="button">最佳答案</span>
 					</div>
 				</div>
 				<!-- voice组件 -->
 				<div class="voice-wrapper">
 				<!-- 双向绑定 数据同步-->
-					<voice :data.sync="data"></voice>
+					<voice :data.sync="data" :index="index"></voice>
 				</div>
 				<!-- 描述 -->
 				<div class="meta wrapper">
@@ -41,11 +41,20 @@ import Voice from 'components/funComp/Voice.vue'
 	  		type: Object,
 	  		default(){
 	  			return{
-	  				is_best: true,
+	  				// is_best: true,
 	  				praise_count: 0,
 	  			}
 	  		}
-	  	}
+	  	},
+	  	index:''
+	  },
+	  data () {
+	    return {
+	      user:{}
+	    }
+	  },
+	  ready(){
+	  	this.user = global.user
 	  },
 	  components: {
 	  	Voice

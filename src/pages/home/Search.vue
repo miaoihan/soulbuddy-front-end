@@ -2,18 +2,17 @@
   <header class="nav-header wrapper" 
   				id="navHeader" :class="{fixed: fixed}">
   	<div class="wrapper search-body">
-  		<i class="iconfont sear-img" @click="SearchBtn">&#xe600;</i>
+  		<i class="iconfont sear-img" @click="search">&#xe600;</i>
   		<div class="input-body-head">
-  			<form action="">
-  				<input class="input-ser" type="serch" v-model="search_title">
-  			</form>
+  				<input class="input-ser" type="serch" v-model="search_title" @keyup="search">
+
   		</div>  		
   	</div>
-	<a class="back" v-if="search_title==''" onclick="window.history.go(-1)">取消</a>
-	<a class="back" v-if="search_title!=''" @click="SearchBtn">确定</a>
+	<a class="back" onclick="window.history.go(-1)">取消</a>
+	<!-- <a class="back" v-if="search_title!=''" @click="SearchBtn">确定</a> -->
   </header>
   <serch-list :data="search_list" style="background-color:#fff"></serch-list>
-  <div class="noResult" v-if="result==false">没有你搜索的结果</div>
+  <div class="noResult" v-if="!result">没有你搜索的结果</div>
   <!-- <p>{{search_title}}</p> -->
 </template>
 
@@ -33,7 +32,7 @@ import SerchList from 'pages/home/SerchList.vue'
     data(){
     	return{
     		search_list:[],
-    		search_title:"",
+    		search_title:null,
     		result:true,
     		// btn_name:"取消"
     	}  	
@@ -42,24 +41,24 @@ import SerchList from 'pages/home/SerchList.vue'
 
     },
     methods:{
-    	SearchBtn(){
+    	search(){
     		$.ajax({
 	          url: global.domain +'/search/get_search_list',
 	          type:'POST', 
 	          dataType: 'json',
-	          cache: true,
 	          data:{
 	            title: this.search_title,
 	            token: global.token
 	          },
 	          success: data => {
 	          	this.search_list = data.data
+	          	if (!this.search_title) {this.result=true;return}
 	          	console.log(this.search_list)
-	          	 if(this.search_list.length==0){
-		        	this.result=false
-		        }else{
-		        	this.result=true
-		        }
+	          	 	if(this.search_list.length==0){
+		        			this.result=false
+				        }else{
+				        	this.result=true
+				        }
 	          },
 	          error: err => err.toString(),
 	          

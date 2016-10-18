@@ -3,7 +3,7 @@
   <div>
   	<ul class="serch-list">
   		<li v-for="obj in data" class="ser-item">
-	  		<a href="#" style="display: block; color: #262626">
+	  		<a v-link="{name:'question', params:{ id: obj.id } }" style="display: block; color: #262626">
 	  			<h1>{{obj.title}}</h1>
 	  			<span class="item-meta">
 	  				{{ obj.answer_num }} 个回答
@@ -19,6 +19,13 @@
   	components: {
 
 	  },
+	  props: {
+	    data: {
+	      type: Array, // String, Number, Boolean, Function, Object, Array
+	      required: true,
+	      default: null
+	    }
+	  }
 	 
 	  
   }
