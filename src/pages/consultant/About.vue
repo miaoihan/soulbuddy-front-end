@@ -24,7 +24,7 @@
 		  		</div>
 		  		<div class="desc-l2">
 		  			<span style="font-size:0.6rem;">
-		  				{{user.intro}}
+		  				{{user.title}}
 		  			</span>
 		  		</div>
 		  		<!-- 标签 -->
@@ -41,7 +41,7 @@
 	  		</div>
 	  		<div class="cst-desc">
 	  			<p>
-	  				简介：哥伦比亚哦大学心理博士，主修人际心理学；擅长托马斯催眠疗法，获得2014年度心理咨询评定委员会心理咨询师称号
+	  				简介：{{user.intro}}
 	  			</p>
 	  			<div class="t-location" style="margin-top: 0.5rem;">
 	  				<i class="iconfont">&#58903;</i>
