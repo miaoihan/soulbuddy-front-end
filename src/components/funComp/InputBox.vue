@@ -11,7 +11,7 @@ author：long
 <template>
   <div class="inputbox-body">
   	<span class="inputbox-title" :style="{color:TitleColor}">{{title}}</span>
-  	<div class="item-input" v-if="placewhere==='left'"><input type="text" class="inputbox-text" :placeholder="placeholder" :name="name" :style="{color:TextColor}"></input>
+  	<div class="item-input" v-if="placewhere==='left'"><input type="text" class="inputbox-text" :placeholder="placeholder" :name="name" :style="{color:TextColor}" v-model="model"></input>
   	</div>  
   	<div class="item-input" v-if="placewhere==='right'"><input type="text" class="inputbox-text" :placeholder="placeholder" :name="name" :style="{color:TextColor};"></input>
   	</div>	
@@ -33,7 +33,8 @@ export default {
 		placewhere:{type:String,default:'right'},
 		name:{type:String},//输入框name
 		TitleColor:{type:String},//标题颜色
-		TextColor:{type:String}//输入字体颜色
+		TextColor:{type:String},//输入字体颜色
+		model:{type:String}
 	},
 	methods:{
 		handleClick(){

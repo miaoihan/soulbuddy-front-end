@@ -7,19 +7,18 @@
 	<div class="photo-note">
 		请上传您的就医证明、康复证明等能证明您相关身份的照片
 	</div>
-	<form class="photo-box-body wrapper" method="post" enctype="multipart/form-data"
-				action="javascript: yulan();" >
+	<div class="photo-box-body wrapper" >
 	<div id="photos">
 		
 	</div>
 		<div class="add-btn float-left text-center" >
-			<input type="file" class="getfile photo-box" 
-					id="tt" @change="addPhoto()">
+			<input class="getfile photo-box" 
+					id="addPhoto">
 			<i class="iconfont">&#xe61a;</i>
 			</input>
 		</div>
 
-	</form>
+	</div>
 	<!-- <input type="file" class="" @click="addPhoto" id="tt">
 	<button @click="getv">get</button> -->
   </div>
@@ -33,6 +32,7 @@
     data(){
     	return{
     		num:0,
+    		serverId: ''
     	}
     },
     props:{
@@ -51,28 +51,45 @@
 
     			]
     		}
-    	}
+    	},
+    	ceid: ''
     },
     methods:{
-    	addPhoto(){	
-    		var prevDiv = document.getElementById("photos");    		
-    		var fileInput = document.getElementById('tt');
-    		// console.log(fileInput);
-    		var reader = new FileReader();
-    		reader.onload = function(evt){
-                console.log(prevDiv)
-                var child=document.createElement("div");
-                // console.log(evt.target.result)
-            	child.innerHTML = '<div style="overflow:hidden;height:3.0rem;width:3.0rem;border-radius: 0.3rem;background-color:#eee;margin-right:1rem;margin-bottom:0.5rem;float:left"><img src="' + evt.target.result + '" /></div>';
-            	prevDiv.appendChild(child)
-            
-            }
-			reader.readAsDataURL(fileInput.files[0]);
-    		this.num=this.num+1;
-    	},
     },
     ready(){
-    	
+     	var that = this
+      document.querySelector('#addPhoto').onclick = function () {
+        let prevDiv = document.getElementById("photos");  
+        let localId = ''
+	    	wx.chooseImage({
+	            count: 1, // 默认9
+	            sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+	            sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+	            success: function (res) {
+	                // alert(3333)
+	                localId = res.localIds.toString();
+	                // $('#logo').attr('src',res.localIds);
+	                let child=document.createElement("div");
+	                // console.log(evt.target.result)
+	            	child.innerHTML = '<div style="overflow:hidden;height:3.0rem;width:3.0rem;border-radius: 0.3rem;background-color:#eee;margin-right:1rem;margin-bottom:0.5rem;float:left"><img src="' + res.localIds + '" /></div>';
+	            	prevDiv.appendChild(child)
+	                // alert(this.localId)
+	                // alert('chenggong:' +that.serverId)
+	                setTimeout(function () {
+	                    wx.uploadImage({
+	                        localId: localId, // 需要上传的图片的本地ID，由chooseImage接口获得
+	                        isShowProgressTips: 1, // 默认为1，显示进度提示
+	                        success: function (res) {
+	                            console.log(res.serverId);// 返回图片的服务器端ID
+	                            that.ceid = res.serverId
+	                            // alert('zhi: ' +this.serverId)
+
+	                        }
+	                    });
+	                }, 100);
+	            }
+	        });	
+      }
     }
   }
   
