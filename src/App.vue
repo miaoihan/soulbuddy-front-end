@@ -29,9 +29,9 @@ export default {
       // host: 'http://han.s3.natapp.cc',
       host: 'http://m.soulbuddy.cn',
       // 测试开关
-      test:false,
-      // test:true,
-      uid: 2
+      // test:false,
+      test:true,
+      uid: 38
     }
   },
   watch:{
@@ -50,6 +50,7 @@ export default {
     //storage存储全局数据
     var ku = window.localStorage
     ku.domain = 'http://xinling.songtaxihuan.com'
+    //第二次跳转获取token
     this.token = ku.token
     global.token = ku.token
     global.domain = 'http://xinling.songtaxihuan.com'

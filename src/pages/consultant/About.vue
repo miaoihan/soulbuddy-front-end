@@ -1,6 +1,6 @@
 <template>
 <!-- 咨询师详情 -->
-<nav-header title="" left="back" fav-type="1" :fav-id="user.u_id" :collected="collected" :fav-count="user.fav_count"></nav-header>
+<nav-header title="" left="back" :fav-type="1" :fav-id="user.u_id" :collected="user.is_fav==1" :fav-count="user.fav_count"></nav-header>
   <div>
   	<div class="at-top part container-20"
   			 :class="user.identity == 1? 'ztc' : 'ab-kol' ">
@@ -86,41 +86,42 @@ import NavHeader from 'components/funComp/NavHeader';
           dataType: 'json',
           cache: true,
           data:{
-          	token: localStorage.token,
+          	token: global.token,
           	u_id: this.$route.params.id
           },
           success: function(data) {
           	this.user = data.data;
+          	console.log(ths.user)
           }.bind(this),
-          error: function(xhr, status, err) {
-            console.error(readList, status, err.toString());
+          error: function(err) {
+            console.error(JSON.stringify(err));
           }.bind(this)
         });
         //获取我的收藏 判断是否已经收藏
-        $.ajax({
-            url: global.domain+'/user/get_my_favorite',
-            type:'POST', 
-            dataType: 'json',
-            cache: true,
-            data:{
-              token:global.token,
-              type:1
-            },
-            success: data => {
-              this.about_info = data.data;
-              // 判断收藏
-              var arr=[];
-              for(var i = 0;i < this.about_info.length;i++){
-                arr.push(this.about_info[i].u_id)
-              }
-              var test=arr.indexOf(this.$route.params.id);
-              console.log(this.$route.params.id)
-              if(test!=-1){
-                this.collected=true
-              }
-            },
-            error: err => err.toString(),
-      	});
+       //  $.ajax({
+       //      url: global.domain+'/user/get_my_favorite',
+       //      type:'POST', 
+       //      dataType: 'json',
+       //      cache: true,
+       //      data:{
+       //        token:global.token,
+       //        type:1
+       //      },
+       //      success: data => {
+       //        this.about_info = data.data;
+       //        // 判断收藏
+       //        var arr=[];
+       //        for(var i = 0;i < this.about_info.length;i++){
+       //          arr.push(this.about_info[i].u_id)
+       //        }
+       //        var test=arr.indexOf(this.$route.params.id);
+       //        console.log(this.$route.params.id)
+       //        if(test!=-1){
+       //          this.collected=true
+       //        }
+       //      },
+       //      error: err => err.toString(),
+      	// });
 	  },
 	  
 	  

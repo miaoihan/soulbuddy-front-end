@@ -224,7 +224,7 @@ export default {
             'answer_time':  that.voice.time
           },
           function (res) {
-            alert('语音上传成功');
+            alert('回答成功');
           }, 'json');
           }
       });

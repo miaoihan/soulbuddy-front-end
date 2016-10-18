@@ -3,7 +3,7 @@
   <!-- 问题列表 -->
   	<section class="question-item part" v-for="que in data">
   	<a v-link="'/question/' + que.q_id " id="aa">
-		  <div class="q-i-title">
+		  <div class="container-20">
 		  	<title class="que-content over-2">
 		  		{{que.title}}
 		  	</title>
@@ -79,14 +79,13 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
 			 	color $ztc
 		
 	.que-content{
-		margin-bottom: 0.75rem
+		margin-bottom: 0.50rem
 		font-size 15px
 	}
 	
 	.meta
 		color #999
 		font-size: 12px
-		margin-top: -0.55rem
 		span
 			display inline-block
 			margin-right: 1.0rem

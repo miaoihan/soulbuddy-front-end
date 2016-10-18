@@ -127,7 +127,7 @@ import NavHeader from 'components/funComp/NavHeader';
           alert('昵称不能为空！')
           return false 
         }
-        if($('#sid').val()===''){
+        if($('#sid').val()==='' && $("#logo")[0].src==''; ){
           alert('头像不能为空！')
           return false 
         }

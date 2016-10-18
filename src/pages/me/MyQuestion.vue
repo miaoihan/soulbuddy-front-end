@@ -20,7 +20,7 @@ import NavHeader from 'components/funComp/NavHeader';
 		ready(){
 			// 我的提问
       $.ajax({
-          url: 'http://xinling.songtaxihuan.com/user/get_my_question',
+          url: global.domain +'/user/get_my_question',
           type:'POST', 
           dataType: 'json',
           cache: true,
