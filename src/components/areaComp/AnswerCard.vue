@@ -5,16 +5,22 @@
 				<div class="answer-inf wrapper">
 				<!-- 头像 -->
 					<div class="avator pull-left">
-							<img :src="user.logo" alt="头像" class="avator">		
+							<img :src="data.logo" alt="头像" class="avator">		
 					</div>
 					<!-- 简介 -->
 					<div style="float: left;padding: 0.25rem 0.4rem">
-						<div style="font-size: 13px">{{user.user_name}}</div>
-						<div style="font-size: 12px; color: #999">{{user.intro}}</div>
+						<div style="font-size: 13px">{{data.user_name}}</div>
+						<div style="font-size: 12px; color: #999">{{data.intro}}</div>
 					</div>
-					<div class="pull-right" v-if="data.is_best==1">
+					<div class="pull-right" v-if="data.is_best==1&&best=='true'">
 						<span class="button">最佳答案</span>
 					</div>
+					<div class="pull-right" v-if="data.is_best==0&&best=='false'" @click="addBest">
+						<span class="button" style="font-size:0.55rem">设置最佳答案</span>
+					</div>
+					<!-- <div class="pull-right" v-if="data.is_best==0&&best=='false'" @click="addBest">
+						<span class="button">设置最佳答案</span>
+					</div> -->
 				</div>
 				<!-- voice组件 -->
 				<div class="voice-wrapper">
@@ -41,20 +47,49 @@ import Voice from 'components/funComp/Voice.vue'
 	  		type: Object,
 	  		default(){
 	  			return{
-	  				// is_best: true,
-	  				praise_count: 0,
-	  			}
+		       
+		      }
 	  		}
 	  	},
-	  	index:''
+	  	best:{
+	  		type:String,
+	  		default:'true'
+	  	},
+	  	index:'',
+	  	qid:{type:Number}
 	  },
 	  data () {
 	    return {
-	      user:{}
+	      user:{},
+	      answer_id:''
 	    }
+	  },
+	  methods:{
+	  	addBest(){
+	  		
+	  		$.ajax({
+	          url: global.domain +'/question/set_best_answer',
+	          type:'POST', 
+	          dataType: 'json',
+	          data: {
+	          page:1,
+			  token:global.token,
+			  q_id:this.qid,
+			  answer_id:this.answer_id,
+			  },
+	          success: function(data) {
+	          	this.best='true';
+	  			this.data.is_best=1;
+	          }.bind(this),
+	          error: function(xhr, status, err) {
+	            console.error(this.questions, status, err.toString());
+	          }.bind(this)
+	        });
+	  	}
 	  },
 	  ready(){
 	  	this.user = global.user
+	  	// console.log(this.user+"adlfhaskfhksadfhksadkf")
 	  },
 	  components: {
 	  	Voice

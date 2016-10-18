@@ -9,26 +9,29 @@
 	  				<img :src="question.logo" alt="">
 	  			</span>
 					<span style="font-size: 13px;margin-left: 0.45rem">{{question.user_name}}</span>
-					<time class="pull-right" style="font-size: 13px; color: #999">{{question.creare_time}}</time>
+					<time class="pull-right" style="font-size: 13px; color: #999">{{question.create_time}}</time>
 	  		</div>
 	  		<h1 style="margin-top: 1.0rem">
 	  			{{question.title}}
 	  		</h1>
 	  		<p style="font-size: 13px; margin-top:0.65rem;color: #999">
-	  			{{question.intro}}
+	  			{{question.content}}
 	  		</p>
 	  	<div>
   	</section> <!-- end top -->
   	<!-- 最佳回答 -->
-  	<answer-card :data="ans_best" v-if="que_info.best_answer_id"></answer-card>	
-  	<aside class="m-other">
-  		 {{ question.answers.length>0? '共有'+ans_other.length : 0}} 个回答
+  	<answer-card :data="ans_best" v-if="ans_best.is_best==1"></answer-card>	
+  	<aside class="m-other" v-if="ans_best.is_best!=1">
+  		 {{ question.answers.length>0? '共有 '+ans_other.length : 0}} 个回答
+  	</aside>
+  	<aside class="m-other" v-if="ans_best.is_best==1">
+  		 {{ question.answers.length>0? '其他 '+ans_other.length-1 : 0}} 个回答
   	</aside>
   	<!-- 回答列表 -->
   	<section class="qd-middle" style="margin-bottom: 5.0rem">
-  		<div class="answer-item" v-for="obj in answers"
-  					v-if="answers">
-  			<answer-card :data="obj"></answer-card>	
+  		<div class="answer-item" v-for="obj in ans_other"
+  					>
+  			<answer-card :data="obj"  best="false" :qid="q_id"></answer-card>	
   		</div>
   	</section>
   </div>
@@ -42,33 +45,35 @@ import NavHeader from 'components/funComp/NavHeader'
 	  },
 	  data(){
 	  	return{
-	  		best_answer_id:'',
-	  		que_info:[],
-	  		answer_count:'',
-	  		creare_time:'',
-	  		answers:''	
-		}
+	  		money: 1,
+	  		lock: true ,
+	  		question: {},
+	  		ans_best:{},
+	  		ans_other:[],
+	  		q_id:null,
+			}
 	  },
 	  methods:{
-	  	
+	  
 	  },
 	  ready(){
-	  	// 我的提问
-      $.ajax({
-          url: 'http://xinling.songtaxihuan.com/user/get_my_question',
-          type:'POST', 
-          dataType: 'json',
-          cache: true,
-          data:{
-            page: 1,
-            token: localStorage.token
-          },
-          success: data => {
-          	this.que_info = data.data
-          	this.answers=data.data.answer
-          },
-          error: err => err.toString()
-        });
+	  	// 问答详情
+	  	this.q_id=this.$route.params.id
+      $.post(global.domain +'/question/get_question_info',
+        { token: global.token,
+          q_id: this.$route.params.id },
+        v => {
+        	this.question = v.data; 
+        	let q = this.question.answers
+        	console.log(q+'------')
+        	if(q[0].is_best==1){
+        		this.ans_best=q.shift()
+        	}
+        	// this.ans_best.is_best=1
+        	// console.log(this.ans_best)
+        	this.ans_other = q
+        	// console.log(this.ans_other)
+        } ,'json');
 	  }
 	  
   }

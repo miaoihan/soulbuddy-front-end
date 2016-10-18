@@ -2,7 +2,7 @@
 	
   <div class="wrapper" @click="voiceAction($event)"
   		 :class=" is_free ? 'voice' : 'voice-locked' "
-  		 :style="{width: data.answer_time>60 ? '100%' : (data.answer_time)*5/6+50+'%';background-color:color }">
+  		 :style="{width: time>60 ? '100%' : (time)*5/6+50+'%';background-color:color }">
   	<div class="v-inner">
   	<!-- 计时 -->
 	  	<div :class=" is_free ? 'free' : 'unfree'"

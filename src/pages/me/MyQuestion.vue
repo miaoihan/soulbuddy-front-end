@@ -1,7 +1,7 @@
 <template>
 <nav-header title="我的提问" left="back"></nav-header>
   <div class="far-bom">
-  	<question-list :data="queList"></question-list>
+  	<question-list :data="queList" type="mine"></question-list>
   </div>
 </template>
 
@@ -20,7 +20,7 @@ import NavHeader from 'components/funComp/NavHeader';
 		ready(){
 			// 我的提问
       $.ajax({
-          url: 'http://xinling.songtaxihuan.com/user/get_my_question',
+          url: global.domain +'/user/get_my_question',
           type:'POST', 
           dataType: 'json',
           cache: true,

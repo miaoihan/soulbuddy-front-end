@@ -32,6 +32,7 @@ export default {
       test:true,
       // test:true,
       uid: 43
+
     }
   },
   watch:{
@@ -50,6 +51,7 @@ export default {
     //storage存储全局数据
     var ku = window.localStorage
     ku.domain = 'http://xinling.songtaxihuan.com'
+    //第二次跳转获取token
     this.token = ku.token
     global.token = ku.token
     global.domain = 'http://xinling.songtaxihuan.com'
