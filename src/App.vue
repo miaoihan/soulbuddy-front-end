@@ -31,7 +31,8 @@ export default {
       // 测试开关
       test:true,
       // test:true,
-      uid: 38
+      uid: 43
+
     }
   },
   watch:{

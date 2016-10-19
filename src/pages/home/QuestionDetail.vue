@@ -15,7 +15,7 @@
 	  			{{question.title}}
 	  		</h1>
 	  		<p style="font-size: 13px; margin-top:0.65rem;color: #999">
-	  			{{question.intro}}
+	  			{{question.content}}
 	  		</p>
 	  	<div>
   	</section> <!-- end top -->

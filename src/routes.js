@@ -127,6 +127,11 @@ var routes = {
     name: 'question',
     component: require('pages/home/QuestionDetail.vue')
   },
+  '/me/question/:id': {
+    name: 'myquestion',
+    component: require('pages/me/MyQueDetail.vue')
+  },
+
 
 
 
