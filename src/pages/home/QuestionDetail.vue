@@ -20,9 +20,12 @@
 	  	<div>
   	</section> <!-- end top -->
   	<!-- 最佳回答 -->
-  	<answer-card :data="ans_best" v-if="best_answer_id"></answer-card>	
-  	<aside class="m-other">
-  		 {{ question.answers.length>0? '其他 '+ans_other.length : 0}} 个回答
+  	<answer-card :data="ans_best" v-if="ans_best.is_best==1"></answer-card>	
+  	<aside class="m-other" v-if="ans_best.is_best!=1">
+  		 {{ question.answers.length>0? '共有 '+question.answers.length : 0}} 个回答
+  	</aside>
+  	<aside class="m-other" v-if="ans_best.is_best==1">
+  		 {{'其他 '+(ans_other.length)}} 个回答
   	</aside>
   	<!-- 回答列表 -->
   	<section class="qd-middle" style="margin-bottom: 5.0rem">
@@ -73,7 +76,11 @@ import NavHeader from 'components/funComp/NavHeader'
         v => {
         	this.question = v.data; 
         	let q = v.data.answers
-        	this.ans_best = q.shift()
+        	// console.log(q)
+        	if(q[0].is_best==1){
+        		this.ans_best = q.shift()
+        		// console.log(this.ans_best)
+        	}
         	this.ans_other = q
         } ,'json');
 	  }

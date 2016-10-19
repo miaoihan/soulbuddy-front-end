@@ -25,23 +25,23 @@
   		 {{ question.answers.length>0? '共有 '+ans_other.length : 0}} 个回答
   	</aside>
   	<aside class="m-other" v-if="ans_best.is_best==1">
-  		 {{ question.answers.length>0? '其他 '+ans_other.length-1 : 0}} 个回答
+  		 {{'其他 '+(ans_other.length)}} 个回答
   	</aside>
   	<!-- 回答列表 -->
   	<section class="qd-middle" style="margin-bottom: 5.0rem">
   		<div class="answer-item" v-for="obj in ans_other"
   					>
-  			<answer-card :data="obj"  best="false" :qid="q_id"></answer-card>	
+  			<answer-card :data="obj" :setbest="true"></answer-card>	
   		</div>
   	</section>
   </div>
 </template>
 
 <script>
-import NavHeader from 'components/funComp/NavHeader'
   export default{
   	components: {
-  		AnswerCard: require('components/areaComp/AnswerCard'),NavHeader
+  		AnswerCard: require('components/areaComp/AnswerCard'),
+  		NavHeader: require('components/funComp/NavHeader')
 	  },
 	  data(){
 	  	return{
@@ -58,14 +58,14 @@ import NavHeader from 'components/funComp/NavHeader'
 	  },
 	  ready(){
 	  	// 问答详情
-	  	this.q_id=this.$route.params.id
       $.post(global.domain +'/question/get_question_info',
         { token: global.token,
           q_id: this.$route.params.id },
         v => {
         	this.question = v.data; 
         	let q = this.question.answers
-        	console.log(q+'------')
+        	// console.log(q+'------')
+        	// 如果第一个是最佳答案
         	if(q[0].is_best==1){
         		this.ans_best=q.shift()
         	}

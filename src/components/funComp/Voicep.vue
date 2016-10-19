@@ -31,6 +31,7 @@
 	  methods:{
 	  	// 点击voice后的动作
 	  	voiceAction(e){
+	  		e.preventDefault();
 	  		// console.log(e)
 	  		if (!is_play) {
 			    voice.play();

@@ -32,6 +32,9 @@ var routes = {
   '/ask': {
     component: require('pages/home/Ask.vue')
   },
+  '/askto': {
+    component: require('pages/home/Askto.vue')
+  },
   '/home/selfeva': {
     component: require('pages/home/SelfEva.vue')
   },

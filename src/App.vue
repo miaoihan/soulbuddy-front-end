@@ -29,9 +29,9 @@ export default {
       // host: 'http://han.s3.natapp.cc',
       host: 'http://m.soulbuddy.cn',
       // 测试开关
-      test:true,
+      test:false,
       // test:true,
-      uid: 43
+      uid: 38
 
     }
   },
@@ -48,6 +48,7 @@ export default {
   },
   created(){
   	var code = this.getUrlParam('code');
+    console.log(code)
     //storage存储全局数据
     var ku = window.localStorage
     ku.domain = 'http://xinling.songtaxihuan.com'
@@ -202,7 +203,18 @@ export default {
   display relative
 }
 .btn{
+  
 }
+.btn-border-blue{
+  border: 1px solid #0894ea
+  color #0894ea
+  text-align: center
+  height 1.1rem
+  line-height: 1.1rem
+  border-radius 0.25rem
+  padding 0 0.4rem
+}
+
 .btn .btn-default{
   background-color: $ztc
   color: #fff

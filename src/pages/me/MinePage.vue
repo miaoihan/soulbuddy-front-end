@@ -83,7 +83,8 @@ export default {
         { token: global.token },
         v => {
 	        	global.user=v.data;this.user=v.data
-	        	if (v.data.identity == 1) this.isdaren = true;
+	        	if (v.data.identity == 1 || v.data.identity == 2) 
+	        		this.isdaren = true;
 	        	this.already = true
         	} ,'json');
   },

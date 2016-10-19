@@ -91,7 +91,7 @@
 	.col-img
 		position absolute
 		z-index 10
-		bottom 6.35rem
+		top 8.0rem
 		right 1.0rem
 		width 22px
 		font-size 1.0rem

@@ -11,17 +11,16 @@
 		  		
 		  	</div>
 			</div>
-			<answer-card :data="que" :index="$index"></answer-card>
+			<answer-cardp :data="que" :index="$index"></answer-cardp>
 		</section>
   </div>
 </template>
 
 <script>
-import NavHeader from 'components/funComp/NavHeader'
-import AnswerCard from 'components/areaComp/AnswerCard.vue'
   export default{
   	components: {
-	   AnswerCard,NavHeader,
+	   NavHeader: require('components/funComp/NavHeader'),
+	   AnswerCardp: require('components/areaComp/AnswerCardp'),
 	  },
   	data() {
   		return{

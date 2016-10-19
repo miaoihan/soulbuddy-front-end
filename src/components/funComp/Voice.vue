@@ -63,10 +63,12 @@
 	  methods:{
 	  	// 点击voice后的动作
 	  	voiceAction(e){
+	  		// alert(11111)
 	  		// console.log(e)
 	  		let voice = document.getElementById(this.aid)
+	  		console.log(voice)
 	  		e.preventDefault();
-			  if (voice.paused) {
+			  if (!this.is_play) {
 			    voice.play();
 			    this.is_play = true
 			  } else {
@@ -121,17 +123,18 @@
 	    },
 	  },
 	  ready(){
+	  	// 不用再前端获取时间了，后端获取
 	  	this.aid = 'answer-'+this.index;
-	  	console.log(this.aid)
+	  // 	console.log(this.aid)
 	  	
-			var that = this
-	  	setTimeout(function(){
-	  		let t  = document.getElementById(that.aid).duration;
-	  		let minute = (Math.floor(t/60%60) + 100 + '').substr(1);
-      	let second = (Math.floor(t%60) + 100 + '').substr(1);
-      	that.time = minute+":"+second;
-	  		// console.log(that.time)
-	  	},500);
+			// var that = this
+	  // 	setTimeout(function(){
+	  // 		let t  = document.getElementById(that.aid).duration;
+	  // 		let minute = (Math.floor(t/60%60) + 100 + '').substr(1);
+   //    	let second = (Math.floor(t%60) + 100 + '').substr(1);
+   //    	that.time = minute+":"+second;
+	  // 		// console.log(that.time)
+	  // 	},500);
 
 			// var run = setInterval(function () {
 			// 	var aa = document.getElementById(that.aid)

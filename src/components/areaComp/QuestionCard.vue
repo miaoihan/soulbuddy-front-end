@@ -1,6 +1,8 @@
 <template>
   <div class="card-body">
-	  <a v-link="{ name:'answer', params:{ qid: data.q_id }}">
+	  <a v-link="$route.url=='home' ?
+	  					{ name:'question', params:{ qid: data.q_id }}
+	  					: { name:'answer', params:{ qid: data.q_id }}">
 	    <div class="head">
 			<div class="person-img quer-top">
 				<img :src="data.logo" class="img-body">
@@ -44,6 +46,7 @@ export default {
   },
   ready(){
   	// console.log(this.data.q_id)
+  	console.log(this.$route.url)
   },
   props:{
   	data:{

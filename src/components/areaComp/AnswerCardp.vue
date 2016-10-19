@@ -5,22 +5,16 @@
 				<div class="answer-inf wrapper">
 				<!-- 头像 -->
 					<div class="avator pull-left">
-							<img :src="data.logo" alt="头像" class="avator">		
+							<img :src="user.logo" alt="头像" class="avator">		
 					</div>
 					<!-- 简介 -->
 					<div style="float: left;padding: 0.25rem 0.4rem">
-						<div style="font-size: 13px">{{data.user_name}}</div>
-						<div style="font-size: 12px; color: #999">{{data.intro}}</div>
+						<div style="font-size: 13px">{{user.user_name}}</div>
+						<div style="font-size: 12px; color: #999">{{user.intro}}</div>
 					</div>
-					<div v-if="data.is_best==1 || is_best && !setbest">
-						<span class="btn-border-blue a-r-sign">最佳答案</span>
+					<div class="pull-right" v-if="data.is_best==1">
+						<span class="button">最佳答案</span>
 					</div>
-					<div v-if="(data.is_best==0 || !is_best) && setbest" @click="addBest">
-						<span class="btn-border-blue a-r-sign">设为最佳答案</span>
-					</div>
-					<!-- <div class="pull-right" v-if="data.is_best==0&&best=='false'" @click="addBest">
-						<span class="button">设置最佳答案</span>
-					</div> -->
 				</div>
 				<!-- voice组件 -->
 				<div class="voice-wrapper">
@@ -43,44 +37,46 @@
 import Voice from 'components/funComp/Voice.vue'
   export default{
 	  props:{
-	  	data:{type: Object,},
-	  	setbest:{default:false},
-	  	index:'',
-	  	qid:{type:Number}
-	  },
+	  	data:{type: Object},
+	  		index:'',
+	  		qid:{type:Number},
+	  	},
 
+	  created(){
+	  	// const qid = this.$route.params.id
+	  	if (true) {}
+	  },
 	  data () {
 	    return {
 	      user:{},
 	      answer_id:'',
-	      current_user: false,
-	      is_best: false,
+	      current_user: false
 	    }
 	  },
 	  methods:{
 	  	addBest(){
+	  		
 	  		$.ajax({
-		          url: global.domain +'/question/set_best_answer',
-		          type:'POST', 
-		          dataType: 'json',
-		          data: {
+	          url: global.domain +'/question/set_best_answer',
+	          type:'POST', 
+	          dataType: 'json',
+	          data: {
 		          page:1,
 						  token:global.token,
-						  q_id:this.$route.params.id,
-						  answer_id:this.data.a_id,
+						  q_id:this.qid,
+						  answer_id:this.answer_id,
 					  },
 	          success: function(data) {
-	          	this.is_best = true;
-	  					this.data.is_best = 1;
+	          	this.best='true';
+	  			this.data.is_best=1;
 	          }.bind(this),
 	          error: function(xhr, status, err) {
-	            console.error(rr.toString());
+	            console.error(err.toString());
 	          }.bind(this)
 	        });
 	  	}
 	  },
 	  ready(){
-	  	console.log(this.$route.params.id)
 	  	this.user = global.user
 	  	// console.log(this.user+"adlfhaskfhksadfhksadkf")
 	  },
@@ -115,8 +111,4 @@ import Voice from 'components/funComp/Voice.vue'
 			margin-right 1.1rem
 			font-size 13px
 
-.a-r-sign
-	position absolute
-	right 1.0rem
-	font-size 12px
 </style>

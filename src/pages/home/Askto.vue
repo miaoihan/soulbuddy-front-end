@@ -1,12 +1,13 @@
 <template>
-<!-- 提问 抢答 -->
+<!-- 提问 咨询-->
 	<nav-header title="提问" :ispub="true" :method="subAndCheck" left="cancel"></nav-header>
   <div class="ask wrapper">
   <form action="http://xinling.songtaxihuan.com/question/add_question" 
   			method="post"	id="askForm">
   	<input type="hidden" name="token" value="{{ token }}">
-  	<input type="hidden" name="q_type" :value="0">
+  	<input type="hidden" name="q_type" :value="1">
   	<input type="hidden" name="is_public" value="{{ is_public? 1:0 }}">
+  	<input type="hidden" name="answer_id" value="">
   	<div class="ask-title tbar">
   		<input name="title" type="text" placeholder="标题" >
   	</div>
@@ -14,22 +15,17 @@
   		<textarea name="content" id="" placeholder="请详细描述一下你的问题" 
   							class="ask-tearea"></textarea>
   	</div>
-  	<div>
-	  	<div class="tbar">
-	  		<span class="ask-gold" name="gold">请输入赏金金额（￥）</span>
-	  		<input name="reward_money" type="text" placeholder="0" class="input-gold">
-	  	</div>
-	  	<aside class="tips">
-				问题有三人抢答，最佳回答获得60%的费用，其他各20%
-			将问题设为公开后，答案被其他人付费收听后，你和咨询师各获得0.5元
-	  	</aside>
-	  </div>
   	<div class="tbar wrapper" style="margin-top: 1.0rem">
   		<span>请将该问题设为公开</span>
 	  		<label class="label-switch pull-right" style="margin-top: -0.3rem">
 		        <input type="checkbox" v-model="is_public">
 		        <div class="checkbox"></div>
 	       </label>
+  	</div>
+  	<div>
+  		<aside class="tips">
+				将问题设为公开后，答案被其他人付费收听后，你和咨询师各获得0.5元。
+	  	</aside>
   	</div>
   	</form>
   </div>
@@ -56,10 +52,6 @@
 	  		}
 	  		if($('[name="content"]').val()===''){
 	  			alert('内容不能为空！')
-	  			return false
-	  		}
-	  		if($('[name="reward_money"]').val()===''){
-	  			alert('赏金不能为空！')
 	  			return false
 	  		}
 	  		else{

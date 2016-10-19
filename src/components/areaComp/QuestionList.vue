@@ -2,7 +2,7 @@
   <div class="wrapper">
   <!-- 问题列表 -->
   	<section class="question-item part" v-for="que in data">
-	  	<a v-link="'/question/' + que.q_id " id="aa" v-if="type=='other'">
+	  	<a v-link="'/question/' + que.q_id " v-if="type=='other'">
 			  <div class="container-20">
 			  	<title class="que-content over-2">
 			  		{{que.title}}
@@ -20,7 +20,7 @@
 				</div>
 					<answer-card :data="que" :index="$index" v-if="que.answer_url"></answer-card>
 		</a>
-		<a v-link="'/me/question/' + que.q_id " id="aa" v-if="type=='mine'">
+		<a v-link="'/me/question/' + que.q_id " v-if="type=='mine'">
 		  <div class="container-20">
 		  	<title class="que-content over-2">
 		  		{{que.title}}
@@ -76,6 +76,7 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
 	  	},
 	  	type:{
 	  		type:String,
+	  		default: 'other'
 	  	}
 	  },
   }

@@ -76,6 +76,15 @@ import NavHeader from 'components/funComp/NavHeader';
 	  		about_info:[],
 	  	}
 	  },
+	  methods:{
+	  	ask(){
+	  		// 这里调用微信支付
+	  		let is_pay = true
+	  		if (is_pay) {
+	  			this.$router.go('/askto?uid=');
+	  		}
+	  	},
+	  },
 	  ready(){
 	  	// this.user_type=this.$route.params.type
 	  	// console.log("user_type is"+this.user_type)

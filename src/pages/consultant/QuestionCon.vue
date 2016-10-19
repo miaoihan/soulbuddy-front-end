@@ -3,6 +3,7 @@
   <div class="que-content wrapper">
     <question-card :data="datas" type="public" :is-content=true></question-card>
   </div>
+  <!-- 底部开始回答 -->
   <div class="bottom-record wrapper fixed-bot">
     <div class="record-box" v-if="isbox">
       <div class="record-left">
@@ -58,7 +59,6 @@ export default {
       isStart:false,//是否开始录音，true时则开始录音，false时等待点击开始
       isFinish:false,//是否结束录音进入到试听阶段，true时录音结束进入到试听发布阶段
       token:'',
-      url2:'http://xinling.songtaxihuan.com/question/get_question_info',
       datas:{},
       voice:{
         localId:'',
