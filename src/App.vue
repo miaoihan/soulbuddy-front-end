@@ -29,7 +29,7 @@ export default {
       // host: 'http://han.s3.natapp.cc',
       host: 'http://m.soulbuddy.cn',
       // 测试开关
-      test:false,
+      test:true,
       // test:true,
       uid: 38
     }

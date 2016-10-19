@@ -11,7 +11,7 @@
 	  			<i class="iconfont" style="font-size:16px" v-if="!is_play">&#xe632;</i>
 	  			<i class="iconfont" style="font-size:16px" v-if="is_play">&#xe634;</i>
 	  		<span class="v-time">
-	  			{{ time }}
+	  			{{ data.answer_time }}
 	  			<audio :src="data.answer_url" :id="aid"></audio>
 	  		</span>
 	  	</div>

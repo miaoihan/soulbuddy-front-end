@@ -89,6 +89,9 @@ var routes = {
   '/me/eva': {
     component: require('pages/me/MyEva.vue')
   },
+  '/message': {
+    component: require('pages/me/Message.vue')
+  },
   '/setting/profile': {
     name: 'setme',
     component: require('pages/me/Profile.vue')

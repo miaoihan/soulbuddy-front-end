@@ -8,7 +8,7 @@
 		  		{{que.title}}
 		  	</div>
 		  	<div class="nock">
-		  
+		  		
 		  	</div>
 			</div>
 			<answer-card :data="que" :index="$index"></answer-card>

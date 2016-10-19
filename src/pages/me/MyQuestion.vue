@@ -6,7 +6,6 @@
 </template>
 
 <script>
-import NavHeader from 'components/funComp/NavHeader';
   export default{
   	components: {
   		questionList: require('components/areaComp/QuestionList'),

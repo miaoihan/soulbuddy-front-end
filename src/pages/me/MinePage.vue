@@ -11,7 +11,10 @@
 				<a v-link="'/setting/profile'" class="button button-round btnstyle">编辑个人资料</a>
     		</div>
     		<div class="hint-img">
-    			<i class="iconfont imgimg">&#xe605;</i>
+    		<!-- 站内信 -->
+    		<a v-link="{path:'/message'}">
+    			<i class="iconfont imgimg" >&#xe605;</i>
+    		</a>
     			<div class="hint-text" v-if="fav_count>0">{{user.fav_count}}</div>
     		</div>
     	</div>

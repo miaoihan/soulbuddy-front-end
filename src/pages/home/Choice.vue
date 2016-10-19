@@ -122,9 +122,6 @@
             console.error(this.queList, status, err.toString());
           }.bind(this)
         });
-
-      
-
 	  	
 	  },
 
