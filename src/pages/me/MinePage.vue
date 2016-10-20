@@ -8,7 +8,8 @@
     		</div>
     		<div class="person-msg-name">
     			<span class="name-text">{{user.user_name}}</span>
-				<a v-link="'/setting/profile'" class="button button-round btnstyle">编辑个人资料</a>
+				<a v-link="'/setting/profile'" class="button button-round btnstyle" v-if="identityb == 0">编辑个人资料</a>
+				<a v-link="'me/personedit/0'" class="button button-round btnstyle" v-if="identityb == 1">编辑个人资料</a>
     		</div>
     		<div class="hint-img">
     		<!-- 站内信 -->
@@ -66,7 +67,6 @@ export default {
 	  	// },
 	  	hintnum:{type:Number,default:2},	
 	  	identityb:{type:Number,default:0},	    	
-	  	showbom: true,    	
 	},
   data () {
     return {
@@ -229,3 +229,4 @@ export default {
 	color: #000;
 }
 </style>
+>>>>>>> 9136681a5b37c122957ca3198a9ed192802bc3c1

@@ -17,7 +17,7 @@ export default {
 		placeholder:{type:String},
 		TextColor:{type:String,default:"black"},//控制文字颜色
 		IconColor:{type:String,default:"#bbb"},//箭头icon颜色
-		isIcon:{type:Boolean,default:true},
+		isIcon:{type:Boolean,default:false},
 		href:{type:String,default:null},//是否需要跳转 
 	},
   data () {
