@@ -52,7 +52,7 @@
     			]
     		}
     	},
-    	ceid: ''
+    	ceid:{type:String}
     },
     methods:{
     },

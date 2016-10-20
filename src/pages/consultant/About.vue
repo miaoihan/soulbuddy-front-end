@@ -51,7 +51,6 @@
   	</div> <!-- end top -->
   	<div class="m-tips">
   			共回答了 <strong>{{ user.answers.length}}</strong> 个问题</div>
-  	<!-- 问答list -->
 		<div class="ans-list">
 			<question-list :data="user.answers"></question-list>	
 		</div>
@@ -82,7 +81,7 @@ import NavHeader from 'components/funComp/NavHeader';
 	  		// 这里调用微信支付
 	  		let is_pay = true
 	  		if (is_pay) {
-	  			this.$router.go('/askto?uid=' + this.user.u_id);
+	  			this.$router.go('/askto?uid=');
 	  		}
 	  	},
 	  },

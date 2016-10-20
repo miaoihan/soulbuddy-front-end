@@ -2,22 +2,27 @@
 <nav-header title="申请成为经验答人" left="back"></nav-header>
   <div class="wrapper">
    	<div class="part top-20 wrapper" style="padding:0 1rem">
-   		<card-photo></card-photo>
+   		<card-photo :ceid.sync="ceid"></card-photo>
    	</div>
-   	<span class="lab-name">
-   		擅长标签
-   	</span>
-   	<div class="textarea">
-   		<textarea class="inputarea" name="personlable" placeholder="输入我的擅长标签（用分号隔开，如：抑郁症；焦虑症；自杀倾向）"></textarea>
-   	</div>
-   	<span class="lab-name">
-   		擅长标签
-   	</span>
-   	<div class="textarea">
-   		<textarea class="inputarea" maxlength="150" name="evaluation" placeholder="请填写自我评价（最多150个字）"></textarea>
-   	</div>
-   	<div class="save-box">
-   		<input class="save-body" type="submit" value="提交申请" name="savemsg">
+   	<form method="post" id="applydr">
+	   	<input type="hidden" name="certificate" :value="ceid">
+	   	<input type="hidden" name="identity" :value="2">
+	   	<input type="hidden" name="token" :value="token">
+	   	<span class="lab-name">
+	   		擅长标签
+	   	</span>
+	   	<div class="textarea">
+	   		<textarea class="inputarea" name="skill" placeholder="输入我的擅长标签（用分号隔开，如：抑郁症；焦虑症；自杀倾向）"></textarea>
+	   	</div>
+	   	<span class="lab-name">
+	   		简介
+	   	</span>
+	   	<div class="textarea">
+	   		<textarea class="inputarea" maxlength="150" name="intro" placeholder="请填写自我评价（最多150个字）"></textarea>
+	   	</div>
+   	</form>
+   	<div class="save-box far-bom">
+   		<input class="save-body" type="button" value="提交申请" @click="subme">
    	</div>
    	<!-- <div style="height:5.0rem"></div> -->
   </div>
@@ -32,12 +37,51 @@ export default {
 		InputBox,CardPhoto,NavHeader
 	},
 	props:{
-		PersonPhoto:{type:String}
+		PersonPhoto:{type:String},
+		
 	},
   data () {
     return {
-      
+    	token:'',
+    	ceid:''
     }
+  },
+  ready:function(){
+  	this.token=global.token
+  },
+  methods:{
+  	subme(){
+      // alert('dsfsfdfsdf')
+      	if($('[name="certificate"]').val()===''){
+          alert('证件不能为空')
+          return false
+        }
+      	if($('[name="skill"]').val()===''){
+          alert('擅长标签不能为空')
+          return false
+        }
+        if($('[name="intro"]').val()===''){
+          alert('简介不能为空')
+          return false
+        }
+        else{        
+            $.ajax({
+                url: global.domain +"/user/auth",
+                type:'post', 
+                dataType: 'json',
+                async:false,
+                data: $('#applydr').serialize(),//序列化
+                success: function(data) {
+                  // alert(this.title)
+                  this.$router.go('/me')
+                  // console.log( data);  
+                }.bind(this),
+                error: function(xhr, status, err) {
+                  console.err(err.toString())
+                }.bind(this)
+              });
+      	}
+  	}
   }
 }
 </script>

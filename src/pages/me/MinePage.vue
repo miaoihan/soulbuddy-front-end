@@ -8,7 +8,8 @@
     		</div>
     		<div class="person-msg-name">
     			<span class="name-text">{{user.user_name}}</span>
-				<a v-link="'/setting/profile'" class="button button-round btnstyle">编辑个人资料</a>
+				<a v-link="'/setting/profile'" class="button button-round btnstyle" v-if="identityb == 0">编辑个人资料</a>
+				<a v-link="'me/personedit/0'" class="button button-round btnstyle" v-if="identityb == 1">编辑个人资料</a>
     		</div>
     		<div class="hint-img">
     		<!-- 站内信 -->

@@ -10,10 +10,11 @@
     	</div>
     </div>
     <form action="" method="post" id="editmsg">
-    <input type="hidden" name="real_logo" :value="serverId" id="real_logo">
+    <input type="hidden" name="real_logo" :value="1315" id="real_logo">
     <input type="hidden" name="certificate"
      :value="ceid" v-if="this.$route.params.id==1" >
     <input type="hidden" name="token" :value="token">
+    <input type="hidden" name="identity" :value="identity">
     <input-box title="真实姓名" name="true_name"
     	placeholder='请填写' 
     	title-color="black" text-color="black"
@@ -67,6 +68,7 @@ export default {
       skill:'',
       intro:'',
       token:'',
+      identity:1
 
     }
   },
@@ -140,8 +142,8 @@ export default {
           alert('真实头像不能为空')
           return false
         }
-        if($('[name="true_name"]').val()===''){
-          alert('真实姓名不能为空')
+        if($('[name="certificate"]').val()===''){
+          alert('相关证件不能为空')
           return false
         }
         if($('[name="skill"]').val()===''){
@@ -170,30 +172,42 @@ export default {
       },
       //申请成为咨询师
       subme2(){
-      // alert('dsfsfdfsdf')        
+      // alert('dsfsfdfsdf')
+      if($('#real_logo').val()===''){
+          alert('真实头像不能为空')
+          return false
+        }
+        if($('[name="true_name"]').val()===''){
+          alert('真实姓名不能为空')
+          return false
+        }
+        if($('[name="true_name"]').val()===''){
+          alert('真实姓名不能为空')
+          return false
+        }
+        if($('[name="skill"]').val()===''){
+          alert('擅长标签不能为空')
+          return false
+        }
+        if($('[name="intro"]').val()===''){
+          alert('简介不能为空')
+          return false
+        }
+        else{        
             $.ajax({
-                url: global.domain +"/user/edit_consultant_info",
+                url: global.domain +"/user/auth",
                 type:'post', 
                 dataType: 'json',
                 async:false,
-                data: {
-                  token:localStorage.token,
-                  identity:1,
-                  true_name:this.true_name,
-                  real_logo:this.serverId,
-                  certificate:this.certificate,
-                  skill:this.skill,
-                  intro:this.intro,
-                } ,//序列化
+                data: $('#editmsg').serialize(),//序列化
                 success: function(data) {
-                  // alert(this.title)
                   this.$router.go('/me')
-                  // console.log( data);  
                 }.bind(this),
                 error: function(xhr, status, err) {
                   console.err(err.toString())
                 }.bind(this)
               });
+        }
       }
     },
 }
