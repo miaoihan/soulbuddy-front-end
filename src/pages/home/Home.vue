@@ -88,7 +88,6 @@ import Evaluation from 'pages/home/Evaluation.vue'
           type:'POST', 
           dataType: 'json',
           data:{
-            page: 1,
             token: global.token
           },
           success: data => this.evaList = data.data,

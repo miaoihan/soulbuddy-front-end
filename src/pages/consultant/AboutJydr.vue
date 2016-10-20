@@ -1,6 +1,6 @@
 <template>
 <!-- 经验答人详情 -->
-<nav-header title="" left="back" :fav-type="2" :fav-id="user.u_id" :collected="collected" :fav-count="user.fav_count"></nav-header>
+<nav-header title="" left="back" :fav-type="2" :fav-id="user.u_id" :collected="user.is_fav==1" :fav-count="user.fav_count"></nav-header>
   <div>
   	<div class="at-top part container-20"
   			 :class="user.identity == 1? 'ztc' : 'ab-kol' ">
@@ -24,7 +24,7 @@
 		  		</div>
 		  		<div class="desc-l2">
 		  			<span style="font-size:0.6rem;">
-		  				{{user.intro}}
+		  				{{user.user_title}}
 		  			</span>
 		  		</div>
 		  		<!-- 标签 -->
@@ -74,6 +74,15 @@ import NavHeader from 'components/funComp/NavHeader';
 	  		collected:false,
 	  		user_type:""
 	  	}
+	  },
+	  methods:{
+	  	ask(){
+	  		// 这里调用微信支付
+	  		let is_pay = true
+	  		if (is_pay) {
+	  			this.$router.go('/askto?uid=' + this.user.u_id);
+	  		}
+	  	},
 	  },
 	  ready(){
 	  	// this.user_type=this.$route.params.type
