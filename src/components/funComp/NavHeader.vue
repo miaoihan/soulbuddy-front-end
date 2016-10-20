@@ -15,6 +15,15 @@
 	  </span>
 		<!-- 中间Title -->
 	  <h1 class="nav-title" v-if="title">{{ title }}</h1>
+	  <div class="tag-wrapper" v-if="iscst">
+			<span class="btn-left" :class=" identity===1 ? 'active' : '' " 
+						@click="click(1)"
+						>咨询师</span>
+			<span class="btn-right" :class="{ active: identity === 2 }"
+						@click="click(2)"
+						>经验达人</span>
+		</div>
+
 	  <!-- 导航右部分	 -->
 	  <span class="nav-right" v-if="right">
 	  	<a class="next-btn" v-if="title=='原手机号码'"
@@ -24,7 +33,12 @@
 	  	<div type="submit" class="next-btn" v-if="title=='编辑个人资料'"
 	  			 @click="method">保存</div>
 		  	<!-- 收藏 -->
-	  	<div v-if="!title" @click="like">
+		  <i class="iconfont" class="r-func" v-if="title=='问题详情'">&#xe62d;</i><!-- 三个点 --> 
+	  	<a class="btn-nav" v-if="title=='新灵伙伴'"
+	  		 v-link="{path: '/ask'}">提问</a>
+			<a class="btn-nav" v-if="ispub"
+				 @click="method">发布</a>	
+	  	<span v-if=" !title " @click="like">
 		  	<i class="iconfont margin-right-10" class="r-func" 
 		  		 v-if="collected==false">&#xe606;</i>
 		  	<i class="iconfont margin-right-10" class="r-func" style="color:red;" 
@@ -32,22 +46,11 @@
 		  	<div class="collect-num-body" v-if="FavCount>1">
 		  		<span class="collect-num">{{FavCount}}</span>
 		  	</div><!-- 收藏图标 -->
-		  <div>
-	  	<i class="iconfont" class="r-func" v-if="title=='问题详情'">&#xe62d;</i><!-- 三个点 --> 
-	  	<a class="btn-nav" v-if="title=='新灵伙伴'"
-	  		 v-link="{path: '/ask'}">提问</a>
-			<a class="btn-nav" v-if="ispub"
-				 @click="method">发布</a>	
+		  <span>
+	  	
 	  </span>
 		
-		<div class="tag-wrapper" v-if="iscst">
-			<span class="btn-left" :class=" identity===1 ? 'active' : '' " 
-						@click="click(1)"
-						>咨询师</span>
-			<span class="btn-right" :class="{ active: identity === 2 }"
-						@click="click(2)"
-						>经验达人</span>
-		</div>
+		
 	</header>
 </template>
 
@@ -178,6 +181,7 @@
 .nav-right
 	position absolute
 	right 0.7rem
+	top 0
 	color:#fff
 	i 
 		font-size: 20px
