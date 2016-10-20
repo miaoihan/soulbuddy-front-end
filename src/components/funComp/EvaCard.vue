@@ -55,7 +55,6 @@ import QuestionList from 'components/areaComp/QuestionList.vue'
     ready(){
       // setTimeout(function(){
         console.log("frist index:"+this.index)
-        console.log(123);
         var mySwiper = new Swiper ('#swp2', {
             freeMode : true,
             loop: true,

@@ -311,17 +311,18 @@ export default {
   // border 1px solid #e7e7e7
 }
 // 底部固定条
-.fixed-bom
-  height 2.2rem
-  line-height 2.2rem
+.fixed-bottom
+  height 2.5rem
+  line-height 2.5rem
   width 100%
   position fixed
   bottom 0
+  z-index 100
   background-color: $ztc
   text-align: center
   
 //因为底部还有导航栏
-.fixed-bottom
+.fixed-bom
   height 2.2rem
   line-height 2.2rem
   width 100%

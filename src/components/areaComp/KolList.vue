@@ -19,7 +19,8 @@
 				  		</div>
 				  		<div class="desc-l2">
 				  			<span style="font-size:0.6rem;color: #999">
-				  				{{item.intro}}
+				  				<!-- {{item.user_title}} -->
+				  				经验达人
 				  			</span>
 				  		</div>
 				  		<div class="desc-l3" style="margin-top: 0.40rem">

@@ -5,21 +5,21 @@
 	    <span class="card-name">询问我的问题</span>
 	    <div class="swiper-container" id="swp5">
 			<div class="swiper-wrapper">
-			    <div class="swiper-slide" v-for="data in topdata">
+			    <div class="swiper-slide" v-for="data in myQues">
 			    	<a href="3">
 					    <div style="width:100%;">
 					    	<div class="person-img quer-top">
-					    		<img :src="data.imgurl" class="img-body">
+					    		<img :src="data.logo" class="img-body">
 					    	</div>
 					    	<div class="quername quer-top">
-					    		{{data.cname}}
+					    		{{data.user_name}}
 					    	</div>
 					    	<div class="paymoney quer-top">
-					    		已支付￥{{data.cpay}}
+					    		已支付￥{{data.reward_money}}
 					    	</div>
 					    </div>
 				    	<div class="que-text">
-				    		<p>{{data.question}}</p>
+				    		<p>打上大大打上大大打上大大打上大大打上大大打上大大打上大大打上大大打上大大打上大大打上大大打上大大打上大大打上大大</p>
 				    	</div>
 			    	</a>
 			    </div>
@@ -49,66 +49,59 @@ export default {
   		otherQues:[],
     }
   },
-   ready:function(){
-   	console.log(123);
-   	var mySwiper = new Swiper ('#swp5', {
-		    freeMode : true,
-		    loop: true,
-		    slidesPerView:1.42,
-	        paginationClickable: true,
-	        spaceBetween: 15
-	})
-
+  created(){
+  	// 咨询我的问题
 	  	$.ajax({
           url: global.domain +'/question/get_need_answer_list',
           type:'POST', 
           dataType: 'json',
+          async: false,
           data: {
           	page:1,
-          	type:1,		//你能不能把代码对齐了！！！！！
-			          	//你能不能把代码对齐了！！！！！
-			          	//你能不能把代码对齐了！！！！！
-			          	//你能不能把代码对齐了！！！！！
-			          	//你能不能把代码对齐了！！！！！
-			          	//你能不能把代码对齐了！！！！！
-			          	//你能不能把代码对齐了！！！！！
+          	type:1,		
 						token:global.token,
 		  		},
           cache: false,
           success: function(data) {
-          	console.log(data)
+          	// console.log(data)
             this.myQues = data.data
             console.log('person: '+this.myQues);
           }.bind(this),
           error: function(xhr, status, err) {
-            console.error(this.questionList, status, err.toString());
+            console.error(err.toString());
           }.bind(this)
         });
+  },
+   ready:function(){
+   	
+   		
         $.ajax({
           url: global.domain +'/question/get_need_answer_list',
           type:'POST', 
           dataType: 'json',
           data: {
           	page:1,
-          	type:2,		//你能不能把代码对齐了！！！！！
-          				//你能不能把代码对齐了！！！！！
-          				//你能不能把代码对齐了！！！！！
-          				//你能不能把代码对齐了！！！！！
-          				//你能不能把代码对齐了！！！！！
-          				//你能不能把代码对齐了！！！！！
-          				//你能不能把代码对齐了！！！！！
+          	type:2,		
 						token:global.token,
 		  	},
           cache: false,
           success: function(data) {
-          	console.log(data)
+          	// console.log(data)
             this.otherQues = data.data
             console.log('person: '+this.otherQues);
           }.bind(this),
           error: function(xhr, status, err) {
-            console.error(this.questionList, status, err.toString());
+            console.error(err.toString());
           }.bind(this)
         });
+
+        var mySwiper = new Swiper ('#swp5', {
+			    freeMode : true,
+			    loop: true,
+			    slidesPerView:1.42,
+	        paginationClickable: true,
+	        spaceBetween: 15
+		})
    }
 
 }
@@ -141,7 +134,7 @@ export default {
 .swiper-slide{
 	overflow: hidden;
   height: 5rem;
-  background-color: #0A86D4;
+  background-color: #299fff;
   border-radius: 0.25rem;
 }
 .quer-top{

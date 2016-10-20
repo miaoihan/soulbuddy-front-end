@@ -1,6 +1,6 @@
 <template>
 <!-- 经验答人详情 -->
-<nav-header title="" left="back" :fav-type="2" :fav-id="user.u_id" :collected="collected" :fav-count="user.fav_count"></nav-header>
+<nav-header title="" left="back" :fav-type="2" :fav-id="user.u_id" :collected="user.is_fav==1" :fav-count="user.fav_count"></nav-header>
   <div>
   	<div class="at-top part container-20"
   			 :class="user.identity == 1? 'ztc' : 'ab-kol' ">
@@ -24,7 +24,7 @@
 		  		</div>
 		  		<div class="desc-l2">
 		  			<span style="font-size:0.6rem;">
-		  				{{user.intro}}
+		  				{{user.user_title}}
 		  			</span>
 		  		</div>
 		  		<!-- 标签 -->
@@ -41,7 +41,7 @@
 	  		</div>
 	  		<div class="cst-desc">
 	  			<p>
-	  				简介：哥伦比亚哦大学心理博士，主修人际心理学；擅长托马斯催眠疗法，获得2014年度心理咨询评定委员会心理咨询师称号
+	  				{{user.intro}}
 	  			</p>
 	  			<div class="t-location" style="margin-top: 0.5rem;">
 	  				<i class="iconfont">&#58903;</i>
@@ -74,6 +74,15 @@ import NavHeader from 'components/funComp/NavHeader';
 	  		collected:false,
 	  		user_type:""
 	  	}
+	  },
+	  methods:{
+	  	ask(){
+	  		// 这里调用微信支付
+	  		let is_pay = true
+	  		if (is_pay) {
+	  			this.$router.go('/askto?uid=' + this.user.u_id);
+	  		}
+	  	},
 	  },
 	  ready(){
 	  	// this.user_type=this.$route.params.type

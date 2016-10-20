@@ -1,5 +1,4 @@
 <template>
-	
   <div class="wrapper" @click="voiceAction($event)"
   		 :class=" is_free ? 'voice' : 'voice-locked' "
   		 :style="{width: time>60 ? '100%' : (time)*5/6+50+'%';background-color:color }">
@@ -66,7 +65,7 @@
 	  		// alert(11111)
 	  		// console.log(e)
 	  		let voice = document.getElementById(this.aid)
-	  		console.log(voice)
+	  		// console.log(voice)
 	  		e.preventDefault();
 			  if (!this.is_play) {
 			    voice.play();
@@ -89,13 +88,29 @@
 	  	},
 
 	  	hasHelp(eve){
+	  		eve.preventDefault();
 	  		this.data.praise_count++
 	  		// this.$el.style.height="1.8rem"
+	  		 // alert(111)
+		  	// 有帮助
+	      $.ajax({
+	          url: global.domain +'/question/praise_answer',
+	          type:'POST', 
+	          dataType: 'json',
+	          data:{
+	            token: global.token,
+	            a_id:  this.data.a_id
+	          },
+	          // success: data => this.evaList = data.data,
+	          error: err => console.error(err.toString())
+	        });
+
 	  		this.isEva = true  	
 	  		// 阻止事件传播、触发父组件
 	  		eve.stopPropagation()  		
 	  	},
 	  	noHelp(eve){
+	  		eve.preventDefault();
 	  		// this.$el.style.height="1.8rem"
 	  		this.isEva = true  	
 	  	}
