@@ -97,7 +97,7 @@ export default {
 
         var mySwiper = new Swiper ('#swp5', {
 			    freeMode : true,
-			    loop: true,
+			    loop: false,
 			    slidesPerView:1.42,
 	        paginationClickable: true,
 	        spaceBetween: 15
