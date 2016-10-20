@@ -1,6 +1,6 @@
 <template>
   <div class="card-body">
-	  <a v-link="$route.url=='home' ?
+	  <a v-link="$route.path=='home' ?
 	  					{ name:'question', params:{ qid: data.q_id }}
 	  					: { name:'answer', params:{ qid: data.q_id }}">
 	    <div class="head">

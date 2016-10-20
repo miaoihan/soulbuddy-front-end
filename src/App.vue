@@ -1,8 +1,8 @@
 <template>
 <div id="app">
     <div v-if="token">
-     <router-view :identityb.sync="identity" :bind.sync="bind"></router-view>
-     <nav-bottom :identityb.sync="identity" v-if="bind"></nav-bottom>
+     <router-view :identityb.sync="identity" :bind.sync="bind" :showbom.sync="showbom"></router-view>
+     <nav-bottom :identityb.sync="identity" v-if="bind" :showbom.sync="showbom"></nav-bottom>
     </div>
     <!-- <eva-result></eva-result> -->
   </div>
@@ -25,13 +25,14 @@ export default {
       bind: null,
       token: '', //做判断用，有了token才渲染
       identity: 0,
+      showbom: true,
       // host: 'http://120.27.122.131',
       // host: 'http://han.s3.natapp.cc',
       host: 'http://m.soulbuddy.cn',
       // 测试开关
-      test:true,
+      test:false,
       // test:true,
-      uid: 48
+      uid: 1
 
     }
   },

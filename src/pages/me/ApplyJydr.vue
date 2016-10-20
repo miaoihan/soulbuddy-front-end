@@ -156,3 +156,4 @@ input::-webkit-input-placeholder {text-align:right}
 	margin-top:1.5rem;
 }
 </style>
+>>>>>>> 9136681a5b37c122957ca3198a9ed192802bc3c1

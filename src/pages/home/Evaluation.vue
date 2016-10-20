@@ -2,7 +2,8 @@
   <div class="wrapper">
   	<!-- eva-card -->
   	<div class="yyzp body-eva wrapper" v-for="eva of data">
-  		<img class="img-eva" :src="eva.img_file" alt="" @click="go(eva.is_tested,eva.test_id)">
+  		<img class="img-eva" :src="eva.img_file" alt="" 
+  				 @click="go(eva.is_tested,eva.test_id)">
   		<i class="iconfont people">&#xe62b;</i>
   		<span class="num-peo">{{eva.test_count}}</span>
 			<span class="function">{{eva.title}}</span>

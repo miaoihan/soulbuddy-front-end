@@ -29,6 +29,9 @@ var routes = {
   '/case': {
     component: require('pages/home/Case.vue')
   },
+  '/reading': {
+    component: require('pages/home/TypeRead.vue')
+  },
   '/ask': {
     component: require('pages/home/Ask.vue')
   },

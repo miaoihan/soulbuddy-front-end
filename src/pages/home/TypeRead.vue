@@ -1,20 +1,6 @@
 <template>
   <div>
-  	<nav-header title="案例" left='back'></nav-header>
-    <div class="label-box" style="margin-bottom: 10px">
-      <span class="label-big-border">
-        抑郁症
-      </span>
-      <span class="label-big-border">
-        焦虑症
-      </span>
-      <span class="label-big-border">
-        抑郁症
-      </span>
-      <span class="label-big-border">
-        焦虑
-      </span>
-    </div>
+  	<nav-header :title="title" left='back'></nav-header>
   	<div class="article-list">
   		<article-list :data="readList"></article-list>
   	</div> <!-- end article-list -->
@@ -29,14 +15,19 @@
 	  },
     data(){
       return {
-        readList: []
+        readList: [],
+        title: ''
       }
     },
+    created(){
+      this.title = this.$route.query.type
+    },
     ready(){
+      // alert(this.$route.query.type)
       // 科普阅读列表
       $.post(global.domain +'/article/get_article_list',
         {   page: 1,
-          cat_id: 3 },
+            tags: this.$route.query.type },
         v => this.readList = v.data ,'json');
     },
 

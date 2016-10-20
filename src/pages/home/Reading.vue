@@ -51,7 +51,7 @@
 	  		</div>
 	  		<div class="label-box">
 	  			<span class="label-big-border" v-for="tag in tags">
-	  				{{tag}}
+		  			<a v-link="'/reading?type='+tag">{{tag}}</a>
 	  			</span>
 	  		</div>
 	  	</div>

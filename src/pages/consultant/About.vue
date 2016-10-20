@@ -81,7 +81,7 @@ import NavHeader from 'components/funComp/NavHeader';
 	  		// 这里调用微信支付
 	  		let is_pay = true
 	  		if (is_pay) {
-	  			this.$router.go('/askto?uid=');
+	  			this.$router.go('/askto?uid='+ this.user.u_id);
 	  		}
 	  	},
 	  },

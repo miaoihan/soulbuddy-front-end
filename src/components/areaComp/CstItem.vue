@@ -1,9 +1,9 @@
 <template>
   	<div class="zxs-item part">
-		  	  <i class="col-img" @click="like(data.u_id)" v-if="data.is_fav==0 || !is_like">
+		  	  <i class="col-img" @click="like(data.u_id)" v-if="(data.is_fav==0 && $route.path!='/me/favorite') || !is_like">
 						<img src="../../assets/imgs/like.png" alt="">
 		  	  </i>
-			  <i class="col-img" v-if="data.is_fav==1 || is_like">
+			  <i class="col-img" v-if="data.is_fav==1 || is_like || $route.path=='/me/favorite'">
 					<img src="../../assets/imgs/liked.png" alt="">
 			  </i>
 			  <a v-link="{name:'user', params:{ id: data.u_id }}">

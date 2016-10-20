@@ -13,6 +13,16 @@
 	  			 onclick="window.history.go(-1)"></i>
 	  	</a><!-- 返回图标 -->
 	  </span>
+		<!-- 中间Title -->
+	  <h1 class="nav-title" v-if="title">{{ title }}</h1>
+	  <div class="tag-wrapper" v-if="iscst">
+			<span class="btn-left" :class=" identity===1 ? 'active' : '' " 
+						@click="click(1)"
+						>咨询师</span>
+			<span class="btn-right" :class="{ active: identity === 2 }"
+						@click="click(2)"
+						>经验达人</span>
+		</div>
 
 	  <!-- 导航右部分	 -->
 	  <span class="nav-right" v-if="right">
@@ -22,30 +32,25 @@
 	  			v-link="url">重新评测</a>
 	  	<div type="submit" class="next-btn" v-if="title=='编辑个人资料'"
 	  			 @click="method">保存</div>
-	  	<!-- 收藏 -->
-	  	<i class="iconfont margin-right-10" class="r-func" 
-	  		 v-if="title==''&&collected==false" @click="subme">&#xe606;</i>
-	  	<i class="iconfont margin-right-10" class="r-func" style="color:red;" 
-	  		 v-if="title==''&&collected==true" @click="Collect">&#xe633;</i>
-	  	<div class="collect-num-body" v-if="FavCount>1&&title==''">
-	  		<span class="collect-num">{{FavCount}}</span>
-	  	</div><!-- 收藏图标 -->
-	  	<i class="iconfont" class="r-func" v-if="title=='问题详情'">&#xe62d;</i><!-- 三个点 --> 
+		  	<!-- 收藏 -->
+		  <i class="iconfont" class="r-func" v-if="title=='问题详情'">&#xe62d;</i><!-- 三个点 --> 
 	  	<a class="btn-nav" v-if="title=='新灵伙伴'"
 	  		 v-link="{path: '/ask'}">提问</a>
 			<a class="btn-nav" v-if="ispub"
 				 @click="method">发布</a>	
+	  	<span v-if=" !title " @click="like">
+		  	<i class="iconfont margin-right-10" class="r-func" 
+		  		 v-if="collected==false">&#xe606;</i>
+		  	<i class="iconfont margin-right-10" class="r-func" style="color:red;" 
+		  		 v-if="collected==true" @click="Collect">&#xe633;</i>
+		  	<div class="collect-num-body" v-if="FavCount>1">
+		  		<span class="collect-num">{{FavCount}}</span>
+		  	</div><!-- 收藏图标 -->
+		  <span>
+	  	
 	  </span>
-
-	  <h1 class="nav-title" v-if="title">{{ title }}</h1>
-		<div class="tag-wrapper" v-if="iscst">
-			<span class="btn-left" :class=" identity===1 ? 'active' : '' " 
-						@click="click(1)"
-						>咨询师</span>
-			<span class="btn-right" :class="{ active: identity === 2 }"
-						@click="click(2)"
-						>经验达人</span>
-		</div>
+		
+		
 	</header>
 </template>
 
@@ -96,29 +101,31 @@
 			Collect(){
 				// this.collected=!this.collected
 			},
-			subme(){
-			// alert('dsfsfdfsdf')				
-	        	$.ajax({
-		            url: global.domain +"/user/add_favorite",
-		            type:'post', 
-		            dataType: 'json',
-		            async:false,
-		            data: {
-		              token:global.token,
-		              fav_type:this.FavType,
-		              fav_id:this.FavId,
-		            }	,//序列化
-		            success: function(data) {
-		            	// alert(this.title)
-		            	this.collected=!this.collected
-		              // console.log( data);  
-		            }.bind(this),
-		            error: function(xhr, status, err) {
-		              console.err(err.toString())
-		            }.bind(this)
-	          	});
-	          	// alert(1231233)
-      		}
+			like(){
+			// alert('dsfsfdfsdf')
+				this.collected == true;
+      	$.ajax({
+            url: global.domain +"/user/add_favorite",
+            type:'post', 
+            dataType: 'json',
+            data: {
+              token:global.token,
+              fav_type:this.FavType,
+              fav_id:this.FavId,
+            }	,//序列化
+            success: function(data) {
+            	// alert(this.title)
+            	// this.collected=!this.collected
+            	this.collected = true 
+            	// alert(this.collected)
+              // console.log( data);  
+            }.bind(this),
+            error: function(xhr, status, err) {
+              console.err(err.toString())
+            }.bind(this)
+        	});
+        	// alert(1231233)
+  		}
 		},
 		ready(){
 			// if(this.FavId!=null){
@@ -174,6 +181,7 @@
 .nav-right
 	position absolute
 	right 0.7rem
+	top 0
 	color:#fff
 	i 
 		font-size: 20px
