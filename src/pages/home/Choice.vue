@@ -64,6 +64,7 @@
           async:false,
           data:{
             count: 3,
+            token: global.token
           },
           success: data => this.evaList = data.data,
           error: err => console.log(err)

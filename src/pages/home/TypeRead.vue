@@ -37,8 +37,7 @@
 <style scoped lang="stylus">
 
 	.article-list
-		margin-bottom 1.5rem
-	
-
+		margin-bottom 4.0rem
+    margin-top 10px  
 	
 </style>
