@@ -29,6 +29,9 @@ var routes = {
   '/case': {
     component: require('pages/home/Case.vue')
   },
+  '/reading': {
+    component: require('pages/home/TypeRead.vue')
+  },
   '/ask': {
     component: require('pages/home/Ask.vue')
   },
@@ -91,6 +94,9 @@ var routes = {
   },
   '/me/eva': {
     component: require('pages/me/MyEva.vue')
+  },
+  'me/install': {
+    component: require('pages/me/Install.vue')
   },
   '/message': {
     component: require('pages/me/Message.vue')

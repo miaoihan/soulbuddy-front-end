@@ -31,7 +31,7 @@
 	    <change-btn btntext="我听过的问题" url="/me/history" 
 	    	style="border-bottom:0.05rem solid #eee">	    	
 	    </change-btn>
-	    <change-btn btntext="设置" url="/me/personedit/0"></change-btn>	
+	    <change-btn btntext="设置" url="me/install"></change-btn>	
 	</div>
 </div>
 </template>
@@ -43,7 +43,18 @@ export default {
 		ChangeBtn,
 	},
 	props:{
-		UserType:{type:String}
+		UserType:{type:String},
+		showbom: true,
+	},
+	created(){
+		this.$router.beforeEach(function ({ to, next }) {
+		  if (to.path === 'me/install') {
+		    // 返回一个断定会 true 或者 false 的 Promise
+		    return AuthService.isLoggedIn()
+		  } else {
+		    next()
+		  }
+		})
 	},
   data () {
     return {

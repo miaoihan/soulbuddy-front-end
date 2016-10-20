@@ -37,7 +37,6 @@ import NavHeader from 'components/funComp/NavHeader';
 	  data(){
 	  	return{
 	  		index: 1,
-		  	domain: 'http://xinling.songtaxihuan.com',
 		  	data1: [],
 		  	data2: [],
 		  	data3: [],
@@ -47,20 +46,17 @@ import NavHeader from 'components/funComp/NavHeader';
 	  	//咨询师
 	  	$.post(global.domain +'/user/get_my_favorite',
 	  		{ token: global.token ,
-	  		  page: 1 ,
 	  		  type: 1 ,
 	  		},
 	  		v => this.data1 = v.data ,'json');
   		//经验达人
 	  	$.post(global.domain +'/user/get_my_favorite',
 	  		{ token: global.token ,
-	  			page: 1 ,
 	  			type: 2 },
 	  		v => this.data2 = v.data ,'json');
   		//文章
 	  	$.post(global.domain +'/user/get_my_favorite',
 	  		{ token: global.token ,
-	  			page: 1 ,
 	  			type: 3 },
 	  		v => this.data3 = v.data ,'json');
 	  },

@@ -16,7 +16,7 @@
    	<div class="textarea">
    		<textarea class="inputarea" maxlength="150" name="evaluation" placeholder="请填写自我评价（最多150个字）"></textarea>
    	</div>
-   	<div class="save-box">
+   	<div class="save-box far-bom">
    		<input class="save-body" type="submit" value="提交申请" name="savemsg">
    	</div>
    	<!-- <div style="height:5.0rem"></div> -->

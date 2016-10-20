@@ -1,5 +1,5 @@
 <template>
-  <nav class="bar bar-tab fixed">
+  <nav class="bar bar-tab fixed" v-if="showbom">
     <a v-link="'/home'" class="tab-item external" :class="{ active: index === 0 }" @click="changClass(0)">
       <i class="iconfont icon-htmal5icon06"></i>
       <span class="tab-label">首页</span>
@@ -33,6 +33,7 @@ export default {
     },
     props:{
       identityb:{type:Number,default:0}, 
+      showbom:{type:Boolean,default:true}, 
     },
     methods: {
       changClass(id) {

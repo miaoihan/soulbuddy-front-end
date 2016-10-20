@@ -92,7 +92,7 @@ export default {
             console.error(err.toString());
           }.bind(this)
         });
-        console.log(999999999999999999999)
+        // console.log(999999999999999999999)
         var mySwiper = new Swiper ('#swp5', {
 			    freeMode : true,
 			    loop: false,

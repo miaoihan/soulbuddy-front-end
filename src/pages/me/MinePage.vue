@@ -66,6 +66,7 @@ export default {
 	  	// },
 	  	hintnum:{type:Number,default:2},	
 	  	identityb:{type:Number,default:0},	    	
+	  	showbom: true,    	
 	},
   data () {
     return {

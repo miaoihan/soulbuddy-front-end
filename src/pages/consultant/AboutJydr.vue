@@ -100,38 +100,38 @@ import NavHeader from 'components/funComp/NavHeader';
           success: function(data) {
           	this.user = data.data;
           	if(this.user.is_fav=="1"){
-	        	this.collected=true
-	        }
+		        	this.collected=true
+		        }
           }.bind(this),
           error: function(xhr, status, err) {
             console.error(readList, status, err.toString());
           }.bind(this)
         });
-        //获取我的收藏 判断是否已经收藏
-        $.ajax({
-            url: global.domain+'/user/get_my_favorite',
-            type:'POST', 
-            dataType: 'json',
-            cache: true,
-            data:{
-              token:global.token,
-              type:2
-            },
-            success: data => {
-              this.about_info = data.data;
-              // 判断收藏
-              var arr=[];
-              for(var i = 0;i < this.about_info.length;i++){
-                arr.push(this.about_info[i].u_id)
-              }
-              var test=arr.indexOf(this.$route.params.id);
-              console.log(this.$route.params.id)
-              if(test!=-1){
-                this.collected=true
-              }
-            },
-            error: err => err.toString(),
-      	});
+       //  //获取我的收藏 判断是否已经收藏
+       //  $.ajax({
+       //      url: global.domain+'/user/get_my_favorite',
+       //      type:'POST', 
+       //      dataType: 'json',
+       //      cache: true,
+       //      data:{
+       //        token:global.token,
+       //        type:2
+       //      },
+       //      success: data => {
+       //        this.about_info = data.data;
+       //        // 判断收藏
+       //        var arr=[];
+       //        for(var i = 0;i < this.about_info.length;i++){
+       //          arr.push(this.about_info[i].u_id)
+       //        }
+       //        var test=arr.indexOf(this.$route.params.id);
+       //        console.log(this.$route.params.id)
+       //        if(test!=-1){
+       //          this.collected=true
+       //        }
+       //      },
+       //      error: err => err.toString(),
+      	// });
 	  },
 	  
 	  
@@ -165,3 +165,4 @@ import NavHeader from 'components/funComp/NavHeader';
 	.ab-kol
 		color #999
 </style>
+

@@ -1,6 +1,6 @@
 <template>
 <!-- 文章详情 -->
-<nav-header left="back" :fav-count="data.fav_count" :fav-id="art_id_fav" :fav-type="3" :collected="collected"></nav-header>
+<nav-header left="back" :fav-count="data.fav_count" :fav-id="art_id_fav" :fav-type="3" :collected="collected==true"></nav-header>
    <div class="wrapper">
    		<!-- 文章头部 -->
       <section class="art-top ztc">
