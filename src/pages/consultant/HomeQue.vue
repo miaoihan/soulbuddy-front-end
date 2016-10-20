@@ -3,7 +3,7 @@
   <div class="far-bom">
 	  <div class="quecard wrapper">
 	    <span class="card-name">询问我的问题</span>
-	    <div class="swiper-container" id="swp5">
+	    <div class="swiper-container container-20-lr" id="swp5">
 			<div class="swiper-wrapper">
 			    <div class="swiper-slide" v-for="data in myQues">
 			    	<a href="3">
@@ -19,7 +19,7 @@
 					    	</div>
 					    </div>
 				    	<div class="que-text">
-				    		<p>打上大大打上大大打上大大打上大大打上大大打上大大打上大大打上大大打上大大打上大大打上大大打上大大打上大大打上大大</p>
+				    		<p>{{data.title}}</p>
 				    	</div>
 			    	</a>
 			    </div>
@@ -65,7 +65,7 @@ export default {
           success: function(data) {
           	// console.log(data)
             this.myQues = data.data
-            console.log('person: '+this.myQues);
+            console.log('----------person: '+this.myQues);
           }.bind(this),
           error: function(xhr, status, err) {
             console.error(err.toString());
@@ -73,8 +73,6 @@ export default {
         });
   },
    ready:function(){
-   	
-   		
         $.ajax({
           url: global.domain +'/question/get_need_answer_list',
           type:'POST', 
@@ -94,11 +92,11 @@ export default {
             console.error(err.toString());
           }.bind(this)
         });
-
+        console.log(999999999999999999999)
         var mySwiper = new Swiper ('#swp5', {
 			    freeMode : true,
-			    loop: true,
-			    slidesPerView:1.42,
+			    loop: false,
+			    slidesPerView:1.72,
 	        paginationClickable: true,
 	        spaceBetween: 15
 		})

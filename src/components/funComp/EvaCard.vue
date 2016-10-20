@@ -14,7 +14,8 @@
             
           </div>
             <span class="eva-title">{{eva.title}}</span>
-            <a v-link="{name:'eva', params:{id: eva.test_id} }" class="start-btn">开始</a>
+            <a v-link="{name:'eva', params:{id: eva.test_id} }" 
+               class="start-btn" v-if="!eva.is_tested">开始</a>
           </div>
 
       </div>
@@ -57,7 +58,7 @@ import QuestionList from 'components/areaComp/QuestionList.vue'
         console.log("frist index:"+this.index)
         var mySwiper = new Swiper ('#swp2', {
             freeMode : true,
-            loop: true,
+            loop: false,
             slidesPerView:1.54,
             paginationClickable: true,
             spaceBetween: 10
@@ -145,7 +146,6 @@ import QuestionList from 'components/areaComp/QuestionList.vue'
   position: relative;
   z-index: 100;
   display: block;
-  font-family: .PingFang-SC-Medium;
   font-size: 14px;
   color:#fff;
   margin-top: 0.75rem;
@@ -160,7 +160,6 @@ import QuestionList from 'components/areaComp/QuestionList.vue'
   border-radius: 25px;
   margin:0 auto;
   margin-top: 0.75rem;
-  font-family: .PingFang-SC-Medium;
   font-size: 13px;
   color: #ffffff;
 }

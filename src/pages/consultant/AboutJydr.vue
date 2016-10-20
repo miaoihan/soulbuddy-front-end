@@ -41,7 +41,7 @@
 	  		</div>
 	  		<div class="cst-desc">
 	  			<p>
-	  				{{user.intro}}
+	  				简介：{{user.intro}}
 	  			</p>
 	  			<div class="t-location" style="margin-top: 0.5rem;">
 	  				<i class="iconfont">&#58903;</i>
