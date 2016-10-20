@@ -1,6 +1,6 @@
 <template>
 <!-- 文章详情 -->
-<nav-header left="back" :fav-count="data.fav_count" :fav-id="art_id_fav" :fav-type="3" :collected="collected==true"></nav-header>
+<nav-header left="back" :fav-count="data.fav_count" :fav-id="art_id_fav" :fav-type="3" :collected="collected"></nav-header>
    <div class="wrapper">
    		<!-- 文章头部 -->
       <section class="art-top ztc">
@@ -81,33 +81,33 @@ import NavHeader from 'components/funComp/NavHeader'
           console.error(lunboArr, status, err.toString());
         }.bind(this)
       });
-      // $.ajax({
-      //       url: global.domain+'/user/get_my_favorite',
-      //       type:'POST', 
-      //       dataType: 'json',
-      //       cache: true,
-      //       data:{
-      //         token:global.token,
-      //         type:3
-      //       },
-      //       success: data => {
-      //         this.article_info = data.data;
-      //         // 判断是否收藏
-      //         // 已收藏的ID数组
-      //         let arr=[];
-      //         for(let it of this.article_info){
-      //           arr.push(it.art_id)
-      //         }
-      //         console.log(arr)
-      //         let test=arr.indexOf(this.art_id_fav);
-      //         console.log(this.art_id_fav)
-      //         console.log(test)
-      //         if(test!=-1){
-      //           this.collected=true
-      //         }
-      //       },
-      //       error: err => err.toString(),
-      // });
+      $.ajax({
+            url: global.domain+'/user/get_my_favorite',
+            type:'POST', 
+            dataType: 'json',
+            cache: true,
+            data:{
+              token:global.token,
+              type:3
+            },
+            success: data => {
+              this.article_info = data.data;
+              // 判断是否收藏
+              // 已收藏的ID数组
+              let arr=[];
+              for(let it of this.article_info){
+                arr.push(it.art_id)
+              }
+              console.log(arr)
+              let test=arr.indexOf(this.art_id_fav);
+              console.log(this.art_id_fav)
+              console.log(test)
+              if(test!=-1){
+                this.collected=true
+              }
+            },
+            error: err => err.toString(),
+      });
       console.log(this.article_info);
             
      },

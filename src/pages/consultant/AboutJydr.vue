@@ -52,7 +52,7 @@
   	<div class="m-tips">
   			共回答了 <strong>{{ user.answers.length}}</strong> 个问题</div>
 		<div class="ans-list">
-			<question-list :data="user.answers"></question-list>	
+			<question-list :data="user.answers" :datap="datap"></question-list>	
 		</div>
 		<footer class="qd-footer fixed-bottom ztc"
   					@click="ask">
@@ -72,7 +72,9 @@ import NavHeader from 'components/funComp/NavHeader';
 	  		token: '',
 	  		user: {},
 	  		collected:false,
-	  		user_type:""
+	  		user_type:"",
+	  		datap:{},
+	  		
 	  	}
 	  },
 	  methods:{
@@ -94,11 +96,17 @@ import NavHeader from 'components/funComp/NavHeader';
           dataType: 'json',
           cache: true,
           data:{
-          	token: localStorage.token,
+          	token: global.token,
           	u_id: this.$route.params.id
           },
           success: function(data) {
           	this.user = data.data;
+          	this.datap = {
+			  			logo:  data.data.logo,
+			  			name:  data.data.user_name,
+			  			intro: data.data.intro,
+			  		}
+			  		console.log(this.datap)
           	if(this.user.is_fav==1){
 		        	this.collected=true
 		        }

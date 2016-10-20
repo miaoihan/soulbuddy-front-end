@@ -1,20 +1,6 @@
 <template>
   <div>
   	<nav-header title="放松" left='back'></nav-header>
-    <div class="label-box" style="margin-bottom: 10px">
-      <span class="label-big-border">
-        抑郁症
-      </span>
-      <span class="label-big-border">
-        焦虑症
-      </span>
-      <span class="label-big-border">
-        抑郁症
-      </span>
-      <span class="label-big-border">
-        焦虑
-      </span>
-    </div>
   	<div class="article-list">
   		<article-list :data="readList"></article-list>
   	</div> <!-- end article-list -->

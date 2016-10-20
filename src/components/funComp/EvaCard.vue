@@ -16,6 +16,7 @@
             <span class="eva-title">{{eva.title}}</span>
             <a v-link="{name:'eva', params:{id: eva.test_id} }" 
                class="start-btn" v-if="!eva.is_tested">开始</a>
+            <div class="finish-btn" v-if="eva.is_tested">您已经完成该测评</div>   
           </div>
 
       </div>
@@ -158,6 +159,19 @@ import QuestionList from 'components/areaComp/QuestionList.vue'
   line-height: 1.4rem;
   border: 1px solid #fff;
   border-radius: 25px;
+  margin:0 auto;
+  margin-top: 0.75rem;
+  font-size: 13px;
+  color: #ffffff;
+}
+.finish-btn{
+  position: relative;
+  z-index: 100;
+  /*width: 3.2rem;*/
+  height: 1.4rem;
+  line-height: 1.4rem;
+  /*border: 1px solid #fff;*/
+  /*border-radius: 25px;*/
   margin:0 auto;
   margin-top: 0.75rem;
   font-size: 13px;

@@ -18,7 +18,7 @@
 			  		￥{{ que.reward_money }} 解锁该问题的所有回答</span>
 			  	</div>
 				</div>
-					<answer-card :data="que" :index="$index" v-if="que.answer_url"></answer-card>
+					<answer-card :data="que" :index="$index" v-if="que.answer_url" :datap="datap"></answer-card>
 		</a>
 		<a v-link="'/me/question/' + que.q_id " v-if="type=='mine'">
 		  <div class="container-20">
@@ -74,6 +74,7 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
 	  				]
 	  		}
 	  	},
+	  	datap: {},
 	  	type:{
 	  		type:String,
 	  		default: 'other'
