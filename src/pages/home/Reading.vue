@@ -31,7 +31,7 @@
   					</a>
   				</div>
   				<div class="type-item">
-  					<a v-link="{path:'/relax'}">
+  					<a v-link="{path:'/case'}">
 	  					<div class="t-wrap">
 		  					<div class="item-bg">
 		  						<img src="../../../src/assets/imgs/case.png" alt="">

@@ -15,7 +15,7 @@
 	    		</a>
     		</div>
     		<div class="function-body font-center">
-	    		<a v-link="'/me/personedit/0'">
+	    		<a v-link="'/me/install'">
 	    			<i class="iconfont fun-img" style="font-weight:700">&#xe607;</i>
 	    			<span class="fun-text">设置</span>
 	    		</a>

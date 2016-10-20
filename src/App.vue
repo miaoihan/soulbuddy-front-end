@@ -29,9 +29,9 @@ export default {
       // host: 'http://han.s3.natapp.cc',
       host: 'http://m.soulbuddy.cn',
       // 测试开关
-      test:false,
+      test:true,
       // test:true,
-      uid: 38
+      uid: 48
 
     }
   },
@@ -325,7 +325,10 @@ export default {
   height 2.2rem
   line-height 2.2rem
   width 100%
-  margin-bottom 2.5rem
+  // margin-bottom 2.5rem
+  z-index 100
+  position fixed
+  bottom 0
   // background-color: $ztc
   text-align: center
 

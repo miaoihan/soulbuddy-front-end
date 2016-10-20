@@ -92,6 +92,9 @@ var routes = {
   '/me/eva': {
     component: require('pages/me/MyEva.vue')
   },
+  'me/install': {
+    component: require('pages/me/Install.vue')
+  },
   '/message': {
     component: require('pages/me/Message.vue')
   },

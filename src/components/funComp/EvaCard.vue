@@ -14,7 +14,9 @@
             
           </div>
             <span class="eva-title">{{eva.title}}</span>
-            <a v-link="{name:'eva', params:{id: eva.test_id} }" class="start-btn">开始</a>
+            <a v-link="{name:'eva', params:{id: eva.test_id} }" 
+            class="start-btn" v-if="is_test===false">开始</a>
+            <div class="finish-btn" v-if="is_test===true">您已完成测试</div>
           </div>
 
       </div>
@@ -33,6 +35,7 @@ import QuestionList from 'components/areaComp/QuestionList.vue'
     },
     data(){
       return {
+        is_test:false
       }
     },
     props:{
@@ -159,6 +162,20 @@ import QuestionList from 'components/areaComp/QuestionList.vue'
   line-height: 1.4rem;
   border: 1px solid #fff;
   border-radius: 25px;
+  margin:0 auto;
+  margin-top: 0.75rem;
+  font-family: .PingFang-SC-Medium;
+  font-size: 13px;
+  color: #ffffff;
+}
+.finish-btn{
+  position: relative;
+  z-index: 100;
+  /*width: 3.2rem;*/
+  height: 1.4rem;
+  line-height: 1.4rem;
+  /*border: 1px solid #fff;*/
+  /*border-radius: 25px;*/
   margin:0 auto;
   margin-top: 0.75rem;
   font-family: .PingFang-SC-Medium;
