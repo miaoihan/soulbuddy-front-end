@@ -1,6 +1,7 @@
 <template>
   <div class="wrapper">
   <!-- 问题列表 -->
+  <!-- 其他人问题 -->
   	<section class="question-item part" v-for="que in data">
 	  	<a v-link="'/question/' + que.q_id " v-if="type=='other'">
 			  <div class="container-20">
@@ -20,6 +21,7 @@
 				</div>
 					<answer-card :data="que" :index="$index" v-if="que.answer_url" :datap="datap"></answer-card>
 		</a>
+		<!-- 跳转到我的问题 -->
 		<a v-link="'/me/question/' + que.q_id " v-if="type=='mine'">
 		  <div class="container-20">
 		  	<title class="que-content over-2">

@@ -21,15 +21,15 @@
 						>咨询师</span>
 			<span class="btn-right" :class="{ active: identity === 2 }"
 						@click="click(2)"
-						>经验达人</span>
+						>经验答人</span>
 		</div>
 
 	  <!-- 导航右部分	 -->
 	  <span class="nav-right" v-if="right">
-	  	<span class="next-btn" v-if="title=='原手机号码'"
-	  			 @click="method">下一步</span>
-	  	<a class="next-btn" v-if="title=='我的评测'"
-	  			v-link="url">重新评测</a>
+	  	<a class="next-btn" v-if="title=='原手机号码'"
+	  			v-link="url">下一步</a>
+	  	<!-- <a class="next-btn" v-if="title=='我的评测'"
+	  			v-link="url">重新评测</a> -->
 	  	<div type="submit" class="next-btn" v-if="title=='编辑个人资料'"
 	  			 @click="method">保存</div>
 		  	<!-- 收藏 -->

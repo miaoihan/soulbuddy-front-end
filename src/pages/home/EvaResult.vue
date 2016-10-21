@@ -1,14 +1,19 @@
 <template>
 <!-- 测评结果 -->
-	<nav-header title="测评结果" left="back" right=''></nav-header>
-  <div class="part container-20">
-	  <div class="er-title">
-	  	<h1>{{result.title}}:</h1>
+	<div>
+		<nav-header title="测评结果" left="back" right=''></nav-header>
+	  <div class="part container-20">
+		  <div class="er-title">
+		  	<h1>{{result.title}}:</h1>
+		  </div>
+		  <div class="er-content">
+		  	<p>{{ result.result }}</p>
+		  </div>
 	  </div>
-	  <div class="er-content">
-	  	<p>{{ result.result }}</p>
-	  </div>
-  </div>
+	  <div class="retry">
+		  	<span class="btn-cicle-middle" @click="retry">重新测评</span>
+		 </div>
+	</div>
 </template>
 
 <script>
@@ -21,6 +26,12 @@
 	      resultList:[],
 	      result:{},
 	    };
+	  },
+	  methods:{
+	  	retry: function(){
+	  		// alert(this.$route.params.id)
+	  		this.$router.go('/evaluation/'+this.$route.params.id)
+	  	}
 	  },
 	  ready(){
 	  	let id = this.$route.params.id;
@@ -51,7 +62,7 @@
 </script>
 
 <style scoped lang="stylus">
-
+	@import '../../assets/stylus.styl'
 	.er-title
 		font-size: 15px;
 		color: #444;
@@ -59,6 +70,9 @@
 	p
 		font-size: 14px;
 		color: #999999;
-
+	.retry
+		text-align center	
+		margin-top: 1.5rem
+	
 
 </style>

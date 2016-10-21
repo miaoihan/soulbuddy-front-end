@@ -1,5 +1,5 @@
 <template>
-  <nav class="bar bar-tab fixed" v-if="showbom">
+  <nav class="bar bar-tab fixed" v-if="isshow">
     <a v-link="'/home'" class="tab-item external" :class="{ active: index === 0 }" @click="changClass(0)">
       <i class="iconfont icon-htmal5icon06"></i>
       <span class="tab-label">首页</span>
@@ -28,24 +28,35 @@ export default {
 
   data() {
       return {
-        index: 0
+        index: 0,
+        noshow_url:['/install'], //这里填不显bottom的url
+        isshow: true,
       }
     },
     props:{
       identityb:{type:Number,default:0}, 
-      showbom:{type:Boolean,default:true}, 
     },
     methods: {
       changClass(id) {
         this.index = id;
+      },                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+      check(url){
+        if(this.noshow_url.indexOf(url)==0) return true;
+        else return false;
       }
+
     },
-    ready() {
-      // console.log(this.identity);
+    ready() { 
+      var that = this
+      this.$router.beforeEach(function ({ to, next }) {
+          if (to.path === '/me/install') {
+            // 返回一个断定会 true 或者 false 的 Promise
+            that.isshow = false;next();
+          } else {
+            next()
+          }
+        })
     },
-    created() {
-      var index = 0;
-    }
 }
 </script>
 <style scoped>

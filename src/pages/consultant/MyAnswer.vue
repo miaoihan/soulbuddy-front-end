@@ -11,7 +11,7 @@
 		  		
 		  	</div>
 			</div>
-			<answer-cardp :data="que" :index="$index"></answer-cardp>
+			<answer-card :data="que" :index="$index" :datap="user"></answer-card>
 		</section>
   </div>
 </template>
@@ -21,15 +21,19 @@
   	components: {
 	   NavHeader: require('components/funComp/NavHeader'),
 	   AnswerCardp: require('components/areaComp/AnswerCardp'),
+	   AnswerCard: require('components/areaComp/AnswerCard'),
 	  },
   	data() {
   		return{
   			ztc: '#2b8ff7',
   			token:'',
 	  		questions:[],
+	  		user: {}
   		}
   	},
-  	
+  	created(){
+  		this.user = global.user;
+  	},
 	  ready(){
 	  	$.ajax({
           url: global.domain +'/user/get_my_answer',

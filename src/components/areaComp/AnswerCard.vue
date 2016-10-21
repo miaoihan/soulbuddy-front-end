@@ -11,9 +11,9 @@
 					<!-- 简介 -->
 					<div style="float: left;padding: 0.25rem 0.4rem">
 						<div style="font-size: 13px" v-if="!datap">{{data.user_name}}</div>
-						<div style="font-size: 13px" v-if="datap">{{datap.name}}</div>
-						<div style="font-size: 12px; color: #999" v-if="!datap">{{data.intro}}</div>
-						<div style="font-size: 12px; color: #999" v-if="datap">{{datap.intro}}</div>
+						<div style="font-size: 13px" v-if="datap">{{datap.user_name}}</div>
+						<div style="font-size: 12px; color: #999" v-if="!datap">{{data.identity==1?data.user_title:'经验达人'}}</div>
+						<div style="font-size: 12px; color: #999" v-if="datap">{{datap.identity==1?datap.user_title:'经验达人'}}</div>
 					</div>
 					<div v-if="data.is_best==1 || is_best && !setbest">
 						<span class="btn-border-blue a-r-sign">最佳答案</span>
@@ -51,7 +51,7 @@ import Voice from 'components/funComp/Voice.vue'
 	  	index:'',
 	  	qid:{type:Number},
 	  	logo: '',
-	  	datap: '',
+	  	datap: {},
 	  },
 
 	  data () {

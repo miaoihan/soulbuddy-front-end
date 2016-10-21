@@ -30,10 +30,9 @@ export default {
       // host: 'http://han.s3.natapp.cc',
       host: 'http://m.soulbuddy.cn',
       // 测试开关
-      test:true,
+      test:false,
       // test:true,
-      uid: 48
-
+      uid: 61
     }
   },
   watch:{
@@ -215,7 +214,16 @@ export default {
   border-radius 0.25rem
   padding 0 0.4rem
 }
-
+.btn-cicle-middle{
+  display inline-block
+  height 1.75rem
+  line-height: 1.75rem  
+  border-radius 20px
+  background-color $ztc
+  color #fff
+  // font-size: 14px
+  width 50%
+}
 .btn .btn-default{
   background-color: $ztc
   color: #fff
@@ -358,5 +366,8 @@ export default {
   margin-top 2.2rem
 }
 
+.toast-info{
+   
+ }
 
 </style>
