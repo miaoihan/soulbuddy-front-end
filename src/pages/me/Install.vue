@@ -1,7 +1,5 @@
 <template>
 	<nav-header title="设置" left="back" right=""></nav-header>
-	<change-btn class="button-top-15" btntext="帐号与安全"></change-btn>
-	<change-btn class="button-top-15" btntext="清除图片缓存" is-icon="false"></change-btn>
 	<change-btn class="button-top-15" btntext="意见反馈"></change-btn>
 	<change-btn class="button-top-1" btntext="联系我们"></change-btn>
 	<change-btn class="button-top-1" btntext="关于我们"></change-btn>

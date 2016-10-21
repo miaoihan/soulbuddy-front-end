@@ -5,7 +5,7 @@
 	    <span class="card-name">询问我的问题</span>
 	    <div class="swiper-container container-20-lr" id="swp5">
 			<div class="swiper-wrapper">
-			    <div class="swiper-slide" v-for="data in myQues">
+			    <div class="swiper-slide" v-for="data in myQues" v-if="data.answer_count==0">
 			    	<a v-link="{name:'answer', params:{qid:data.q_id} }">
 					    <div style="width:100%;">
 					    	<div class="person-img quer-top">
@@ -26,7 +26,7 @@
 			</div>
 	    </div>
 	  </div>
-	  <div class="que-item" v-for="listdata in otherQues">
+	  <div class="que-item" v-for="listdata in otherQues" v-if="listdata.answer_count<3">
 	  	<question-card type="public" :data="listdata"></question-card>
 	  </div> 
 	  <!-- <answer-card></answer-card> -->
