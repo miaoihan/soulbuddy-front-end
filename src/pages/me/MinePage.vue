@@ -33,7 +33,12 @@
 			    					style="margin-top:1rem;padding-left:1rem;padding-right:1rem;background:#2b8ff7"
 										text-color="#fff" icon-color="#fff"
 										@click="handleClick" 
-										v-if="isdaren">
+										v-if=""></change-btn>
+				<change-btn :btntext="identityb == 0 ? '切换到经验答人身份' : '切换到普通用户' "
+			    					style="margin-top:1rem;padding-left:1rem;padding-right:1rem;background:#2b8ff7"
+										text-color="#fff" icon-color="#fff"
+										@click="handleClick" 
+										v-if="true">
 			</change-btn>
 			<change-btn btntext="申请成为咨询师或经验答人"
 			    				style="margin-top:1rem;padding-left:1rem;padding-right:1rem;background:#fff"

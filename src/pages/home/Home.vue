@@ -79,7 +79,7 @@ import Evaluation from 'pages/home/Evaluation.vue'
 
       // 阅读列表
       $.post(global.domain +'/article/get_article_list',
-        { page: 1 },
+        { page: 1, },
         v => this.readList = v.data ,'json');
       
       // 测评列表
@@ -102,7 +102,7 @@ import Evaluation from 'pages/home/Evaluation.vue'
 // 主页公共样式
 .pangbai{
   text-align:center;
-  margin: 30px 0 15px 0
+  margin: 18px 0 15px 0
   color #999
   font-size: 14px
 }

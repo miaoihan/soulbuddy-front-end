@@ -45,7 +45,7 @@
 	  			</p>
 	  			<div class="t-location" style="margin-top: 0.5rem;">
 	  				<i class="iconfont">&#58903;</i>
-	  				{{user.location}}
+	  				{{user.area}}
 	  			</div>
 	  		</div>
   	</div> <!-- end top -->
@@ -103,7 +103,7 @@ import NavHeader from 'components/funComp/NavHeader';
           	this.user = data.data;
           	this.datap = {
 			  			logo:  data.data.logo,
-			  			name:  data.data.user_name,
+			  			user_name:  data.data.user_name,
 			  			intro: data.data.intro,
 			  		}
 			  		console.log(this.datap)
@@ -163,7 +163,7 @@ import NavHeader from 'components/funComp/NavHeader';
 
 	.m-tips
 		text-align: center
-		margin 1.65rem 0 0.6rem
+		margin 0.8rem 0 0.6rem
 		font-size: 0.6rem
 		color #999
 		

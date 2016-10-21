@@ -1,18 +1,20 @@
 <template>
   <div>
   	<nav-header title="我的评测" left="back"></nav-header>
-  	<div class="yyzp body-eva wrapper" v-for="eva of evaList">
-  		<img class="img-eva" :src="eva.img_file" alt="" @click="go(eva.is_tested,eva.test_id)">
-  		<i class="iconfont people">&#xe62b;</i>
-  		<span class="num-peo">{{eva.test_count}}</span>
-			<span class="function">{{eva.title}}</span>
-			<div class="startBtn" v-if="!eva.is_tested">
-				<a v-link="{name:'eva', params:{id: eva.test_id} }" style="color:#fff">开始</a>	
-			</div>
-			<span class="status" v-if="eva.is_tested">
-				您已完成测评
-			</span>
-  	</div>
+    <div class="m-evalist">
+    	<div class="yyzp body-eva wrapper" v-for="eva of evaList" @click="go(eva.is_tested,eva.test_id)">
+    		<img class="img-eva" :src="eva.img_file" alt="" >
+    		<i class="iconfont people">&#xe62b;</i>
+    		<span class="num-peo">{{eva.test_count}}</span>
+  			<span class="function">{{eva.title}}</span>
+  			<div class="startBtn" v-if="!eva.is_tested">
+  				<a v-link="{name:'eva', params:{id: eva.test_id} }" style="color:#fff">开始</a>	
+  			</div>
+  			<span class="status" v-if="eva.is_tested">
+  				您已完成测评
+  			</span>
+    	</div>
+    </div>
   </div>
 </template>
 
@@ -38,13 +40,21 @@
           success: data => this.evaList = data.data,
           error: err => console.error(err.toString())
         });
-	  }
+	  },
+    methods:{
+      go(flag,id){
+        if (flag) {
+          this.$router.go({name:'evaResult',params:{id: id}})
+        }
+      }
+    }
 	  
   }
 </script>
 
 <style scoped lang="stylus">
-
+ .m-evalist
+   margin-top 10px
 
 </style>
 

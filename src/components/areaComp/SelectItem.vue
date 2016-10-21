@@ -5,7 +5,7 @@
 	  		{{ index+1 }}.{{data.question}}
 	  	</div>
 			<ul>
-				<li @click="select($index+1)" v-for="answer of data.answers">
+				<li @click="select($index+1)" v-for="answer of data.answers" v-if="answer ">
 					{{answer}}
 					<span class="iconfont pull-right"
 								v-if="sel_index ==  $index+1" 

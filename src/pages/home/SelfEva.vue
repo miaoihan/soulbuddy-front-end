@@ -1,7 +1,7 @@
 <template>
 	<nav-header :title="item.title" left="back" right=''></nav-header>
 		<div class="sel-dec">
-			请根据过去的<strong>一周</strong>的情况选择。答案没有对错，<strong>真实</strong>反映自己的感受就好。 （共{{ item.questions.length }}题）
+			{{item.intro}}
 		</div>
   <div>
   	<select-list :data="item.questions" :selarr.sync="selarr"></select-list>
@@ -26,7 +26,7 @@ import SelectList from 'components/areaComp/SelectList.vue'
         selarr: [],
   		}
   	},
-	  ready(){
+	  created(){
       // 评测
       $.ajax({
           url: global.domain +'/access/get_access_info',

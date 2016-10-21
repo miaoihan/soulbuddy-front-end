@@ -3,11 +3,14 @@
   <div>
   	<ul class="serch-list">
   		<li v-for="obj in data" class="ser-item">
-	  		<a v-link="{name:'question', params:{ id: obj.id } }" style="display: block; color: #262626">
+	  		<a v-link="{name:'question', params:{ id: obj.id } }" style="display: block; color: #262626" 			 v-if="obj.type==1">
 	  			<h1>{{obj.title}}</h1>
 	  			<span class="item-meta">
 	  				{{ obj.answer_num }} 个回答
 	  			</span>
+	  		</a>
+	  		<a v-link="{name:'article', params:{ art_id: obj.id } }" style="display: block; color: #262626" 			 v-if="obj.type==0">
+	  			<h1>{{obj.title}}</h1>
 	  		</a>
   		</li>
   	</ul>

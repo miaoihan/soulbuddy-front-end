@@ -72,8 +72,7 @@ import NavHeader from 'components/funComp/NavHeader'
 	  	// 问答详情
       $.post(global.domain +'/question/get_question_info',
         { token: global.token,
-        	 q_id: this.$route.params.id },
-        v => {
+        	q_id: this.$route.params.id }, v => {
         	this.question = v.data; 
         	let q = v.data.answers
         	// console.log(q)

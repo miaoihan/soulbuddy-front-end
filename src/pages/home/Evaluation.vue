@@ -1,9 +1,8 @@
 <template>
   <div class="wrapper">
   	<!-- eva-card -->
-  	<div class="yyzp body-eva wrapper" v-for="eva of data">
-  		<img class="img-eva" :src="eva.img_file" alt="" 
-  				 @click="go(eva.is_tested,eva.test_id)">
+  	<div class="yyzp body-eva wrapper" v-for="eva of data" @click="go(eva.is_tested,eva.test_id)">
+  		<img class="img-eva" :src="eva.img_file" alt="" >
   		<i class="iconfont people">&#xe62b;</i>
   		<span class="num-peo">{{eva.test_count}}</span>
 			<span class="function">{{eva.title}}</span>
@@ -34,7 +33,7 @@
     			this.$router.go({name:'evaResult',params:{id: id}})
     		}
     	}
-    }
+    },
 
   }
 </script>
@@ -107,7 +106,7 @@
 	height: 100%;
 	width: 100%;
 	left: 0;
-	opacity:0.5;
+	/*opacity:0.5;*/
 	filter:alpha(opacity=40); /* 针对 IE8 以及更早的版本 */
 }	
 

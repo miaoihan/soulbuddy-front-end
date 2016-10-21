@@ -9,7 +9,9 @@
     </div>
     <div class="swiper-container" style="margin-top:0.8rem" id="swp2">
       <div class="swiper-wrapper">
-          <div class="swiper-slide card-rall" style="height:5rem;text-align:center;" v-for="eva in data">
+          <!-- 已经评测了就跳转 -->
+          <div class="swiper-slide card-rall" style="height:5rem;text-align:center;" 
+               v-for="eva in data" @click="go(eva.is_tested,eva.test_id)">
           <div class="opacityback">
             
           </div>
@@ -52,6 +54,11 @@ import QuestionList from 'components/areaComp/QuestionList.vue'
       changeIndex(){
         this.index=4
         console.log("index"+this.index)
+      },
+      go(flag,id){
+        if (flag) {
+          this.$router.go({name:'evaResult',params:{id: id}})
+        }
       }
     },
     ready(){

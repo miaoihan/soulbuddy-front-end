@@ -10,8 +10,8 @@
   	</aside>
   	<div class="article-list">
   		<article-list :data="readList"></article-list>
-  		<div class="seemore" @click="addRead">
-  			查看更多精选阅读
+  		<div class="seemore" @click="seeMore('art')" id="seemore">
+  			查看更多精选阅读 
   		</div>
   	</div> <!-- end article-list -->
     <!-- 测评精选 -->
@@ -25,8 +25,9 @@
   	</aside>
   	<div class="que-list">
   		<question-list :data="queList"></question-list>	
-  		<div class="seemore" @click="addQue">
+  		<div class="seemore" @click="seeMore('que')">
   			查看更多精选问答
+
   		</div>
   	</div>
   </div>
@@ -42,17 +43,11 @@
 	  },
     data(){
       return {
-        
-        // token: '',
-        domain: 'http://xinling.songtaxihuan.com',
-        lunboURL:'http://xinling.songtaxihuan.com/article/get_top_article',
-        readURL:'http://xinling.songtaxihuan.com/article/get_choice_article',
-        queURL:'http://xinling.songtaxihuan.com/question/get_choice_question',
-
   			queList:[],  			
   			readList:[],
-        evaList: []
-
+        evaList: [],
+        art_page: 1,
+        que_page: 1,
       }
     },
     created(){
@@ -71,32 +66,31 @@
         });
     },
     methods:{
-      addRead(){
-        console.log('click the addread')
-        $.ajax({
-          url: global.domain +'/access/get_choice_access',
-          type:'POST', 
-          dataType: 'json',
-          data:{
-            count: 3,
-          },
-          success: data => this.evaList = data.data,
-          error: err => console.log(err)
-        });
+      // 加载更多
+      seeMore(type){
+        console.log(type)
+        // Zepto.toast("没有更多了",120000,'toast-info');
+        if (type=='art') {
+          $.post(global.domain +'/article/get_choice_article',
+            {count: 3, page: ++this.art_page}, v => 
+            this.evaList = this.evaList.concat(data.data), 'json');
+        }else if(type=='que'){
+          $.post(global.domain +'/question/get_choice_question',
+            { token: global.token, page: ++this.que_page, }, v => 
+            this.queList = this.queList.concat(v.data), 'json');
+        }
       },
       addQue(){
         console.log('click the addque')
       }
     },
 	  ready(){
-    
-	  	// 阅读精选
 	  	$.ajax({
           url: global.domain +'/article/get_choice_article',
           type:'POST', 
           dataType: 'json',
-          cache: true,
           data:{
+            count: 4
           },
           success: function(data) {
           	this.readList = data.data;
@@ -151,6 +145,8 @@
  .eva{
    margin-top 30px
  }
+ 
+ 
   
 
 

@@ -25,7 +25,7 @@
 		  						<img src="../../../src/assets/imgs/fangsong.png" alt="">
 		  					</div>
 		  					<div class="item-txt">
-		  						放松
+		  						解忧
 		  					</div>
 	  					</div>
   					</a>
@@ -37,7 +37,7 @@
 		  						<img src="../../../src/assets/imgs/case.png" alt="">
 		  					</div>
 		  					<div class="item-txt">
-		  						案例
+		  						故事
 		  					</div>
 	  					</div></a>
   					</div>
@@ -56,7 +56,7 @@
 	  		</div>
 	  	</div>
   	</div><!-- end tag -->
-  	<aside style="text-align:center;margin: 30px 0 15px 0">
+  	<aside style="text-align:center;margin: 18px 0 15px 0">
   		  所有文章 
   	</aside>
   	<article-list :data="data"></article-list>
