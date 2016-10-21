@@ -23,19 +23,19 @@
   </div>
   <div class="profile-list wrapper">
     <change-btn btntext="绑定手机" url="/me/profilephone" title-color="black" :placeholder="mobile" class="change-btn-pro"></change-btn>
-    <select-btn class="change-btn-pro" name="borth_date" :values="age" title="年龄" ></select-btn>
-    <select-btn class="change-btn-pro" name="sex" :values="sex" title="性别" ></select-btn>
-    <select-btn class="change-btn-pro" name="education" :values="qualifications" title="学历" ></select-btn>
-    <select-btn class="change-btn-pro" name="marital_status" :values="marriage" title="婚姻状况" ></select-btn>
+    <select-btn class="change-btn-pro" name="borth_date" :values="age" title="年龄" :placehorder="user_age"></select-btn>
+    <select-btn class="change-btn-pro" name="sex" :values="sex" title="性别"       :placehorder="user_sex"></select-btn>
+    <select-btn class="change-btn-pro" name="education" :values="qualifications" title="学历" :placehorder="user_education"></select-btn>
+    <select-btn class="change-btn-pro" name="marital_status" :values="marriage" title="婚姻状况" :placehorder="marital_status"></select-btn>
     <!-- <change-btn btntext="年龄" title-color="black" placeholder="请选择" class="change-btn-pro"></change-btn>
     <change-btn btntext="性别" title-color="black" placeholder="请选择" class="change-btn-pro"></change-btn>
     <change-btn btntext="学历" title-color="black" placeholder="请选择" class="change-btn-pro"></change-btn>
     <change-btn btntext="婚姻状况" title-color="black" placeholder="请选择" class="change-btn-pro"></change-btn> -->
-    <input-box title="工作" name="work" title-color="black" text-color="black" placeholder="请填写" class="input-box"></input-box>
+    <input-box title="工作" name="work" title-color="black" text-color="black" placeholder="请填写" class="input-box" :value="user.work"></input-box>
     
   </div>
   <div class="textarea-pro">
-      <textarea class="inputarea-pro" maxlength="150" name="intro" placeholder="请填写自我评价（最多150个字）"></textarea>
+      <textarea class="inputarea-pro" maxlength="150" name="intro" placeholder="请填写自我评价（最多150个字）">{{user_intro}}</textarea>
   </div>
   <!-- <div style="height:5.0rem;margin-top:1.0rem"> -->
     
@@ -64,15 +64,47 @@ import NavHeader from 'components/funComp/NavHeader';
         mobile:"",
         logo: '',
         token: '', 
-        index: 2
+        index: 2,
+        user_age:'',
+        user_sex:'',
+        user_education:'',
+        marital_status:'',
+        user_intro:''
+
       }
     },
+    created(){
+      $.ajax({
+         url: global.domain +"/user/get_user_info",
+         type:'post', 
+         dataType: 'json',
+         async:false,
+         data:{
+          token:global.token,
+          u_id:global.u_id
+         },
+         success: function(data) {
+           this.user=data.data
+           this.user_age = user.borth_date
+           this.user_sex = user.sex
+           this.user_education = user.education
+           this.marital_status = user.marital_status
+         }.bind(this),
+         error: function(xhr, status, err) {
+           console.err(err.toString())
+         }.bind(this)
+      });
+
+    },
     ready(){
-      // console.log(global.user.mobile)
+      // console.log(global.user.marital_status)
       this.user = global.user
-      this.mobile = global.user.mobile
-      this.logo = global.user.logo
+      this.mobile = user.mobile
+      this.logo = user.logo
       this.token = localStorage.token
+      
+      this.user_intro=user.intro
+      console.log(this.user_intro)
       var that = this
       document.querySelector('#avator').onclick = function () {
         wx.chooseImage({

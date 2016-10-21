@@ -3,7 +3,8 @@
 	<div class="sel-title float-left">{{title}}</div>
 	<i class="sel-img iconfont" :style="{color:IconColor}">&#xe60d;</i>
   	<select class="select-text" :name="name" :id="id" style="width:4.1rem;">
-  	  <option value ="" selected="selected" style="color:#bbb">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;请选择</option>
+  	  <option value ="" selected="selected" style="color:#bbb" v-if="placehorder==''">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;请选择</option>
+      <option :value ="placehorder" selected="selected" style="color:#bbb"v-if="placehorder!=''">{{data}}</option>
       <option :value ="$index+1" v-for="value in values">{{value}}</option>
     </select>
   </div>
@@ -24,7 +25,8 @@ import Evaluation from 'pages/home/Evaluation.vue'
     	values:{type:Array,default:[]},
     	title:{type:String,default:"姓名"},
       name:{type:String},
-      id:{type:String}
+      id:{type:String},
+      placehorder:{type:String,default:''}
     },
     data(){
       return{
@@ -33,6 +35,7 @@ import Evaluation from 'pages/home/Evaluation.vue'
         queList: [],
         readList: [],
         evaList: [],
+        data:''
         // select_width:'2.25rem'
         // datas:[12,13,14,15] 
       }
@@ -43,11 +46,15 @@ import Evaluation from 'pages/home/Evaluation.vue'
     },
     compiled(){
       
-    },
-    attached(){
 
     },
+    attached(){
+      
+    },
     ready(){
+      this.data=this.values[this.placehorder-1]
+      // alert("data is ++++++++++"+this.data)
+      // if(this.placehorder=='')
       // var currSelectValue = document.all.objSelect.value; 
 
       // if(currSelectText!="请选择"){

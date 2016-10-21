@@ -5,12 +5,15 @@
 				<div class="answer-inf wrapper">
 				<!-- 头像 -->
 					<div class="avator pull-left">
-							<img :src="datap.logo ? datap.logo : data.logo" alt="头像" class="avator">		
+							<img :src="data.logo" alt="头像" class="avator" v-if="!datap">		
+							<img :src="datap.logo" alt="头像" class="avator" v-if="datap">		
 					</div>
 					<!-- 简介 -->
 					<div style="float: left;padding: 0.25rem 0.4rem">
-						<div style="font-size: 13px">{{datap? datap.name : data.user_name}}</div>
-						<div style="font-size: 12px; color: #999">{{datap? datap.intro :data.intro}}</div>
+						<div style="font-size: 13px" v-if="!datap">{{data.user_name}}</div>
+						<div style="font-size: 13px" v-if="datap">{{datap.name}}</div>
+						<div style="font-size: 12px; color: #999" v-if="!datap">{{data.intro}}</div>
+						<div style="font-size: 12px; color: #999" v-if="datap">{{datap.intro}}</div>
 					</div>
 					<div v-if="data.is_best==1 || is_best && !setbest">
 						<span class="btn-border-blue a-r-sign">最佳答案</span>

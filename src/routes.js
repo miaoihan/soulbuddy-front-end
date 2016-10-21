@@ -5,6 +5,9 @@ var routes = {
   '/bind': {
     component: require('pages/BindPhone.vue')
   },
+  '/abuotus': {
+    component: require('pages/AboutUs.vue')
+  },
   // '/': {
   //   component: require('pages/home/Home.vue')
   // },
@@ -97,6 +100,9 @@ var routes = {
   },
   'me/install': {
     component: require('pages/me/Install.vue')
+  },
+  'me/feedback': {
+    component: require('pages/me/FeedBack.vue')
   },
   '/message': {
     component: require('pages/me/Message.vue')

@@ -25,7 +25,7 @@
       </section>
       <footer class="art-footer">
 	      <aside class="tips">
-	      	{{tips}}
+	      	本网站所有注明“来源：{{data.from}}”的文字、图片和音视频资料，版权均属于丁香园所有，非经授权，任何媒体、网站或个人不得转载
 	      </aside>
       </footer>
    </div>
@@ -39,7 +39,6 @@ import NavHeader from 'components/funComp/NavHeader'
      },
      data(){
      	return{
-     		tips:'本网站所有注明“来源：丁香园”的文字、图片和音视频资料，版权均属于丁香园所有，非经授权，任何媒体、网站或个人不得转载',
         tags:[],
         art_id_fav:"",
         collected:false,
