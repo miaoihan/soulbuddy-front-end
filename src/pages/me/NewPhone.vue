@@ -1,5 +1,5 @@
 <template>
-<nav-header title="绑定新手机"></nav-header>
+<nav-header title="绑定新手机" left="back"></nav-header>
 	<div class="wrapper" style="margin-top: 1.0rem">
 		<div class="inputbox-body">
       <!-- <span class="inputbox-title" :style="{color:TitleColor}">{{title}}</span> -->
@@ -64,7 +64,7 @@ export default {
 	    },
 	    bindAndLogin(){
 	      if (this.checkPhone()) {
-	        $.post(global.domain +"/user/bindmobile", 
+	        $.post(global.domain +"/user/update_mobile", 
 	            { token : localStorage.token,
 	              mobile: this.mobile,
 	              code  : this.code
@@ -110,7 +110,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="stylus">
-@import '../assets/stylus.styl'
+@import '../../assets/stylus.styl'
 
 .inputbox-body{
   overflow: hidden;

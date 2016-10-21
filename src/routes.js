@@ -5,6 +5,9 @@ var routes = {
   '/bind': {
     component: require('pages/BindPhone.vue')
   },
+  '/newbind': {
+    component: require('pages/me/NewPhone.vue')
+  },
   '/abuotus': {
     component: require('pages/AboutUs.vue')
   },
