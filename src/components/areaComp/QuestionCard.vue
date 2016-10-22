@@ -14,7 +14,7 @@
 				已支付￥{{data.pay}}
 			</div>
 			<div class="paymoney" v-if="type=='public'">
-				悬赏￥{{data.reward_money}}，3人抢答
+				悬赏￥{{data.reward_money}}，{{count? count :data.answer_count}}人抢答
 			</div>
 		</div>
 		<div class="que-title">
@@ -24,8 +24,8 @@
 			<p>{{data.content}}</p>
 		</div>
 		<div class="card-bottom">
-			<span class="answer-num" v-if="type=='public'">					
-				已有 {{data.answer_count}} 个回答
+			<span class="answer-num" v-if="type=='public'">
+				已有 {{count? count :data.answer_count}} 个回答
 			</span>
 			<span class="answer-num" v-if="type=='private'">
 				{{data.qname}} 直接咨询你
@@ -56,7 +56,8 @@ export default {
   		}
   	},
   	type:{type:String},
-  	isContent:{type:Boolean,default:false}
+  	isContent:{type:Boolean,default:false},
+  	count:{type:Number,default:null},
   }
 }
 </script>

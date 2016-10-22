@@ -12,35 +12,34 @@ import NavHeader from 'components/funComp/NavHeader';
     components: {
     	InputBox,NavHeader
     },
-    data(){
-      return{
-       user:{},
-       mobile:''
-      }
-    },
-    created(){
-
-    },
-    ready(){
-      this.user=global.user
-      this.mobile = user.mobile
-    },
     methods:{
       next(){
         // alert(123)
         // this.$router.go('/bind')
-        if($('[name="mobile"]').val()===''){
-          alert('请先填写原手机号码')
+        let phone = $('[name="mobile"]').val()
+        if(phone ===''){
+          alert('手机号码不能为空！')
           return false
         }
-        if($('[name="mobile"]').val()!=this.mobile){
-          alert('原手机号码错误')
+        if(phone != global.user.mobile){
+          alert('原手机号码错误！')
           return false
         }
+        // 多此一举
+        // if(!this.isMobile(phone)){
+        //   alert('请输入正确的手机号！');
+        //   return false
+        // }
         else{
-          this.$router.go('/newbind/'+this.mobile)
+          this.$router.go('/newbind')
         }
-      }
+      },
+      // isMobile( s ){   
+      //   let regu =/^[1][345678][0-9]{9}$/; 
+      //   let re = new RegExp(regu); 
+      //   if (re.test(s)) return true; 
+      //   else return false; 
+      // } 
     }
   }
 </script>

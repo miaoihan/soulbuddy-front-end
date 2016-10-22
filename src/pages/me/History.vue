@@ -32,13 +32,13 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
   	},
 	  ready(){
 	  	$.ajax({
-          url: global.domain +'/user/get_my_answer',
+          url: global.domain +'/user/get_my_listen_question',
           type:'POST', 
           dataType: 'json',
           data: {
-          page:1,
-					token:global.token,
-		  },
+		          page:1,
+							token:global.token,
+				  },
           cache: false,
           success: function(data) {
           	// console.log("aa"+data)

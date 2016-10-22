@@ -27,7 +27,7 @@
 	  <!-- 导航右部分	 -->
 	  <span class="nav-right" v-if="right">
 	  	<a class="next-btn" v-if="title=='原手机号码'"
-	  			v-link="url">下一步</a>
+	  			v-link="url" @click="method">下一步</a>
 	  	<!-- <a class="next-btn" v-if="title=='我的评测'"
 	  			v-link="url">重新评测</a> -->
 	  	<div type="submit" class="next-btn" v-if="title=='编辑个人资料'"

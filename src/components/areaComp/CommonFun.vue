@@ -47,14 +47,14 @@ export default {
 		showbom: true,
 	},
 	created(){
-		this.$router.beforeEach(function ({ to, next }) {
-		  if (to.path === 'me/install') {
-		    // 返回一个断定会 true 或者 false 的 Promise
-		    return AuthService.isLoggedIn()
-		  } else {
-		    next()
-		  }
-		})
+		// this.$router.beforeEach(function ({ to, next }) {
+		//   if (to.path === 'me/install') {
+		//     // 返回一个断定会 true 或者 false 的 Promise
+		//     return AuthService.isLoggedIn()
+		//   } else {
+		//     next()
+		//   }
+		// })
 	},
   data () {
     return {

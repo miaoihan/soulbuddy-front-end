@@ -65,22 +65,17 @@ export default {
 	    bindAndLogin(){
 	      if (this.checkPhone()) {
 	        $.post(global.domain +"/user/update_mobile", 
-	            { token : localStorage.token,
+	            { token : global.token,
 	              mobile: this.mobile,
-	              old_mobile:this.$route.params.mobile,
+	              old_mobile: global.user.mobile,
 	              code  : this.code
 	               },
 	            v =>{
 	              if (v.code==1) {
-	                // 将手机号码添加到user,后面主动获取了
-	                // global.user['mobile'] = this.mobile
-	                this.bind = true
-	                // this.$router.go({ path:'/home' })
-	                console.log('chenggong')
+	                console.log('success')
 	                alert('验证成功！')
 	                // location.href = 'http://han.s3.natapp.cc/#!/home'
-	                this.$router.go('/home')
-
+	                this.$router.go('/me')
 	             }
 	             else{
 	              alert('验证失败，请重新输入')
@@ -91,7 +86,7 @@ export default {
 	    checkPhone(){
 	      if(''== this.mobile) { alert('手机号码不能为空！'); return false}
 	      if(!this.isMobile(this.mobile)){
-	        alert('请填写正确的手机号！');
+	        alert('请输入正确的手机号！');
 	        return false
 	      }else{
 	        return true;
