@@ -12,7 +12,7 @@
 		  	</div>
 			</div>
 			<answer-card :data="que.answer"></answer-card>
-		</section>
+	</section>
   </div>
 </template>
 

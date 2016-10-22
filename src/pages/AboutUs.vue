@@ -1,7 +1,10 @@
 <template>
 	<nav-header title="关于我们" left="back" right=""></nav-header>
-	<div class="container-6">
-		<p>{{content}}</p>
+	<div class="body-us">
+		<h1 class="container-6">关于我们</h1>
+		<div class="container-6">
+			<p>{{content}}</p>
+		</div>
 	</div>
 </template>
 
@@ -40,7 +43,13 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="stylus">
+.body-us{
+	overflow: hidden;
+	background: #fff;
+	width: 100%;
+	height: 100rem
+}
 .about-box{
 	width: 100%;
 	padding:0.75rem 1.0rem;

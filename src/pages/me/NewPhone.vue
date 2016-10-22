@@ -38,18 +38,23 @@ export default {
   },
   data () {
     return {
+    	code: null,
+      mobile: '',
+      is_send: false,
     }
   },
   props: {
+  	bind: { type: Boolean, default: false },
   },
   created(){
+  	this.bind = false
   },
   methods:{
 	 	sendCode(){
 	      if (this.checkPhone()) {
 	      $.post(global.domain +"/register/mobile_verify_randnum", 
 	        { mobile:  this.mobile,
-	          type  : 'reg'},
+	          type  : 'modify'},
 	        v =>{
 	          if (v.code==1) {
 	            console.log('ok')
@@ -58,8 +63,10 @@ export default {
 	         }
 	         else if(v.code==0){
 	          alert('发送过于频繁，请稍后重试')
+	          this.is_send = false;
 	         }else if(v.msg=='您的手机号已经被注册'){
 	            alert('您的手机号已经被注册')}
+	            this.is_send = false;
 	        },'json');}
 	    },
 	    bindAndLogin(){
@@ -69,7 +76,7 @@ export default {
 	              mobile: this.mobile,
 	              old_mobile:this.$route.params.mobile,
 	              code  : this.code
-	               },
+	            },
 	            v =>{
 	              if (v.code==1) {
 	                // 将手机号码添加到user,后面主动获取了
@@ -83,8 +90,9 @@ export default {
 
 	             }
 	             else{
-	              alert('验证失败，请重新输入')
+	              alert(v.msg)
 	              this.code = ''
+	              this.is_send = false;
 	             }
 	            },'json');}
 	    },
@@ -95,6 +103,7 @@ export default {
 	        return false
 	      }else{
 	        return true;
+	        this.is_send = false;
 	      }
 	    },
 	    isMobile( s ){   
