@@ -5,6 +5,7 @@
 				<div class="answer-inf wrapper">
 				<!-- 头像 -->
 					<div class="avator pull-left">
+					<!-- 写两个反而更快，强迫症的自行改之 -->
 							<img :src="data.logo" alt="头像" class="avator" v-if="!datap">		
 							<img :src="datap.logo" alt="头像" class="avator" v-if="datap">		
 					</div>
@@ -12,13 +13,13 @@
 					<div style="float: left;padding: 0.25rem 0.4rem">
 						<div style="font-size: 13px" v-if="!datap">{{data.user_name}}</div>
 						<div style="font-size: 13px" v-if="datap">{{datap.user_name}}</div>
-						<div style="font-size: 12px; color: #999" v-if="!datap">{{data.identity==1?data.user_title:'经验达人'}}</div>
-						<div style="font-size: 12px; color: #999" v-if="datap">{{datap.identity==1?datap.user_title:'经验达人'}}</div>
+						<div style="font-size: 12px; color: #999" v-if="!datap">{{data.identity==1?data.user_title:'经验答人'}}</div>
+						<div style="font-size: 12px; color: #999" v-if="datap">{{datap.identity==1?datap.user_title:'经验答人'}}</div>
 					</div>
-					<div v-if="data.is_best==1 || is_best && !setbest">
+					<div v-if="data.is_best==1 || isBest && !setbest">
 						<span class="btn-border-blue a-r-sign">最佳答案</span>
 					</div>
-					<div v-if="(data.is_best==0 || !is_best) && setbest" @click="addBest">
+					<div v-if="(data.is_best==0 || !isBest) && setbest" @click="addBest">
 						<span class="btn-border-blue a-r-sign">设为最佳答案</span>
 					</div>
 					<!-- <div class="pull-right" v-if="data.is_best==0&&best=='false'" @click="addBest">
@@ -52,6 +53,7 @@ import Voice from 'components/funComp/Voice.vue'
 	  	qid:{type:Number},
 	  	logo: '',
 	  	datap: {},
+	  	isBest:{ type: Boolean },
 	  },
 
 	  data () {
@@ -59,7 +61,6 @@ import Voice from 'components/funComp/Voice.vue'
 	      user:{},
 	      answer_id:'',
 	      current_user: false,
-	      is_best: false,
 	    }
 	  },
 	  methods:{
@@ -75,7 +76,7 @@ import Voice from 'components/funComp/Voice.vue'
 						  answer_id:this.data.a_id,
 					  },
 	          success: function(data) {
-	          	this.is_best = true;
+	          	this.isBest = true;
 	  					this.data.is_best = 1;
 	          }.bind(this),
 	          error: function(xhr, status, err) {

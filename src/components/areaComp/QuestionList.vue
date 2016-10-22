@@ -19,7 +19,7 @@
 			  		￥{{ que.reward_money }} 解锁该问题的所有回答</span>
 			  	</div>
 				</div>
-					<answer-card :data="que" :index="$index" v-if="que.answer_url" :datap="datap"></answer-card>
+					<answer-card :data="que" :index="$index" v-if="que.answer_url" :datap="datap" :is-best="isBest"></answer-card>
 		</a>
 		<!-- 跳转到我的问题 -->
 		<a v-link="'/me/question/' + que.q_id " v-if="type=='mine'">
@@ -38,7 +38,7 @@
 		  		￥{{ que.reward_money }} 解锁该问题的所有回答</span>
 		  	</div>
 			</div>
-				<answer-card :data="que" :index="$index" v-if="que.answer_url"></answer-card>
+				<answer-card :data="que" :index="$index" v-if="que.answer_url"  ></answer-card>
 			</a>
 
 	</section>
@@ -58,6 +58,7 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
   			question: {},
 
   			best_answer: {},
+  			a:'adasda'
   		}
   	},
   	// ready() {
@@ -76,6 +77,7 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
 	  				]
 	  		}
 	  	},
+	  	isBest:{ type: Boolean },
 	  	datap: {},
 	  	type:{
 	  		type:String,

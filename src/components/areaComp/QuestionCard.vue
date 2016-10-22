@@ -57,7 +57,7 @@ export default {
   	},
   	type:{type:String},
   	isContent:{type:Boolean,default:false},
-  	count:{type:Number,default:null},
+  	count:{type:String,default:null},
   }
 }
 </script>

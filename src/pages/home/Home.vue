@@ -4,7 +4,7 @@
   	<func-nav :index.sync="index"></func-nav>
     <div style="margin-top: 0.5rem">
       <choice v-if="index==1" :swiper-list="swiperList" :index.sync="index"></choice>
-      <question-list v-if="index==2" :data="queList" class="far-bom"></question-list>
+      <question-list v-if="index==2" :data="queList" class="far-bom" :is-best="true"></question-list>
       <reading v-if="index==3" :data="readList"></reading>
       <evaluation v-if="index==4" :data="evaList" style="margin-bottom: 80px"></evaluation>
     </div>

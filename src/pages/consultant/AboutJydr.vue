@@ -24,7 +24,7 @@
 		  		</div>
 		  		<div class="desc-l2">
 		  			<span style="font-size:0.6rem;">
-		  				{{user.user_title}}
+		  				经验答人
 		  			</span>
 		  		</div>
 		  		<!-- 标签 -->

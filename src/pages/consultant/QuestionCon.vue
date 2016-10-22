@@ -69,7 +69,7 @@ export default {
       //时间计数
       t: 0,
       flag: '',
-      count: 0,
+      count: "0",
     }
   },
   components:{
@@ -88,7 +88,7 @@ export default {
           success: function(data) {
             // console.log("aa"+data)
             this.datas = data.data
-            this.count = data.data.answers.length;
+            this.count = data.data.answers.length.toString();
             console.log(this.datas);
           }.bind(this),
           error: function(xhr, status, err) {
