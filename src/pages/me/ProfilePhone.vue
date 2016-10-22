@@ -38,7 +38,7 @@ import NavHeader from 'components/funComp/NavHeader';
           return false
         }
         else{
-          this.$router.go('/bind')
+          this.$router.go('/newbind/'+this.mobile)
         }
       }
     }

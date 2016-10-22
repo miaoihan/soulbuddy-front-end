@@ -67,6 +67,7 @@ export default {
 	        $.post(global.domain +"/user/update_mobile", 
 	            { token : localStorage.token,
 	              mobile: this.mobile,
+	              old_mobile:this.$route.params.mobile,
 	              code  : this.code
 	               },
 	            v =>{
