@@ -51,62 +51,60 @@ export default {
   },
   methods:{
 	 	sendCode(){
-	      if (this.checkPhone()) {
-	      $.post(global.domain +"/register/mobile_verify_randnum", 
-	        { mobile:  this.mobile,
-	          type  : 'modify'},
-	        v =>{
-	          if (v.code==1) {
-	            console.log('ok')
-	            this.is_send = true;
-	            alert('发送成功')
-	         }
-	         else if(v.code==0){
-	          alert('发送过于频繁，请稍后重试')
-	          this.is_send = false;
-	         }else if(v.msg=='您的手机号已经被注册'){
-	            alert('您的手机号已经被注册')}
-	            this.is_send = false;
-	        },'json');}
-	    },
-	    bindAndLogin(){
-	      if (this.checkPhone()) {
-	        $.post(global.domain +"/user/update_mobile", 
-	            { token : global.token,
-	              mobile: this.mobile,
-	              old_mobile: global.user.mobile,
-	              code  : this.code
-	            },
-	            v =>{
-	              if (v.code==1) {
-	                console.log('success')
-	                alert('验证成功！')
-	                // location.href = 'http://han.s3.natapp.cc/#!/home'
-	                this.$router.go('/me')
-	             }
-	             else{
-	              alert(v.msg)
-	              this.code = ''
-	              this.is_send = false;
-	             }
-	            },'json');}
-	    },
-	    checkPhone(){
-	      if(''== this.mobile) { alert('手机号码不能为空！'); return false}
-	      if(!this.isMobile(this.mobile)){
-	        alert('请输入正确的手机号！');
-	        return false
-	      }else{
-	        return true;
-	        this.is_send = false;
-	      }
-	    },
-	    isMobile( s ){   
-	      let regu =/^[1][345678][0-9]{9}$/; 
-	      let re = new RegExp(regu); 
-	      if (re.test(s)) return true; 
-	      else return false; 
-	    } 
+      if (this.checkPhone()) {
+      $.post(global.domain +"/register/mobile_verify_randnum", 
+        { mobile:  this.mobile,
+          type  : 'modify'},
+        v =>{
+          if (v.code==1) {
+            console.log('ok')
+            this.is_send = true;
+            alert('发送成功')
+         }
+         else if(v.code==0){
+          alert('发送过于频繁，请稍后重试')
+         }else if(v.msg=='您的手机号已经被注册'){
+            alert('您的手机号已经被注册')}
+        },'json');}
+    },
+    bindAndLogin(){
+      if (this.checkPhone()) {
+        $.post(global.domain +"/user/update_mobile", 
+            { token : global.token,
+              mobile: this.mobile,
+              old_mobile: global.user.mobile,
+              code  : this.code
+            },
+            v =>{
+              if (v.code==1) {
+                console.log('success')
+                alert('验证成功！')
+                // location.href = 'http://han.s3.natapp.cc/#!/home'
+                this.$router.go('/me')
+             }
+             else{
+              alert(v.msg)
+              this.code = ''
+              this.is_send = false;
+             }
+            },'json');}
+    },
+    checkPhone(){
+      if(''== this.mobile) { alert('手机号码不能为空！'); return false}
+      if(!this.isMobile(this.mobile)){
+        alert('请输入正确的手机号！');
+        return false
+      }else{
+        return true;
+        this.is_send = false;
+      }
+    },
+    isMobile( s ){   
+      let regu =/^[1][345678][0-9]{9}$/; 
+      let re = new RegExp(regu); 
+      if (re.test(s)) return true; 
+      else return false; 
+    } 
   },
   ready(){
   }
