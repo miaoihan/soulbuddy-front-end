@@ -1,7 +1,12 @@
 <template>
 	<nav-header title="关于我们" left="back" right=""></nav-header>
-	<div class="container-6">
-		<p>{{content}}</p>
+	<div class="about-box wrapper">
+		<div class="title-box">
+			<h1><span class="about-title container-6">关于我们</span></h1>
+		</div>	
+		<div class="container-16">
+			<p>{{content}}</p>
+		</div>
 	</div>
 </template>
 
@@ -43,6 +48,16 @@ export default {
 <style scoped>
 .about-box{
 	width: 100%;
-	padding:0.75rem 1.0rem;
+	height: 75.0rem;
+	background: #fff
+}
+.title-box{
+	text-align: center;
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
+}
+.about-title{
+	font-size: 1.0rem;
+	border-bottom: 0.1rem solid #000 
 }
 </style>
