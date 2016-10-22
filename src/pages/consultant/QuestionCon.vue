@@ -1,7 +1,7 @@
 <template>
   <nav-header title="问题详情" left="back"></nav-header>
   <div class="que-content wrapper">
-    <question-card :data="datas" type="public" :is-content=true></question-card>
+    <question-card :data="datas" :count="count" type="public" :is-content=true></question-card>
   </div>
   <!-- 底部开始回答 -->
   <div class="bottom-record wrapper fixed-bot">
@@ -68,7 +68,8 @@ export default {
       },
       //时间计数
       t: 0,
-      flag: ''
+      flag: '',
+      count: 0,
     }
   },
   components:{
@@ -87,6 +88,7 @@ export default {
           success: function(data) {
             // console.log("aa"+data)
             this.datas = data.data
+            this.count = data.data.answers.length;
             console.log(this.datas);
           }.bind(this),
           error: function(xhr, status, err) {
@@ -96,9 +98,14 @@ export default {
   },
   methods:{
     changebtn(event){
-      this.isbox=!this.isbox;
+      // 检查是否能回答
+      $.post(global.domain +'/question/check_answer',
+        { token: global.token, q_id: this.$route.params.qid }, v => {
+          // this.readList = v.data; 
+          if (v.data == true) this.isbox=!this.isbox;
+          else alert('已经不能再抢答了哦！');
+        },'json');
       console.log('isbox',this.isbox)
-
     },
     // 时间计时器
     startTime(){
@@ -159,7 +166,7 @@ export default {
     playVoice(){
       var that = this  
       if (that.voice.localId == '') {
-        alert('请先使用 startRecord 接口录制一段声音');
+        alert('请先录制一段声音');
         return;
       }
       wx.playVoice({
@@ -167,6 +174,11 @@ export default {
       });
     },
     cancle(){
+      $.post(global.domain +'/question/cancel_answer',
+        { token: global.token, q_id: this.$route.params.qid }, v => {
+          // this.readList = v.data; 
+          if (v.code !== 1) alert('取消失败！');
+        },'json');
       this.isFinish=false;
       this.isbox=false;
       this.isStart=false;
@@ -203,7 +215,7 @@ export default {
       this.isStart=false;
       var that = this
       if (this.voice.localId == '') {
-        alert('请先使用 startRecord 接口录制一段声音');
+        alert('请先录制一段声音');
         return;
       }
       // 语音上传,然后保存到服务器

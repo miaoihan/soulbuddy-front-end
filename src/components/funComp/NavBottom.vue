@@ -39,7 +39,7 @@ export default {
     methods: {
       changClass(id) {
         this.index = id;
-      },                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+      },                                                                                                     
       check(url){
         if(this.noshow_url.indexOf(url)==0) return true;
         else return false;
@@ -47,15 +47,15 @@ export default {
 
     },
     ready() { 
-      var that = this
-      this.$router.beforeEach(function ({ to, next }) {
-          if (to.path === '/me/install') {
-            // 返回一个断定会 true 或者 false 的 Promise
-            that.isshow = false;next();
-          } else {
-            next()
-          }
-        })
+      // var that = this
+      // this.$router.beforeEach(function ({ to, next }) {
+      //     if (to.path === '/me/install') {
+      //       // 返回一个断定会 true 或者 false 的 Promise
+      //       that.isshow = false;next();
+      //     } else {
+      //       next()
+      //     }
+      //   })
     },
 }
 </script>
