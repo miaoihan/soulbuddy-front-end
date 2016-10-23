@@ -3,7 +3,7 @@
 	<div class="sel-title float-left">{{title}}</div>
 	<i class="sel-img iconfont" :style="{color:IconColor}">&#xe60d;</i>
   	<select class="select-text" :name="name" :id="id" style="width:4.1rem;">
-  	  <option value ="" selected="selected" style="color:#bbb" v-if="placehorder==''">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;请选择</option>
+  	  <option value ="" selected="selected" style="color:#bbb" v-if="placehorder==''||placehorder=='0'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;请选择</option>
       <option :value ="placehorder" selected="selected" style="color:#bbb"v-if="placehorder!=''">{{data}}</option>
       <option :value ="$index+1" v-for="value in values">{{value}}</option>
     </select>
