@@ -1,20 +1,11 @@
 <template>
   <div>
-  	<nav-header title="案例" left='back'></nav-header>
-   <!--  <div class="label-box" style="margin-bottom: 10px">
-      <span class="label-big-border">
-        抑郁症
+  	<nav-header :title="$route.query.title" left='back'></nav-header>
+    <div class="label-box" style="margin-bottom: 10px">
+      <span class="label-big-border" v-for="tag in tags">
+        {{tag}}
       </span>
-      <span class="label-big-border">
-        焦虑症
-      </span>
-      <span class="label-big-border">
-        抑郁症
-      </span>
-      <span class="label-big-border">
-        焦虑
-      </span>
-    </div> -->
+    </div>
   	<div class="article-list">
   		<article-list :data="readList"></article-list>
   	</div> <!-- end article-list -->
@@ -29,7 +20,8 @@
 	  },
     data(){
       return {
-        readList: []
+        readList: [],
+        tags: [],
       }
     },
     ready(){
@@ -38,6 +30,15 @@
         {   page: 1,
           cat_id: 3 },
         v => this.readList = v.data ,'json');
+      // 故事标签
+      $.ajax({
+          url: global.domain +'/question/get_tags_list',
+          type:'GET', 
+          dataType: 'json',
+          cache: true,
+          success: v => {this.tags = v.data.story_tags;},
+          error: err => console.error(err.toString())
+        });
     },
 
   }

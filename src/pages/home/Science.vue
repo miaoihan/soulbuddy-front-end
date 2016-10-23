@@ -1,6 +1,11 @@
 <template>
   <div>
-  	<nav-header title="科普" left='back'></nav-header>
+  	<nav-header :title="$route.query.title" left='back'></nav-header>
+    <div class="label-box" style="margin-bottom: 10px">
+      <span class="label-big-border" v-for="tag in tags">
+        {{tag}}
+      </span>
+    </div>
   	<div class="article-list">
   		<article-list :data="readList"></article-list>
   	</div> <!-- end article-list -->
@@ -15,7 +20,8 @@
 	  },
     data(){
       return {
-        readList: []
+        readList: [],
+        tags:[]
       }
     },
     ready(){
@@ -24,6 +30,15 @@
         {   page: 1,
           cat_id: 1 },
         v => this.readList = v.data ,'json');
+      // 科普标签
+      $.ajax({
+          url: global.domain +'/question/get_tags_list',
+          type:'GET', 
+          dataType: 'json',
+          cache: true,
+          success: v => {this.tags = v.data.science_tags;},
+          error: err => console.error(err.toString())
+        });
     },
 
   }

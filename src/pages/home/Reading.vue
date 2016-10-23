@@ -7,37 +7,37 @@
   			</div>
   			<div class="type-box">
   				<div class="type-item">
-  					<a v-link="{path:'/science'}">
+  					<a v-link="'/science?title='+catList[0].cat_name">
 		  				<div class="t-wrap">
 		  					<div class="item-bg">
 		  						<img src="../../../src/assets/imgs/kepu.png" alt="">
 		  					</div>
 		  					<div class="item-txt">
-		  						科普
+		  						{{catList[0].cat_name}}
 		  					</div>
 	  					</div>
   					</a>
   				</div>
   				<div class="type-item">
-						<a v-link="{path:'/relax'}">
+						<a v-link="'/relax?title='+catList[1].cat_name">
 	  					<div class="t-wrap">
 		  					<div class="item-bg">
 		  						<img src="../../../src/assets/imgs/fangsong.png" alt="">
 		  					</div>
 		  					<div class="item-txt">
-		  						解忧
+		  						{{catList[1].cat_name}}
 		  					</div>
 	  					</div>
   					</a>
   				</div>
   				<div class="type-item">
-  					<a v-link="{path:'/case'}">
+  					<a v-link="'/case?title='+catList[2].cat_name">
 	  					<div class="t-wrap">
 		  					<div class="item-bg">
 		  						<img src="../../../src/assets/imgs/case.png" alt="">
 		  					</div>
 		  					<div class="item-txt">
-		  						故事
+		  						{{catList[2].cat_name}}
 		  					</div>
 	  					</div></a>
   					</div>
@@ -89,7 +89,7 @@
 	  data () {
 	    return {
 	      tags:{},
-	      a: 'sss'
+	      catList: [],
 	    }
 	  },
 	  ready(){
@@ -99,6 +99,14 @@
           dataType: 'json',
           cache: true,
           success: v => {this.tags = v.data.index_tags;},
+          error: err => console.error(err.toString())
+        });
+	  	$.ajax({
+          url: global.domain +'/article/get_cat_list',
+          type:'get', 
+          dataType: 'json',
+          cache: true,
+          success: v => {this.catList = v.data;},
           error: err => console.error(err.toString())
         });
 	  }

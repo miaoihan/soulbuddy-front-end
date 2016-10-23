@@ -24,7 +24,7 @@
 	  	<span class="heng"></span>
   	</aside>
   	<div class="que-list">
-  		<question-list :data="queList"></question-list>	
+  		<question-list :data="queList" :is-best="true"></question-list>	
   		<div class="seemore" @click="seeMore('que')">
   			查看更多精选问答
 

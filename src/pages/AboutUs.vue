@@ -1,9 +1,9 @@
 <template>
 	<nav-header title="关于我们" left="back" right=""></nav-header>
 	<div class="about-box wrapper">
-		<div class="title-box">
+		<!-- <div class="title-box">
 			<h1><span class="about-title container-6">关于我们</span></h1>
-		</div>	
+		</div>	 -->
 		<div class="container-16">
 			<p>{{content}}</p>
 		</div>
@@ -52,7 +52,7 @@ export default {
 	background: #fff
 }
 .title-box{
-	text-align: center;
+	/*text-align: center;*/
 	margin-top: 0.5rem;
 	margin-bottom: 0.5rem;
 }

@@ -1,10 +1,10 @@
 <template>
   <div class="wrapper" @click="voiceAction($event)"
-  		 :class=" is_free ? 'voice' : 'voice-locked' "
-  		 :style="{width: data.answer_time>60 ? '100%' : (data.answer_time)*5/6+50+'%';background-color:color }">
+  		 :class=" data.can_listen ? 'voice' : 'voice-locked' "
+  		 :style="{width: length; background-color:color }">
   	<div class="v-inner">
   	<!-- 计时 -->
-	  	<div :class=" is_free ? 'free' : 'unfree'"
+	  	<div :class=" data.can_listen ? 'free' : 'unfree'"
 	  				style="display: inline-block">
 	  		<!-- 播放 暂停-->
 	  			<i class="iconfont" style="font-size:16px" v-if="!is_play">&#xe632;</i>
@@ -16,7 +16,7 @@
 	  	</div>
 		<!-- 小锁 -->
 		<i class="iconfont pull-right"
-				v-if="!is_free"
+				v-if="!data.can_listen"
 				style="color: #fff; margin-top:2px">&#xe60b;</i>
   	</div>
   	<!-- 评价  -->
@@ -62,11 +62,11 @@
 	  methods:{
 	  	// 点击voice后的动作
 	  	voiceAction(e){
-	  		// alert(11111)
+	  		// e.preventDefault();
+	  		if (!this.data.can_listen) return;
 	  		// console.log(e)
 	  		let voice = document.getElementById(this.aid)
 	  		// console.log(voice)
-	  		e.preventDefault();
 			  if (!this.is_play) {
 			    voice.play();
 			    this.is_play = true
@@ -81,12 +81,8 @@
 	  			// if (!this.isEva)
 	  				// this.$el.style.height="6.5rem"
 	  	},
-
 	  	closeVoice(){
-	  		
-	  		
 	  	},
-
 	  	hasHelp(eve){
 	  		eve.preventDefault();
 	  		this.data.praise_count++
@@ -104,18 +100,23 @@
 	          // success: data => this.evaList = data.data,
 	          error: err => console.error(err.toString())
 	        });
-
-	  		this.isEva = true  	
+	  		this.isEva = true;  	
 	  		// 阻止事件传播、触发父组件
-	  		eve.stopPropagation()  		
+	  		eve.stopPropagation();  		
 	  	},
 	  	noHelp(eve){
 	  		eve.preventDefault();
 	  		// this.$el.style.height="1.8rem"
-	  		this.isEva = true  	
+	  		this.isEva = true;  	
 	  	}
 	  },
 	  computed: {
+	  	length: function(){
+	  		// alert(22233)
+	  		console.log(1111)
+	  		console.log(this.data.answer_time)
+	  		return this.data.answer_time>60 ? '100%' : (this.data.answer_time)*5/6+50+'%'
+	  	},
 	  	// 将秒转换成分秒
 	    min(){
 	    	let time = this.time;

@@ -82,7 +82,6 @@ export default {
           	type:2,		
 						token:global.token,
 		  	},
-          cache: false,
           success: function(data) {
           	// console.log(data)
             this.otherQues = data.data

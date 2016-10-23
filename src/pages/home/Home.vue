@@ -4,7 +4,7 @@
   	<func-nav :index.sync="index"></func-nav>
     <div style="margin-top: 0.5rem">
       <choice v-if="index==1" :swiper-list="swiperList" :index.sync="index"></choice>
-      <question-list v-if="index==2" :data="queList" class="far-bom"></question-list>
+      <question-list v-if="index==2" :data="queList" class="far-bom" :is-best="true"></question-list>
       <reading v-if="index==3" :data="readList"></reading>
       <evaluation v-if="index==4" :data="evaList" style="margin-bottom: 80px"></evaluation>
     </div>
@@ -29,8 +29,7 @@ import Evaluation from 'pages/home/Evaluation.vue'
         queList: [],
         readList: [],
         evaList: [],
-        headData: {
-        }
+        jsApiParams: {},
       }
     },
     props: {
@@ -40,8 +39,26 @@ import Evaluation from 'pages/home/Evaluation.vue'
         default: true
       }
     },
-    created(){
+    methods:{
       
+      // 微信支付
+      // onBridgeReady(){
+      //  WeixinJSBridge.invoke(
+      //      'getBrandWCPayRequest', {
+      //          "appId": "wx2421b1c4370ec43b",     //公众号名称，由商户传入     
+      //          "timeStamp":" 1395712654",         //时间戳，自1970年以来的秒数     
+      //          "nonceStr" : "e61463f8efa94090b1f366cccfbbb444", //随机串     
+      //          "package" : "prepay_id=u802345jgfjsdfgsdg888",     
+      //          "signType" : "MD5",         //微信签名方式:     
+      //          "paySign" : "70EA570631E4BB79628FBCA90534C63FF7FADD89" //微信签名 
+      //      },
+      //      function(res){     
+      //          if(res.err_msg == "get_brand_wcpay_request：ok" ) {}     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。 
+      //      }
+      //  ); 
+      // }
+    },
+    created(){
       // 获取轮播
       $.ajax({
           url: global.domain +'/article/get_top_article',
@@ -94,6 +111,8 @@ import Evaluation from 'pages/home/Evaluation.vue'
           error: err => console.error(err.toString())
         });
 
+      
+
     }
   }
 </script>
@@ -139,5 +158,8 @@ import Evaluation from 'pages/home/Evaluation.vue'
 a
   color #444
   width 100%
+  
+p
+  line-height 1.30rem
 
 </style>
