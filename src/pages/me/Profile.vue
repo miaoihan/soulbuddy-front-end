@@ -3,7 +3,10 @@
 <div class="far-bom">
 <form method="post" id="editform">
   <input type="hidden" name="token" :value="token">
-  <input type="hidden" name="logo" :value="serverId" id="sid">
+  <input type="hidden" name="logo" :value="serverId" id="sid" v-if="serverId!=''">
+  <input type="hidden" name="logo"  id="sid" v-if="serverId==''">
+  <input type="hidden" name="logo_flag" value="1" v-if="serverId!=''">
+  <input type="hidden" name="logo_flag" value="0" v-if="serverId==''">
   <div class="top wrapper">
   <!-- 头像 -->
     <div class="person-photo-pro wrapper" id="avator" >
@@ -104,7 +107,6 @@ import NavHeader from 'components/funComp/NavHeader';
       this.token = localStorage.token
       
       this.user_intro=user.intro
-      console.log(this.user_intro)
       var that = this
       document.querySelector('#avator').onclick = function () {
         wx.chooseImage({
@@ -155,11 +157,14 @@ import NavHeader from 'components/funComp/NavHeader';
         }
       },
       subAndCheck2(){
+        var logo_src='asdf'
+        logo_src = $("#logo").attr("src")
+        // alert(logo_src)
         if($('[name="user_name"]').val()===''){
           alert('昵称不能为空！')
           return false 
         }
-        if($('#sid').val()==='' && $("#logo")[0].src=='' ){
+        if(logo_src==''&& this.serverId==''){
           alert('头像不能为空！')
           return false 
         }
