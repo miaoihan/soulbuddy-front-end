@@ -22,7 +22,7 @@
 			  		</div>
 			  		<div class="desc-l2">
 			  			<span style="font-size:0.6rem;color: #999">
-			  				{{data.user_title}}
+			  				{{data.intro}}
 			  			</span>
 			  		</div>
 			  		<div class="desc-l3">

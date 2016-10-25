@@ -46,7 +46,7 @@
   			queList:[],  			
   			readList:[],
         evaList: [],
-        art_page: 1,
+        art_page: 2,
         que_page: 1,
       }
     },
@@ -72,8 +72,8 @@
         // Zepto.toast("没有更多了",120000,'toast-info');
         if (type=='art') {
           $.post(global.domain +'/article/get_choice_article',
-            {count: 3, page: ++this.art_page}, v => 
-            this.evaList = this.evaList.concat(data.data), 'json');
+            {count: 2, page: ++this.art_page}, v => 
+            this.readList = this.readList.concat(v.data), 'json');
         }else if(type=='que'){
           $.post(global.domain +'/question/get_choice_question',
             { token: global.token, page: ++this.que_page, }, v => 
@@ -143,7 +143,7 @@
 	}
  
  .eva{
-   margin-top 30px
+   margin-top 8px
  }
  
  

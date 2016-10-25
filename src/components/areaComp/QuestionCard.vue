@@ -2,7 +2,7 @@
   <div class="card-body">
 	  <a v-link="$route.path=='home' ?
 	  					{ name:'question', params:{ qid: data.q_id }}
-	  					: { name:'answer', params:{ qid: data.q_id }}">
+	  					: { name:'answer', params:{ qid: data.q_id }}" v-if="gouser=='false'">
 	    <div class="head">
 			<div class="person-img quer-top">
 				<img :src="data.logo" class="img-body">
@@ -34,6 +34,47 @@
 			<span class="dian" v-if="isContent===false">•••</span>
 		</div>
 		</a>
+         <!-- **************************************************** -->
+		<div v-if="gouser=='true'">
+	    <div class="head">
+			<div class="person-img quer-top" @click="selectBox">
+				<img :src="data.logo" class="img-body">
+			</div>
+			<div class="quername quer-top">
+				{{data.user_name}}
+			</div>
+			<div class="paymoney" v-if="type=='private'">
+				已支付￥{{data.pay}}
+			</div>
+			<div class="paymoney" v-if="type=='public'">
+				悬赏￥{{data.reward_money}}，{{count? count :data.answer_count}}人抢答
+			</div>
+		</div>
+		<div class="que-title">
+			<h1>{{data.title}}</h1>
+		</div>
+		<div class="que-content" v-if="isContent===true">
+			<p>{{data.content}}</p>
+		</div>
+		<div class="card-bottom">
+			<span class="answer-num" v-if="type=='public'">
+				已有 {{count? count :data.answer_count}} 个回答
+			</span>
+			<span class="answer-num" v-if="type=='private'">
+				{{data.qname}} 直接咨询你
+			</span>
+			<time class="que-data">发起于{{data.create_time}}</time>
+			<span class="dian" v-if="isContent===false">•••</span>
+		</div>
+		</div>
+  </div>
+  <div class="back" v-if="select_box" @click="cancelBox">
+  	
+  </div>
+  <div class="select-box" v-if="select_box">
+	  <a v-link="'/setting/profile'" class="sel-btn">查看用户资料</a>
+	  <a v-link="" class="sel-btn border-top">查看测评数据</a>
+	  <!-- <div class="sel-btn border-top" @click="cancelBox">取消</div> -->
   </div>
 </template>
 
@@ -41,12 +82,19 @@
 export default {
   data () {
     return {
-      
+      select_box:false
     }
   },
-  ready(){
-  	// console.log(this.data.q_id)
-  	console.log(this.$route.url)
+  created(){
+  	
+  },
+  methods:{
+  	selectBox(){
+  		this.select_box=true
+  	},
+  	cancelBox(){
+  		this.select_box=false
+  	}
   },
   props:{
   	data:{
@@ -58,6 +106,7 @@ export default {
   	type:{type:String},
   	isContent:{type:Boolean,default:false},
   	count:{type:String,default:null},
+  	gouser:{type:String,default:'false'}
   }
 }
 </script>
@@ -138,5 +187,40 @@ export default {
 .dian{
 	float: left;
 	margin-left: 0.85rem
+}
+.select-box{
+	border:0.05rem solid #eee
+	border-radius 0.25rem
+	overflow hidden
+	z-index: 100
+	position:absolute
+	width:60%;
+	height:5rem;
+	background-color #fff
+	left 20%
+	top 30%
+	// border 0.05rem solid #eee
+}
+.sel-btn{
+	width 100%
+	height 2.5rem
+	line-height 2.5rem
+	text-align center
+}
+.border-top{
+	border-top 0.05rem solid #eee
+}
+.border-bottom{
+	border-bottom 0.05rem solid #eee
+}
+.back{
+	top:0
+	left:0
+	width:100%
+	height:100%
+	position:absolute
+	z-index: 10
+	background-color black
+	opacity:0.5
 }
 </style>

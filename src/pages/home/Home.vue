@@ -137,7 +137,7 @@ import Evaluation from 'pages/home/Evaluation.vue'
 
 .seemore{
   text-align:center;
-  margin: 10px 10% 0;
+  margin: 3px 10% 0;
   height: 30px;
   line-height: 32px;
   // background: #E3E3E3;
