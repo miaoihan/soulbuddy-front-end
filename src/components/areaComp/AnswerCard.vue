@@ -6,8 +6,14 @@
 				<!-- 头像 -->
 					<div class="avator pull-left">
 					<!-- 写两个反而更快，强迫症的自行改之 -->
-							<img :src="data.logo" alt="头像" class="avator" v-if="!datap">		
-							<img :src="datap.logo" alt="头像" class="avator" v-if="datap">		
+						<a v-link="{name:'user', params:{ id: data.user_id }}" v-if="goto==='true'">
+							<img :src="data.logo" alt="头像" class="avator" v-if="!datap">
+							<img :src="datap.logo" alt="头像" class="avator" v-if="datap">	
+						</a>
+						<a v-if="goto==='false'">
+							<img :src="data.logo" alt="头像" class="avator" v-if="!datap">
+							<img :src="datap.logo" alt="头像" class="avator" v-if="datap">	
+						</a>	
 					</div>
 					<!-- 简介 -->
 					<div style="float: left;padding: 0.25rem 0.4rem">
@@ -54,6 +60,7 @@ import Voice from 'components/funComp/Voice.vue'
 	  	logo: '',
 	  	datap: {},
 	  	isBest:{ type: Boolean },
+	  	goto:{type:String,default:'false'}
 	  },
 
 	  data () {

@@ -3,7 +3,7 @@
   	<nav-header :title="$route.query.title" left='back'></nav-header>
     <div class="label-box" style="margin-bottom: 10px">
       <span class="label-big-border" v-for="tag in tags">
-        {{tag}}
+        <a v-link="'/reading?type='+tag">{{tag}}</a>
       </span>
     </div>
   	<div class="article-list">

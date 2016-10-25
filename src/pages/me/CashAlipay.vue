@@ -11,7 +11,7 @@
 			</input-box>
 		</div>
   	</form>
-	<input class="confirm-btn" type="submit" value="确认提取">
+	<input class="confirm-btn far-bom" type="submit" value="确认提取">
   </div>
 </template>
 
@@ -54,7 +54,7 @@ import NavHeader from 'components/funComp/NavHeader'
 	text-align: center;
 	border:0;
 	background-color:#2b8ff7;
-	color:#4fbae7;
+	color:#fff;
 	font-size:0.7rem;
 	/*opacity:0.5;*/
 }

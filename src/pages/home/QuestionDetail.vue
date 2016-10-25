@@ -20,7 +20,7 @@
 	  	<div>
   	</section> <!-- end top -->
   	<!-- 最佳回答 -->
-  	<answer-card :data="ans_best" v-if="ans_best.is_best==1"></answer-card>	
+  	<answer-card :data="ans_best" goto="true" v-if="ans_best.is_best==1"></answer-card>	
   	<aside class="m-other" v-if="ans_best.is_best!=1">
   		 {{ question.answers.length>0? '共有 '+question.answers.length : 0}} 个回答
   	</aside>

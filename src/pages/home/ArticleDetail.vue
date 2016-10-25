@@ -25,7 +25,7 @@
       </section>
       <footer class="art-footer">
 	      <aside class="tips">
-	      	本网站所有注明“来源：{{data.from}}”的文字、图片和音视频资料，版权均属于丁香园所有，非经授权，任何媒体、网站或个人不得转载
+	      	文章中所注明来源：“{{data.from}}”的文字、图片和音视频资料，版权均属于该来源所有，非经授权，任何媒体、网站或个人不得转载，违者必究。
 	      </aside>
       </footer>
    </div>

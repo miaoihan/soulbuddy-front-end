@@ -20,8 +20,7 @@
 	  		<input name="reward_money" type="text" placeholder="0" class="input-gold">
 	  	</div>
 	  	<aside class="tips">
-				问题有三人抢答，最佳回答获得60%的费用，其他各20%
-			将问题设为公开后，答案被其他人付费收听后，你和咨询师各获得0.5元
+				此问答板块发布问题后，最多可由三位咨询师回答，您可设定相对的赏金来答谢回答者们。收到回答后，您可设置一位最佳答案，最佳回答者将获得60%赏金，其余均分40%。将问题设为公开后，您的赏金若在5元以上，其他人收听一次，您和最佳回答者可各获得0.5元，1000次500元。
 	  	</aside>
 	  </div>
   	<div class="tbar wrapper" style="margin-top: 1.0rem">

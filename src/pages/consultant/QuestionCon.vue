@@ -1,7 +1,7 @@
 <template>
   <nav-header title="问题详情" left="back"></nav-header>
   <div class="que-content wrapper">
-    <question-card :data="datas" :count="count" type="public" :is-content=true></question-card>
+    <question-card gotod="true" :data="datas" :count="count" type="public" :is-content=true></question-card>
   </div>
   <!-- 底部开始回答 -->
   <div class="bottom-record wrapper fixed-bot">

@@ -7,7 +7,7 @@
 			</div>
 			<div class="a-r">
 				<aside>
-					<span class="label art-label" v-if="data.is_recommend">推荐</span>
+					<span class="label art-label" v-if="data.is_recommend==1">推荐</span>
 					<span class="label-bg-grey" v-if="data.cat_id==1">科普</span>
 					<span class="label-bg-grey" v-if="data.cat_id==2">解忧</span>
 					<span class="label-bg-grey" v-if="data.cat_id==3">故事</span>

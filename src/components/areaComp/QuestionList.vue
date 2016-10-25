@@ -13,7 +13,7 @@
 			  		<span class="label" v-if="que.is_free">免费</span>
 			  		<span class="nock-text" v-if="!que.is_free && $route.name!='myque' && que.answer_url"
 			  					@click="callpay($event)">
-			  		￥{{ que.reward_money }} 解锁该问题的所有回答</span>
+			  		￥1元解锁该问题的所有回答</span>
 			  	</div>
 				</div>
 					<answer-card :data="que" :index="$index" v-if="que.answer_url" :datap="datap" :is-best="isBest"></answer-card>
