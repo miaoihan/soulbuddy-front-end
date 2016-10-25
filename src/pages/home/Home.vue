@@ -8,6 +8,7 @@
       <reading v-if="index==3" :data="readList"></reading>
       <evaluation v-if="index==4" :data="evaList" style="margin-bottom: 80px"></evaluation>
     </div>
+    <!-- <modal></modal> -->
   </div>
 </template>
 
@@ -20,7 +21,8 @@ import Choice from 'pages/home/Choice.vue'
 import Evaluation from 'pages/home/Evaluation.vue'
   export default{
     components: {
-    	NavHeader,FuncNav,QuestionList,Reading,Choice,Evaluation
+    	NavHeader,FuncNav,QuestionList,Reading,Choice,Evaluation,
+     // Modal: require('components/funComp/Modal')
     },
     data(){
       return{
@@ -161,5 +163,54 @@ a
   
 p
   line-height 1.30rem
+
+//modal 暂时放到这里
+.modal-bg
+    position: absolute;  
+    top: 0%;  
+    left: 0%;  
+    width: 100%;  
+    height: 120%;  
+    background-color: black;  
+    z-index: 1001;  
+    -moz-opacity: 0.5;  
+    opacity:.50;  
+    // filter: alpha(opacity=50);
+  .modal-item
+    position: absolute;  
+    top: 28%;  
+    left: 10%;  
+    width: 80%;  
+    height: 36%;  
+    border-radius: 10px
+    z-index: 1002;  
+    overflow: auto;   
+    .mod-content
+      padding 0.75rem 1.20rem
+      height 72%
+      .c-top
+        margin 0 auto
+        // text-align center
+        width 1.5rem
+      .c-middle
+        margin-top: 0.4rem
+        font-size: 13px
+    .mod-button
+      display flex
+      align-items center
+      
+      // justify-content center
+      height 28%
+      border-top 1px solid #e5e5e5
+      .m-b-1
+        flex 1
+        text-align: center
+      .m-b-2
+        // flex 1
+        height 50%
+        border-left 1px solid #e5e5e5
+      .m-b-3
+        flex 1
+        text-align: center
 
 </style>

@@ -107,7 +107,7 @@
 	width: 100%;
 	left: 0;
 	/*opacity:0.5;*/
-	filter:alpha(opacity=40); /* 针对 IE8 以及更早的版本 */
+	/*filter:alpha(opacity=40);  针对 IE8 以及更早的版本 */
 }	
 
 </style>

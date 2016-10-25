@@ -62,7 +62,8 @@
 	  methods:{
 	  	// 点击voice后的动作
 	  	voiceAction(e){
-	  		// e.preventDefault();
+	  		e.preventDefault();
+	  		// alert(111)
 	  		if (!this.data.can_listen) return;
 	  		// console.log(e)
 	  		let voice = document.getElementById(this.aid)

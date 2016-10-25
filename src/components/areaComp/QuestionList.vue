@@ -106,11 +106,11 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
       callpay(e){
       	e.preventDefault();
       	wx.chooseWXPay({
-			    timestamp: 1477201703, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
-			    nonceStr: '1', // 支付签名随机串，不长于 32 位
-			    package: 'prepay_id=1', // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
-			    signType: 'MD5', // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
-			    paySign: '8156CB2BCDC632F1A97CBB85DE374C69', // 支付签名
+			    timestamp: this.jsApiParams.timeStamp+'', // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
+			    nonceStr: this.jsApiParams.nonceStr, // 支付签名随机串，不长于 32 位
+			    package: this.jsApiParams.package, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
+			    signType: this.jsApiParams.signType, // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+			    paySign: this.jsApiParams.paySign, // 支付签名
 			    success: function (res) {
 			        // 支付成功后的回调函数
 			        console.log(res)

@@ -6,7 +6,7 @@
         {{tag}}
       </span>
     </div>
-  	<div class="article-list">
+  	<div class="article-list far-bom">
   		<article-list :data="readList"></article-list>
   	</div> <!-- end article-list -->
   </div>
@@ -45,10 +45,6 @@
 </script>
 
 <style scoped lang="stylus">
-
-	.article-list
-		margin-bottom 1.5rem
-	
 
 	
 </style>

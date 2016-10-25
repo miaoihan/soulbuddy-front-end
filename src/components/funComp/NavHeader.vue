@@ -1,4 +1,5 @@
 <template>
+<div>
   <header class="nav-header" 
   				id="navHeader" :class="{fixed: fixed}">
   	<!-- 导航左部分	 -->
@@ -23,7 +24,6 @@
 						@click="click(2)"
 						>经验答人</span>
 		</div>
-
 	  <!-- 导航右部分	 -->
 	  <span class="nav-right" v-if="right">
 	  	<a class="next-btn" v-if="title=='原手机号码'"
@@ -35,7 +35,7 @@
 		  	<!-- 收藏 -->
 		  <i class="iconfont" class="r-func" v-if="title=='问题详情'">&#xe62d;</i><!-- 三个点 --> 
 	  	<a class="btn-nav" v-if="title=='新灵伙伴'"
-	  		 v-link="{path: '/ask'}">提问</a>
+	  		 @click="ask">提问</a>
 			<a class="btn-nav" v-if="ispub"
 				 @click="method">发布</a>	
 	  	<span v-if=" !title " @click="like">
@@ -49,16 +49,57 @@
 		  <span>
 	  	
 	  </span>
-		
-		
 	</header>
+	<!-- modal -->
+	 <div v-if="show_modal">
+  	<!-- 遮罩背景层 -->
+  	<div class="modal-bg" id="modalBg" @click="close"></div>
+  	<div class="modal-item part">
+  		<div class="mod-title"></div>
+  		<div class="mod-content">
+  			<div class="c-top">
+  				<img src="../../assets/imgs/some1.png"  alt="">
+  			</div>
+  			<div class="c-middle">
+  				提问前，请先完善个人资料和相关测评，咨询师了解你之后，答案才会更有帮助哦！
+  			</div>
+  		</div>
+  		<div class="mod-button">
+  			<span class="m-b-1" @click="close">暂时不</span>
+  			<span class="m-b-2"></span>
+  			<span class="m-b-3" @click="jumpTo" style="font-weight: 700">立即去完善资料</span>
+  		</div>
+  	</div>
+  </div>
+</div>
 </template>
 
 <script>
   export default{
+  	components: {
+    	// Modal: require('components/funComp/Modal')
+    },
   	data(){
   		return{
   			my_favorite:[],
+  			show_modal: false,
+  			modalBtn:[
+  				{
+  					text: '暂时不',
+  					click: function(){
+  						return false;
+  					}
+  				},
+  				{
+  					text: '立即去完善资料',
+  					click: function(){
+  						const that = this
+  						console.log(Vue.$el)
+  						console.log(that.toString())
+  						alert(this.show)
+  					}
+  				}
+  			]
   		}
   	},
 		props:{
@@ -85,6 +126,19 @@
 			collected:{type:Boolean,default:false},
 		},
 		methods:{
+			close(){
+				this.show_modal = false;
+			},
+			jumpTo(){
+				this.show_modal = false;
+				this.$router.go('/me/profile')
+			},
+			ask(){
+				// if (global.user.user_name==''){ 
+					this.show_modal = true;
+				// }
+				// this.$router.go('/ask')
+			},
 			click(i){
 				console.log(this.identity)
 				this.identity = i
@@ -128,6 +182,14 @@
   		}
 		},
 		ready(){
+			// document.body.onclick=function(){
+			// 	// alert(1222)
+			// 	this.show_modal = false;
+			// 	alert(this.show_modal)
+			// }
+			$('modalBg').click(function(){
+				alert(1112233)
+			})
 			// if(this.FavId!=null){
 			// 	$.ajax({
 		 //          url: 'http://xinling.songtaxihuan.com/user/get_my_favorite',
@@ -144,8 +206,6 @@
 		 //        });
 			// }			
 		},
-
-    components: {}
   }
 
 </script>
