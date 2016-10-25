@@ -2,7 +2,7 @@
   <div class="card-body">
 	  <a v-link="$route.path=='home' ?
 	  					{ name:'question', params:{ qid: data.q_id }}
-	  					: { name:'answer', params:{ qid: data.q_id }}" v-if="gotod=='false'">
+	  					: { name:'answer', params:{ qid: data.q_id }}" v-if="gouser=='false'">
 	    <div class="head">
 			<div class="person-img quer-top">
 				<img :src="data.logo" class="img-body">
@@ -35,7 +35,7 @@
 		</div>
 		</a>
          <!-- **************************************************** -->
-		<div v-if="gotod=='true'">
+		<div v-if="gouser=='true'">
 	    <div class="head">
 			<div class="person-img quer-top" @click="selectBox">
 				<img :src="data.logo" class="img-body">
@@ -68,10 +68,14 @@
 		</div>
 		</div>
   </div>
-  <!-- <div class="select-box" v-if="select_box">
-	  <a class="sel-btn">查看用户资料</a>
-	  <a class="sel-btn">查看测评数据</a>
-  </div> -->
+  <div class="back" v-if="select_box" @click="cancelBox">
+  	
+  </div>
+  <div class="select-box" v-if="select_box">
+	  <a v-link="'/setting/profile'" class="sel-btn">查看用户资料</a>
+	  <a v-link="" class="sel-btn border-top">查看测评数据</a>
+	  <!-- <div class="sel-btn border-top" @click="cancelBox">取消</div> -->
+  </div>
 </template>
 
 <script>
@@ -81,43 +85,15 @@ export default {
       select_box:false
     }
   },
-  // created(){
-
-  // },
   created(){
-  	// console.log(this.data.q_id)
-  	// console.log(this.$route.url)
-  	// $(document).on('click','body', function () {
-   //  	$("body").click(function(){
-   //          $("#test").hide();
-   //          return false;
-   //      })
-   //      $("#test").click(function(){
-   //          return false;
-   //      })
-  	// });
-  	$(".select-box").hide();
-  	 $(function(){    //方法三
-        $("body").click(function(){
-            $(".select-box").hide();
-            // this.select_box=!this.select_box
-            return false;
-        })
-        $(".select-box").click(function(){
-            return false;
-        })
-        $(".person-img").click(function(){
-            // this.select_box=!this.select_box
-            $(".select-box").show();
-        })
-    })
   	
   },
   methods:{
   	selectBox(){
   		this.select_box=true
-  		// $(".select-box").show();
-  		console.log(this.select_box)
+  	},
+  	cancelBox(){
+  		this.select_box=false
   	}
   },
   props:{
@@ -130,7 +106,7 @@ export default {
   	type:{type:String},
   	isContent:{type:Boolean,default:false},
   	count:{type:String,default:null},
-  	gotod:{type:String,default:'false'}
+  	gouser:{type:String,default:'false'}
   }
 }
 </script>
@@ -213,7 +189,10 @@ export default {
 	margin-left: 0.85rem
 }
 .select-box{
+	border:0.05rem solid #eee
+	border-radius 0.25rem
 	overflow hidden
+	z-index: 100
 	position:absolute
 	width:60%;
 	height:5rem;
@@ -227,8 +206,21 @@ export default {
 	height 2.5rem
 	line-height 2.5rem
 	text-align center
+}
+.border-top{
 	border-top 0.05rem solid #eee
-	
-	// margin-top 1.0rem
+}
+.border-bottom{
+	border-bottom 0.05rem solid #eee
+}
+.back{
+	top:0
+	left:0
+	width:100%
+	height:100%
+	position:absolute
+	z-index: 10
+	background-color black
+	opacity:0.5
 }
 </style>
