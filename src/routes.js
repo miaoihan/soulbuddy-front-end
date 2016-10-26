@@ -107,6 +107,9 @@ var routes = {
   'me/feedback': {
     component: require('pages/me/FeedBack.vue')
   },
+  '/me/price': {
+    component: require('pages/me/Price.vue')
+  },
   '/message': {
     component: require('pages/me/Message.vue')
   },
@@ -149,6 +152,11 @@ var routes = {
     name: 'myquestion',
     component: require('pages/me/MyQueDetail.vue')
   },
+  '/consultant/otherfile/:id': {
+    name: 'otherfile',
+    component: require('pages/consultant/OtherProfile.vue')
+  },
+
 
 
 

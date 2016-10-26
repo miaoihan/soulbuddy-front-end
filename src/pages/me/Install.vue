@@ -1,5 +1,6 @@
 <template>
 	<nav-header title="设置" left="back" right=""></nav-header>
+	<change-btn class="button-top-15" btntext="心理咨询费设定" url="/me/price" v-if="identity!=0" :placeholder="answer_fee" place-color="#29ABE2"></change-btn>
 	<change-btn class="button-top-15" btntext="意见反馈" url="/me/feedback"></change-btn>
 	<change-btn class="button-top-1" btntext="联系我们"></change-btn>
 	<change-btn class="button-top-1" btntext="关于我们" url="/abuotus"></change-btn>
@@ -18,9 +19,14 @@ export default {
 	},
   data () {
     return {
-      
+      identity:'',
+      answer_fee:'',
     }
     
+  },
+  ready(){
+  	this.answer_fee='￥ '+global.user.answer_fee
+  	this.identity=global.user.identity
   },
   methods:{
     	logout(){

@@ -45,6 +45,15 @@
       <div class="finish"><input class="btn submit" type="text" value="发布答案" @click="submit"></div>
     </div>
   </div>
+  <div class="back" v-if="isfirst" @click="cancelBox">
+    
+  </div>
+  <div class="select-box" v-if="isfirst">
+    <div class="wrapper">
+      点击用户头像，可查看用户详细资料和测评数据
+    </div>
+    <div class="sel-btn wrapper" @click="closeBack">知道了</div>
+  </div>
 </template>
 
 <script>
@@ -55,6 +64,7 @@ import TopBar from 'components/areaComp/TopBar'
 export default {
   data () {
     return {
+      isfirst:false,//咨询师是否是第一次回答
       isbox:false,//是否出现录音区域框，false时不出现
       isStart:false,//是否开始录音，true时则开始录音，false时等待点击开始
       isFinish:false,//是否结束录音进入到试听阶段，true时录音结束进入到试听发布阶段
@@ -76,6 +86,9 @@ export default {
   	QuestionCard,Voicep,TopBar,NavHeader
   },
   ready(){
+    if(global.user.answer_num==0){
+      this.isfirst=true
+    }
     $.ajax({
           url: global.domain +'/question/get_question_info',
           type:'POST', 
@@ -97,6 +110,9 @@ export default {
       });
   },
   methods:{
+    closeBack(){
+      this.isfirst=false
+    },
     changebtn(event){
       // 检查是否能回答
       $.post(global.domain +'/question/check_answer',
@@ -339,5 +355,34 @@ export default {
   background-color: #299FFF;
   border-radius: 0.3rem;
   text-align center
+}
+.select-box{
+  padding:0.7rem
+  border:0.05rem solid #eee
+  border-radius 0.5rem
+  overflow hidden
+  z-index: 100
+  position:absolute
+  width:60%;
+  background-color #eee
+  left 20%
+  top 30%
+}
+.sel-btn{
+  width 100%
+  text-align center
+  margin-top: 0.5rem;
+  margin-bottom: -0.4rem;
+}
+.back{
+  top:0
+  left:0
+  bottom:-2.5rem
+  width:100%
+  height:100%
+  position:absolute
+  z-index: 11
+  background-color black
+  opacity:0.5
 }
 </style>
