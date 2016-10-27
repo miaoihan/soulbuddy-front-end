@@ -49,7 +49,7 @@
   }
 </script>
 
-<style lang="stylus">
+<style scoped lang="stylus">
 
 	.modal-bg
 		position: absolute;  

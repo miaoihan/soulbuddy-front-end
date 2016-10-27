@@ -3,9 +3,11 @@
 <div class="far-bom">
 <form method="post" id="editform">
   <input type="hidden" name="token" :value="token">
+  <!-- 若有seri，则上传 -->
   <input type="hidden" name="logo" :value="serverId" id="sid" v-if="serverId!=''">
-  <input type="hidden" name="logo"  id="sid" v-if="serverId==''">
   <input type="hidden" name="logo_flag" value="1" v-if="serverId!=''">
+  <!-- 没有serid，保持不变 -->
+  <input type="hidden" name="logo"  :value="old_logo" id="sid" v-if="serverId==''">
   <input type="hidden" name="logo_flag" value="0" v-if="serverId==''">
   <div class="top wrapper">
   <!-- 头像 -->
@@ -66,6 +68,7 @@ import NavHeader from 'components/funComp/NavHeader';
         marriage:["单身","恋爱中","婚姻中","离异","分居","丧偶"],
         mobile:"",
         logo: '',
+        old_logo: '',
         token: '', 
         index: 2,
         user_age:'',
@@ -104,6 +107,7 @@ import NavHeader from 'components/funComp/NavHeader';
       this.user = global.user
       this.mobile = user.mobile
       this.logo = user.logo
+      this.old_logo = user.old_logo
       this.token = localStorage.token
       
       this.user_intro=user.intro

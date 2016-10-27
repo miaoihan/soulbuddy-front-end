@@ -4,7 +4,10 @@
 		<input type="hidden" name="token" :value="token">
 		<div class="textarea">
 			<textarea class="inputarea" name="content" v-model="content" placeholder="请填写反馈内容"></textarea>
-		</div>		
+		</div>
+		<div class="tbar" style="margin-top: 20px">
+  		<input name="title" type="text" placeholder="您的邮箱（选填）" >
+  	</div>		
 		<div class="submit-btn" @click="submit">提交</div>
 	</form>
 </template>
@@ -23,7 +26,6 @@ export default {
       token:'',
       content:''
     }
-    
   },
   ready(){
   	this.token=global.token
@@ -31,7 +33,7 @@ export default {
   methods:{
     	submit(){
     		if(this.content===''){
-    			alert('反馈意见不能为空')
+    			alert('反馈内容不能为空')
     			return false
     		}
     		else{
@@ -71,7 +73,7 @@ export default {
 	resize: none;
 }
 .submit-btn{
-	margin-top 0.5rem
+	margin-top 1rem
 	border: 0;
 	width: 100%;
 	height: 2.5rem;

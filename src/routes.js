@@ -2,6 +2,9 @@
 * 路由配置
 */
 var routes = {
+  // '/': {
+  //   component: require('pages/home/Home.vue')
+  // },
   '/bind': {
     component: require('pages/BindPhone.vue')
   },
@@ -11,9 +14,9 @@ var routes = {
   '/abuotus': {
     component: require('pages/AboutUs.vue')
   },
-  // '/': {
-  //   component: require('pages/home/Home.vue')
-  // },
+  '/connect': {
+    component: require('pages/Connect.vue')
+  },
   'search/get_search_list': {
     component: require('pages/home/SerchList.vue')
   },

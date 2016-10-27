@@ -60,7 +60,7 @@
   		  所有文章 
   	</aside>
   	<article-list :data="data"></article-list>
-  	<div class="seemore" style="margin-bottom: 80px" @click="addArt">查看更多</div>
+  	<div class="seemore" style="margin-bottom: 80px" @click="seeMore('art')">查看更多</div>
   </div>
 </template>
 
@@ -82,14 +82,26 @@
 	  	}
 	  },
 	  methods:{
-	  	addArt(){
-	  		
-	  	}
+	  	// 加载更多
+      seeMore(type){
+        console.log(type)
+        // Zepto.toast("没有更多了",120000,'toast-info');
+        if (type=='art') {
+          $.post(global.domain +'/article/get_choice_article',
+            {count: 2, page: ++this.art_page}, v => 
+            this.readList = this.readList.concat(v.data), 'json');
+        }else if(type=='que'){
+          $.post(global.domain +'/question/get_choice_question',
+            { token: global.token, page: ++this.que_page, }, v => 
+            this.queList = this.queList.concat(v.data), 'json');
+        }
+      },
 	  },
 	  data () {
 	    return {
 	      tags:{},
 	      catList: [],
+	      art_page: 2,
 	    }
 	  },
 	  ready(){

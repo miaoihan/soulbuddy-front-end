@@ -29,10 +29,9 @@ export default {
       // host: 'http://han.s3.natapp.cc',
       host: 'http://m.soulbuddy.cn',
       // 测试开关
-      test:true,
+      test:false,
       // test:true,
-      uid: 48
-
+      uid: 58
     }
   },
   watch:{

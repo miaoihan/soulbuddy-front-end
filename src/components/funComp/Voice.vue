@@ -1,10 +1,10 @@
 <template>
   <div class="wrapper" @click="voiceAction($event)"
-  		 :class=" data.can_listen ? 'voice' : 'voice-locked' "
+  		 :class=" (data.can_listen || free) ? 'voice' : 'voice-locked' "
   		 :style="{width: length; background-color:color }">
   	<div class="v-inner">
   	<!-- 计时 -->
-	  	<div :class=" data.can_listen ? 'free' : 'unfree'"
+	  	<div :class=" (data.can_listen || free) ? 'free' : 'unfree'"
 	  				style="display: inline-block">
 	  		<!-- 播放 暂停-->
 	  			<i class="iconfont" style="font-size:16px" v-if="!is_play">&#xe632;</i>
@@ -16,7 +16,7 @@
 	  	</div>
 		<!-- 小锁 -->
 		<i class="iconfont pull-right"
-				v-if="!data.can_listen"
+				v-if="!(data.can_listen || free)"
 				style="color: #fff; margin-top:2px">&#xe60b;</i>
   	</div>
   	<!-- 评价  -->
@@ -49,6 +49,7 @@
 	  	},
 	  	color: {type:String,default:'#2b8ff7'},
 	  	index: '',
+	  	free: {type:Boolean,default: false},
 	  },
 	  data(){
 	  	return{
@@ -64,7 +65,7 @@
 	  	voiceAction(e){
 	  		e.preventDefault();
 	  		// alert(111)
-	  		if (!this.data.can_listen) return;
+	  		if (!(this.data.can_listen || this.free)) return;
 	  		// console.log(e)
 	  		let voice = document.getElementById(this.aid)
 	  		// console.log(voice)

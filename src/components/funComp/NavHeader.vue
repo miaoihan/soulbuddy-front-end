@@ -134,10 +134,10 @@
 				this.$router.go('/me/profile')
 			},
 			ask(){
-				// if (global.user.user_name==''){ 
+				if (global.user.user_name==''){ 
 					this.show_modal = true;
-				// }
-				// this.$router.go('/ask')
+				}
+				this.$router.go('/ask')
 			},
 			click(i){
 				console.log(this.identity)
