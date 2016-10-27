@@ -9,7 +9,7 @@
 	<div class="container-20-lr hint-text">
 		此价格为用户向您咨询时，您的单次语音回答的价格。如果您未设定该价格，用户将无法向您发起咨询。
 	</div>
-	<div class="submitp-btn wrapper text-center" >
+	<div class="submitp-btn wrapper text-center" @click="submit">
 		<span style="opacity:1" v-if="price!=''">确定</span>
 		<span style="opacity:0.4" v-if="price==''">确定</span>
 	</div>
@@ -42,7 +42,9 @@ import NavHeader from 'components/funComp/NavHeader';
       
     },
     methods:{
-      
+      submit(){
+      	
+      }
     }
   }
 </script>

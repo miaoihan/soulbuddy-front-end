@@ -72,7 +72,7 @@
   	
   </div>
   <div class="select-box" v-if="select_box">
-	  <a v-link="'/consultant/otherfile/1'" class="sel-btn">查看用户资料</a>
+	  <a v-link="{name:'otherfile', params:{id: data.user_id} }" class="sel-btn">查看用户资料</a>
 	  <a v-link="" class="sel-btn border-top">查看测评数据</a>
 	  <!-- <div class="sel-btn border-top" @click="cancelBox">取消</div> -->
   </div>
