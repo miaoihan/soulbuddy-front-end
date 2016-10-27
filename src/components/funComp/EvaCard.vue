@@ -1,5 +1,5 @@
 <template>
-  <div class="card-body relative wrapper">
+  <div class="card-body relative wrapper" v-if="type=='mine'">
   	<img src="../../../src/assets/imgs/xl8.jpg" height="517" width="690" class="img-evac">
     <div class="top-title wrapper relative">
       <i class="iconfont title-test relative">&#xe604;</i>
@@ -24,6 +24,24 @@
       </div>
     </div>
   </div>
+
+  <div class="card-bodyp relative wrapper" v-if="type=='other'">
+    <div class="swiper-container"id="swp2">
+      <div class="swiper-wrapper">
+          <!-- 已经评测了就跳转 -->
+          <div class="swiper-slide" style="height:4.0rem;" 
+               v-for="eva in datap">
+            <div class="opacityback">
+             <img style="height:100%;width:100%;" src="../../../src/assets/imgs/xl8.jpg">
+            </div>
+            <span class="eva-titlep">{{eva.title}}</span>
+            <div class="eva-score" style="margin-left:0.75rem;margin-top:0.8rem">
+                  <span style="font-size:0.6rem">综合评分：</span>{{eva.score}}
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -41,7 +59,16 @@ import QuestionList from 'components/areaComp/QuestionList.vue'
     },
     props:{
       index:{type:Number,default:3},
+      type:{type:String,default:'mine'},
       data:{
+        type:Array,
+        default(){
+          return[
+
+          ]
+        }
+      },
+      datap:{
         type:Array,
         default(){
           return[
@@ -82,6 +109,10 @@ import QuestionList from 'components/areaComp/QuestionList.vue'
 }
 .card-body{
   height:11.5rem;
+  width:100%;
+}
+.card-bodyp{
+  height:4.0rem;
   width:100%;
 }
 .img-evac{
@@ -157,6 +188,25 @@ import QuestionList from 'components/areaComp/QuestionList.vue'
   font-size: 14px;
   color:#fff;
   margin-top: 0.75rem;
+}
+.eva-titlep{
+  opacity: 1;
+  display: block;
+  font-family: .PingFang-SC-Medium;
+  font-size: 12px;
+  color: #FFFFFF;
+  position: relative;
+  z-index: 100;
+  margin-top: 0.6rem;
+  margin-left: 0.6rem;
+}
+.eva-score{
+  position: relative;
+  z-index: 100;
+  opacity: 1;
+  font-family: .PingFang-SC-Medium;
+  font-size: 18px;
+  color: #FFFFFF;
 }
 .start-btn{
   position: relative;

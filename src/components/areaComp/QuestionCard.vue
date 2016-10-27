@@ -37,9 +37,9 @@
          <!-- **************************************************** -->
 		<div v-if="gouser=='true'">
 	    <div class="head">
-			<div class="person-img quer-top" @click="selectBox">
+			<a v-link="{name:'otherfile', params:{id: data.user_id} }" class="person-img quer-top" @click="selectBox">
 				<img :src="data.logo" class="img-body">
-			</div>
+			</a>
 			<div class="quername quer-top">
 				{{data.user_name}}
 			</div>
@@ -68,14 +68,13 @@
 		</div>
 		</div>
   </div>
-  <div class="back" v-if="select_box" @click="cancelBox">
+  <!-- <div class="back" v-if="select_box" @click="cancelBox">
   	
   </div>
   <div class="select-box" v-if="select_box">
 	  <a v-link="{name:'otherfile', params:{id: data.user_id} }" class="sel-btn">查看用户资料</a>
 	  <a v-link="" class="sel-btn border-top">查看测评数据</a>
-	  <!-- <div class="sel-btn border-top" @click="cancelBox">取消</div> -->
-  </div>
+  </div> -->
 </template>
 
 <script>
@@ -90,7 +89,8 @@ export default {
   },
   methods:{
   	selectBox(){
-  		this.select_box=true
+  		// this.select_box=true
+  		this.$router.go({name:'otherfile',params:{id: data.user_id}})
   	},
   	cancelBox(){
   		this.select_box=false

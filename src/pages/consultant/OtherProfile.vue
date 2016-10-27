@@ -1,5 +1,5 @@
 <template>
-<nav-header title="个人简介" left="back"></nav-header>
+<nav-header title="用户资料" left="back"></nav-header>
 <div class="far-bom">
   <div class="top wrapper">
   <!-- 头像 -->
@@ -8,17 +8,14 @@
     </div>
     <div class="nik-body wrapper">
       <div class="nikname wrapper">
-      <span id="user-name" name="user_name" class="nikname-val" style="width:5.0rem">
-      {{user.user_name}}
-      </span>
-      </div>
-      <div class="border">   
-      </div>
-      <div class="nikname-make wrapper">
-        <span style="color:#999999" @click="handleclick">用户昵称</span>
+        <span name="user_name" class="nikname-val" style="width:5.0rem">
+        {{user.user_name}}
+        </span>
       </div>
     </div>
   </div>
+  <div class="container-20" style="font-size:0.55rem;margin-bottom:0.5rem;padding-bottom:0">他已完成 {{user_access.length}} 份心理测评</div>
+  <eva-card :datap="user_access" type="other" v-if="user_access.length!=0"></eva-card>
   <div class="profile-list wrapper">
     <change-btn btntext="绑定手机" title-color="black" :placeholder="user.mobile" class="change-btn-pro" place-color="#000"></change-btn>
     <change-btn btntext="年龄" title-color="black" :placeholder="user.borth_date" class="change-btn-pro" place-color="#000"></change-btn>
@@ -38,14 +35,16 @@
 import InputBox from 'components/funComp/InputBox'
 import ChangeBtn from 'components/funComp/ChangeBtn'
 import SelectBtn from 'components/funComp/SelectBtn'
-import NavHeader from 'components/funComp/NavHeader';
+import NavHeader from 'components/funComp/NavHeader'
+import EvaCard from 'components/funComp/EvaCard'
   export default{
     components: {
-    	InputBox,ChangeBtn,SelectBtn,NavHeader
+    	InputBox,ChangeBtn,SelectBtn,NavHeader,EvaCard
     },
     data(){
       return{
         user: {},
+        user_access:[],
         serverId: '',
         age:[],
         sex:["男","女"],
@@ -75,6 +74,25 @@ import NavHeader from 'components/funComp/NavHeader';
            console.err(err.toString())
          }.bind(this)
       });
+       $.ajax({
+          url: global.domain +'/access/get_user_access',
+          type:'POST', 
+          dataType: 'json',
+          async:false,
+          data:{
+            user_id:this.$route.params.id,
+            // user_id:1,
+            page:1
+          },
+          success: data =>{ 
+            this.user_access = data.data
+          },
+          error: err => console.log(err)
+        });
+    },
+    ready(){
+     
+      
     },
     methods:{
       
@@ -85,15 +103,15 @@ import NavHeader from 'components/funComp/NavHeader';
 <style>
 .top{
   overflow: hidden;
-  height: 5.4rem;
+  height: 4.2rem;
   background-color: #ffffff;
   padding-right: 0.75rem;
 }
 .person-photo-pro{
   float: left;
   border-radius :3.2rem;
-  height: 3.2rem;
-  width: 3.2rem;
+  height: 2.2rem;
+  width: 2.2rem;
   background-color: #efefef;
   margin-top: 1.05rem;
   margin-left: 0.75rem;
@@ -101,15 +119,16 @@ import NavHeader from 'components/funComp/NavHeader';
 .nik-body{
   float: left;
   height: 3.2rem;
-  margin-top:  1.05rem;
+  /*line-height: 3.2rem;*/
+  /*margin-top:  1.05rem;*/
   margin-left: 0.75rem;
   width:69%;
 }
 .nikname{
   /*float: left;*/
   /*height: 0.7rem;*/
-  margin-top: 0.35rem;
-  font-size: 0.7rem;
+  /*margin-top: 0.35rem;*/
+  font-size: 0.8rem;
   /*margin-left: 0.5rem;*/
 }
 .nikname-val{
