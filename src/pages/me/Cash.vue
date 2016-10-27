@@ -1,12 +1,9 @@
 <template>
 <nav-header title="提现" left="back"></nav-header>
-  <div class="wrapper top-body cash-padding">
-  	  <div class="wrapper balance">
+  <div class="wrapper">
+  	  <div class="wrapper balance cash-padding">
   	  	<span class="num-title">账户余额（元）：</span>
   	  	<span class="num">{{balance}}</span>
-  	  </div>
-  	  <div class="input-body ">
-  	  	<input class="input-text" type="text" placeholder="请输入提取金额数（元）">
   	  </div>
   </div>
   <div class="wrapper cash-padding">
@@ -50,13 +47,15 @@ import NavHeader from 'components/funComp/NavHeader';
 	padding-right:1.0rem;
 }
 .top-body{
-	height: 6.1rem;
-	margin-bottom: 2.35rem;
+	/*height: 6.1rem;*/
+	/*margin-bottom: 2.35rem;*/
 }
 .balance{
+  margin-bottom: 1.25rem;
 	height: 2.5rem;
+  line-height: 2.5rem;
 	border-bottom: 0.05rem solid #e3e3e3;
-	padding-top:1.2rem;
+	/*padding-top:1.2rem;*/
 	font-size: 0.75rem;
 	color: black;
 	font-weight: 600

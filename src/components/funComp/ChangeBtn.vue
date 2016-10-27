@@ -5,7 +5,7 @@
 	    <span class="text" :style="{color:TextColor}">{{btntext}}</span>
 	    
 	    <i class="icon-img iconfont" :style="{color:IconColor}" v-if="isIcon==true">&#xe60d;</i>
-	    <span class="placeholder">{{placeholder}}</span>
+	    <span class="placeholder" :style="{color:placeColor}">{{placeholder}}</span>
   </a>
   </div>
 </template>
@@ -19,6 +19,7 @@ export default {
 		IconColor:{type:String,default:"#bbb"},//箭头icon颜色
 		isIcon:{type:Boolean,default:true},
 		href:{type:String,default:null},//是否需要跳转 
+		placeColor:{type:String,default:"#bdbdbd"},//默认值颜色
 	},
   data () {
     return {
@@ -47,5 +48,6 @@ export default {
 }
 .icon-img{
 	float: right;
+	line-height: 2.8rem;
 }
 </style>

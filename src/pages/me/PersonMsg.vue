@@ -3,7 +3,7 @@
 <nav-header v-if="this.$route.params.id==1" title="申请成为咨询师" left="back" right=""></nav-header>
   <div class="wrapper">
     <div class="person-photo1" id="per-photo">
-    	<img class="photo-img" :src="PersonPhoto" id="logo" >
+    	<img class="photo-img" :src="real_logo" id="logo" >
     	<div class="sub-photo" id="avator">
     		<i class="iconfont craicon">&#xe60c;</i>
     		<span class="sub-text">上传真实头像</span>
@@ -16,7 +16,7 @@
     <input type="hidden" name="token" :value="token">
     <input type="hidden" name="identity" :value="identity">
     <input-box title="真实姓名" name="true_name"
-    	placeholder='请填写' 
+    	placeholder='请填写' :value="true_name" 
     	title-color="black" text-color="black"
     	style="padding:0 1rem">
    	</input-box>
@@ -35,6 +35,7 @@
    	<div class="textarea">
    		<textarea class="inputarea" maxlength="150" name="intro" v-model="intro" placeholder="请填写自我评价（最多150个字）"></textarea>
    	</div>
+    <change-btn class="button-top-15 container-20-lr" btntext="心理咨询费设定" url="/me/price" v-if="this.$route.params.id==0" :placeholder="answer_fee" place-color="#29ABE2"></change-btn>
    	<div class="save-box" style="margin-bottom:0rem">
    		<input class="save-body" type="button" value="保存" name="savemsg" v-if="this.$route.params.id==0" @click="subme1">
       <input class="save-body" type="button" value="提交申请" name="savemsg" v-if="this.$route.params.id==1" @click="subme2">
@@ -47,11 +48,12 @@
 
 <script>
 import InputBox from 'components/funComp/InputBox'
+import ChangeBtn from 'components/funComp/ChangeBtn'
 import CardPhoto from 'components/areaComp/CardPhoto'
 import NavHeader from 'components/funComp/NavHeader';
 export default {
 	components:{
-		InputBox,CardPhoto,NavHeader
+		InputBox,CardPhoto,NavHeader,ChangeBtn
 	},
 	props:{
 		PersonPhoto:{type:String},
@@ -68,11 +70,18 @@ export default {
       skill:'',
       intro:'',
       token:'',
-      identity:1
-
+      identity:1,
+      answer_fee:'',
+      user:{}
     }
   },
   ready:function(){
+    this.user=global.user
+    this.answer_fee='￥ '+this.user.answer_fee
+    this.skill=user.skill.split(" ").join("；");
+    this.intro=user.intro
+    this.true_name=user.true_name
+    this.real_logo=user.real_logo
     this.token=localStorage.token
 	  	$.post(global.domain +'/user/get_my_info',
         { token: global.token },
@@ -271,6 +280,7 @@ input::-webkit-input-placeholder {text-align:right}
 	height: 5.0rem;
 	padding:0.75rem 1.0rem;
 	background-color: #fff;
+  margin-bottom:1.0rem 
 }
 .inputarea{
 	width: 100%;

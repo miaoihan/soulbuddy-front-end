@@ -72,7 +72,7 @@
   	
   </div>
   <div class="select-box" v-if="select_box">
-	  <a v-link="'/setting/profile'" class="sel-btn">查看用户资料</a>
+	  <a v-link="'/consultant/otherfile/1'" class="sel-btn">查看用户资料</a>
 	  <a v-link="" class="sel-btn border-top">查看测评数据</a>
 	  <!-- <div class="sel-btn border-top" @click="cancelBox">取消</div> -->
   </div>
@@ -216,10 +216,11 @@ export default {
 .back{
 	top:0
 	left:0
+	bottom:-2.5rem
 	width:100%
 	height:100%
 	position:absolute
-	z-index: 10
+	z-index: 11
 	background-color black
 	opacity:0.5
 }
