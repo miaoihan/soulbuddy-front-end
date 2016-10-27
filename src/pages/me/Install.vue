@@ -1,7 +1,7 @@
 <template>
 	<nav-header title="设置" left="back" right=""></nav-header>
 	<change-btn class="button-top-15" btntext="意见反馈" url="/me/feedback"></change-btn>
-	<change-btn class="button-top-1" btntext="联系我们"></change-btn>
+	<change-btn class="button-top-1" btntext="联系我们" url="/connect"></change-btn>
 	<change-btn class="button-top-1" btntext="关于我们" url="/abuotus"></change-btn>
 	<div class="quit button-top-15 far-bom" @click="logout">退出当前帐号</div>
 </template>

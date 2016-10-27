@@ -1,10 +1,16 @@
 <template>
 	<nav-header title="关于我们" left="back" right=""></nav-header>
 	<div class="about-box wrapper">
-		<!-- <div class="title-box">
-			<h1><span class="about-title container-6">关于我们</span></h1>
-		</div>	 -->
-		<div class="container-16">
+		<div class="about-title">
+			<div class="about-logo">
+				新灵伙伴
+			</div>
+			<div class="about-desc">
+				<p>2016 soulbuddy.cn</p>
+				<p>版本 1.0.0</p>
+			</div>
+		</div>
+		<div class="container-16 about-content">
 			<p>{{content}}</p>
 		</div>
 	</div>
@@ -15,7 +21,7 @@ import NavHeader from 'components/funComp/NavHeader'
 export default {
 	components:{
 		NavHeader
-	},
+	}, 
 	props:{
 		
 	},
@@ -45,19 +51,33 @@ export default {
 }
 </script>
 
-<style scoped>
-.about-box{
-	width: 100%;
-	height: 75.0rem;
-	background: #fff
-}
-.title-box{
-	/*text-align: center;*/
-	margin-top: 0.5rem;
-	margin-bottom: 0.5rem;
-}
-.about-title{
-	font-size: 1.0rem;
-	border-bottom: 0.1rem solid #000 
-}
+<style scoped lang="stylus">
+	@import '../assets/stylus.styl'
+	
+	.about-box{
+		width: 100%;
+		background: #fff
+	}
+	.title-box{
+		/*text-align: center;*/
+		margin-top: 0.5rem;
+		margin-bottom: 0.5rem;
+	}
+	.about-title{
+		padding: 2.0rem 0;
+		text-align: center;
+	}
+	.about-desc{
+		font-size: 0.6rem
+		color #999
+	}
+	.about-logo{
+		font-size: 35px;
+		color: $ztc;
+	}
+	.about-content{
+		font-size: 13px
+		// color #999
+	}
+
 </style>

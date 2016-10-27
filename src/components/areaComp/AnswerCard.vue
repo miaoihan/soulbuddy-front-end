@@ -35,7 +35,7 @@
 				<!-- voice组件 -->
 				<div class="voice-wrapper">
 				<!-- 双向绑定 数据同步-->
-					<voice :data.sync="data" :index="index"></voice>
+					<voice :data.sync="data" :index="index" :free="free"></voice>
 				</div>
 				<!-- 描述 -->
 				<div class="meta wrapper">
@@ -60,7 +60,8 @@ import Voice from 'components/funComp/Voice.vue'
 	  	logo: '',
 	  	datap: {},
 	  	isBest:{ type: Boolean },
-	  	goto:{type:String,default:'false'}
+	  	goto:{type:String,default:'false'},
+	  	free:{ type: Boolean, default: false },
 	  },
 
 	  data () {

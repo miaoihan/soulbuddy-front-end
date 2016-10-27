@@ -11,7 +11,7 @@
 		  		
 		  	</div>
 			</div>
-			<answer-card :data="que" :index="$index" :datap="user"></answer-card>
+			<answer-card :data="que" :index="$index" :datap="user" :free="true"></answer-card>
 		</section>
   </div>
 </template>
