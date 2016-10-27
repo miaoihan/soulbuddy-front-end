@@ -27,7 +27,6 @@
   		<question-list :data="queList" :is-best="true"></question-list>	
   		<div class="seemore" @click="seeMore('que')">
   			查看更多精选问答
-
   		</div>
   	</div>
   </div>

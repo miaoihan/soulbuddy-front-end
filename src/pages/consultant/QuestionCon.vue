@@ -50,7 +50,7 @@
   </div>
   <div class="select-box" v-if="isfirst">
     <div class="wrapper">
-      点击用户头像，可查看用户详细资料和测评数据
+      点击用户头像，可查看该用户详细资料和测评数据
     </div>
     <div class="sel-btn wrapper" @click="closeBack">知道了</div>
   </div>
@@ -373,6 +373,7 @@ export default {
   text-align center
   margin-top: 0.5rem;
   margin-bottom: -0.4rem;
+  font-weight: 700;
 }
 .back{
   top:0

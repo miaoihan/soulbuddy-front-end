@@ -31,7 +31,7 @@ export default {
       // 测试开关
       test:false,
       // test:true,
-      uid: 58
+      uid: 65
     }
   },
   watch:{
@@ -119,7 +119,7 @@ export default {
                 'stopVoice',
                 'uploadVoice',
                 'downloadVoice',
-                'chooseWXPay'
+                'chooseWXPay',
                 ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
             });
         }, 'json');

@@ -37,7 +37,7 @@
   	<footer class="qd-footer fixed-bottom ztc"
   					@click="unlock"
   					v-if="lock">
-  		￥{{ question.reward_money }} 解锁该问题的所有回答
+  		￥1 解锁该问题的所有回答
   	</footer>
   </div>
 </template>
