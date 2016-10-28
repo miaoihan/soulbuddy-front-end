@@ -63,6 +63,11 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
       $.ajax({
           url: global.domain +'/thirdparty/wepay',
           type:'POST', dataType: 'json',
+          data:{
+          	total_fee: 1,
+            body: '测试' ,
+            // open_id: global.user.open_id,
+          },
           success: data => this.jsApiParams = data.data,
         });
 	  },

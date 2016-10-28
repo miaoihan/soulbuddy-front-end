@@ -234,4 +234,4 @@ export default {
 	color: #000;
 }
 </style>
->>>>>>> 9136681a5b37c122957ca3198a9ed192802bc3c1
+

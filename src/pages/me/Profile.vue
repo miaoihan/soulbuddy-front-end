@@ -79,29 +79,7 @@ import NavHeader from 'components/funComp/NavHeader';
 
       }
     },
-    created(){
-      $.ajax({
-         url: global.domain +"/user/get_user_info",
-         type:'post', 
-         dataType: 'json',
-         async:false,
-         data:{
-          token:global.token,
-          u_id:global.u_id
-         },
-         success: function(data) {
-           this.user=data.data
-           this.user_age = user.borth_date
-           this.user_sex = user.sex
-           this.user_education = user.education
-           this.marital_status = user.marital_status
-         }.bind(this),
-         error: function(xhr, status, err) {
-           console.err(err.toString())
-         }.bind(this)
-      });
 
-    },
     ready(){
       // console.log(global.user.marital_status)
       this.user = global.user
