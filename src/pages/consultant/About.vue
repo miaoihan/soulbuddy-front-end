@@ -7,8 +7,8 @@
   	<div class="cst-info wrapper" style="height: 5.0rem">
   		<div class="k-i-l">
 				<!-- 头像 -->
-				<i class="avator" style="height:4.05rem;width:4.05rem">
-					<img :src="user.logo" alt="" class="avator">
+				<i class="avator" style="height:4.05rem;width:4.05rem;background: url({{user.logo}}) no-repeat center top; background-size: cover">
+					<!-- <img alt="" class="avator" style=""> -->
 				</i>
 			</div>
 			<div class="k-i-r">
@@ -106,7 +106,7 @@ import NavHeader from 'components/funComp/NavHeader';
 			  			user_name:  data.data.user_name,
 			  			intro: data.data.intro,
 			  		}
-          	console.log(ths.user)
+          	console.log(this.user)
           }.bind(this),
           error: function(err) {
             console.error(JSON.stringify(err));

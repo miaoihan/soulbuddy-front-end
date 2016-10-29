@@ -6,7 +6,7 @@
 	  	<div class="container-20" style="border-bottom: 1px solid #e3e3e3">
 	  		<div class="top-aut">
 	  			<span class="avator pull-left" style="height: 1.5rem; width: 1.5rem">
-	  				<img :src="question.logo" alt="">
+	  				<img :src="question.logo" alt="" class="avator">
 	  			</span>
 					<span style="font-size: 13px;margin-left: 0.45rem">{{question.user_name}}</span>
 					<time class="pull-right" style="font-size: 13px; color: #999">{{question.creare_time}}</time>

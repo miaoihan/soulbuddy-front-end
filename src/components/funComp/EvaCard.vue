@@ -12,7 +12,7 @@
           <!-- 已经评测了就跳转 -->
           <div class="swiper-slide card-rall" style="height:5rem;text-align:center;" 
                v-for="eva in data" @click="go(eva.is_tested,eva.test_id)">
-          <div class="opacityback">
+          <div class="opacityback" >
             
           </div>
             <span class="eva-title">{{eva.title}}</span>
@@ -31,7 +31,7 @@
           <!-- 已经评测了就跳转 -->
           <div class="swiper-slide" style="height:4.0rem;" 
                v-for="eva in datap">
-            <div class="opacityback">
+            <div class="opacityback" style="opacity: 1;">
              <img style="height:100%;width:100%;" src="../../../src/assets/imgs/xl8.jpg">
             </div>
             <span class="eva-titlep">{{eva.title}}</span>

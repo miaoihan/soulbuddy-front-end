@@ -154,6 +154,12 @@ export default {
 * 公共样式部分
 *
 **/
+
+body{
+  overflow visible
+}
+
+
 .margin-right-10{
   margin-right:0.5rem
 }
@@ -372,5 +378,6 @@ export default {
 .toast-info{
    
  }
+ 
 
 </style>
