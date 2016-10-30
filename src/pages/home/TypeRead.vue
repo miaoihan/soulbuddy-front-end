@@ -3,6 +3,9 @@
   	<nav-header :title="title" left='back'></nav-header>
   	<div class="article-list">
   		<article-list :data="readList"></article-list>
+      <div class="seemore" @click="seeMore">
+        查看更多
+      </div>
   	</div> <!-- end article-list -->
   </div>
 </template>
@@ -16,7 +19,8 @@
     data(){
       return {
         readList: [],
-        title: ''
+        title: '',
+        type_page:1
       }
     },
     created(){
@@ -30,6 +34,14 @@
             tags: this.$route.query.type },
         v => this.readList = v.data ,'json');
     },
+    methods:{
+      seeMore(){
+        $.post(global.domain +'/article/get_article_list',
+        {   page: ++this.type_page,
+            tags: this.$route.query.type },
+        v => this.readList = this.readList.concat(v.data) ,'json');
+      }
+    }
 
   }
 </script>

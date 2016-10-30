@@ -6,10 +6,12 @@
         <a v-link="'/reading?type='+tag">{{tag}}</a>
       </span>
     </div>
-  	<div class="article-list ">
+  	<div class="article-list" style="margin-bottom:4rem;">
   		<article-list :data="readList"></article-list>
+      <div class="seemore" @click="seeMore">
+        查看更多
+      </div>
   	</div> <!-- end article-list -->
-    <div class="seemore" style="margin-bottom: 80px" @click="seeMore('art')">查看更多</div>
   </div>
 </template>
 
@@ -22,14 +24,22 @@
     data(){
       return {
         readList: [],
-        tags:[]
+        tags:[],
+        page: 1,
       }
+    },
+    methods:{
+      seeMore(){
+        // Zepto.toast("没有更多了",120000,'toast-info');
+        $.post(global.domain +'/article/get_article_list',
+          {cat_id: 1, page: ++this.page}, v => 
+          this.readList = this.readList.concat(v.data), 'json');
+      },
     },
     ready(){
       // 科普阅读列表
       $.post(global.domain +'/article/get_article_list',
-        {   page: 1,
-          cat_id: 1 },
+        { cat_id: 1 },
         v => this.readList = v.data ,'json');
       // 科普标签
       $.ajax({

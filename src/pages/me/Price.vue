@@ -10,8 +10,8 @@
 		此价格为用户向您咨询时，您的单次语音回答的价格。如果您未设定该价格，用户将无法向您发起咨询。
 	</div>
 	<div class="submitp-btn wrapper text-center" @click="submit">
-		<span style="opacity:1" v-if="price!=''">确定</span>
-		<span style="opacity:0.4" v-if="price==''">确定</span>
+		<span style="opacity:1" v-if="price">确定</span>
+		<span style="opacity:0.4" v-if="!price">确定</span>
 	</div>
 </template>
 
@@ -26,25 +26,36 @@ import NavHeader from 'components/funComp/NavHeader';
     },
     data(){
       return{
-      	price:'',
-      	opacity:'0.4'
+      	price: null,
+      	opacity:'0.4',
+      	backUrl: '',
       }
     },
-    created(){
-
-    },
     ready(){
-     if(this.price!=''){
+     if(this.price){
      	this.opacity=1
      }
-    },
-    compiled(){
-      
+     this.$router.beforeEach(function (transition) {
+	   	// alert(222)
+		   // console.log('成功浏览到: ' + transition.to.path)
+		   // this.backUrl = transition.to.path;
+		   this.$router.go(transition.to.path+'?price='+this.price);
+		 })
     },
     methods:{
       submit(){
-      	
-      }
+      	if (!this.price) return;
+      	// 设置资费
+	      $.post(global.domain +'/user/set_serivce_fee',
+	        { answer_fee: this.price, 
+	        	token: global.token,},
+	        v => {
+	        	switch(v.code){
+	        		case 1:
+	        			window.history.go(-1);
+	        	}
+	        } ,'json');
+	      }
     }
   }
 </script>
@@ -70,12 +81,10 @@ import NavHeader from 'components/funComp/NavHeader';
 .hint-text{
 	margin-top: 0.55rem;
 	margin-bottom: 2.0rem;
-	font-family: .PingFang-SC-Regular;
 	font-size: 11px;
 	color: #999999;
 }
 .submitp-btn{
-	font-family: .PingFang-SC-Medium;
 	font-size: 14px;
 	color: #FFFFFF;
 	width: 100%;

@@ -9,13 +9,13 @@
           </h1>
           <!-- {{data.tags | str2arr}} -->
           <!-- 标签组 -->
-          <p class="art-label">
+          <div class="art-label">
             <span class="label label-border" v-for="tag of tags">{{ tag }}</span>
-          </p>
+          </div>
           <!-- 信息 -->
           <article class="art-meta">
             <span>{{data.author}}</span>
-            <time>{{data.create_time}}</time>
+            <time>{{data.create_time.replace('00:00','')}}</time>
             <aside class="pull-right">来源：{{data.from}}</aside>
           </article>
       </section>
