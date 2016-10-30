@@ -53,7 +53,7 @@ import Evaluation from 'pages/home/Evaluation.vue'
     },
     ready(){
       this.data=this.values[this.placehorder-1]
-      alert("data is ++++++++++"+this.data)
+      // alert("data is ++++++++++"+this.data)
       // if(this.placehorder=='')
       // var currSelectValue = document.all.objSelect.value; 
 

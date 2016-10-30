@@ -25,8 +25,8 @@ export default {
     
   },
   ready(){
-  	this.answer_fee='￥ '+global.user.answer_fee
-  	this.identity=global.user.identity
+  	this.answer_fee='￥ '+global.user.answer_fee;
+  	this.identity=global.user.identity;
   },
   methods:{
     	logout(){
@@ -34,7 +34,6 @@ export default {
 	       		// this.$router.go('/bind')
 	       		WeixinJSBridge.call('closeWindow');
 	       }
-	            
 	         	return false;
     }
   }

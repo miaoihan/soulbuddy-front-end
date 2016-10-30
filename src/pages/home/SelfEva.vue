@@ -6,10 +6,10 @@
   <div>
   	<select-list :data="item.questions" :selarr.sync="selarr"></select-list>
   </div>
-  <!-- <footer>
+  <div style="margin-bottom:4rem">
   	<button class="button button-round btn-default f-btn"
   					@click="subAndCheck">提交</button>
-  </footer> -->
+  </div>
 </template> 
 
 <script>
@@ -119,10 +119,6 @@ import SelectList from 'components/areaComp/SelectList.vue'
 	width: 60%;
 	margin: 0 auto 1.5rem;
 
-}
-
-footer{
-	margin-bottom: 4.0rem;
 }
 
 

@@ -6,8 +6,11 @@
         <a v-link="'/reading?type='+tag">{{tag}}</a>
       </span>
     </div>
-  	<div class="article-list far-bom">
+  	<div class="article-list" style="margin-bottom:4rem;">
   		<article-list :data="readList"></article-list>
+      <div class="seemore" @click="seeMore">
+        查看更多
+      </div>
   	</div> <!-- end article-list -->
   </div>
 </template>
@@ -21,8 +24,17 @@
     data(){
       return {
         readList: [],
-        tags:[]
+        tags:[],
+        page: 1,
       }
+    },
+    methods:{
+      seeMore(){
+        // Zepto.toast("没有更多了",120000,'toast-info');
+        $.post(global.domain +'/article/get_article_list',
+          {cat_id: 2, page: ++this.page}, v => 
+          this.readList = this.readList.concat(v.data), 'json');
+      },
     },
     ready(){
       // 科普阅读列表
