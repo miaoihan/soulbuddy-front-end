@@ -73,10 +73,10 @@ export default {
           if(v.msg=='获取code失败') return
           // console.log(v)
           // alert('ajax:'+code)
-          // global.user = v.data.userinfo;
           // console.log(global.user+'*******')
           // alert(global.user)
           // 登陆后存储用户信息
+          global.user = v.data.userinfo;
           ku.token = v.data.token;
           // 判断是否绑定了手机
           let phone = v.data.userinfo.mobile

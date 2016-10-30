@@ -87,7 +87,6 @@ import Evaluation from 'pages/home/Evaluation.vue'
           url: global.domain +'/question/get_question_list',
           type:'POST', 
           dataType: 'json',
-          // cache: true,
           data:{
             page: 1,
             token: global.token

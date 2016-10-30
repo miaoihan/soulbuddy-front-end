@@ -113,6 +113,9 @@ var routes = {
   '/me/price': {
     component: require('pages/me/Price.vue')
   },
+  '/me/pricep': {
+    component: require('pages/me/Pricep.vue')
+  },
   '/message': {
     component: require('pages/me/Message.vue')
   },
