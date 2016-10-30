@@ -100,7 +100,7 @@ import EvaCard from 'components/funComp/EvaCard'
   }
 </script>
 
-<style>
+<style scoped>
 .top{
   overflow: hidden;
   height: 4.2rem;

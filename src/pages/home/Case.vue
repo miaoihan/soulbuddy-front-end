@@ -27,8 +27,7 @@
     ready(){
       // 科普阅读列表
       $.post(global.domain +'/article/get_article_list',
-        {   page: 1,
-          cat_id: 3 },
+        { cat_id: 3 },
         v => this.readList = v.data ,'json');
       // 故事标签
       $.ajax({

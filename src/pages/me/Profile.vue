@@ -188,7 +188,7 @@ import NavHeader from 'components/funComp/NavHeader';
   }
 </script>
 
-<style>
+<style scoped>
 .top{
   overflow: hidden;
   height: 5.4rem;
