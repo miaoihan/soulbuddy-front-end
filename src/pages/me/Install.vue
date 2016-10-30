@@ -25,7 +25,12 @@ export default {
     
   },
   ready(){
-  	this.answer_fee='￥ '+global.user.answer_fee;
+  	let price = this.$route.query.price
+  	console.log(price)
+  	if (price) 
+  		this.answer_fee = '￥ '+price;
+  	else 
+  		this.answer_fee = '￥ '+global.user.answer_fee;
   	this.identity=global.user.identity;
   },
   methods:{

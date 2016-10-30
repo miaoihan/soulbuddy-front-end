@@ -108,8 +108,6 @@
 			border none
 			height 5.0rem
 			width 100%
-.ask-footer
-	padding 		
 	
 .ask-gold
 	color $ztc	

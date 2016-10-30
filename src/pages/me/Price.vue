@@ -35,12 +35,9 @@ import NavHeader from 'components/funComp/NavHeader';
      if(this.price){
      	this.opacity=1
      }
-     this.$router.beforeEach(function (transition) {
-	   	// alert(222)
-		   // console.log('成功浏览到: ' + transition.to.path)
-		   // this.backUrl = transition.to.path;
-		   this.$router.go(transition.to.path+'?price='+this.price);
-		 })
+   //   this.$router.beforeEach(function (transition) {
+		 //   transition.redirect('/home')
+		 // })
     },
     methods:{
       submit(){
@@ -52,7 +49,8 @@ import NavHeader from 'components/funComp/NavHeader';
 	        v => {
 	        	switch(v.code){
 	        		case 1:
-	        			window.history.go(-1);
+	        			// window.history.go(-1);
+	        			this.$router.go('/me/install?price='+this.price)
 	        	}
 	        } ,'json');
 	      }

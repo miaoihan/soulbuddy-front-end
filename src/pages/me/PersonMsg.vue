@@ -35,7 +35,12 @@
    	<div class="textarea">
    		<textarea class="inputarea" maxlength="150" name="intro" v-model="intro" placeholder="请填写自我评价（最多150个字）"></textarea>
    	</div>
-    <change-btn class="button-top-15 container-20-lr" btntext="心理咨询费设定" url="/me/price" v-if="this.$route.params.id==0" :placeholder="answer_fee" place-color="#29ABE2"></change-btn>
+    <div class="tbar">
+      <span class="ask-gold" name="gold">咨询费（￥）</span>
+      <input name="reward_money" type="text" placeholder="0" class="input-gold" 
+             v-model="price" maxlength="4">
+    </div>
+    <!-- <change-btn class="button-top-15 container-20-lr" btntext="心理咨询费设定" :url="url" v-if="this.$route.params.id==0" :placeholder="answer_fee" place-color="#29ABE2"></change-btn> -->
    	<div class="save-box" style="margin-bottom:0rem">
    		<input class="save-body" type="button" value="保存" name="savemsg" v-if="this.$route.params.id==0" @click="subme1">
       <input class="save-body" type="button" value="提交申请" name="savemsg" v-if="this.$route.params.id==1" @click="subme2">
@@ -72,7 +77,8 @@ export default {
       token:'',
       identity:1,
       answer_fee:'',
-      user:{}
+      user:{},
+      price: null,
     }
   },
   ready:function(){
@@ -83,6 +89,7 @@ export default {
     this.true_name=user.true_name
     this.real_logo=user.real_logo
     this.token=localStorage.token
+    this.price = user.answer_fee;
 	  	$.post(global.domain +'/user/get_my_info',
         { token: global.token },
         v => this.person = v.data ,'json');
@@ -177,7 +184,12 @@ export default {
                   console.err(err.toString())
                 }.bind(this)
               });
-        }
+          // 设置资费
+          $.post(global.domain +'/user/set_serivce_fee',
+            { answer_fee: this.price, 
+              token: global.token,},
+            v => {} ,'json');
+          }
       },
       //申请成为咨询师
       subme2(){
@@ -297,5 +309,15 @@ input::-webkit-input-placeholder {text-align:right}
 	font-size:0.8rem;
 	margin-top:1.5rem;
 	margin-bottom:2.5rem
+}
+
+.input-gold{
+  display inline-block
+  width 1.8rem
+  float right
+  text-align center
+}
+.ask-gold{
+  color $ztc
 }
 </style>
