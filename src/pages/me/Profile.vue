@@ -79,7 +79,12 @@ import NavHeader from 'components/funComp/NavHeader';
 
       }
     },
-
+    created(){
+      this.user_age = user.borth_date
+      this.user_sex = user.sex
+      this.user_education = user.education
+      this.marital_status = user.marital_status
+    },
     ready(){
       // console.log(global.user.marital_status)
       this.user = global.user

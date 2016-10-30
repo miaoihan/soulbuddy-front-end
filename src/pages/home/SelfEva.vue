@@ -6,11 +6,11 @@
   <div>
   	<select-list :data="item.questions" :selarr.sync="selarr"></select-list>
   </div>
-  <footer>
+  <!-- <footer>
   	<button class="button button-round btn-default f-btn"
   					@click="subAndCheck">提交</button>
-  </footer>
-</template>
+  </footer> -->
+</template> 
 
 <script>
 import NavHeader from 'components/funComp/NavHeader'
