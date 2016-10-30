@@ -1,6 +1,6 @@
 <template>
 <!-- 经验答人详情 -->
-<nav-header title="" left="back" :fav-type="2" :fav-id="user.u_id" collected="collected" :fav-count="user.fav_count"></nav-header>
+<nav-header title="" left="back" :fav-type="2" :fav-id="user.u_id" :collected="collected" :fav-count="user.fav_count"></nav-header>
   <div>
   	<div class="at-top part container-20"
   			 :class="user.identity == 1? 'ztc' : 'ab-kol' ">
@@ -109,7 +109,7 @@ import NavHeader from 'components/funComp/NavHeader';
 			  		console.log(this.datap)
           	if(this.user.is_fav==1){
 		        	this.collected=true
-		        }
+		     }
           }.bind(this),
           error: function(xhr, status, err) {
             console.error(readList, status, err.toString());
