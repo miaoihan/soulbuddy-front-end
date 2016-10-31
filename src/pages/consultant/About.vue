@@ -58,6 +58,12 @@
   					@click="ask">
   		￥{{ user.answer_fee }} 向{{ user.user_name }}提一个问题
   	</footer>
+  	<!-- loading -->
+		<div class="spinner" v-if="loading">
+		  <div class="bounce1"></div>
+		  <div class="bounce2"></div>
+		  <div class="bounce3"></div>
+		</div>
   </div>
 </template>
 
@@ -75,15 +81,54 @@ import NavHeader from 'components/funComp/NavHeader';
 	  		user_type:"",
 	  		about_info:[],
 	  		datap:{},
+	  		loading: false
 	  	}
 	  },
 	  methods:{
 	  	ask(){
-	  		// 这里调用微信支付
-	  		let is_pay = true
-	  		if (is_pay) {
-	  			this.$router.go('/askto?uid='+ this.user.u_id);
-	  		}
+	  		// 微信支付
+		  	this.loading = true;
+	  		// 先获取订单
+	  		$.ajax({
+          url: global.domain +'/thirdparty/wepay',
+          type:'POST', dataType: 'json',
+          data:{
+          	total_fee: 1,
+            body: '向'+ this.user.user_name +'提的问题',
+            open_id: global.open_id,
+          },
+          success: data => {
+          	let vm = this;
+          	let param = JSON.parse(data.data);
+          	this.loading = false;
+      			// 调微信支付接口
+		      	wx.chooseWXPay({
+					    timestamp: param.timeStamp+'', 
+					    nonceStr: param.nonceStr, 
+					    package: param.package, 
+					    signType: param.signType, 
+					    paySign: param.paySign, 
+					    success: function (res) {
+				        // 支付成功后解锁
+				        console.log(res);
+					      $.post(global.domain +'/question/buy_answers',
+					        { token: global.token, q_id: id },
+					        v => {
+					        	vm.lock = false;
+					        	for(let i in vm.data){
+					        		if (vm.data[i].q_id === id) 
+					        			vm.data[i].can_listen = true;
+					        		console.log('data-----'+vm.data)
+					        		console.log('prop data-----'+vm.props.data)
+					        	}
+					        } ,'json');
+						    },
+						    fail: function(res){
+						    	console.log(res)
+						    }
+							});
+          },
+        });
 	  	},
 	  },
 	  ready(){

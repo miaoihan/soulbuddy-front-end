@@ -35,13 +35,17 @@
   		</div>
   	</section>
   	<footer class="qd-footer fixed-bottom ztc"
-  					@click="unlock"
-  					v-if="lock">
-  		￥1 解锁该问题的所有回答
+  					@click="unlock" v-if="!question.can_listen || !lock">
+  					￥1 解锁该问题的所有回答
   	</footer>
+  	<!-- loading -->
+		<div class="spinner" v-if="loading">
+		  <div class="bounce1"></div>
+		  <div class="bounce2"></div>
+		  <div class="bounce3"></div>
+		</div>
   </div>
 </template>
-
 <script>
 import NavHeader from 'components/funComp/NavHeader'
   export default{
@@ -54,18 +58,44 @@ import NavHeader from 'components/funComp/NavHeader'
 	  		lock: true ,
 	  		question: {},
 	  		ans_best:{},
-	  		ans_other:[]
+	  		ans_other:[],
+	  		loading: false,
 			}
 	  },
 	  methods:{
 	  	// 这里跳转支付接口
 	  	unlock(){
-	  		this.lock = false
-	  		this.best.isFree = true
-	  		for(let i in this.data){
-	  			// console.log(obj)
-	  			this.data[i].isFree = true
-	  		}	
+	  		// 先获取订单
+	  		$.ajax({
+          url: global.domain +'/thirdparty/wepay',
+          type:'POST', dataType: 'json',
+          data:{
+          	total_fee: 1,
+            body: '向'+ this.user.user_name +'提的问题',
+            open_id: global.open_id,
+          },
+          success: data => {
+          	let vm = this;
+          	let param = JSON.parse(data.data);
+          	this.loading = false;
+      			// 调微信支付接口
+		      	wx.chooseWXPay({
+					    timestamp: param.timeStamp+'', 
+					    nonceStr: param.nonceStr, 
+					    package: param.package, 
+					    signType: param.signType, 
+					    paySign: param.paySign, 
+					    success: function (res) {
+				        // 支付成功后解锁
+				        console.log(res);
+					      this.lock = false;
+						    },
+						    fail: function(res){
+						    	console.log(res)
+						    }
+							});
+          },
+        });
 	  	}
 	  },
 	  ready(){

@@ -173,7 +173,7 @@ export default {
           that.voice.localId = res.localId;
         },
         fail: function (res) {
-          alert(JSON.stringify(res));
+          // alert(JSON.stringify(res));
         }
       });
     // };
@@ -190,6 +190,7 @@ export default {
       });
     },
     cancle(){
+      //取消回答
       $.post(global.domain +'/question/cancel_answer',
         { token: global.token, q_id: this.$route.params.qid }, v => {
           // this.readList = v.data; 
@@ -232,7 +233,7 @@ export default {
       var that = this
       if (this.voice.localId == '') {
         alert('请先录制一段声音');
-        return;
+        // return;
       }
       // 语音上传,然后保存到服务器
       wx.uploadVoice({
@@ -245,16 +246,16 @@ export default {
           console.log('user_name: '+global.user.user_name)
           //保存到服务器
           $.post( global.domain +'/question/add_answer', 
-          { 'token'      :  global.token,
-            'q_id'       :  that.$route.params.qid,
-            'answer_url' :  res.serverId,
-            'user_name'  :  global.user.user_name,
-            'answer_time':  that.voice.time
-          },
-          function (res) {
-            alert('回答成功!');
-          }, 'json');
-          }
+            { 'token'      :  global.token,
+              'q_id'       :  that.$route.params.qid,
+              'answer_url' :  res.serverId,
+              'user_name'  :  global.user.user_name,
+              'answer_time':  that.voice.time
+            },
+            function (res) {
+              alert('回答成功!');
+            }, 'json');
+        }
       });
     }
   }

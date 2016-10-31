@@ -17,7 +17,8 @@
   	<div>
 	  	<div class="tbar">
 	  		<span class="ask-gold" name="gold">请输入赏金金额（￥）</span>
-	  		<input name="reward_money" type="text" placeholder="0" class="input-gold">
+	  		<input name="reward_money" type="text" placeholder="0" class="input-gold"
+	  					 onkeyup="value=value.replace(/[^\d]/g,'')" maxlength="4" v-model="gold">
 	  	</div>
 	  	<aside class="tips">
 				此问答板块发布问题后，最多可由三位咨询师回答，您可设定相对的赏金来答谢回答者们。收到回答后，您可设置一位最佳答案，最佳回答者将获得60%赏金，其余均分40%。将问题设为公开后，您的赏金若在5元以上，其他人收听一次，您和最佳回答者可各获得0.5元，1000次500元。
@@ -31,6 +32,12 @@
 	       </label>
   	</div>
   	</form>
+  	<!-- loading -->
+		<div class="spinner" v-if="loading">
+		  <div class="bounce1"></div>
+		  <div class="bounce2"></div>
+		  <div class="bounce3"></div>
+		</div>
   </div>
 </template>
 
@@ -42,9 +49,10 @@
 	  data(){
 	  	return{
 	  		is_public: true,
-	  		
+	  		gold: '0',
 	  		token: '',
 	  		sub: '',
+	  		loading: false,
 	  	}
 	  },
 	  methods:{
@@ -62,20 +70,52 @@
 	  			return false
 	  		}
 	  		else{
-	  			$.ajax({
-          url: global.domain +"/question/add_question",
-          type:'post', 
-          dataType: 'json',
-          cache: true,
-          data: $('#askForm').serialize(),//序列化
-          success: function(data) {
-            // console.log( data);	
-            this.$router.go('/home')
-            console.log(this.$router)
-          }.bind(this),
-          error: function(xhr, status, err) {
-          }.bind(this)
+		  	this.loading = true;
+	  			// 微信支付
+	  		// 先获取订单
+	  		$.ajax({
+          url: global.domain +'/thirdparty/wepay',
+          type:'POST', dataType: 'json',
+          data:{
+          	total_fee: this.gold * 100,
+            body: '我发出的问题',
+            open_id: global.open_id,
+          },
+          success: data => {
+          	let vm = this;
+          	let param = JSON.parse(data.data);
+          	this.loading = false;
+      			// 调微信支付接口
+		      	wx.chooseWXPay({
+					    timestamp: param.timeStamp+'', 
+					    nonceStr: param.nonceStr, 
+					    package: param.package, 
+					    signType: param.signType, 
+					    paySign: param.paySign, 
+					    success: function (res) {
+				        // 支付成功后提问成功
+					      $.ajax({
+				          url: global.domain +"/question/add_question",
+				          type:'post', 
+				          dataType: 'json',
+				          cache: true,
+				          data: $('#askForm').serialize(),//序列化
+				          success: function(data) {
+				            // console.log( data);	
+				            this.$router.go('/home')
+				            console.log(this.$router)
+				          }.bind(this),
+				          error: function(xhr, status, err) {
+				          }.bind(this)
+				        });
+						    },
+						    fail: function(res){
+						    	console.log(res)
+						    }
+							});
+          },
         });
+	  			
 			   }
 	  	}
 	  },
