@@ -157,29 +157,56 @@
 			},
 			like(){
 			// alert('dsfsfdfsdf')
-				this.collected == true;
-      	$.ajax({
-            url: global.domain +"/user/add_favorite",
-            type:'post', 
-            dataType: 'json',
-            data: {
-              token:global.token,
-              fav_type:this.FavType,
-              fav_id:this.FavId,
-            }	,//序列化
-            success: function(data) {
-            	// alert(this.title)
-            	// this.collected=!this.collected
-            	this.collected = true 
-            	// alert(this.collected)
-              // console.log( data);  
-            }.bind(this),
-            error: function(xhr, status, err) {
-              console.err(err.toString())
-            }.bind(this)
-        	});
-        	// alert(1231233)
-  		}
+				if(this.collected==false){
+					this.collected == true;
+					this.FavCount++
+			      	$.ajax({
+			            url: global.domain +"/user/add_favorite",
+			            type:'post', 
+			            dataType: 'json',
+			            data: {
+			              token:global.token,
+			              fav_type:this.FavType,
+			              fav_id:this.FavId,
+			            }	,//序列化
+			            success: function(data) {
+			            	// alert(this.title)
+			            	// this.collected=!this.collected
+			            	this.collected = true 
+			            	// alert(this.collected)
+			              // console.log( data);  
+			            }.bind(this),
+			            error: function(xhr, status, err) {
+			              console.err(err.toString())
+			            }.bind(this)
+		        	});
+				}else{
+					this.collected == false;
+					this.FavCount--
+			      	$.ajax({
+			            url: global.domain +"/user/cancel_favorite",
+			            type:'post', 
+			            dataType: 'json',
+			            data: {
+			              token:global.token,
+			              fav_type:this.FavType,
+			              fav_id:this.FavId,
+			            }	,//序列化
+			            success: function(data) {
+			            	// alert(this.title)
+			            	// this.collected=!this.collected
+			            	this.collected = false 
+			            	// alert(this.collected)
+			              // console.log( data);  
+			            }.bind(this),
+			            error: function(xhr, status, err) {
+			              console.err(err.toString())
+			            }.bind(this)
+		        	});
+				}
+				
+	        	// alert(1231233)
+	  		}
 		},
 		ready(){
 			// document.body.onclick=function(){

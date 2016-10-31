@@ -6,10 +6,17 @@
   <div>
   	<select-list :data="item.questions" :selarr.sync="selarr"></select-list>
   </div>
+<<<<<<< HEAD
+  <footer>
+  	<button class="button button-round btn-default f-btn"
+  					@click="subAndCheck">提交</button>
+  </footer>
+=======
   <div style="margin-bottom:4rem">
   	<button class="button button-round btn-default f-btn"
   					@click="subAndCheck">提交</button>
   </div>
+>>>>>>> 1036dbbb67da4e1da4bd9d0a3355f3a76a97aa8f
 </template> 
 
 <script>

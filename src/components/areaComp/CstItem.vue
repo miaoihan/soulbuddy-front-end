@@ -3,7 +3,7 @@
 		  	  <i class="col-img" @click="like(data.u_id)" v-if="(data.is_fav==0 && $route.path!='/me/favorite') || !is_like">
 						<img src="../../assets/imgs/like.png" alt="">
 		  	  </i>
-			  <i class="col-img" v-if="data.is_fav==1 || is_like || $route.path=='/me/favorite'">
+			  <i class="col-img" @click="cancelike(data.u_id)" v-if="data.is_fav==1 || is_like || $route.path=='/me/favorite'">
 					<img src="../../assets/imgs/liked.png" alt="">
 			  </i>
 			  <a v-link="{name:'user', params:{ id: data.u_id }}">
@@ -53,6 +53,27 @@
 	  		this.data.fav_count++
 	  		$.ajax({
 		            url: global.domain +"/user/add_favorite",
+		            type:'post', 
+		            dataType: 'json',
+		            data: {
+		              token:global.token,
+		              fav_type:1,
+		              fav_id:u_id,
+		            },
+		            success: function(data) {
+		            	console.log('已收藏')
+		            },
+		            error: function(xhr, status, err) {
+		              console.err(err.toString())
+		            }
+	        });
+	  	},
+	  	cancelike(u_id){
+	  		console.log("u_id is "+u_id)
+	  		this.is_like = false
+	  		this.data.fav_count--
+	  		$.ajax({
+		            url: global.domain +"/user/cancel_favorite",
 		            type:'post', 
 		            dataType: 'json',
 		            data: {
