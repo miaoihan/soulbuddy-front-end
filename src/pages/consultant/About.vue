@@ -7,7 +7,7 @@
   	<div class="cst-info wrapper" style="height: 5.0rem">
   		<div class="k-i-l">
 				<!-- 头像 -->
-				<i class="avator" style="height:4.05rem;width:4.05rem;background: url({{user.logo}}) no-repeat center top; background-size: cover">
+				<i class="avator" style="height:4.05rem;width:4.05rem;background: url({{real_logo}}) no-repeat center top; background-size: cover">
 					<!-- <img alt="" class="avator" style=""> -->
 				</i>
 			</div>
@@ -81,6 +81,7 @@ import NavHeader from 'components/funComp/NavHeader';
 	  		user_type:"",
 	  		about_info:[],
 	  		datap:{},
+	  		real_logo:'',
 	  		loading: false
 	  	}
 	  },
@@ -146,8 +147,9 @@ import NavHeader from 'components/funComp/NavHeader';
           },
           success: function(data) {
           	this.user = data.data;
+          	this.real_logo = global.logo_url+this.user.real_logo
           	this.datap = {
-			  			logo:  data.data.logo,
+			  			logo:  this.real_logo,
 			  			user_name:  data.data.user_name,
 			  			intro: data.data.intro,
 			  		}

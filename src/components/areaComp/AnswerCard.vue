@@ -11,7 +11,7 @@
 							<i class="avator" v-if="datap" style="background: url({{datap.logo}}) no-repeat center top; background-size: cover">	</i>
 						</a>
 						<a v-if="goto==='false'">
-							<i class="avator" v-if="!datap" style="background: url({{data.logo}}) no-repeat center top; background-size: cover"></i>
+							<i class="avator" v-if="!datap" style="background: url({{data.identity==1?data.real_logo:data.logo}}) no-repeat center top; background-size: cover"></i>
 							<i class="avator" v-if="datap" style="background: url({{datap.logo}}) no-repeat center top; background-size: cover"></i>
 						</a>		
 					</div>

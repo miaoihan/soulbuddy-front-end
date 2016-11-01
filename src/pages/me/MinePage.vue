@@ -4,7 +4,8 @@
     <div class="person-msg-body">
     	<div class="person-msg-basic">
     		<div class="img-body">
-    			<img :src="user.logo" class="img-imgs">
+    			<img :src="user.logo" class="img-imgs" v-if="identityb == 0||user.identity==2">
+    			<img :src="real_logo" class="img-imgs" v-if="identityb ==1&&user.identity==1">
     		</div>
     		<div class="person-msg-name">
     			<span class="name-text">{{user.user_name}}</span>
@@ -81,20 +82,27 @@ export default {
   		identity: 0,
   		isdaren: null,
   		user: {},
-  		already: false
+  		already: false,
+  		real_logo:''
     }
   },
   created(){
+  	// console.log("****************"+this.real_logo)
   	$.post(global.domain +'/user/get_my_info',
         { token: global.token },
         v => {
 	        	global.user=v.data;this.user=v.data
 	        	if (v.data.identity == 1 || v.data.identity == 2) 
-	        		this.isdaren = true;
+	        		{
+	        			this.isdaren = true;
+	        			this.real_logo=global.logo_url+this.user.real_logo
+	        		}
 	        	this.already = true
         	} ,'json');
   },
   ready:function(){
+  	// this.real_logo='http://xinling.oss-cn-shanghai.aliyuncs.com/'+global.user.real_logo
+  	
 	  	// 获取用户信息
 		  // this.identity = global.user.identity;
 		  // this.identityb = global.user.identity;

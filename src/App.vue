@@ -51,13 +51,14 @@ export default {
     //storage存储全局数据
     var ku = window.localStorage
     ku.domain = 'http://xinling.songtaxihuan.com'
+    ku.logo_url = "http://xinling.oss-cn-shanghai.aliyuncs.com/"
     //第二次跳转获取token
     this.token = ku.token
     global.token = ku.token
     global.open_id = ku.open_id
     global.domain = 'http://xinling.songtaxihuan.com'
+    global.logo_url = "http://xinling.oss-cn-shanghai.aliyuncs.com/"
     global.user = ku.user
-
       //测试环境
       if (this.test) {
         $.get(global.domain +'/test/test?uid='+this.uid,
