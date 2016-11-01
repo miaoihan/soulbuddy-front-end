@@ -25,7 +25,7 @@
 	  data(){
 	  	return{
 	  		isEva: false,
-	  		is_play: false
+	  		is_play: false,
 	  	}
 	  },
 	  methods:{
@@ -33,11 +33,11 @@
 	  	voiceAction(e){
 	  		e.preventDefault();
 	  		// console.log(e)
-	  		if (!is_play) {
-			    voice.play();
+	  		if (!this.is_play) {
+			    // voice.play();
 			    this.is_play = true
 			  } else {
-			    voice.pause();
+			    // voice.pause();
 			    this.is_play = false
 			  }
 	  		// 免费

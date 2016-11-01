@@ -134,9 +134,9 @@
 				this.$router.go('/me/profile')
 			},
 			ask(){
-				if (global.user.user_name==''){ 
-					this.show_modal = true;
-				}
+				// if (global.user.user_name==''){ 
+				// 	this.show_modal = true;
+				// }
 				this.$router.go('/ask')
 			},
 			click(i){

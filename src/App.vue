@@ -55,9 +55,10 @@ export default {
     //第二次跳转获取token
     this.token = ku.token
     global.token = ku.token
+    global.open_id = ku.open_id
     global.domain = 'http://xinling.songtaxihuan.com'
     global.logo_url = "http://xinling.oss-cn-shanghai.aliyuncs.com/"
-      
+    global.user = ku.user
       //测试环境
       if (this.test) {
         $.get(global.domain +'/test/test?uid='+this.uid,
@@ -76,10 +77,12 @@ export default {
           // console.log(v)
           // alert('ajax:'+code)
           // console.log(global.user+'*******')
+          // global.user = v.data.userinfo;
           // alert(global.user)
           // 登陆后存储用户信息
-          global.user = v.data.userinfo;
           ku.token = v.data.token;
+          ku.user = v.data.userinfo;
+          ku.open_id = v.data.userinfo.open_id;
           // 判断是否绑定了手机
           let phone = v.data.userinfo.mobile
           // 如果没有绑定，跳转到绑定手机页面
@@ -87,13 +90,13 @@ export default {
             // this.bind = false;
             // console.log(this.$router)
             // this.$router.go({path:url})
-            location.href = this.host +'/#!/bind'
+            location.href = this.host +'?/#!/bind'
           }
           // 绑定过，直接登录
           else {
             this.bind = true;
             this.userinfo = v.data.userinfo;
-            location.href = this.host +'/#!/home'
+            location.href = this.host +'?/#!/home'
             // this.is_new = v.data.is_new;
           }
           
@@ -128,22 +131,7 @@ export default {
 
   },
   ready(){
-      // console.log(this.$el+'**********')
 
-    // $.ajax({
-    //     url: localStorage.domain +'/user/get_my_info',
-    //     type:'POST', dataType: 'json',
-    //     data:{ token:localStorage.token },success: v => {
-    //       global.user = v.data.userinfo
-    //     },
-    //         error: err => console.log(err.toString())
-    //     });
-    
-      
-    // alert(this.$route.path)
-    // 微信配置
-
-      
   }
 
 }
@@ -380,6 +368,55 @@ body{
 .toast-info{
    
  }
+ 
+
+ //loading css
+.spinner {
+  position: fixed
+  top: 45%;
+  left: 30%
+  width: 7.5rem
+  text-align: center;
+}
+ 
+.spinner > div {
+  width: 30px;
+  height: 30px;
+  background-color: #67CF22;
+ 
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: bouncedelay 1.4s infinite ease-in-out;
+  animation: bouncedelay 1.4s infinite ease-in-out;
+  /* Prevent first frame from flickering when animation starts */
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+ 
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+ 
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+ 
+@-webkit-keyframes bouncedelay {
+  0%, 80%, 100% { -webkit-transform: scale(0.0) }
+  40% { -webkit-transform: scale(1.0) }
+}
+ 
+@keyframes bouncedelay {
+  0%, 80%, 100% {
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 40% {
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+}
  
 
 </style>

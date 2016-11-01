@@ -1,6 +1,6 @@
 <template>
 <nav-header title="我听过的问题" left="back"></nav-header>
-  <div class="wrapper">
+  <div class="wrapper far-bom">
   <!-- 问题列表 -->
   	<section class="question-item part" v-for="que in questions">
 		  <div class="q-i-title">
@@ -11,7 +11,7 @@
 		  
 		  	</div>
 			</div>
-			<answer-card :data="que.answer"></answer-card>
+			<answer-card :data="que" :free="true"></answer-card>
 		</section>
   </div>
 </template>

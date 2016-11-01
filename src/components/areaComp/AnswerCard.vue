@@ -5,22 +5,13 @@
 				<div class="answer-inf wrapper">
 				<!-- 头像 -->
 					<div class="avator pull-left">
-					<!-- 写两个反而更快，强迫症的自行改之 -->
-						<!-- <a v-link="{name:'user', params:{ id: data.user_id }}" v-if="goto==='true'">
-							<img :src="data.logo" alt="头像" class="avator" v-if="!datap">
-							<img :src="datap.logo" alt="头像" class="avator" v-if="datap">	
-						</a>
-						<a v-if="goto==='false'">
-							<img :src="data.logo" alt="头像" class="avator" v-if="!datap">
-							<img :src="datap.logo" alt="头像" class="avator" v-if="datap">	
-						</a> -->
-
+					<!-- 写两个反而更快，强迫症的自行改之 属性多了则不然-->
 						<a v-link="{name:'user', params:{ id: data.user_id }}" v-if="goto==='true'">
 							<i class="avator" v-if="!datap" style="background: url({{data.logo}}) no-repeat center top; background-size: cover"></i>
 							<i class="avator" v-if="datap" style="background: url({{datap.logo}}) no-repeat center top; background-size: cover">	</i>
 						</a>
 						<a v-if="goto==='false'">
-							<i class="avator" v-if="!datap" style="background: url({{data.logo}}) no-repeat center top; background-size: cover"></i>
+							<i class="avator" v-if="!datap" style="background: url({{data.identity==1?data.real_logo:data.logo}}) no-repeat center top; background-size: cover"></i>
 							<i class="avator" v-if="datap" style="background: url({{datap.logo}}) no-repeat center top; background-size: cover"></i>
 						</a>		
 					</div>
@@ -97,7 +88,7 @@ import Voice from 'components/funComp/Voice.vue'
 	  					this.data.is_best = 1;
 	          }.bind(this),
 	          error: function(xhr, status, err) {
-	            console.error(rr.toString());
+	            console.error(err.toString());
 	          }.bind(this)
 	        });
 	  	}
