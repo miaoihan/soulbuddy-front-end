@@ -8,7 +8,7 @@
 			  </i>
 			  <a v-link="{name:'user', params:{ id: data.u_id }}">
 			  	<div class="z-avator">
-			  		<img :src="data.logo" alt="">
+			  		<img :src="data.real_logo" alt="">
 			  		
 			  	</div>
 			  	<div class="z-desc container-16">
