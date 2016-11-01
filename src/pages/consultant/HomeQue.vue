@@ -23,6 +23,11 @@
 				    	</div>
 			    	</a>
 			    </div>
+			    <div class="swiper-slide" v-if="myQues.length==0">
+				    <div class="que-text">
+				    	<p>暂时没有人向我咨询</p>
+				    </div>
+			    </div>
 			</div>
 	    </div>
 	  </div>
