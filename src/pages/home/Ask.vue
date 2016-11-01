@@ -65,9 +65,27 @@
 	  			alert('内容不能为空！')
 	  			return false
 	  		}
-	  		if($('[name="reward_money"]').val()===''){
-	  			alert('赏金不能为空！')
-	  			return false
+	  		// if($('[name="reward_money"]').val()===''){
+	  		// 	alert('赏金不能为空！')
+	  		// 	return false
+	  		// }
+	  		if (this.gold==0) {
+	  			this.loading = true;
+	  			$.ajax({
+	          url: global.domain +"/question/add_question",
+	          type:'post', 
+	          dataType: 'json',
+	          cache: true,
+	          data: $('#askForm').serialize(),//序列化
+	          success: function(data) {
+	            // console.log( data);	
+	            this.loading = false;
+	            this.$router.go('/home')
+	            console.log(this.$router)
+	          }.bind(this),
+	          error: function(xhr, status, err) {
+	          }.bind(this)
+	        });
 	  		}
 	  		else{
 		  	this.loading = true;
@@ -108,11 +126,11 @@
 				          error: function(xhr, status, err) {
 				          }.bind(this)
 				        });
-						    },
-						    fail: function(res){
-						    	console.log(res)
-						    }
-							});
+					    },
+					    fail: function(res){
+					    	console.log(res)
+					    }
+						});
           },
         });
 	  			
