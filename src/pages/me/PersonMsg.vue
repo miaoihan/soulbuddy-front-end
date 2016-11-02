@@ -10,7 +10,7 @@
     	</div>
     </div>
     <form action="" method="post" id="editmsg">
-    <input type="hidden" name="real_logo" :value="1315" id="real_logo">
+    <input type="hidden" name="real_logo" :value="serverId" id="real_logo">
     <input type="hidden" name="certificate"
      :value="ceid" v-if="this.$route.params.id==1" >
     <input type="hidden" name="token" :value="token">
@@ -37,7 +37,7 @@
    	</div>
     <div class="tbar">
       <span class="ask-gold" name="gold">咨询费（￥）</span>
-      <input name="reward_money" type="text" placeholder="0" class="input-gold" 
+      <input name="answer_fee" type="text" placeholder="0" class="input-gold" 
              v-model="price" maxlength="4">
     </div>
     <!-- <change-btn class="button-top-15 container-20-lr" btntext="心理咨询费设定" :url="url" v-if="this.$route.params.id==0" :placeholder="answer_fee" place-color="#29ABE2"></change-btn> -->
@@ -194,10 +194,10 @@ export default {
       //申请成为咨询师
       subme2(){
       // alert('dsfsfdfsdf')
-      if($('#real_logo').val()===''){
-          alert('真实头像不能为空')
-          return false
-        }
+      // if($('#real_logo').val()===''){
+      //     alert('真实头像不能为空')
+      //     return false
+      //   }
         if($('[name="true_name"]').val()===''){
           alert('真实姓名不能为空')
           return false
@@ -222,7 +222,12 @@ export default {
                 async:false,
                 data: $('#editmsg').serialize(),//序列化
                 success: function(data) {
-                  this.$router.go('/me')
+                  if(data.code==1){
+                    this.$router.go('/me')
+                  }
+                  else{
+                    alert(data.msg)
+                  }
                 }.bind(this),
                 error: function(xhr, status, err) {
                   console.err(err.toString())
