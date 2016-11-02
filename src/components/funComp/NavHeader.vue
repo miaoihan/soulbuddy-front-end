@@ -70,7 +70,7 @@
   			<span class="m-b-3" @click="jumpTo" style="font-weight: 700">立即去完善资料</span>
   		</div>
   	</div>
-  </div>
+  </div> <!-- end modal -->
 </div>
 </template>
 
@@ -134,9 +134,9 @@
 				this.$router.go('/me/profile')
 			},
 			ask(){
-				// if (global.user.user_name==''){ 
-				// 	this.show_modal = true;
-				// }
+				if (global.user.user_name==''){ 
+					this.show_modal = true;
+				}
 				this.$router.go('/ask')
 			},
 			click(i){

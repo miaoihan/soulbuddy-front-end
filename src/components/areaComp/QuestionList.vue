@@ -12,7 +12,7 @@
 			  	<div :class="que.answer_url? 'nock':'' ">
 			  		<span class="label" v-if="que.is_free">免费</span>
 			  		<span class="nock-text" v-if="!que.can_listen && $route.name!='myque' && que.answer_url"
-			  					@click="callpay(que.q_id,$event)">￥1元解锁该问题的所有回答</span>
+			  					@click.prevent="callpay(que.q_id)">￥1元解锁该问题的所有回答</span>
 			  	</div>
 				</div>
 					<answer-card :data="que" :index="$index" v-if="que.answer_url" :datap="datap" :is-best="isBest"></answer-card>
@@ -31,13 +31,22 @@
 			</div>
 				<answer-card :data="que" :index="$index" v-if="que.answer_url"  ></answer-card>
 			</a>
-	</section>
-	<!-- loading -->
-	<div class="spinner" v-if="loading">
-	  <div class="bounce1"></div>
-	  <div class="bounce2"></div>
-	  <div class="bounce3"></div>
-	</div>
+		</section>
+		<!-- loading -->
+		<div class="spinner" v-if="loading">
+		  <div class="bounce1"></div>
+		  <div class="bounce2"></div>
+		  <div class="bounce3"></div>
+		</div>
+		<!-- modal -->
+		<div v-if="show_modal">
+			<div class="modal-bg" @click="closeModal"></div>
+			<div class="pay-modal">
+				<div style="border-bottom:1px solid #e7e7e7" @click="yuPay">余额支付</div>
+				<div @click="wxPay(data[0].q_id)">微信支付</div>
+			</div>	
+		</div> <!-- end modal -->
+
   </div>
 </template>
 
@@ -56,6 +65,7 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
   			jsApiParams: {},
   			fuck:{},
   			loading: false,
+  			show_modal: false,
   		}
   	},
 	  props: {
@@ -65,24 +75,22 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
 	  	type:{type:String, default: 'other'}
 	  },
 	  created(){
-	  	// this.fuck = {'a':'fuck'}
-	  	// 获取微信支付jsapi 参数
-      $.ajax({
-          url: global.domain +'/thirdparty/wepay',
-          type:'POST', dataType: 'json',
-          data:{
-          	total_fee: 1,
-            body: '测试' ,
-            open_id: global.open_id,
-            // open_id: global.user.open_id,
-          },
-          success: data => this.jsApiParams = data.data,
-        });
 	  },
 	  methods:{
+	  	callpay(){
+	  		this.show_modal = true
+	  	},
+	  	yuPay(){
+	  		if (global.user.balance<1) alert('余额不足,请充值!');
+	  		else{
+
+	  		}
+	  	},
+	  	closeModal(){
+     	 this.show_modal = false
+      },
 	  	// 微信支付
-	  	callpay(id,e){
-	  		e.preventDefault();
+	  	wxPay(id){
 	  		this.loading = true;
 	  		// 先获取订单
 	  		$.ajax({
@@ -90,7 +98,7 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
           type:'POST', dataType: 'json',
           data:{
           	total_fee: 1,
-            body: '测试' ,
+            body: '解锁了一个问题' ,
             open_id: global.open_id,
           },
           success: data => {
@@ -125,49 +133,29 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
 							});
           },
         });
-      } //end callpay
-     },
-
-	  	//调用微信JS api 支付
-      // jsApiCall(){
-      //   console.log('package is: '+this.jsApiParams.package)
-      // 	console.log(this.jsApiParams+'********')
-      //   console.log('timeStamp is: '+this.jsApiParams['timeStamp'])
-      //   WeixinJSBridge.invoke(
-      //     'getBrandWCPayRequest',{
-      //     // JSON.parse(this.jsApiParams),
-	     //       "appId": 'wx589465f8441939d3',     //公众号名称，由商户传入     
-	     //       "timeStamp": this.jsApiParams.timeStamp+'',         //时间戳，自1970年以来的秒数     
-	     //       "nonceStr" : this.jsApiParams.nonceStr, //随机串     
-	     //       "package" : this.jsApiParams.package,     
-	     //       "signType" : "MD5",         //微信签名方式:     
-	     //       "paySign" : this.jsApiParams.paySign //微信签名 
-      //       },
-      //     function(res){
-      //       WeixinJSBridge.log(res.err_msg);
-      //       alert(res.err_code+res.err_desc+res.err_msg);
-      //     }
-      //   );
-      // },
-      //  callpay(e){ 
-      //  	console.log(this.jsApiParams.package)
-      //  	console.log(typeof this.jsApiParams);
-
-      //  	console.log(this.fuck.a);
-      //  	e.preventDefault();
-      //   if (typeof WeixinJSBridge == "undefined"){
-      //       if( document.addEventListener ){
-      //           document.addEventListener('WeixinJSBridgeReady', this.jsApiCall, false);
-      //           // console.log( WeixinJSBridgeReady.toString())
-      //       }else if (document.attachEvent){
-      //           document.attachEvent('WeixinJSBridgeReady', this.jsApiCall); 
-      //           document.attachEvent('onWeixinJSBridgeReady', this.jsApiCall);
-      //       }
-      //   }else{
-      //       this.jsApiCall();
-      //   }
-      // },
+      }, //end callpay
       
+     },
+     ready(){
+     	let vm = this;
+     	document.addEventListener('mousewheel', function (event) {//监听滚动事件
+     	// alert(this.show_modal)
+		    if(vm.show_modal){　　　
+		    //判断是遮罩显示时执行，禁止滚屏
+		       event.preventDefault();　　　　　　
+		     }
+			})
+			document.addEventListener('touchmove', function (event) { 
+     	//监听触屏事件
+     	// alert(this.show_modal)
+		    if(vm.show_modal){　　　
+		    //判断是遮罩显示时执行，禁止滚屏
+		       event.preventDefault();　　　　　　
+		     }
+			})
+
+     },
+     
 	  
   }
 </script>

@@ -55,7 +55,7 @@
 			<question-list :data="user.answers" :datap="datap"></question-list>	
 		</div>
 		<footer class="qd-footer fixed-bottom ztc"
-  					@click="ask">
+  					@click="callpay">
   		￥{{ user.answer_fee }} 向{{ user.user_name }}提一个问题
   	</footer>
   	<!-- loading -->
@@ -64,6 +64,16 @@
 		  <div class="bounce2"></div>
 		  <div class="bounce3"></div>
 		</div>
+
+		<!-- modal -->
+		<div v-if="show_modal">
+			<div class="modal-bg" @click="closeModal"></div>
+			<div class="pay-modal">
+				<div style="border-bottom:1px solid #e7e7e7" @click="yuPay">余额支付</div>
+				<div @click="wxPay">微信支付</div>
+			</div>	
+		</div> <!-- end modal -->
+
   </div>
 </template>
 
@@ -82,11 +92,24 @@ import NavHeader from 'components/funComp/NavHeader';
 	  		about_info:[],
 	  		datap:{},
 	  		real_logo:'',
-	  		loading: false
+	  		loading: false,
+	  		show_modal: false,
 	  	}
 	  },
 	  methods:{
-	  	ask(){
+	  	callpay(){
+	  		this.show_modal = true
+	  	},
+	  	yuPay(){
+	  		if (global.user.balance<1) alert('余额不足,请充值!');
+	  		else{
+	  			//余额支付接口
+	  		}
+	  	},
+	  	closeModal(){
+     	 this.show_modal = false
+      },
+	  	wxPay(){
 	  		// 微信支付
 		  	this.loading = true;
 	  		// 先获取订单
@@ -110,19 +133,8 @@ import NavHeader from 'components/funComp/NavHeader';
 					    signType: param.signType, 
 					    paySign: param.paySign, 
 					    success: function (res) {
-				        // 支付成功后解锁
-				        console.log(res);
-					      $.post(global.domain +'/question/buy_answers',
-					        { token: global.token, q_id: id },
-					        v => {
-					        	vm.lock = false;
-					        	for(let i in vm.data){
-					        		if (vm.data[i].q_id === id) 
-					        			vm.data[i].can_listen = true;
-					        		console.log('data-----'+vm.data)
-					        		console.log('prop data-----'+vm.props.data)
-					        	}
-					        } ,'json');
+				        // 支付成功后,可以提问
+				        vm.$router.go('/askto?uid='+this.user.u_id)
 						    },
 						    fail: function(res){
 						    	console.log(res)
@@ -159,6 +171,24 @@ import NavHeader from 'components/funComp/NavHeader';
             console.error(JSON.stringify(err));
           }.bind(this)
         });
+
+	  		let vm = this;
+	     	document.addEventListener('mousewheel', function (event) {//监听滚动事件
+	     	// alert(this.show_modal)
+			    if(vm.show_modal){　　　
+			    //判断是遮罩显示时执行，禁止滚屏
+			       event.preventDefault();　　　　　　
+			     }
+				})
+				document.addEventListener('touchmove', function (event) { 
+	     	//监听触屏事件
+	     	// alert(this.show_modal)
+			    if(vm.show_modal){　　　
+			    //判断是遮罩显示时执行，禁止滚屏
+			       event.preventDefault();　　　　　　
+			     }
+				})
+
         //获取我的收藏 判断是否已经收藏
        //  $.ajax({
        //      url: global.domain+'/user/get_my_favorite',

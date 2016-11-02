@@ -164,17 +164,34 @@ p
   line-height 1.30rem
 
 //modal 暂时放到这里
+.pay-modal
+  position fixed
+  top: 20%;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  margin: 20% auto;
+  text-align: center
+  border-radius: 10px
+  z-index: 1002;
+  height 5rem
+  width 50%
+  background-color: #fff
+  div
+    height: 2.5rem
+    line-height:2.5rem
+
 .modal-bg
-    position: absolute;  
-    top: 0%;  
-    left: 0%;  
-    width: 100%;  
-    height: 120%;  
-    background-color: black;  
-    z-index: 1001;  
-    -moz-opacity: 0.5;  
-    opacity:.50;  
-    // filter: alpha(opacity=50);
+  position: fixed;  
+  top: 0%;  
+  left: 0%;  
+  width: 100%;  
+  height: 120%;  
+  background-color: black;  
+  z-index: 1001;  
+  -moz-opacity: 0.5;  
+  opacity:.50;  
+  // filter: alpha(opacity=50);
   .modal-item
     position: absolute;  
     top: 28%;  
