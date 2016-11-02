@@ -12,7 +12,7 @@
 			  	<div :class="que.answer_url? 'nock':'' ">
 			  		<span class="label" v-if="que.is_free">免费</span>
 			  		<span class="nock-text" v-if="!que.can_listen && $route.name!='myque' && que.answer_url"
-			  					@click.prevent="callpay(que.q_id)">￥1元解锁该问题的所有回答</span>
+			  					@click.prevent="callpay">￥1元解锁该问题的所有回答</span>
 			  	</div>
 				</div>
 					<answer-card :data="que" :index="$index" v-if="que.answer_url" :datap="datap" :is-best="isBest"></answer-card>
@@ -98,12 +98,13 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
           type:'POST', dataType: 'json',
           data:{
           	total_fee: 1,
-            body: '解锁了一个问题' ,
+            body: '解锁一个问答' ,
             open_id: global.open_id,
           },
           success: data => {
           	let vm = this
           	this.loading = false;
+          	this.show_modal = false
           	// this.jsApiParams = data.data
           	let param = JSON.parse(data.data);
       			// 调微信支付接口

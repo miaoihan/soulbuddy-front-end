@@ -192,41 +192,42 @@ p
   -moz-opacity: 0.5;  
   opacity:.50;  
   // filter: alpha(opacity=50);
-  .modal-item
-    position: absolute;  
-    top: 28%;  
-    left: 10%;  
-    width: 80%;  
-    height: 36%;  
-    border-radius: 10px
-    z-index: 1002;  
-    overflow: auto;   
-    .mod-content
-      padding 0.75rem 1.20rem
-      height 72%
-      .c-top
-        margin 0 auto
-        // text-align center
-        width 1.5rem
-      .c-middle
-        margin-top: 0.4rem
-        font-size: 13px
-    .mod-button
-      display flex
-      align-items center
-      
-      // justify-content center
-      height 28%
-      border-top 1px solid #e5e5e5
-      .m-b-1
-        flex 1
-        text-align: center
-      .m-b-2
-        // flex 1
-        height 50%
-        border-left 1px solid #e5e5e5
-      .m-b-3
-        flex 1
-        text-align: center
+    
+.modal-item
+  position: absolute;  
+  top: 28%;  
+  left: 10%;  
+  width: 80%;  
+  // height: 36%;  
+  border-radius: 10px
+  z-index: 1002;  
+  overflow: auto;   
+  .mod-content
+    padding 0.75rem 1.20rem
+    // height 72%
+    .c-top
+      margin 0 auto
+      // text-align center
+      width 1.5rem
+    .c-middle
+      margin-top: 0.4rem
+      font-size: 13px
+  .mod-button
+    display flex
+    align-items center
+    
+    // justify-content center
+    height 2.5rem
+    border-top 1px solid #e5e5e5
+    .m-b-1
+      flex 1
+      text-align: center
+    .m-b-2
+      // flex 1
+      height 50%
+      border-left 1px solid #e5e5e5
+    .m-b-3
+      flex 1
+      text-align: center
 
 </style>

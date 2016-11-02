@@ -96,7 +96,7 @@
   						const that = this
   						console.log(Vue.$el)
   						console.log(that.toString())
-  						alert(this.show)
+  						// alert(this.show)
   					}
   				}
   			]
@@ -134,8 +134,9 @@
 				this.$router.go('/me/profile')
 			},
 			ask(){
-				if (global.user.user_name==''){ 
+				if (global.user.name==''){ 
 					this.show_modal = true;
+					return
 				}
 				this.$router.go('/ask')
 			},

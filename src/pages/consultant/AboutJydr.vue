@@ -110,6 +110,7 @@ import NavHeader from 'components/funComp/NavHeader';
 	  		// 这里调用微信支付
 	  		// 微信支付
 		  	this.loading = true;
+		  	this.show_modal = false
 	  		// 先获取订单
 	  		$.ajax({
           url: global.domain +'/thirdparty/wepay',
@@ -132,7 +133,7 @@ import NavHeader from 'components/funComp/NavHeader';
 					    paySign: param.paySign, 
 					    success: function (res) {
 				        // 支付成功后,可以提问
-				        vm.$router.go('/askto?uid='+this.user.u_id)
+				        vm.$router.go('/askto?uid='+vm.user.u_id)
 						    },
 						    fail: function(res){
 						    	console.log(res)

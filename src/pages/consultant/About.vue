@@ -104,6 +104,8 @@ import NavHeader from 'components/funComp/NavHeader';
 	  		if (global.user.balance<1) alert('余额不足,请充值!');
 	  		else{
 	  			//余额支付接口
+
+	  			this.$router.go('/askto?uid='+this.user.u_id)
 	  		}
 	  	},
 	  	closeModal(){
@@ -112,6 +114,7 @@ import NavHeader from 'components/funComp/NavHeader';
 	  	wxPay(){
 	  		// 微信支付
 		  	this.loading = true;
+		  	let vm = this;
 	  		// 先获取订单
 	  		$.ajax({
           url: global.domain +'/thirdparty/wepay',
@@ -134,7 +137,7 @@ import NavHeader from 'components/funComp/NavHeader';
 					    paySign: param.paySign, 
 					    success: function (res) {
 				        // 支付成功后,可以提问
-				        vm.$router.go('/askto?uid='+this.user.u_id)
+				        vm.$router.go('/askto?uid='+vm.user.u_id)
 						    },
 						    fail: function(res){
 						    	console.log(res)

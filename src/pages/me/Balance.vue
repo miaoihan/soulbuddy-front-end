@@ -63,12 +63,13 @@ import NavHeader from 'components/funComp/NavHeader';
           type:'POST', dataType: 'json',
           data:{
           	total_fee: this.money,
-            body: '充值了'+this.money+'元' ,
+            body: '充值'+this.money+'元' ,
             open_id: global.open_id,
           },
           success: data => {
           	let vm = this
           	this.loading = false;
+          	this.show_modal = false
           	// this.jsApiParams = data.data
           	let param = JSON.parse(data.data);
       			// 调微信支付接口

@@ -80,6 +80,7 @@ import NavHeader from 'components/funComp/NavHeader';
       }
     },
     created(){
+      this.user = global.user
       this.user_age = user.borth_date
       this.user_sex = user.sex
       this.user_education = user.education
@@ -87,7 +88,8 @@ import NavHeader from 'components/funComp/NavHeader';
     },
     ready(){
       // console.log(global.user.marital_status)
-      this.user = global.user
+      
+
       this.mobile = user.mobile
       this.logo = user.logo
       this.old_logo = user.old_logo
