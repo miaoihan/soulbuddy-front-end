@@ -73,7 +73,13 @@ export default {
                 data: $('#applydr').serialize(),//序列化
                 success: function(data) {
                   // alert(this.title)
-                  this.$router.go('/me')
+                  if(data.code==1){
+                  	alert("提交成功")
+                  	this.$router.go('/me')
+                  }else{
+                  	alert("提交失败")
+                  }
+                  
                   // console.log( data);  
                 }.bind(this),
                 error: function(xhr, status, err) {

@@ -35,9 +35,9 @@
    	<div class="textarea">
    		<textarea class="inputarea" maxlength="150" name="intro" v-model="intro" placeholder="请填写自我评价（最多150个字）"></textarea>
    	</div>
-    <div class="tbar" v-if="this.$route.params.id==0">
+    <div class="tbar">
       <span class="ask-gold" name="gold">咨询费（￥）</span>
-      <input name="reward_money" type="text" placeholder="0" class="input-gold" 
+      <input name="answer_fee" type="text" placeholder="0" class="input-gold" 
              v-model="price" maxlength="4">
     </div>
     <!-- <change-btn class="button-top-15 container-20-lr" btntext="心理咨询费设定" :url="url" v-if="this.$route.params.id==0" :placeholder="answer_fee" place-color="#29ABE2"></change-btn> -->
