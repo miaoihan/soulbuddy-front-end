@@ -1,15 +1,19 @@
 <template>
-<nav-header title="提现到支付宝" left="back"></nav-header>
+<nav-header title="提现到银行账户" left="back"></nav-header>
   <div class="wrapper">
   	<form method="post" id="editform">
   		<input type="hidden" name="token" :value="token">
-  		<input type="hidden" name="withdraw_channel" :value="0">
+  		<input type="hidden" name="withdraw_channel" :value="1">
   		<input-box class="draw-amount padding-alipay" title="提取金额（元）：" title-color="black" text-color="black" name="money">
 		</input-box>
 		<div class="padding-alipay">
-			<input-box class="user-num" title="支付宝账号" title-color="black" text-color="black" placeholder="请输入" name="account">
+			<input-box class="user-num" title="银行账号" title-color="black" text-color="black" placeholder="请输入" name="account">
 			</input-box>
 			<input-box class="user-name" title="账户真实姓名" title-color="black" text-color="black" placeholder="请输入" name="true_name">
+			</input-box>
+			<input-box class="user-name" title="账户银行" title-color="black" text-color="black" placeholder="请输入" name="account_bank">
+			</input-box>
+			<input-box class="user-name" title="银行开户行" title-color="black" text-color="black" placeholder="请输入" name="open_bank">
 			</input-box>
 		</div>
   	</form>
@@ -44,11 +48,19 @@ import NavHeader from 'components/funComp/NavHeader'
 	          return false 
 	        }
 	        if($('[name="account"]').val()===''){
-	          alert('支付宝帐号不能为空！')
+	          alert('银行帐号不能为空！')
 	          return false 
 	        }
 	        if($('[name="true_name"]').val()===''){
 	          alert('真实姓名不能为空！')
+	          return false 
+	        }
+	        if($('[name="account_bank"]').val()===''){
+	          alert('开户银行不能为空！')
+	          return false 
+	        }
+	        if($('[name="open_bank"]').val()===''){
+	          alert('银行开户行不能为空！')
 	          return false 
 	        }
 	        else{
@@ -61,7 +73,7 @@ import NavHeader from 'components/funComp/NavHeader'
 		            data: $('#editform').serialize(),//序列化
 		            success: function(data) {
 		            	// this.data=data
-		            	console.log(data.code)
+		            	// console.log(data.code)
 		            	if(data.code==1){
 		            		alert('提现成功') 
 		            		// alert(data.msg) 
