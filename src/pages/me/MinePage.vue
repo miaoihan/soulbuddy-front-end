@@ -17,7 +17,7 @@
     		<a v-link="{path:'/message'}">
     			<i class="iconfont imgimg" >&#xe605;</i>
     		</a>
-    			<div class="hint-text" v-if="fav_count>0">{{user.fav_count}}</div>
+    			<div class="hint-text" v-if="msg"></div>
     		</div>
     	</div>
     </div>
@@ -83,7 +83,8 @@ export default {
   		isdaren: null,
   		user: {},
   		already: false,
-  		real_logo:''
+  		real_logo:'',
+  		msg: false,
     }
   },
   created(){
@@ -99,28 +100,25 @@ export default {
 	        		}
 	        	this.already = true
         	} ,'json');
-  },
-  ready:function(){
-  	// this.real_logo='http://xinling.oss-cn-shanghai.aliyuncs.com/'+global.user.real_logo
-  	
-	  	// 获取用户信息
-		  // this.identity = global.user.identity;
-		  // this.identityb = global.user.identity;
-		  // this.user_name=this.user.user_name;
-		  // this.fav_count=this.user.fav_count;
-	  	// 我的提问
-      $.ajax({
-          url: 'http://xinling.songtaxihuan.com/user/get_my_question',
+  	// 站内信
+  	$.ajax({
+          url:  global.domain +'/user/get_my_mail',
           type:'POST', 
           dataType: 'json',
-          cache: true,
           data:{
             page: 1,
             token: global.token
           },
-          success: data => this.queList = data.data,
+          success: data => {
+          	let len = data.data.length();
+          	if (data.data[len-1].read_status==0) this.msg = true;
+          },
           error: err => err.toString()
         });
+  },
+  ready:function(){
+
+      
 
 
   },
@@ -208,15 +206,15 @@ export default {
 }
 .hint-text{
 	position: absolute;
-	height: 0.9rem;
-	width: 0.9rem;
+	height: 0.6rem;
+	width: 0.6rem;
 	background-color: #e25f52;
 	border-radius: 0.8rem;
 	font-size: 0.7rem;
 	color: #fff;
 	text-align: center;
 	line-height: 0.9rem;
-	right:-0.4rem;
+	right:-0.2rem;
 	bottom:0.35rem;
 }
 .person-msg-fun{

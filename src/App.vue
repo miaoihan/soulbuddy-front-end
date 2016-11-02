@@ -29,8 +29,8 @@ export default {
       // host: 'http://han.s3.natapp.cc',
       host: 'http://m.soulbuddy.cn',
       // 测试开关
-      // test:false,
-      test:true,
+      test:false,
+      // test:true,
       uid: 81
     }
   },
@@ -144,11 +144,10 @@ export default {
 * 公共样式部分
 *
 **/
-
+// 解决SUI body不能滑动的问题
 body{
   overflow visible
 }
-
 
 .margin-right-10{
   margin-right:0.5rem
@@ -377,6 +376,7 @@ body{
   left: 30%
   width: 7.5rem
   text-align: center;
+  z-index: 2000; 
 }
  
 .spinner > div {
@@ -391,6 +391,7 @@ body{
   /* Prevent first frame from flickering when animation starts */
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
+  // z-index: 2000; 
 }
  
 .spinner .bounce1 {
@@ -417,6 +418,8 @@ body{
     -webkit-transform: scale(1.0);
   }
 }
+
+//modal css
  
 
 </style>

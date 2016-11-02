@@ -94,19 +94,6 @@ export default {
         { token: global.token },
         v => this.person = v.data ,'json');
 
-      $.ajax({
-          url: 'http://xinling.songtaxihuan.com/user/get_user_info',
-          type:'POST', 
-          dataType: 'json',
-          cache: true,
-          data:{
-            u_id: 1,
-            token: this.token
-          },
-          success: data => this.user = data.data,
-          error: err => err.toString(),
-          
-        });
       var that = this
       document.querySelector('#avator').onclick = function () {
         wx.chooseImage({
@@ -226,7 +213,7 @@ export default {
                     this.$router.go('/me')
                   }
                   else{
-                    alert(data.msg)
+                    // alert(data.msg)
                   }
                 }.bind(this),
                 error: function(xhr, status, err) {

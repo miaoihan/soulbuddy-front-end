@@ -55,9 +55,24 @@
 			<question-list :data="user.answers" :datap="datap"></question-list>	
 		</div>
 		<footer class="qd-footer fixed-bottom ztc"
-  					@click="ask">
+  					@click="callpay">
   		￥{{ user.answer_fee }} 向{{ user.user_name }}提一个问题
   	</footer>
+  	<!-- loading -->
+		<div class="spinner" v-if="loading">
+		  <div class="bounce1"></div>
+		  <div class="bounce2"></div>
+		  <div class="bounce3"></div>
+		</div>
+
+		<!-- modal -->
+		<div v-if="show_modal">
+			<div class="modal-bg" @click="closeModal"></div>
+			<div class="pay-modal">
+				<div style="border-bottom:1px solid #e7e7e7" @click="yuPay">余额支付</div>
+				<div @click="wxPay">微信支付</div>
+			</div>	
+		</div> <!-- end modal -->
   </div>
 </template>
 
@@ -74,16 +89,58 @@ import NavHeader from 'components/funComp/NavHeader';
 	  		collected:false,
 	  		user_type:"",
 	  		datap:{},
-	  		
+	  		loading: false,
+	  		show_modal: false,
 	  	}
 	  },
 	  methods:{
-	  	ask(){
-	  		// 这里调用微信支付
-	  		let is_pay = true
-	  		if (is_pay) {
-	  			this.$router.go('/askto?uid=' + this.user.u_id);
+	  	callpay(){
+	  		this.show_modal = true
+	  	},
+	  	yuPay(){
+	  		if (global.user.balance<1) alert('余额不足,请充值!');
+	  		else{
+	  			//余额支付接口
 	  		}
+	  	},
+	  	closeModal(){
+     	 this.show_modal = false
+      },
+	  	wxPay(){
+	  		// 这里调用微信支付
+	  		// 微信支付
+		  	this.loading = true;
+		  	this.show_modal = false
+	  		// 先获取订单
+	  		$.ajax({
+          url: global.domain +'/thirdparty/wepay',
+          type:'POST', dataType: 'json',
+          data:{
+          	total_fee: 1,
+            body: '向'+ this.user.user_name +'提的问题',
+            open_id: global.open_id,
+          },
+          success: data => {
+          	let vm = this;
+          	let param = JSON.parse(data.data);
+          	this.loading = false;
+      			// 调微信支付接口
+		      	wx.chooseWXPay({
+					    timestamp: param.timeStamp+'', 
+					    nonceStr: param.nonceStr, 
+					    package: param.package, 
+					    signType: param.signType, 
+					    paySign: param.paySign, 
+					    success: function (res) {
+				        // 支付成功后,可以提问
+				        vm.$router.go('/askto?uid='+vm.user.u_id)
+						    },
+						    fail: function(res){
+						    	console.log(res)
+						    }
+							});
+          },
+        });
 	  	},
 	  },
 	  ready(){
@@ -115,33 +172,23 @@ import NavHeader from 'components/funComp/NavHeader';
             console.error(readList, status, err.toString());
           }.bind(this)
         });
-       //  //获取我的收藏 判断是否已经收藏
-       //  $.ajax({
-       //      url: global.domain+'/user/get_my_favorite',
-       //      type:'POST', 
-       //      dataType: 'json',
-       //      cache: true,
-       //      data:{
-       //        token:global.token,
-       //        type:2
-       //      },
-       //      success: data => {
-       //        this.about_info = data.data;
-       //        // 判断收藏
-       //        var arr=[];
-       //        for(var i = 0;i < this.about_info.length;i++){
-       //          arr.push(this.about_info[i].u_id)
-       //        }
-       //        var test=arr.indexOf(this.$route.params.id);
-       //        console.log(this.$route.params.id)
-       //        if(test!=-1){
-       //          this.collected=true
-       //        }
-       //      },
-       //      error: err => err.toString(),
-      	// });
+       	let vm = this;
+	     	document.addEventListener('mousewheel', function (event) {//监听滚动事件
+	     	// alert(this.show_modal)
+			    if(vm.show_modal){　　　
+			    //判断是遮罩显示时执行，禁止滚屏
+			       event.preventDefault();　　　　　　
+			     }
+				})
+				document.addEventListener('touchmove', function (event) { 
+	     	//监听触屏事件
+	     	// alert(this.show_modal)
+			    if(vm.show_modal){　　　
+			    //判断是遮罩显示时执行，禁止滚屏
+			       event.preventDefault();　　　　　　
+			     }
+				})
 	  },
-	  
 	  
   }
 </script>

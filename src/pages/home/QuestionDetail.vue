@@ -35,7 +35,7 @@
   		</div>
   	</section>
   	<footer class="qd-footer fixed-bottom ztc"
-  					@click="unlock(question.q_id)" v-if="!question.can_listen">
+  					@click.prevent="callpay" v-if="!question.can_listen">
   					￥1 解锁该问题的所有回答
   	</footer>
   	<!-- loading -->
@@ -44,6 +44,14 @@
 		  <div class="bounce2"></div>
 		  <div class="bounce3"></div>
 		</div>
+		<!-- modal -->
+		<div v-if="show_modal">
+			<div class="modal-bg" @click="closeModal"></div>
+			<div class="pay-modal">
+				<div style="border-bottom:1px solid #e7e7e7" @click="yuPay">余额支付</div>
+				<div @click="wxPay(question.q_id)">微信支付</div>
+			</div>	
+		</div> <!-- end modal -->
   </div>
 </template>
 <script>
@@ -60,20 +68,34 @@ import NavHeader from 'components/funComp/NavHeader'
 	  		ans_best:{},
 	  		ans_other:[],
 	  		loading: false,
+	  		show_modal: false,
 			}
 	  },
 	  methods:{
+	  	callpay(){
+	  		this.show_modal = true
+	  	},
+	  	yuPay(){
+	  		if (global.user.balance<1) alert('余额不足,请充值!');
+	  		else{
+
+	  		}
+	  	},
+	  	closeModal(){
+     	 this.show_modal = false
+      },
 	  	// 这里跳转支付接口
-	  	unlock(id){
+	  	wxPay(id){
 	  		// alert(id)
 	  		this.loading = true
+	  		this.show_modal = false
 	  		// 先获取订单
 	  		$.ajax({
           url: global.domain +'/thirdparty/wepay',
           type:'POST', dataType: 'json',
           data:{
           	total_fee: 1,
-            body: '解锁了一个问答',
+            body: '解锁一个问答',
             open_id: global.open_id,
           },
           success: data => {
@@ -91,7 +113,7 @@ import NavHeader from 'components/funComp/NavHeader'
 				        // 支付成功后解锁
 					      $.post(global.domain +'/question/buy_answers',
 					        { token: global.token, q_id: id },
-					        v => { vm.lock = false;} ,'json');
+					        v => { vm.$router.go('/question/'+id)} ,'json');
 						    },
 						    fail: function(res){
 						    	console.log(res)

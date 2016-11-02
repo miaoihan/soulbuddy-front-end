@@ -2,7 +2,7 @@
   <div class="part photo-body wrapper">
 	<div class="title-body">
 		<span class="title-text float-left">相关证件</span>
-		<span class="title-note float-left">(非必须)</span>
+		<span class="title-note float-left"></span>
 	</div>
 	<div class="photo-note">
 		请上传您的就医证明、康复证明等能证明您相关身份的照片

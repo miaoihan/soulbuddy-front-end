@@ -62,7 +62,7 @@ export default {
             alert('发送成功')
          }
          else if(v.code==0){
-          alert('发送过于频繁，请稍后重试')
+          alert('短信服务出现问题了，请稍后重试')
          }else if(v.msg=='您的手机号已经被注册'){
             alert('您的手机号已经被注册')}
         },'json');}

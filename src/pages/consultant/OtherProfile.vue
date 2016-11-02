@@ -14,10 +14,10 @@
       </div>
     </div>
   </div>
-  <div class="container-20" style="font-size:0.55rem;margin-bottom:0.5rem;padding-bottom:0">他已完成 {{user_access.length}} 份心理测评</div>
+  <div class="container-20" style="font-size:0.55rem;margin-bottom:0.5rem;padding-bottom:0">TA 已完成 {{user_access.length}} 份心理测评</div>
   <eva-card :datap="user_access" type="other" v-if="user_access.length!=0"></eva-card>
   <div class="profile-list wrapper">
-    <change-btn btntext="绑定手机" title-color="black" :placeholder="user.mobile" class="change-btn-pro" place-color="#000"></change-btn>
+    <change-btn :isIcon="false" btntext="绑定手机" title-color="black" :placeholder="user.mobile" class="change-btn-pro"  place-color="#000" ></change-btn>
     <change-btn btntext="年龄" title-color="black" :placeholder="user.borth_date" class="change-btn-pro" place-color="#000"></change-btn>
     <change-btn btntext="性别" title-color="black" :placeholder="sex[user.sex-1]" class="change-btn-pro" place-color="#000"></change-btn>
     <change-btn btntext="学历" title-color="black" :placeholder="qualifications[user.education-1]" class="change-btn-pro" place-color="#000"></change-btn>
@@ -62,7 +62,6 @@ import EvaCard from 'components/funComp/EvaCard'
          url: global.domain +"/user/get_user_info",
          type:'post', 
          dataType: 'json',
-         async:false,
          data:{
           token:global.token,
           u_id:this.$route.params.id,
@@ -78,7 +77,6 @@ import EvaCard from 'components/funComp/EvaCard'
           url: global.domain +'/access/get_user_access',
           type:'POST', 
           dataType: 'json',
-          async:false,
           data:{
             user_id:this.$route.params.id,
             // user_id:1,
@@ -127,7 +125,7 @@ import EvaCard from 'components/funComp/EvaCard'
 .nikname{
   /*float: left;*/
   /*height: 0.7rem;*/
-  /*margin-top: 0.35rem;*/
+  margin-top: 1.5rem;
   font-size: 0.8rem;
   /*margin-left: 0.5rem;*/
 }

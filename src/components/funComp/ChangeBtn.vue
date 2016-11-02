@@ -4,7 +4,7 @@
   <a style="width:100%" v-link="url">
 	    <span class="text" :style="{color:TextColor}">{{btntext}}</span>
 	    
-	    <i class="icon-img iconfont" :style="{color:IconColor}" v-if="isIcon==true">&#xe60d;</i>
+	    <i class="icon-img iconfont" :style="{color:IconColor}" v-if="isIcon">&#xe60d;</i>
 	    <span class="placeholder" :style="{color:placeColor}">{{placeholder}}</span>
   </a>
   </div>
