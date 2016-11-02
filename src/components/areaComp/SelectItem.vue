@@ -5,7 +5,7 @@
 	  		{{ index+1 }}.{{data.question}}
 	  	</div>
 			<ul>
-				<li @click="select($index+1)" v-for="answer of data.answers" v-if="answer ">
+				<li @click="select($index+1)" v-for="answer in answers" v-if="answer">
 					{{answer}}
 					<span class="iconfont pull-right"
 								v-if="sel_index ==  $index+1" 
@@ -24,6 +24,7 @@
 	  data() {
   		return{
   			sel_index: -1,
+  			answers: [],
   			
   		}
   	},
@@ -37,7 +38,7 @@
   		}
   	},
   	ready(){
-  		this.data.answers = JSON.parse(this.data.answers)
+  		this.answers = JSON.parse(this.data.answers)
   	},
 	  props:{
 	  	data: {

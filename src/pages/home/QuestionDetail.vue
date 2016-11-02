@@ -20,7 +20,7 @@
 	  	<div>
   	</section> <!-- end top -->
   	<!-- 最佳回答 -->
-  	<answer-card :data="ans_best" goto="true" v-if="ans_best.is_best==1"></answer-card>	
+  	<answer-card :data="ans_best" goto="true" v-if="ans_best.is_best==1" :free="question.can_listen"></answer-card>	
   	<aside class="m-other" v-if="ans_best.is_best!=1">
   		 {{ question.answers.length>0? '共有 '+question.answers.length : 0}} 个回答
   	</aside>
@@ -31,11 +31,11 @@
   	<section class="qd-middle" style="margin-bottom: 5.0rem">
   		<div class="answer-item" v-for="obj in ans_other"
   					v-if="question.answers">
-  			<answer-card :data="obj"></answer-card>	
+  			<answer-card :data="obj" :free="question.can_listen"></answer-card>	
   		</div>
   	</section>
   	<footer class="qd-footer fixed-bottom ztc"
-  					@click="unlock" v-if="!question.can_listen || !lock">
+  					@click="unlock(question.q_id)" v-if="!question.can_listen">
   					￥1 解锁该问题的所有回答
   	</footer>
   	<!-- loading -->
@@ -64,14 +64,16 @@ import NavHeader from 'components/funComp/NavHeader'
 	  },
 	  methods:{
 	  	// 这里跳转支付接口
-	  	unlock(){
+	  	unlock(id){
+	  		// alert(id)
+	  		this.loading = true
 	  		// 先获取订单
 	  		$.ajax({
           url: global.domain +'/thirdparty/wepay',
           type:'POST', dataType: 'json',
           data:{
           	total_fee: 1,
-            body: '向'+ this.user.user_name +'提的问题',
+            body: '解锁了一个问答',
             open_id: global.open_id,
           },
           success: data => {
@@ -87,8 +89,9 @@ import NavHeader from 'components/funComp/NavHeader'
 					    paySign: param.paySign, 
 					    success: function (res) {
 				        // 支付成功后解锁
-				        console.log(res);
-					      this.lock = false;
+					      $.post(global.domain +'/question/buy_answers',
+					        { token: global.token, q_id: id },
+					        v => { vm.lock = false;} ,'json');
 						    },
 						    fail: function(res){
 						    	console.log(res)
