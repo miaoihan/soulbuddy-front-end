@@ -32,7 +32,7 @@ export default {
       // 测试开关
       test:false,
       // test:true,
-      uid: 82
+      uid: 83
     }
   },
   watch:{
@@ -57,8 +57,10 @@ export default {
     this.token = ku.token
     global.token = ku.token
     global.open_id = ku.open_id
+    global.user_name = ku.user_name
     global.domain = 'http://xinling.songtaxihuan.com'
     global.logo_url = "http://xinling.oss-cn-shanghai.aliyuncs.com/"
+
     if (ku.identity) {this.identity = ku.identity}
       //测试环境
       if (this.test) {
@@ -85,6 +87,7 @@ export default {
           ku.open_id = v.data.userinfo.open_id;
           ku.identity = v.data.userinfo.identity;
           ku.answer_num = v.data.userinfo.answer_num;
+          ku.user_name = v.data.userinfo.user_name;
           // 判断是否绑定了手机
           let phone = v.data.userinfo.mobile
           // 如果没有绑定，跳转到绑定手机页面

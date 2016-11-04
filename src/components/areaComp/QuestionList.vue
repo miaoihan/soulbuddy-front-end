@@ -15,7 +15,7 @@
 			  					@click.prevent="callpay">￥1元解锁该问题的所有回答</span>
 			  	</div>
 				</div>
-					<answer-card :data="que" :index="$index" v-if="que.answer_url" :datap="datap" :is-best="isBest"></answer-card>
+					<answer-card :data="que" :index="$index" v-if="que.answer_url" :datap="datap" :is-best="isBest" :free="free"></answer-card>
 		</a>
 		<!-- 跳转到我的问题 -->
 		<a v-link="'/me/question/' + que.q_id " v-if="type=='mine'">
@@ -29,7 +29,7 @@
 		  	</div>
 		  	<!-- <div class="nock" v-if="que.role==0"> -->
 			</div>
-				<answer-card :data="que" :index="$index" v-if="que.answer_url"  ></answer-card>
+				<answer-card :data="que" :index="$index" v-if="que.answer_url" :free="free"></answer-card>
 			</a>
 		</section>
 		<!-- loading -->
@@ -72,7 +72,8 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
 	  	data: {type: Array },
 	  	isBest:{ type: Boolean },
 	  	datap: {},
-	  	type:{type:String, default: 'other'}
+	  	type:{type:String, default: 'other'},
+	  	free: false,
 	  },
 	  created(){
 	  },

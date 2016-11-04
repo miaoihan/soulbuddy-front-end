@@ -5,7 +5,7 @@
 	  		<a v-link="{name:'user_daren', params:{ id: item.u_id }}">
 	  			<div class="k-i-l">
 	  				<i class="avator" style="height:2.85rem;width:2.85rem">
-	  					<img :src="item.real_logo" alt="头像" class="avator">
+	  					<img :src="item.identity==1?item.real_logo:item.logo" alt="头像" class="avator">
 	  				</i>
 	  			</div>
 	  			<div class="k-i-r">

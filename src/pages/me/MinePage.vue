@@ -92,7 +92,8 @@ export default {
   	$.post(global.domain +'/user/get_my_info',
         { token: global.token },
         v => {
-	        	global.user=v.data;this.user=v.data
+	        	global.user=v.data;this.user=v.data;
+	        	if (v.data.unread_num>0) { this.msg = true }
 	        	this.identityb = v.data.identity
 	        	if (v.data.identity == 1 || v.data.identity == 2) 
 	        		{
@@ -102,20 +103,7 @@ export default {
 	        	this.already = true
         	} ,'json');
   	// 站内信
-  	$.ajax({
-          url:  global.domain +'/user/get_my_mail',
-          type:'POST', 
-          dataType: 'json',
-          data:{
-            page: 1,
-            token: global.token
-          },
-          success: data => {
-          	let len = data.data.length();
-          	// if (data.data[len-1].read_status==0) this.msg = true;
-          },
-          error: err => err.toString()
-        });
+  
   },
   ready:function(){
 

@@ -134,7 +134,7 @@
 				this.$router.go('/me/profile')
 			},
 			ask(){
-				if (!global.user.name){ 
+				if (!global.user_name){ 
 					this.show_modal = true;
 					return
 				}

@@ -253,7 +253,8 @@ export default {
               'answer_time':  that.voice.time
             },
             function (res) {
-              alert('回答成功!');
+              if (res.code==0) alert(res.msg);
+              else alert('回答成功！');
             }, 'json');
         }
       });
