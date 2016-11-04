@@ -69,25 +69,29 @@
 	        });
 	  	},
 	  	cancelike(u_id){
-	  		console.log("u_id is "+u_id)
-	  		this.is_like = false
-	  		this.data.fav_count--
-	  		$.ajax({
-		            url: global.domain +"/user/cancel_favorite",
-		            type:'post', 
-		            dataType: 'json',
-		            data: {
-		              token:global.token,
-		              fav_type:1,
-		              fav_id:u_id,
-		            },
-		            success: function(data) {
-		            	console.log('已收藏')
-		            },
-		            error: function(xhr, status, err) {
-		              console.err(err.toString())
-		            }
-	        });
+	  		if(this.$route.path!='/me/favorite'){
+	  			console.log("u_id is "+u_id)
+		  		this.is_like = false
+		  		this.data.fav_count--
+		  		this.data.is_fav=0
+		  		$.ajax({
+			            url: global.domain +"/user/cancel_favorite",
+			            type:'post', 
+			            dataType: 'json',
+			            data: {
+			              token:global.token,
+			              fav_type:1,
+			              fav_id:u_id,
+			            },
+			            success: function(data) {
+			            	console.log('已收藏')
+			            },
+			            error: function(xhr, status, err) {
+			              console.err(err.toString())
+			            }
+		        });
+	  		}
+	  		
 	  	}
 	  },
 	  props:{
