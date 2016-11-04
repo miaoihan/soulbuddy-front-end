@@ -6,13 +6,13 @@
     </a>
     <a v-link="'/consultants'" class="tab-item external " 
        :class="{ active: index === 1 }" @click="changClass(1)"
-       v-if="identityb === 0">
+       v-if="identityb == 0">
       <i class="iconfont icon-zixun-copy"></i>
       <span class="tab-label">咨询</span>
     </a>
     <a v-link="'/wenda'" class="tab-item external " 
        :class="{ active: index === 1 }" @click="changClass(1)"
-       v-if="identityb === 1">
+       v-if="identityb == 1 || identityb == 2">
       <i class="iconfont">&#xe630;</i>
       <span class="tab-label">问答</span>
     </a>
@@ -34,7 +34,7 @@ export default {
       }
     },
     props:{
-      identityb:{type:Number,default:0}, 
+      identityb:null, 
     },
     methods: {
       changClass(id) {

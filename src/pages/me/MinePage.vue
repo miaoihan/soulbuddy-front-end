@@ -4,13 +4,13 @@
     <div class="person-msg-body">
     	<div class="person-msg-basic">
     		<div class="img-body">
-    			<img :src="user.logo" class="img-imgs" v-if="identityb == 0||user.identity==2">
-    			<img :src="real_logo" class="img-imgs" v-if="identityb ==1&&user.identity==1">
+    			<img :src="user.logo" class="img-imgs" v-if="identity==0||user.identity==2">
+    			<img :src="real_logo" class="img-imgs" v-if="identity==1&&user.identity==1">
     		</div>
     		<div class="person-msg-name">
     			<span class="name-text">{{user.user_name}}</span>
-				<a v-link="'/setting/profile'" class="button button-round btnstyle" v-if="identityb == 0">编辑个人资料</a>
-				<a v-link="'me/personedit/0'" class="button button-round btnstyle" v-if="identityb == 1">编辑个人资料</a>
+				<a v-link="'/setting/profile'" class="button button-round btnstyle" v-if="identity == 0">编辑个人资料</a>
+				<a v-link="'me/personedit/0'" class="button button-round btnstyle" v-if="identity == 1">编辑个人资料</a>
     		</div>
     		<div class="hint-img">
     		<!-- 站内信 -->
@@ -21,7 +21,7 @@
     		</div>
     	</div>
     </div>
-    <div v-if="identityb == 1">
+    <div v-if="identityb == 1 || identityb == 2">
     	<counselor-fun></counselor-fun>
     </div>
 
@@ -72,7 +72,7 @@ export default {
 	  	// 	}
 	  	// },
 	  	hintnum:{type:Number,default:2},	
-	  	identityb:{type:Number,default:0},	    	
+	  	identityb:null, //sync数据 触发bottom改变	    	
 	},
   data () {
     return {
@@ -93,6 +93,7 @@ export default {
         { token: global.token },
         v => {
 	        	global.user=v.data;this.user=v.data
+	        	this.identityb = v.data.identity
 	        	if (v.data.identity == 1 || v.data.identity == 2) 
 	        		{
 	        			this.isdaren = true;
@@ -111,7 +112,7 @@ export default {
           },
           success: data => {
           	let len = data.data.length();
-          	if (data.data[len-1].read_status==0) this.msg = true;
+          	// if (data.data[len-1].read_status==0) this.msg = true;
           },
           error: err => err.toString()
         });
@@ -132,8 +133,8 @@ export default {
   // },
   methods:{
   	handleClick(){
-  		if (this.identity == 1) {this.identity = 0;this.identityb = 0}
-  		else if (this.identity == 0) {this.identity = 1;this.identityb = 1}
+  		if (this.identityb == 1 || this.identityb == 2) {this.identity = 0;this.identityb = 0}
+  		else if (this.identityb == 0) {this.identity = 1;this.identityb = 1}
   	}
   }
 }

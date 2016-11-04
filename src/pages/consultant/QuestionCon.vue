@@ -86,7 +86,7 @@ export default {
   	QuestionCard,Voicep,TopBar,NavHeader
   },
   ready(){
-    if(global.user.answer_num==0){
+    if(localStorage.answer_num==0){
       this.isfirst=true
     }
     $.ajax({

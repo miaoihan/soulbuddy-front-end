@@ -23,15 +23,16 @@ export default {
       // is_new: true,
       // weixin: [],
       bind: null,
+      user: {},
       token: '', //做判断用，有了token才渲染
-      identity: 0,
+      identity: null,
       // host: 'http://120.27.122.131',
       // host: 'http://han.s3.natapp.cc',
       host: 'http://m.soulbuddy.cn',
       // 测试开关
       test:false,
       // test:true,
-      uid: 81
+      uid: 82
     }
   },
   watch:{
@@ -58,7 +59,7 @@ export default {
     global.open_id = ku.open_id
     global.domain = 'http://xinling.songtaxihuan.com'
     global.logo_url = "http://xinling.oss-cn-shanghai.aliyuncs.com/"
-    global.user = ku.user
+    if (ku.identity) {this.identity = ku.identity}
       //测试环境
       if (this.test) {
         $.get(global.domain +'/test/test?uid='+this.uid,
@@ -81,8 +82,9 @@ export default {
           // alert(global.user)
           // 登陆后存储用户信息
           ku.token = v.data.token;
-          ku.user = v.data.userinfo;
           ku.open_id = v.data.userinfo.open_id;
+          ku.identity = v.data.userinfo.identity;
+          ku.answer_num = v.data.userinfo.answer_num;
           // 判断是否绑定了手机
           let phone = v.data.userinfo.mobile
           // 如果没有绑定，跳转到绑定手机页面
