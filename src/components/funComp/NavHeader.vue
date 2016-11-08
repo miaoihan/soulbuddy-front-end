@@ -134,8 +134,7 @@
 				this.$router.go('/me/profile')
 			},
 			ask(){
-				console.log('name: '+this.user.user_name)
-				if (''==this.user.user_name || null==this.user.user_name){ 
+				if (''==global.user.user_name || null==global.user.user_name){ 
 					this.show_modal = true;
 					return
 				}
@@ -211,11 +210,7 @@
 	  		}
 		},
 		ready(){
-			$.post(global.domain +'/user/get_my_info',
-                  { token: global.token },
-                  v => {
-                      this.user=v.data;
-      } ,'json');
+			
 			// document.body.onclick=function(){
 			// 	// alert(1222)
 			// 	this.show_modal = false;

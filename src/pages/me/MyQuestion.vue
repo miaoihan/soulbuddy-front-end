@@ -1,8 +1,9 @@
 <template>
 <nav-header title="我的提问" left="back"></nav-header>
-  <div class="far-bom">
+  <div>
   	<question-list :data="queList" type="mine"></question-list>
   </div>
+  <div class="bom-div"></div>
 </template>
 
 <script>

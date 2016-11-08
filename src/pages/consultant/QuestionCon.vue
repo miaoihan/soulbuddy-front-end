@@ -4,7 +4,7 @@
     <question-card gouser="true" :data="datas" :count="count" type="public" :is-content=true></question-card>
   </div>
   <!-- 底部开始回答 -->
-  <div class="bottom-record wrapper fixed-bot">
+  <div class="bottom-record wrapper fixed-bot" v-if="!currentUser">
     <div class="record-box" v-if="isbox">
       <div class="record-left">
         <i class="iconfont record-icon" @click="recordbgn" 
@@ -80,6 +80,8 @@ export default {
       t: 0,
       flag: '',
       count: "0",
+      hasAnswer: false,
+      currentUser: false,
     }
   },
   components:{
@@ -97,11 +99,11 @@ export default {
             q_id: this.$route.params.qid,
             token: global.token,
           },
-          cache: false,
           success: function(data) {
             // console.log("aa"+data)
             this.datas = data.data
             this.count = data.data.answers.length.toString();
+            if (this.datas.user_id == global.user.u_id) this.currentUser = true;
             console.log(this.datas);
           }.bind(this),
           error: function(xhr, status, err) {
@@ -115,6 +117,8 @@ export default {
     },
     changebtn(event){
       // 检查是否能回答
+      if (this.hasAnswer || this.datas.has_answer==1) { 
+        alert('你已经回答过了哦!');return; }
       $.post(global.domain +'/question/check_answer',
         { token: global.token, q_id: this.$route.params.qid }, v => {
           // this.readList = v.data; 
@@ -194,7 +198,7 @@ export default {
       $.post(global.domain +'/question/cancel_answer',
         { token: global.token, q_id: this.$route.params.qid }, v => {
           // this.readList = v.data; 
-          if (v.code !== 1) alert('取消失败！');
+          if (v.code!= 1) alert('取消失败！');
         },'json');
       this.isFinish=false;
       this.isbox=false;
@@ -240,10 +244,6 @@ export default {
         localId: that.voice.localId,
         success: function (res) {
           that.voice.serverId = res.serverId;
-          console.log('token: '+global.token)
-          console.log('q_id: '+that.$route.params.qid)
-          console.log('answer_url: '+res.serverId)
-          console.log('user_name: '+global.user.user_name)
           //保存到服务器
           $.post( global.domain +'/question/add_answer', 
             { 'token'      :  global.token,
@@ -253,8 +253,16 @@ export default {
               'answer_time':  that.voice.time
             },
             function (res) {
-              if (res.code==0) alert(res.msg);
-              else alert('回答成功！');
+              if (res.code!=1) {
+                //取消回答
+                $.post(global.domain +'/question/cancel_answer',
+                  { token: global.token, q_id: this.$route.params.qid }, v => {
+                    // this.readList = v.data; 
+                    if (v.code != 1) alert('失败！');
+                  },'json');
+                alert(res.msg)
+              }
+              else {that.hasAnswer=true; alert('回答成功！')};
             }, 'json');
         }
       });
