@@ -80,15 +80,31 @@ import NavHeader from 'components/funComp/NavHeader';
 					    signType: param.signType, // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
 					    paySign: param.paySign, // 支付签名
 					    success: function (res) {
-				        // 支付成功后返回我的
-				        alert('充值成功!')
-				        vm.$router.go('/me')
+				        // 充值成功后返回我的
+				        $.ajax({
+				          url: global.domain +'/user/user_recharge',
+				          type:'POST', 
+				          dataType: 'json',
+				          data:{
+				            token: global.token,
+				            money: vm.money,
+				            recharge_channel:'wx',
+				          },
+				          success: data => {
+				          	if (recharge_status==1) {
+				          		vm.balance = vm.balance+vm.money
+				          		alert('充值成功!')
+				        			vm.$router.go('/me')
+				        		}else alert('充值失败！')
+				          },
+				          error: err => console.error(err.toString())
+				        });
 				        
-						    },
-						    fail: function(res){
-						    	console.log(res)
-						    }
-							});
+					    },
+					    fail: function(res){
+					    	console.log(res)
+					    }
+						});
           },
         });
 	  	},

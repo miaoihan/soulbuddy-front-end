@@ -81,6 +81,7 @@
     },
   	data(){
   		return{
+  			user:{},
   			my_favorite:[],
   			show_modal: false,
   			modalBtn:[
@@ -94,7 +95,6 @@
   					text: '立即去完善资料',
   					click: function(){
   						const that = this
-  						console.log(Vue.$el)
   						console.log(that.toString())
   						// alert(this.show)
   					}
@@ -134,7 +134,8 @@
 				this.$router.go('/me/profile')
 			},
 			ask(){
-				if (!global.user_name){ 
+				console.log('name: '+this.user.user_name)
+				if (''==this.user.user_name || null==this.user.user_name){ 
 					this.show_modal = true;
 					return
 				}
@@ -210,14 +211,19 @@
 	  		}
 		},
 		ready(){
+			$.post(global.domain +'/user/get_my_info',
+                  { token: global.token },
+                  v => {
+                      this.user=v.data;
+      } ,'json');
 			// document.body.onclick=function(){
 			// 	// alert(1222)
 			// 	this.show_modal = false;
 			// 	alert(this.show_modal)
 			// }
-			$('modalBg').click(function(){
-				alert(1112233)
-			})
+			// $('modalBg').click(function(){
+			// 	alert(1112233)
+			// })
 			// if(this.FavId!=null){
 			// 	$.ajax({
 		 //          url: 'http://xinling.songtaxihuan.com/user/get_my_favorite',

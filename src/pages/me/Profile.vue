@@ -16,7 +16,7 @@
     </div>
     <div class="nik-body wrapper">
       <div class="nikname wrapper">
-      <input id="user-name" name="user_name" class="nikname-val" style="width:5.0rem" :value="user.user_name">
+      <input id="user-name" name="user_name" class="nikname-val" style="width:5.0rem" v-model="user.user_name">
         
       </div>
       <div class="border">   
@@ -153,7 +153,7 @@ import NavHeader from 'components/funComp/NavHeader';
           alert('昵称不能为空！')
           return false 
         }
-        if(logo_src==''&& this.serverId==''){
+        if(logo_src==''){
           alert('头像不能为空！')
           return false 
         }
@@ -182,8 +182,9 @@ import NavHeader from 'components/funComp/NavHeader';
             cache: true,
             data: $('#editform').serialize(),//序列化
             success: function(data) {
-              // console.log( data);  
-              this.$router.go('/me')
+              // console.log( data);
+              global.user_name = this.user.user_name  
+              window.history.go(-1)
             }.bind(this),
             error: function(xhr, status, err) {
               console.error(err.toString())

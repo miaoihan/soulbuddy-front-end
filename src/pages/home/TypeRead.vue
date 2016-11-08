@@ -7,6 +7,7 @@
         查看更多
       </div>
   	</div> <!-- end article-list -->
+    <div class="bom-div"></div>
   </div>
 </template>
 
@@ -49,7 +50,7 @@
 <style scoped lang="stylus">
 
 .article-list{
-	margin-bottom 4.0rem
+	// margin-bottom 4.0rem
   margin-top 10px  
 }
 </style>

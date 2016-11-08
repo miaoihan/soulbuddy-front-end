@@ -4,20 +4,22 @@
     <div class="person-msg-body">
     	<div class="person-msg-basic">
     		<div class="img-body">
-    			<img :src="user.logo" class="img-imgs" v-if="identity==0||user.identity==2">
-    			<img :src="real_logo" class="img-imgs" v-if="identity==1&&user.identity==1">
+    			<img :src="real_logo" class="img-imgs" v-if="identityb==1&&user.identity!=2">
+    			<img :src="user.logo" class="img-imgs" v-if="identityb==0||user.identity==2">
     		</div>
+
     		<div class="person-msg-name">
     			<span class="name-text">{{user.user_name}}</span>
-				<a v-link="'/setting/profile'" class="button button-round btnstyle" v-if="identity == 0">编辑个人资料</a>
-				<a v-link="'me/personedit/0'" class="button button-round btnstyle" v-if="identity == 1">编辑个人资料</a>
+				<a v-link="'/setting/profile'" class="button button-round btnstyle" v-if="identityb==0||user.identity==2">编辑个人资料</a>
+				<a v-link="'me/personedit/0'" class="button button-round btnstyle" v-if="identityb == 1&& user.identity!=2">编辑个人资料</a>
     		</div>
     		<div class="hint-img">
     		<!-- 站内信 -->
     		<a v-link="{path:'/message'}">
     			<i class="iconfont imgimg" >&#xe605;</i>
-    		</a>
     			<div class="hint-text" v-if="msg"></div>
+    		</a>
+    			
     		</div>
     	</div>
     </div>
@@ -92,14 +94,16 @@ export default {
   	$.post(global.domain +'/user/get_my_info',
         { token: global.token },
         v => {
-	        	global.user=v.data;this.user=v.data;
+	        	global.user=v.data;
+	        	this.user=v.data;
 	        	if (v.data.unread_num>0) { this.msg = true }
-	        	this.identityb = v.data.identity
 	        	if (v.data.identity == 1 || v.data.identity == 2) 
 	        		{
 	        			this.isdaren = true;
-	        			this.real_logo=global.logo_url+this.user.real_logo
+	        			// this.real_logo=global.logo_url+this.user.real_logo
+	        			
 	        		}
+	        		this.real_logo=this.user.real_logo
 	        	this.already = true
         	} ,'json');
   	// 站内信
