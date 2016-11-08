@@ -13,7 +13,7 @@
 			</input-box>
 		</div>
   	</form>
-	<input class="confirm-btn far-bom" type="button" value="确认提取" @click="cashAlipay">
+	<input class="confirm-btn" type="button" value="确认提取" @click="cashAlipay">
   </div>
 </template>
 
@@ -95,14 +95,15 @@ import NavHeader from 'components/funComp/NavHeader'
 }
 .confirm-btn{
 	position: fixed;
-  	bottom:0;
+  bottom: 0;
 	width: 100%;
-	height: 2.25rem;
+	height: 2.5rem;
 	text-align: center;
 	border:0;
 	background-color:#2b8ff7;
 	color:#fff;
 	font-size:0.7rem;
+	z-index: 100
 	/*opacity:0.5;*/
 }
 </style>

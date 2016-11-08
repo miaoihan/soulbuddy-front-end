@@ -1,7 +1,8 @@
 <template>
 <!-- 提问 抢答 -->
+<div>
 	<nav-header title="提问" :ispub="true" :method="subAndCheck" left="cancel"></nav-header>
-  <div class="ask wrapper">
+  <div class="ask">
   <form action="http://xinling.songtaxihuan.com/question/add_question" 
   			method="post"	id="askForm">
   	<input type="hidden" name="token" value="{{ token }}">
@@ -39,6 +40,8 @@
 		  <div class="bounce3"></div>
 		</div>
   </div>
+  <div class="bom-div"></div>
+ </div>
 </template>
 
 <script>
@@ -155,7 +158,7 @@
 
 .ask
 	margin-top: 1.0rem
-	margin-bottom 4.0rem
+	// margin-bottom 4.0rem
 	.ask-title
 		margin-bottom: 1.0rem
 	.ask-txarea-wrapper

@@ -31,7 +31,7 @@
   	<section class="qd-middle" style="margin-bottom: 5.0rem">
   		<div class="answer-item" v-for="obj in ans_other"
   					>
-  			<answer-card :data="obj" :setbest="true" :free="true"></answer-card>	
+  			<answer-card :data="obj" :setbest="true" :free="true" :is-null="isNull" :is-set.sync="isSet"></answer-card>	
   		</div>
   	</section>
   </div>
@@ -51,13 +51,15 @@
 	  		ans_best:{},
 	  		ans_other:[],
 	  		q_id:null,
+	  		isNull:false,
+	  		isSet:false
 			}
 	  },
 	  methods:{
 	  
 	  },
 	  ready(){
-	  	// 问答详情
+	  	//问答详情
       $.post(global.domain +'/question/get_question_info',
         { token: global.token,
           q_id: this.$route.params.id },
@@ -68,6 +70,8 @@
         	// 如果第一个是最佳答案
         	if(q[0].is_best==1){
         		this.ans_best=q.shift()
+        		this.isNull=true
+        		// alert(this.isNull)
         	}
         	// this.ans_best.is_best=1
         	// console.log(this.ans_best)

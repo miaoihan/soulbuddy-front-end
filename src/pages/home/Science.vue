@@ -6,12 +6,13 @@
         <a v-link="'/reading?type='+tag">{{tag}}</a>
       </span>
     </div>
-  	<div class="article-list" style="margin-bottom:4rem;">
+  	<div class="article-list">
   		<article-list :data="readList"></article-list>
       <div class="seemore" @click="seeMore">
         查看更多
       </div>
   	</div> <!-- end article-list -->
+    <div class="bom-div"></div>
   </div>
 </template>
 

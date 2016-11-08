@@ -1,15 +1,18 @@
 <template>
-	<nav-header :title="item.title" left="back" right=''></nav-header>
-		<div class="sel-dec">
-			{{item.intro}}
-		</div>
-  <div>
-  	<select-list :data="item.questions" :selarr.sync="selarr"></select-list>
-  </div>
-  <div style="margin-bottom:4rem">
-  	<button class="button button-round btn-default f-btn"
-  					@click="subAndCheck">提交</button>
-  </div>
+	<div>
+		<nav-header :title="item.title" left="back" right=''></nav-header>
+			<div class="sel-dec">
+				{{item.intro}}
+			</div>
+	  <div>
+	  	<select-list :data="item.questions" :selarr.sync="selarr"></select-list>
+	  </div>
+	  <div>
+	  	<button class="button button-round btn-default f-btn"
+	  					@click="subAndCheck">提交</button>
+	  </div>
+	  <div class="bom-div"></div>
+	</div>
 </template> 
 
 <script>

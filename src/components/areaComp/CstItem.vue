@@ -46,6 +46,9 @@
 	      is_like:null
 	    };
 	  },
+	  created(){
+	  	if (this.$route.query.fav=='1') this.is_like = true
+	  },
 	  methods:{
 	  	like(u_id){
 	  		console.log("u_id is "+u_id)

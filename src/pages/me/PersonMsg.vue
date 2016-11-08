@@ -87,7 +87,7 @@ export default {
     this.skill=user.skill.split(" ").join("；");
     this.intro=user.intro
     this.true_name=user.true_name
-    this.real_logo=global.logo_url+user.real_logo
+    this.real_logo=user.real_logo
     this.token=localStorage.token
     this.price = user.answer_fee;
 	  	$.post(global.domain +'/user/get_my_info',
