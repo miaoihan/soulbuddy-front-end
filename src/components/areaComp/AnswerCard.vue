@@ -23,10 +23,10 @@
 						<div style="font-size: 12px; color: #999" v-if="datap">{{datap.identity==1?datap.user_title:'经验答人'}}</div>
 					</div>
 					<div v-if="data.is_best==1 || isBest && !setbest">
-						<span class="btn-border-blue a-r-sign">最佳答案</span>
+						<span class="btn-border-blue a-r-sign" >最佳答案</span>
 					</div>
-					<div v-if="(data.is_best==0 || !isBest) && setbest" @click="addBest">
-						<span class="btn-border-blue a-r-sign">设为最佳答案</span>
+					<div v-if="(data.is_best==0 || !isBest) && setbest && isSet==false  " @click="addBest">
+						<span class="btn-border-blue a-r-sign" v-if="isNull == false">设为最佳答案</span>
 					</div>
 					<!-- <div class="pull-right" v-if="data.is_best==0&&best=='false'" @click="addBest">
 						<span class="button">设置最佳答案</span>
@@ -62,6 +62,8 @@ import Voice from 'components/funComp/Voice.vue'
 	  	isBest:{ type: Boolean },
 	  	goto:{type:String,default:'false'},
 	  	free:{ type: Boolean, default: false },
+	  	isNull:{ type: Boolean, default: false },
+	  	isSet:{ type: Boolean, default: false }
 	  },
 
 	  data () {
@@ -86,6 +88,7 @@ import Voice from 'components/funComp/Voice.vue'
 	          success: function(data) {
 	          	this.isBest = true;
 	  					this.data.is_best = 1;
+	  					this.isSet=true
 	          }.bind(this),
 	          error: function(xhr, status, err) {
 	            console.error(err.toString());
