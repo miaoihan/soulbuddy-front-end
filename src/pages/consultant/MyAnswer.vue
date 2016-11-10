@@ -1,6 +1,6 @@
 <template>
 <nav-header title="我的回答" left="back"></nav-header>
-  <div class="wrapper far-bom">
+  <div class="wrapper">
   <!-- 问题列表 -->
   	<section class="question-item part" v-for="que in questions">
 		  <div class="q-i-title">
@@ -14,6 +14,7 @@
 			<answer-card :data="que" :index="$index" :datap="user" :free="true"></answer-card>
 		</section>
   </div>
+  <div class="bom-div"></div>
 </template>
 
 <script>

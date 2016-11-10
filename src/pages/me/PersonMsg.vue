@@ -145,10 +145,10 @@ export default {
           alert('真实头像不能为空')
           return false
         }
-        if($('[name="certificate"]').val()===''){
-          alert('相关证件不能为空')
-          return false
-        }
+        // if($('[name="certificate"]').val()===''){
+        //   alert('相关证件不能为空')
+        //   return false
+        // }
         if($('[name="skill"]').val()===''){
           alert('擅长标签不能为空')
           return false
@@ -189,6 +189,10 @@ export default {
         }
         if($('[name="true_name"]').val()===''){
           alert('真实姓名不能为空')
+          return false
+        }
+        if($('[name="certificate"]').val()===''){
+          alert('相关证件不能为空')
           return false
         }
         if($('[name="skill"]').val()===''){

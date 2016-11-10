@@ -120,7 +120,7 @@ import NavHeader from 'components/funComp/NavHeader';
           url: global.domain +'/thirdparty/wepay',
           type:'POST', dataType: 'json',
           data:{
-          	total_fee: 1,
+          	total_fee: this.user.answer_fee*100,
             body: '向'+ this.user.user_name +'提的问题',
             open_id: global.open_id,
           },

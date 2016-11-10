@@ -98,7 +98,7 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
           url: global.domain +'/thirdparty/wepay',
           type:'POST', dataType: 'json',
           data:{
-          	total_fee: 1,
+          	total_fee: 100,
             body: '解锁一个问答' ,
             open_id: global.open_id,
           },
