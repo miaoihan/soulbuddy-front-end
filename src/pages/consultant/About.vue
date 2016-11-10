@@ -4,7 +4,7 @@
   <div>
   	<div class="at-top part container-20"
   			 :class="user.identity == 1? 'ztc' : 'ab-kol' ">
-  	<div class="cst-info wrapper" style="height: 5.0rem">
+  	<div class="cst-info wrapper">
   		<div class="k-i-l">
 				<!-- 头像 -->
 				<i class="avator" style="height:4.05rem;width:4.05rem;background: url({{real_logo}}) no-repeat center top; background-size: cover">
@@ -28,10 +28,10 @@
 		  			</span>
 		  		</div>
 		  		<!-- 标签 -->
-		  		<div class="desc-l3" style="margin-top: 0.40rem">
+		  		<div class="desc-l3" style="margin-top: 0.40rem;margin-bottom:0.6rem">
 		  			<span class="label" 
 									:class="user.identity==1? 'label-border': 'label-grey' "
-		  						style="margin-right: 0.5rem" 
+		  						style="margin-right: 0.5rem;margin-bottom:5px" 
 		  						v-for="it in user.skill | str2arr">
 		  				{{it}}
 		  			</span>

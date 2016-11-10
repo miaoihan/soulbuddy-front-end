@@ -146,7 +146,7 @@ import NavHeader from 'components/funComp/NavHeader';
         }
       },
       subAndCheck2(){
-        var logo_src='asdf'
+        var logo_src=''
         logo_src = $("#logo").attr("src")
         // alert(logo_src)
         if($('[name="user_name"]').val()===''){

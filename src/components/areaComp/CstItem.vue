@@ -22,11 +22,11 @@
 			  		</div>
 			  		<div class="desc-l2">
 			  			<span style="font-size:0.6rem;color: #999">
-			  				{{data.intro}}
+			  				{{data.user_title}}
 			  			</span>
 			  		</div>
 			  		<div class="desc-l3">
-			  			<span class="label-grey" style="margin-right: 0.5rem" 
+			  			<span class="label-grey" style="margin-right: 0.5rem; margin-bottom:6px" 
 			  						v-for="skill in data.skill | str2arr">
 			  				{{ skill }}
 			  			</span>
