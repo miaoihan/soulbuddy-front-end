@@ -63,7 +63,8 @@ import NavHeader from 'components/funComp/NavHeader'
 		            	// this.data=data
 		            	console.log(data.code)
 		            	if(data.code==1){
-		            		alert('提现成功') 
+		            		alert('提现成功') ;
+		            		this.$router.go('/me');
 		            		// alert(data.msg) 
 		            	}else{
 		            		alert('提现失败')

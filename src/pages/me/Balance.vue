@@ -89,9 +89,10 @@ import NavHeader from 'components/funComp/NavHeader';
 				            token: global.token,
 				            money: vm.money,
 				            recharge_channel:'wx',
+				            recharge_status: 1
 				          },
 				          success: data => {
-				          	if (recharge_status==1) {
+				          	if (data.code == 1) {
 				          		vm.balance = vm.balance+vm.money
 				          		alert('充值成功!')
 				        			vm.$router.go('/me')
@@ -99,7 +100,6 @@ import NavHeader from 'components/funComp/NavHeader';
 				          },
 				          error: err => console.error(err.toString())
 				        });
-				        
 					    },
 					    fail: function(res){
 					    	console.log(res)
