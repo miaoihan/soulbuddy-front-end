@@ -52,7 +52,7 @@
 	  		ans_other:[],
 	  		q_id:null,
 	  		isNull:false,
-	  		isSet:false
+	  		isSet:false	
 			}
 	  },
 	  methods:{
