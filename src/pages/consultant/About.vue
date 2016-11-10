@@ -24,7 +24,7 @@
 		  		</div>
 		  		<div class="desc-l2">
 		  			<span style="font-size:0.6rem;">
-		  				{{user.title}}
+		  				{{user.user_title}}
 		  			</span>
 		  		</div>
 		  		<!-- 标签 -->
@@ -101,11 +101,34 @@ import NavHeader from 'components/funComp/NavHeader';
 	  		this.show_modal = true
 	  	},
 	  	yuPay(){
-	  		if (global.user.balance<1) alert('余额不足,请充值!');
+	  		if (Number(global.user.balance)<Number(this.user.answer_fee)) 
+	  		 alert('余额不足,请充值!');
 	  		else{
 	  			//余额支付接口
-
-	  			this.$router.go('/askto?uid='+this.user.u_id)
+	  			$.ajax({
+	                url: global.domain +"/user/balance_buy_answer",
+	                type:'post', 
+	                dataType: 'json',
+	                async:false,
+	                data: {
+	                	token:global.token,
+	                	money:this.user.answer_fee
+	                },
+	                success: function(data) {
+	                	if(data.msg==true){
+	                		alert(global.user.balance)
+	                		alert('支付成功')
+	                 		this.$router.go('/askto?uid='+this.user.u_id)
+	                	}else{
+	                		alert('支付失败')
+	                	}
+	                }.bind(this),
+	                error: function(xhr, status, err) {
+	                  console.err(err.toString())
+	                  alert('支付失败')
+	                }.bind(this)
+	            });
+	  			
 	  		}
 	  	},
 	  	closeModal(){
@@ -148,6 +171,7 @@ import NavHeader from 'components/funComp/NavHeader';
 	  	},
 	  },
 	  ready(){
+	  	
 	  	// this.user_type=this.$route.params.type
 	  	// console.log("user_type is"+this.user_type)
 	  	// 用户信息

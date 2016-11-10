@@ -57,7 +57,7 @@ export default {
     this.token = ku.token
     global.token = ku.token
     global.open_id = ku.open_id
-    global.user_name = ku.user_name
+    // global.user_name = ku.user_name
     // console.log('nnnnn '+global.user_name)
     global.domain = 'http://xinling.songtaxihuan.com'
     global.logo_url = "http://xinling.oss-cn-shanghai.aliyuncs.com/"
@@ -140,11 +140,7 @@ export default {
 
   },
   ready(){
-    $.post(global.domain +'/user/get_my_info',
-                  { token: global.token },
-                  v => {
-                      global.user=v.data;
-      } ,'json');      
+          
   }
 
 }
