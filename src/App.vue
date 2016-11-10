@@ -32,7 +32,7 @@ export default {
       // 测试开关
       test:false,
       // test:true,
-      uid: 109
+      uid: 102
     }
   },
   watch:{
@@ -141,12 +141,11 @@ export default {
   },
   ready(){
     $.post(global.domain +'/user/get_my_info',
-                  { token: global.token },
-                  v => {
-                      global.user=v.data;
+      { token: global.token },
+      v => {
+          global.user=v.data;
       } ,'json');      
   }
-
 }
 </script>
 

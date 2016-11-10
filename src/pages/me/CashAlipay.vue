@@ -56,7 +56,6 @@ import NavHeader from 'components/funComp/NavHeader'
 		            url: global.domain +"/user/user_withdraw",
 		            type:'post', 
 		            dataType: 'json',
-		            cache: true,
 		            async:false,
 		            data: $('#editform').serialize(),//序列化
 		            success: function(data) {

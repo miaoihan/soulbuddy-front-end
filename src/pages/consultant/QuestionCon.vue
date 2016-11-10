@@ -118,7 +118,7 @@ export default {
     changebtn(event){
       // 检查是否能回答
       if (this.hasAnswer || this.datas.has_answer==1) { 
-        alert('你已经回答过了哦!');return; }
+        alert('你已经回答过了哦!'); return; }
       $.post(global.domain +'/question/check_answer',
         { token: global.token, q_id: this.$route.params.qid }, v => {
           // this.readList = v.data; 
@@ -254,6 +254,7 @@ export default {
             },
             function (res) {
               if (res.code!=1) {
+                alert('语音上传失败！')
                 //取消回答
                 $.post(global.domain +'/question/cancel_answer',
                   { token: global.token, q_id: this.$route.params.qid }, v => {

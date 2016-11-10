@@ -62,7 +62,7 @@ import NavHeader from 'components/funComp/NavHeader';
           url: global.domain +'/thirdparty/wepay',
           type:'POST', dataType: 'json',
           data:{
-          	total_fee: this.money,
+          	total_fee: this.money * 100, //微信是以分为单位
             body: '充值'+this.money+'元' ,
             open_id: global.open_id,
           },
@@ -88,7 +88,7 @@ import NavHeader from 'components/funComp/NavHeader';
 				          data:{
 				            token: global.token,
 				            money: vm.money,
-				            recharge_channel:'wx',
+				            recharge_channel:'微信支付',
 				            recharge_status: 1
 				          },
 				          success: data => {

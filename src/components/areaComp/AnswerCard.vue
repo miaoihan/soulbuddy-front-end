@@ -97,7 +97,6 @@ import Voice from 'components/funComp/Voice.vue'
 	  	}
 	  },
 	  ready(){
-	  	console.log(this.$route.params.id)
 	  	this.user = global.user
 	  	// console.log(this.user+"adlfhaskfhksadfhksadkf")
 	  },

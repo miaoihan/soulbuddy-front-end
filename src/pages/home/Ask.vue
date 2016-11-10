@@ -52,7 +52,7 @@
 	  data(){
 	  	return{
 	  		is_public: true,
-	  		gold: '0',
+	  		gold: null,
 	  		token: '',
 	  		sub: '',
 	  		loading: false,
@@ -72,7 +72,7 @@
 	  		// 	alert('赏金不能为空！')
 	  		// 	return false
 	  		// }
-	  		if (this.gold==0) {
+	  		if (!this.gold) {
 	  			this.loading = true;
 	  			$.ajax({
 	          url: global.domain +"/question/add_question",
@@ -98,8 +98,9 @@
           url: global.domain +'/thirdparty/wepay',
           type:'POST', dataType: 'json',
           data:{
+          	// total_fee: this.gold,
           	total_fee: this.gold * 100,
-            body: '我发出的问题',
+            body: '我提出的问题',
             open_id: global.open_id,
           },
           success: data => {
@@ -123,7 +124,7 @@
 				          data: $('#askForm').serialize(),//序列化
 				          success: function(data) {
 				            // console.log( data);	
-				            this.$router.go('/home')
+				            vm.$router.go('/home')
 				            console.log(this.$router)
 				          }.bind(this),
 				          error: function(xhr, status, err) {

@@ -1,8 +1,10 @@
 <template>
   <div class="wrapper">
   <!-- 问题列表 -->
+
   <!-- 其他人问题 -->
   	<section class="question-item part" v-for="que in data">
+  	<!-- 1.其他人 -->
 	  	<a v-link="'/question/' + que.q_id " v-if="type=='other'">
 			  <div class="container-20">
 			  	<title class="que-content over-2">
@@ -12,11 +14,13 @@
 			  	<div :class="que.answer_url? 'nock':'' ">
 			  		<span class="label" v-if="que.is_free">免费</span>
 			  		<span class="nock-text" v-if="!que.can_listen && $route.name!='myque' && que.answer_url"
-			  					@click.prevent="callpay">￥1元解锁该问题的所有回答</span>
+			  					@click.prevent="callpay(que.q_id)">￥1元解锁该问题的所有回答</span>
 			  	</div>
 				</div>
 					<answer-card :data="que" :index="$index" v-if="que.answer_url" :datap="datap" :is-best="isBest" :free="free"></answer-card>
 		</a>
+
+		<!-- 2.我的 -->
 		<!-- 跳转到我的问题 -->
 		<a v-link="'/me/question/' + que.q_id " v-if="type=='mine'">
 		  <div class="container-20">
@@ -31,6 +35,7 @@
 			</div>
 				<answer-card :data="que" :index="$index" v-if="que.answer_url" :free="free"></answer-card>
 			</a>
+
 		</section>
 		<!-- loading -->
 		<div class="spinner" v-if="loading">
@@ -42,8 +47,8 @@
 		<div v-if="show_modal">
 			<div class="modal-bg" @click="closeModal"></div>
 			<div class="pay-modal">
-				<div style="border-bottom:1px solid #e7e7e7" @click="yuPay">余额支付</div>
-				<div @click="wxPay(data[0].q_id)">微信支付</div>
+				<div style="border-bottom:1px solid #e7e7e7" @click="yuPay(qid)">余额支付</div>
+				<div @click="wxPay(qid)">微信支付</div>
 			</div>	
 		</div> <!-- end modal -->
 
@@ -66,6 +71,7 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
   			fuck:{},
   			loading: false,
   			show_modal: false,
+  			qid: -1,	//暂存当前需要解锁的问题
   		}
   	},
 	  props: {
@@ -78,13 +84,45 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
 	  created(){
 	  },
 	  methods:{
-	  	callpay(){
-	  		this.show_modal = true
+	  	callpay(id){
+	  		this.show_modal = true;
+	  		this.qid = id
 	  	},
-	  	yuPay(){
+	  	yuPay(id){
+	  		this.loading = true;
 	  		if (global.user.balance<1) alert('余额不足,请充值!');
 	  		else{
-
+	  			// 余额支付接口
+	  			$.ajax({
+	          url: global.domain +'/user/balance_buy_answer',
+	          type:'POST', 
+	          dataType: 'json',
+	          data:{
+	            token: global.token,
+	            money: 1,
+	          },
+	          success: res => {
+	          	// 支付成功后解锁
+			        console.log(res);
+				      $.post(global.domain +'/question/buy_answers',
+				        { token: global.token, q_id: id },
+				        v => {
+				        	if (v.code==1) { 
+				        		// 刷新问答列表
+				        		for (let i in this.data) {
+				        			if (this.data[i].q_id == id) {
+				        				this.data[i].can_listen = true;
+				        			}
+				        		}
+						        this.loading = false;
+				        		this.show_modal = false; 
+				        		alert('支付成功！')
+				        	}
+				        	else alert('支付失败！')
+				        } ,'json');
+	          },
+	          error: err => console.error(err.toString())
+	        });
 	  		}
 	  	},
 	  	closeModal(){
@@ -92,6 +130,7 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
       },
 	  	// 微信支付
 	  	wxPay(id){
+	  		console.log(id)
 	  		this.loading = true;
 	  		// 先获取订单
 	  		$.ajax({
@@ -121,18 +160,21 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
 					      $.post(global.domain +'/question/buy_answers',
 					        { token: global.token, q_id: id },
 					        v => {
-					        	for(let i in vm.data){
-					        		if (vm.data[i].q_id === id) 
-					        			vm.data[i].can_listen = true;
-					        		console.log('data-----'+vm.data)
-					        		console.log('prop data-----'+vm.props.data)
-					        	}
+					        	if (v.code == 1) {
+					        		// 刷新问答列表
+						        	for (let i in vm.data) {
+				        			if (vm.data[i].q_id == id) {
+				        				vm.data[i].can_listen = true;
+				        			}
+				        		}
+						        }else alert('支付失败！')
 					        } ,'json');
-						    },
-						    fail: function(res){
-						    	console.log(res)
-						    }
-							});
+						  },
+					    fail: function(res){
+					    	alert('支付失败！')
+					    	console.log(res)
+					    }
+						});
           },
         });
       }, //end callpay
