@@ -145,10 +145,10 @@ export default {
           alert('真实头像不能为空')
           return false
         }
-        if($('[name="certificate"]').val()===''){
-          alert('相关证件不能为空')
-          return false
-        }
+        // if($('[name="certificate"]').val()===''){
+        //   alert('相关证件不能为空')
+        //   return false
+        // }
         if($('[name="skill"]').val()===''){
           alert('擅长标签不能为空')
           return false
@@ -180,17 +180,19 @@ export default {
       },
       //申请成为咨询师
       subme2(){
-      // alert('dsfsfdfsdf')
-      // if($('#real_logo').val()===''){
-      //     alert('真实头像不能为空')
-      //     return false
-      //   }
+        // var logo_src='123'
+        // logo_src = $("#logo").attr("src")
+        // alert(logo_src)
+        if($('#real_logo').val()===''){
+          alert('真实头像不能为空！')
+          return false 
+        }
         if($('[name="true_name"]').val()===''){
           alert('真实姓名不能为空')
           return false
         }
-        if($('[name="true_name"]').val()===''){
-          alert('真实姓名不能为空')
+        if($('[name="certificate"]').val()===''){
+          alert('相关证件不能为空')
           return false
         }
         if($('[name="skill"]').val()===''){
@@ -210,6 +212,7 @@ export default {
                 data: $('#editmsg').serialize(),//序列化
                 success: function(data) {
                   if(data.code==1){
+                    alert('提交成功')
                     this.$router.go('/me')
                   }
                   else{
@@ -218,6 +221,7 @@ export default {
                 }.bind(this),
                 error: function(xhr, status, err) {
                   console.err(err.toString())
+                  alert('提交失败')
                 }.bind(this)
               });
         }

@@ -84,6 +84,7 @@ export default {
                 }.bind(this),
                 error: function(xhr, status, err) {
                   console.err(err.toString())
+                  alert("提交失败")
                 }.bind(this)
               });
       	}
