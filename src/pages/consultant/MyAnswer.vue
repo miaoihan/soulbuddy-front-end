@@ -14,6 +14,9 @@
 			<answer-card :data="que" :index="$index" :datap="user" :free="true"></answer-card>
 		</section>
   </div>
+  <div class="seemore" @click="seeMore('answer')">
+  			查看更多回答
+  </div>
   <div class="bom-div"></div>
 </template>
 
@@ -29,7 +32,8 @@
   			ztc: '#2b8ff7',
   			token:'',
 	  		questions:[],
-	  		user: {}
+	  		user: {},
+	  		answer_page:1
   		}
   	},
   	created(){
@@ -55,6 +59,14 @@
           }.bind(this)
         });
 	  },
+	  methods:{
+	  	seeMore(type){
+        console.log(type)
+          $.post(global.domain +'/user/get_my_answer',
+            { token: global.token, page: ++this.answer_page, }, v => 
+            this.questions = this.questions.concat(v.data), 'json');
+      },
+	  }
 
 	  
   }

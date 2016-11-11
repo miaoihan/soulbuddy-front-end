@@ -10,6 +10,9 @@
 	  		<p style="font-size:14px;">{{ msg.content.split(':')[1] ? msg.content.split(':')[1] : msg.content.split(':')[0]}}</p>
 	  	</div>
   	</div>
+  	<div class="seemore" @click="seeMore('msg')">
+  			查看更多
+  	</div>
   	<div class="bom-div"></div>
   </div>
 </template>
@@ -24,6 +27,7 @@
 	      title:   null,
 	      content: null,
 	      msgList: [],
+	      msg_page:1
 	    };
 	  },
 	  created(){
@@ -37,6 +41,12 @@
         		},'json');
 	  },
 	  methods:{
+	  	seeMore(type){
+        console.log(type)
+          $.post(global.domain +'/user/get_my_mail',
+            { token: global.token, page: ++this.msg_page, }, v => 
+            this.msgList = this.msgList.concat(v.data), 'json');
+      },
 	  	isRead(){
 
 	  	}
