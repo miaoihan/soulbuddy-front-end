@@ -50,9 +50,9 @@
 	  		</div>
   	</div> <!-- end top -->
   	<div class="m-tips">
-  			共回答了 <strong>{{ user.answers.length}}</strong> 个问题</div>
+  			共回答了 <strong>{{ answers.length}}</strong> 个问题</div>
 		<div class="ans-list">
-			<question-list :data="user.answers" :datap="datap"></question-list>	
+			<question-list :data="answers" :datap="datap"></question-list>	
 		</div>
 		<footer class="qd-footer fixed-bottom ztc"
   					@click="callpay">
@@ -86,6 +86,7 @@ import NavHeader from 'components/funComp/NavHeader';
 	  	return{
 	  		token: '',
 	  		user: {},
+	  		answers:[],
 	  		collected:false,
 	  		user_type:"",
 	  		datap:{},
@@ -172,6 +173,20 @@ import NavHeader from 'components/funComp/NavHeader';
             console.error(readList, status, err.toString());
           }.bind(this)
         });
+	  		// 用户回答
+	  		$.ajax({
+          url: global.domain +'/user/get_user_answers',
+          type:'POST', 
+          dataType: 'json',
+          data:{
+            token: global.token,
+            u_id: this.$route.params.id,
+            page: 1,
+          },
+          success: data => this.answers = data.data,
+          error: err => console.error(err.toString())
+        });
+
        	let vm = this;
 	     	document.addEventListener('mousewheel', function (event) {//监听滚动事件
 	     	// alert(this.show_modal)
