@@ -35,7 +35,7 @@
   		</div>
   	</section>
   	<footer class="qd-footer fixed-bottom ztc"
-  					@click.prevent="callpay" v-if="!question.can_listen">
+  					@click.prevent="callpay" v-if="!(question.answers[0].can_listen && question.answers[1].can_listen )">
   					￥1 解锁该问题的所有回答
   	</footer>
   	<!-- loading -->

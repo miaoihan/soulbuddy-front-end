@@ -57,7 +57,7 @@ export default {
     this.token = ku.token
     global.token = ku.token
     global.open_id = ku.open_id
-    global.user_name = ku.user_name
+    // global.user_name = ku.user_name
     // console.log('nnnnn '+global.user_name)
     global.domain = 'http://xinling.songtaxihuan.com'
     global.logo_url = "http://xinling.oss-cn-shanghai.aliyuncs.com/"
@@ -289,6 +289,18 @@ body{
   font-size: 10px;
   color: #999999;
 }
+
+.label-big-bg{
+  display inline-block
+  height 1.3rem
+  line-height: 1.3rem
+  padding 0 0.3rem
+  border-radius 0.25rem
+  font-size: 0.6rem
+  background-color: $ztc
+  color #fff
+}
+
 .label-big-border{
   display inline-block
   height 1.3rem
