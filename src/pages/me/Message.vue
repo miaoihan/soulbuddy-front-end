@@ -11,7 +11,7 @@
 	  	</div>
   	</div>
   	<div class="seemore" @click="seeMore('msg')">
-  			查看更多精选问答
+  			查看更多
   	</div>
   	<div class="bom-div"></div>
   </div>
