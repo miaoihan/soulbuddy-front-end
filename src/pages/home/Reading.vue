@@ -7,7 +7,7 @@
   			</div>
   			<div class="type-box">
   				<div class="type-item">
-  					<a v-link="'/science?title='+catList[0].cat_name">
+  					<a v-link="'/science?title='+catList[0].cat_name+'&cid='+catList[0].cat_id ">
 		  				<div class="t-wrap">
 		  					<div class="item-bg">
 		  						<img src="../../../src/assets/imgs/kepu.png" alt="">
@@ -19,7 +19,7 @@
   					</a>
   				</div>
   				<div class="type-item">
-						<a v-link="'/relax?title='+catList[1].cat_name">
+						<a v-link="'/science?title='+catList[1].cat_name+'&cid='+catList[1].cat_id">
 	  					<div class="t-wrap">
 		  					<div class="item-bg">
 		  						<img src="../../../src/assets/imgs/fangsong.png" alt="">
@@ -31,7 +31,7 @@
   					</a>
   				</div>
   				<div class="type-item">
-  					<a v-link="'/case?title='+catList[2].cat_name">
+  					<a v-link="'/science?title='+catList[2].cat_name+'&cid='+catList[2].cat_id">
 	  					<div class="t-wrap">
 		  					<div class="item-bg">
 		  						<img src="../../../src/assets/imgs/case.png" alt="">

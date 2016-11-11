@@ -290,6 +290,18 @@ body{
   font-size: 10px;
   color: #999999;
 }
+
+.label-big-bg{
+  display inline-block
+  height 1.3rem
+  line-height: 1.3rem
+  padding 0 0.3rem
+  border-radius 0.25rem
+  font-size: 0.6rem
+  background-color: $ztc
+  color #fff
+}
+
 .label-big-border{
   display inline-block
   height 1.3rem
