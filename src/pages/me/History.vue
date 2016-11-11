@@ -1,6 +1,6 @@
 <template>
 <nav-header title="我听过的问题" left="back"></nav-header>
-  <div class="wrapper far-bom">
+  <div class="wrapper">
   <!-- 问题列表 -->
   	<section class="question-item part" v-for="que in questions">
 		  <div class="q-i-title">
@@ -13,6 +13,10 @@
 			</div>
 			<answer-card :data="que" :free="true"></answer-card>
 		</section>
+		<div class="seemore" @click="seeMore('que')">
+  			查看更多听过的问题
+  	</div>
+  	<div class="bom-div"></div>
   </div>
 </template>
 
@@ -28,6 +32,7 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
   			ztc: '#2b8ff7',
   			token:'',
 	  		questions:[],
+	  		que_page:1
   		}
   	},
 	  ready(){
@@ -37,7 +42,7 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
           dataType: 'json',
           data: {
 		          page:1,
-							token:global.token,
+				  		token:global.token,
 				  },
           cache: false,
           success: function(data) {
@@ -50,7 +55,14 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
           }.bind(this)
         });
 	  },
-
+	  methods:{
+	  	seeMore(type){
+        console.log(type)
+          $.post(global.domain +'/user/get_my_listen_question',
+            { token: global.token, page: ++this.que_page, }, v => 
+            this.questions = this.questions.concat(v.data), 'json');
+      },
+	  }
 	  
   }
 </script>

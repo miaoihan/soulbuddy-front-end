@@ -4,7 +4,11 @@
   	<func-nav :index.sync="index"></func-nav>
     <div style="margin-top: 0.5rem">
       <choice v-if="index==1" :swiper-list="swiperList" :index.sync="index"></choice>
-      <question-list v-if="index==2" :data="queList" class="far-bom" :is-best="true"></question-list>
+      <question-list v-if="index==2" :data="queList" :is-best="true"></question-list>
+      <div class="seemore" @click="seeMore('que')" v-if="index==2">
+        查看更多问答
+      </div>
+      <div class="bom-div" v-if="index==2"></div>
       <reading v-if="index==3" :data="readList"></reading>
       <evaluation v-if="index==4" :data="evaList" style="margin-bottom: 80px"></evaluation>
     </div>
@@ -32,6 +36,7 @@ import Evaluation from 'pages/home/Evaluation.vue'
         readList: [],
         evaList: [],
         jsApiParams: {},
+        que_page:1
       }
     },
     props: {
@@ -42,7 +47,13 @@ import Evaluation from 'pages/home/Evaluation.vue'
       }
     },
     methods:{
-      
+      // 加载更多
+      seeMore(type){
+        console.log(type)
+          $.post(global.domain +'/question/get_question_list',
+            { token: global.token, page: ++this.que_page, }, v => 
+            this.queList = this.queList.concat(v.data), 'json');
+      },
       // 微信支付
       // onBridgeReady(){
       //  WeixinJSBridge.invoke(
@@ -88,7 +99,6 @@ import Evaluation from 'pages/home/Evaluation.vue'
           type:'POST', 
           dataType: 'json',
           data:{
-            page: 1,
             token: global.token
           },
           success: data => this.queList = data.data,

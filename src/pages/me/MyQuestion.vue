@@ -3,6 +3,9 @@
   <div>
   	<question-list :data="queList" type="mine"></question-list>
   </div>
+  <div class="seemore" @click="seeMore('que')">
+        查看更多提问
+  </div>
   <div class="bom-div"></div>
 </template>
 
@@ -14,7 +17,8 @@
 	  },
 		data(){
 			return{
-				queList: []
+				queList: [],
+        que_page:1
 			}
 		},
 		ready(){
@@ -31,7 +35,15 @@
           success: data => {this.queList = data.data;},
           error: err => err.toString()
         });
-		}	  
+		},
+    methods:{
+      seeMore(type){
+        console.log(type)
+          $.post(global.domain +'/user/get_my_question',
+            { token: global.token, page: ++this.que_page, }, v => 
+            this.queList = this.queList.concat(v.data), 'json');
+      },
+    }	  
   }
 </script>
 
