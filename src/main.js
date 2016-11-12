@@ -10,7 +10,7 @@ Vue.use(Router)
 // filter
 Vue.filter('str2arr', function (val) {
 	if(val)
-		return val.split(';')
+		return val.split(/[' ',;；]/)
 })
 //去掉img标签
 Vue.filter('passImg', function (val) {
