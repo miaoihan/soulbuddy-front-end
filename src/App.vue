@@ -30,9 +30,9 @@ export default {
       // host: 'http://han.s3.natapp.cc',
       host: 'http://m.soulbuddy.cn',
       // 测试开关
-      test:false,
-      // test:true,
-      uid: 109
+      // test:false,
+      test:true,
+      uid: 118
     }
   },
   watch:{
@@ -51,7 +51,7 @@ export default {
     console.log(code)
     //storage存储全局数据
     var ku = window.localStorage
-    ku.domain = 'http://xinling.songtaxihuan.com'
+    ku.domain = 'http://m.soulbuddy.cn'
     ku.logo_url = "http://xinling.oss-cn-shanghai.aliyuncs.com/"
     //第二次跳转获取token
     this.token = ku.token
@@ -59,7 +59,7 @@ export default {
     global.open_id = ku.open_id
     // global.user_name = ku.user_name
     // console.log('nnnnn '+global.user_name)
-    global.domain = 'http://xinling.songtaxihuan.com'
+    global.domain = 'http://m.soulbuddy.cn'
     global.logo_url = "http://xinling.oss-cn-shanghai.aliyuncs.com/"
     // global.logo_url = ''
     // if (null!=ku.user) {global.user = JSON.parse(ku.user)} 

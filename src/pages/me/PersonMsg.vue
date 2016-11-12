@@ -10,7 +10,13 @@
     	</div>
     </div>
     <form action="" method="post" id="editmsg">
-    <input type="hidden" name="real_logo" :value="serverId" id="real_logo">
+    <!-- 若有seri，则上传 -->
+	  <input type="hidden" name="real_logo" :value="serverId" id="real_logo" v-if="serverId!=''">
+	  <input type="hidden" name="logo_flag" value="1" v-if="serverId!=''">
+	  <!-- 没有serid，保持不变 -->
+	  <input type="hidden" name="real_logo"  :value="old_real_logo" id="real_logo" v-if="serverId==''">
+	  <input type="hidden" name="logo_flag" value="0" v-if="serverId==''">
+
     <input type="hidden" name="certificate"
      :value="ceid" v-if="this.$route.params.id==1" >
     <input type="hidden" name="token" :value="token">
@@ -79,6 +85,7 @@ export default {
       answer_fee:'',
       user:{},
       price: null,
+      old_real_logo:''
     }
   },
   ready:function(){
@@ -88,6 +95,7 @@ export default {
     this.intro=user.intro
     this.true_name=user.true_name
     this.real_logo=user.real_logo
+    this.old_real_logo=user.old_real_logo
     this.token=localStorage.token
     this.price = user.answer_fee;
 	  	$.post(global.domain +'/user/get_my_info',
@@ -141,7 +149,9 @@ export default {
       },
       //咨询师保存
       subme1(){
-        if($('#real_logo').val()===''){
+      	var logo_src=''
+        logo_src = $("#logo").attr("src")
+        if(logo_src===''){
           alert('真实头像不能为空')
           return false
         }
