@@ -25,10 +25,14 @@
   	</aside>
   	<div class="que-list">
   		<question-list :data="queList" :is-best="true"></question-list>	
-  		<div class="seemore" @click="seeMore('que')">
+  		<div class="seemore" @click="seeMore('que')" v-if="queList.length>0">
   			查看更多精选问答
   		</div>
+      <div class="seemore" @click="seeMore('que')" v-if="queList.length==0">
+        暂无内容~
+      </div>
   	</div>
+    <div class="bom-div"></div>
   </div>
 </template>
 
@@ -138,7 +142,7 @@
 <style scoped lang="stylus">
 
 	.que-list{
-		margin-bottom: 5.0rem;
+		// margin-bottom: 5.0rem;
 	}
  
  .eva{

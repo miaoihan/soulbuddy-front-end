@@ -22,7 +22,7 @@ export default {
       // is_login: false,
       // is_new: true,
       // weixin: [],
-      bind: null,
+      bind: true,
       user: {},
       token: '', //做判断用，有了token才渲染
       identity: 0,
@@ -32,7 +32,7 @@ export default {
       // 测试开关
       test:false,
       // test:true,
-      uid: 102
+      uid: 118
     }
   },
   watch:{
@@ -47,11 +47,13 @@ export default {
     } 
   },
   created(){
-  	var code = this.getUrlParam('code');
+  	// 放在ready里是因为ios图标不正常显示，需要加载完之后
+    // 获取微信code
+    var code = this.getUrlParam('code');
     console.log(code)
     //storage存储全局数据
     var ku = window.localStorage
-    ku.domain = 'http://xinling.songtaxihuan.com'
+    ku.domain = 'http://m.soulbuddy.cn'
     ku.logo_url = "http://xinling.oss-cn-shanghai.aliyuncs.com/"
     //第二次跳转获取token
     this.token = ku.token
@@ -59,12 +61,12 @@ export default {
     global.open_id = ku.open_id
     // global.user_name = ku.user_name
     // console.log('nnnnn '+global.user_name)
-    global.domain = 'http://xinling.songtaxihuan.com'
+    global.domain = 'http://m.soulbuddy.cn'
     global.logo_url = "http://xinling.oss-cn-shanghai.aliyuncs.com/"
     // global.logo_url = ''
     // if (null!=ku.user) {global.user = JSON.parse(ku.user)} 
     if (ku.identity) {this.identity = ku.identity}
-      //测试环境
+    //测试环境
       if (this.test) {
         $.get(global.domain +'/test/test?uid='+this.uid,
         v => {ku.token = v.data; global.token = v.data;this.token = v.data} 
@@ -99,13 +101,18 @@ export default {
             // this.bind = false;
             // console.log(this.$router)
             // this.$router.go({path:url})
-            location.href = this.host +'?/#!/bind'
+            
+              location.href = this.host +'?/#!/bind'
+            
+            
           }
           // 绑定过，直接登录
           else {
             this.bind = true;
             this.userinfo = v.data.userinfo;
-            location.href = this.host +'?/#!/home'
+       
+              location.href = this.host +'?/#!/home'
+            
             // this.is_new = v.data.is_new;
           }
           
@@ -114,9 +121,6 @@ export default {
             error: err => console.log(err.toString())
         });
       }
-      // };
-      //定义域名，跳转需要
-    
       // 配置微信jssdk
       $.post( global.domain +'/thirdparty/wechat', 
           {'url': location.href.split('#')[0]},function (res) {
@@ -140,11 +144,14 @@ export default {
 
   },
   ready(){
+    
     $.post(global.domain +'/user/get_my_info',
       { token: global.token },
       v => {
           global.user=v.data;
-      } ,'json');      
+      } ,'json');  
+
+        
   }
 }
 </script>

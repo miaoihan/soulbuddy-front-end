@@ -25,7 +25,7 @@
   		 {{ question.answers.length>0? '共有 '+question.answers.length : 0}} 个回答
   	</aside>
   	<aside class="m-other" v-if="ans_best.is_best==1">
-  		 {{'其他 '+(ans_other.length)}} 个回答
+  		 {{'其他 '+(ans_other.length)}} 个回答 
   	</aside>
   	<!-- 回答列表 -->
   	<section class="qd-middle" style="margin-bottom: 5.0rem">
@@ -35,8 +35,8 @@
   		</div>
   	</section>
   	<footer class="qd-footer fixed-bottom ztc"
-  					@click.prevent="callpay" v-if="!(question.answers[0].can_listen && question.answers[1].can_listen )">
-  					￥1 解锁该问题的所有回答
+  					@click.prevent="callpay" v-if="show_lock">
+  					￥1 解锁该问题的所有回答			
   	</footer>
   	<!-- loading -->
 		<div class="spinner" v-if="loading">
@@ -63,7 +63,7 @@ import NavHeader from 'components/funComp/NavHeader'
 	  data(){
 	  	return{
 	  		money: 1,
-	  		lock: true ,
+	  		show_lock: false ,
 	  		question: {},
 	  		ans_best:{},
 	  		ans_other:[],
@@ -128,7 +128,12 @@ import NavHeader from 'components/funComp/NavHeader'
       $.post(global.domain +'/question/get_question_info',
         { token: global.token,
         	q_id: this.$route.params.id }, v => {
-        	this.question = v.data; 
+        	this.question = v.data;
+        	for(let i of v.data.answers){
+        		console.log(i)
+        		if (i.can_listen == false) this.show_lock = true;
+        	} 
+        	// if (v.data.length==1) this.show_lock = !v.data.
         	let q = v.data.answers
         	// console.log(q)
         	if(q[0].is_best==1){
