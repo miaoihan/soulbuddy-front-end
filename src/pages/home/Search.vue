@@ -5,7 +5,7 @@
   		<i class="iconfont sear-img" @click="search">&#xe600;</i>
   		<div class="input-body-head">
 	  		<form action="">
-	  				<input class="input-ser" type="serch" v-model="search_title" @keyup="search">
+	  				<input class="input-ser" type="search" v-model="search_title" @keyup="search">
 				</form>
   		</div>  		
   	</div>

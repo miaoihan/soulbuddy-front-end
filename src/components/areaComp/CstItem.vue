@@ -7,8 +7,8 @@
 					<img src="../../assets/imgs/liked.png" alt="">
 			  </i>
 			  <a v-link="{name:'user', params:{ id: data.u_id }}">
-			  	<div class="z-avator">
-			  		<img :src="data.real_logo" alt="">
+			  	<div class="z-avator" style="background: url({{data.real_logo}}) no-repeat center top; background-size: cover">
+			  		<!-- <img :src="data.real_logo" alt=""> -->
 			  		
 			  	</div>
 			  	<div class="z-desc container-16">

@@ -1,5 +1,5 @@
 <template>
-  <nav-header title="心灵伙伴" left="back"></nav-header>
+  <nav-header title="新灵伙伴 " left="back"></nav-header>
   <div class="far-bom">
 	  <div class="quecard wrapper">
 	    <span class="card-name">询问我的问题</span>
@@ -96,7 +96,6 @@ export default {
             console.error(err.toString());
           }.bind(this)
         });
-        // console.log(999999999999999999999)
         var mySwiper = new Swiper ('#swp5', {
 			    freeMode : true,
 			    loop: false,

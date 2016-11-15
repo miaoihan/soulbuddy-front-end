@@ -20,7 +20,8 @@
 	  	<div>
   	</section> <!-- end top -->
   	<!-- 最佳回答 -->
-  	<answer-card :data="ans_best" v-if="ans_best.is_best==1" :free="true"></answer-card>	
+  	<answer-card :data="ans_best" v-if="ans_best.is_best==1" 
+  							 :free="true" goto="true"></answer-card>	
   	<aside class="m-other" v-if="ans_best.is_best!=1">
   		 {{ question.answers.length>0? '共有 '+ans_other.length : 0}} 个回答
   	</aside>
@@ -31,7 +32,8 @@
   	<section class="qd-middle" style="margin-bottom: 5.0rem">
   		<div class="answer-item" v-for="obj in ans_other"
   					>
-  			<answer-card :data="obj" :setbest="true" :free="true" :is-null="isNull" :is-set.sync="isSet"></answer-card>	
+  			<answer-card :data="obj" :setbest="true" :free="true" :is-null="isNull" 
+  									 :is-set.sync="isSet" goto="true"></answer-card>	
   		</div>
   	</section>
   </div>

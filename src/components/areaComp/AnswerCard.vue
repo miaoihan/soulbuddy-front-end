@@ -60,7 +60,7 @@ import Voice from 'components/funComp/Voice.vue'
 	  	logo: '',
 	  	datap: {},
 	  	isBest:{ type: Boolean },
-	  	goto:{type:String,default:'false'},
+	  	goto:{type:String,default:'true'},
 	  	free:{ type: Boolean, default: false },
 	  	isNull:{ type: Boolean, default: false },
 	  	isSet:{ type: Boolean, default: false }
