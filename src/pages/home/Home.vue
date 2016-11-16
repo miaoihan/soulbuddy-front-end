@@ -75,6 +75,7 @@ import Evaluation from 'pages/home/Evaluation.vue'
       // }
     },
     created(){
+      this.bind = true
       // 获取轮播
       $.ajax({
           url: global.domain +'/article/get_top_article',
@@ -94,7 +95,7 @@ import Evaluation from 'pages/home/Evaluation.vue'
         });
     },
     ready(){
-      this.bind = true
+      
       // console.log(global.domain)
       // 问答列表
       $.ajax({

@@ -1,6 +1,6 @@
 <template>
 		<!-- 回答组件 -->
-  	<div class="answer part">
+  	<div class="answer part" style="position:relative">
 				<!-- 回答者信息 -->
 				<div class="answer-inf wrapper">
 				<!-- 头像 -->
@@ -16,10 +16,10 @@
 						</a>		
 					</div>
 					<!-- 简介 -->
-					<div style="float: left;padding: 0.25rem 0.4rem">
+					<div style="float: left;padding: 0.25rem 0.4rem;position: absolute;left: 70px;right: 1rem;">
 						<div style="font-size: 13px" v-if="!datap">{{data.user_name}}</div>
 						<div style="font-size: 13px" v-if="datap">{{datap.user_name}}</div>
-						<div style="font-size: 12px; color: #999" v-if="!datap">{{data.identity==1?data.user_title:'经验答人'}}</div>
+						<div style="font-size: 12px; color: #999; margin-top:0.2rem" v-if="!datap" class="over-1">{{data.identity==1?data.user_title:'经验答人'}}</div>
 						<div style="font-size: 12px; color: #999" v-if="datap">{{datap.identity==1?datap.user_title:'经验答人'}}</div>
 					</div>
 					<div v-if="data.is_best==1 || isBest && !setbest">
