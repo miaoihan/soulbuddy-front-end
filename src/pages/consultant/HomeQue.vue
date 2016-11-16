@@ -5,7 +5,7 @@
 	    <span class="card-name">询问我的问题</span>
 	    <div class="swiper-container container-20-lr" id="swp5">
 			<div class="swiper-wrapper">
-			    <div class="swiper-slide" v-for="data in myQues" v-if="data.answer_count==0">
+			    <div class="swiper-slide" v-for="data in myQues" v-if="myQues.length>0">
 			    	<a v-link="{name:'answer', params:{qid:data.q_id} }">
 					    <div style="width:100%;">
 					    	<div class="person-img quer-top">
@@ -66,7 +66,6 @@ export default {
           	type:1,		
 						token:global.token,
 		  		},
-          cache: false,
           success: function(data) {
           	// console.log(data)
             this.myQues = data.data

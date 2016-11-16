@@ -6,8 +6,8 @@
   	<section class="question-item part" v-for="que in data">
   	<!-- 1.其他人 -->
 	  	<a v-link="'/question/' + que.q_id " v-if="type=='other'">
-			  <div class="container-20">
-			  	<title class="que-content over-2">
+			  <div style="padding: 20px 20px 0">
+			  	<title class="que-content over-1">
 			  		{{que.title}}
 			  	</title>
 			  	<!-- <div class="nock" v-if="que.role==0"> -->
@@ -23,8 +23,8 @@
 		<!-- 2.我的 -->
 		<!-- 跳转到我的问题 -->
 		<a v-link="'/me/question/' + que.q_id " v-if="type=='mine'">
-		  <div class="container-20">
-		  	<title class="que-content over-2">
+		  <div style="padding: 20px 20px 0">
+		  	<title class="que-content over-1">
 		  		{{que.title}}
 		  	</title>
 		  	<div class="meta" v-if="$route.name==='myque'">

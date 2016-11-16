@@ -19,10 +19,7 @@ export default {
   data(){
     return{
       currentPage: 'eva-card',
-      // is_login: false,
-      // is_new: true,
-      // weixin: [],
-      bind: true,
+      bind: false,
       user: {},
       token: '', //做判断用，有了token才渲染
       identity: 0,
@@ -30,9 +27,9 @@ export default {
       // host: 'http://han.s3.natapp.cc',
       host: 'http://m.soulbuddy.cn',
       // 测试开关
-      test:true,
-      // test:false,
-      uid: 118
+      // test:true,
+      test:false,
+      uid: 122
     }
   },
   watch:{
@@ -50,7 +47,7 @@ export default {
   	// 放在ready里是因为ios图标不正常显示，需要加载完之后
     // 获取微信code
     var code = this.getUrlParam('code');
-    console.log(code)
+    // console.log(code)
     //storage存储全局数据
     var ku = window.localStorage
     ku.domain = 'http://m.soulbuddy.cn'
@@ -81,12 +78,6 @@ export default {
         type:'POST', dataType: 'json',async:'false',
         data:{ code:code },success: v => {
           if(v.msg=='获取code失败') return
-          // console.log(v)
-          // alert('ajax:'+code)
-          // console.log(global.user+'*******')
-          // global.user = v.data.userinfo;
-          // alert(global.user)
-          // 登陆后存储用户信息
           ku.token = v.data.token;
           ku.open_id = v.data.userinfo.open_id;
           ku.identity = v.data.userinfo.identity;
@@ -97,14 +88,8 @@ export default {
           // 判断是否绑定了手机
           let phone = v.data.userinfo.mobile
           // 如果没有绑定，跳转到绑定手机页面
-          if(!phone) {
-            // this.bind = false;
-            // console.log(this.$router)
-            // this.$router.go({path:url})
-            
-              location.href = this.host +'?/#!/bind'
-            
-            
+          if(!phone) {       
+              location.href = this.host +'?/#!/bind'       
           }
           // 绑定过，直接登录
           else {
@@ -112,8 +97,6 @@ export default {
             this.userinfo = v.data.userinfo;
        
               location.href = this.host +'?/#!/home'
-            
-            // this.is_new = v.data.is_new;
           }
           
           // this.token = true
@@ -249,6 +232,13 @@ body{
 .ztc{
   background-color: $ztc
   color: #fff
+}
+.over-1{
+  overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
  // 两行文本溢出显示...
 .over-2{

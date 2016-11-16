@@ -78,7 +78,46 @@ import NavHeader from 'components/funComp/NavHeader'
 	  	yuPay(){
 	  		if (global.user.balance<1) alert('余额不足,请充值!');
 	  		else{
-
+	  			$.ajax({
+	                url: global.domain +"/user/balance_buy_answer",
+	                type:'post', 
+	                dataType: 'json',
+	                async:false,
+	                data: {
+	                	token:global.token,
+	                	money:1
+	                },
+	                success: function(data) {
+	                	// 支付成功后解锁
+							      $.post(global.domain +'/question/buy_answers',
+							        { token: global.token, q_id: id },
+							         v => {
+							        	if (v.code == 1) {
+							        		// 解锁 刷新一遍
+							        		$.post(global.domain +'/question/get_question_info',
+										        { token: global.token,
+										        	q_id: this.$route.params.id }, v => {
+										        	this.question = v.data;
+										        	this.show_lock = false;
+										        	
+										        	// if (v.data.length==1) this.show_lock = !v.data.
+										        	let q = v.data.answers
+										        	// console.log(q)
+										        	if(q[0].is_best==1){
+										        		this.ans_best = q.shift()
+										        		// console.log(this.ans_best)
+										        	}
+										        	this.ans_other = q
+										        } ,'json');
+					
+								        }else alert('支付失败！')
+							        } ,'json');
+	                }.bind(this),
+	                error: function(xhr, status, err) {
+	                  console.err(err.toString())
+	                  alert('支付失败')
+	                }.bind(this)
+	            });
 	  		}
 	  	},
 	  	closeModal(){
@@ -113,7 +152,27 @@ import NavHeader from 'components/funComp/NavHeader'
 				        // 支付成功后解锁
 					      $.post(global.domain +'/question/buy_answers',
 					        { token: global.token, q_id: id },
-					        v => { vm.$router.go('/question/'+id)} ,'json');
+					         v => {
+					        	if (v.code == 1) {
+					        		// 解锁 刷新一遍
+					        		$.post(global.domain +'/question/get_question_info',
+								        { token: global.token,
+								        	q_id: vm.$route.params.id }, v => {
+								        	vm.question = v.data;
+								        	vm.show_lock = false;
+								        	
+								        	// if (v.data.length==1) this.show_lock = !v.data.
+								        	let q = v.data.answers
+								        	// console.log(q)
+								        	if(q[0].is_best==1){
+								        		vm.ans_best = q.shift()
+								        		// console.log(this.ans_best)
+								        	}
+								        	vm.ans_other = q
+								        } ,'json');
+			
+						        }else alert('支付失败！')
+					        } ,'json');
 						    },
 						    fail: function(res){
 						    	console.log(res)
@@ -130,7 +189,7 @@ import NavHeader from 'components/funComp/NavHeader'
         	q_id: this.$route.params.id }, v => {
         	this.question = v.data;
         	for(let i of v.data.answers){
-        		console.log(i)
+        		// console.log(i)
         		if (i.can_listen == false) this.show_lock = true;
         	} 
         	// if (v.data.length==1) this.show_lock = !v.data.

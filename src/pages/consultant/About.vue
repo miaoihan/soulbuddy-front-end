@@ -119,7 +119,7 @@ import NavHeader from 'components/funComp/NavHeader';
 	                	if(data.msg==true){
 	                		alert(global.user.balance)
 	                		alert('支付成功')
-	                 		this.$router.go('/askto?uid='+this.user.u_id)
+	                 		this.$router.go('/askto?uid='+this.user.u_id+'&rm='+this.user.answer_fee)
 	                	}else{
 	                		alert('支付失败')
 	                	}
@@ -138,6 +138,7 @@ import NavHeader from 'components/funComp/NavHeader';
 	  		// 微信支付
 		  	this.loading = true;
 		  	let vm = this;
+
 	  		// 先获取订单
 	  		$.ajax({
           url: global.domain +'/thirdparty/wepay',
@@ -151,6 +152,7 @@ import NavHeader from 'components/funComp/NavHeader';
           	let vm = this;
           	let param = JSON.parse(data.data);
           	this.loading = false;
+
       			// 调微信支付接口
 		      	wx.chooseWXPay({
 					    timestamp: param.timeStamp+'', 
@@ -160,7 +162,7 @@ import NavHeader from 'components/funComp/NavHeader';
 					    paySign: param.paySign, 
 					    success: function (res) {
 				        // 支付成功后,可以提问
-				        vm.$router.go('/askto?uid='+vm.user.u_id)
+				        vm.$router.go('/askto?uid='+vm.user.u_id+'&rm='+vm.user.answer_fee)
 						    },
 						    fail: function(res){
 						    	console.log(res)
