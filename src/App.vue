@@ -1,9 +1,9 @@
 <template>
 <div id="app">
-    <div v-if="token">
+    <!-- <div v-if="token"> -->
      <router-view :identityb.sync="identity" :bind.sync="bind"></router-view>
      <nav-bottom :identityb.sync="identity" v-if="bind"></nav-bottom>
-    </div>
+    <!-- </div> -->
     <!-- <eva-result></eva-result> -->
   </div>
 </template>
@@ -30,8 +30,8 @@ export default {
       // host: 'http://han.s3.natapp.cc',
       host: 'http://m.soulbuddy.cn',
       // 测试开关
-      test:true,
-      // test:false,
+      // test:true,
+      test:false,
       uid: 118
     }
   },
