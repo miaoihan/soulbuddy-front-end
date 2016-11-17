@@ -3,8 +3,11 @@
   <div>
   	<question-list :data="queList" type="mine"></question-list>
   </div>
-  <div class="seemore" @click="seeMore('que')">
-        查看更多提问
+  <div class="seemore" @click="seeMore('que')" v-if="queList.length>9">
+        查看更多
+  </div>
+  <div class="seemore" v-if="queList.length==0">
+        暂无内容~
   </div>
   <div class="bom-div"></div>
 </template>

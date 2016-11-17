@@ -9,7 +9,7 @@
        v-if="(identity===1 && userList1.length>9) || (identity===2 && userList2.length>9)">
     查看更多
   </div>
-  <div class="seemore" v-if="(identity===1 && userList1.length=0) || (identity===2 && userList2.length=0)">
+  <div class="seemore" v-if="(identity===1 && userList1.length===0) || (identity===2 && userList2.length===0)">
     暂无内容~
   </div>
   <div class="bom-div"></div>
