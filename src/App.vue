@@ -19,7 +19,7 @@ export default {
   data(){
     return{
       currentPage: 'eva-card',
-      bind: false,
+      bind: true,
       user: {},
       token: '', //做判断用，有了token才渲染
       identity: 0,

@@ -80,11 +80,9 @@ export default {
                 // global.user['mobile'] = this.mobile
                 this.bind = true
                 // this.$router.go({ path:'/home' })
-                console.log('chenggong')
                 alert('验证成功！')
                 // location.href = 'http://han.s3.natapp.cc/#!/home'
                 this.$router.go('/home')
-
              }
              else{
               alert('验证失败，请重新输入')
@@ -106,10 +104,36 @@ export default {
       let re = new RegExp(regu); 
       if (re.test(s)) return true; 
       else return false; 
-    } 
+    },
+    pushHistory() {  
+      var state = {  
+          title: "title",  
+          url: "#"  
+      };  
+      window.history.pushState(state, "title", "#");  
+    }  
   },
   ready(){
-    this.bind = false
+    this.bind = false;
+
+    let flag = false;
+    //Chrome和Safari页面加载时会触发popstate事件
+    // setTimeout(function(){
+    //   flag = true;
+    // }, 500)
+    let vm = this
+    vm.pushHistory();
+    // alert(vm.pushHistory)
+      window.addEventListener("popstate", function(e) { 
+        //防止跳转到home后关闭页面
+      if (location.hash === '#!/bind') 
+        WeixinJSBridge.call('closeWindow');
+      // alert("我监听到了浏览器的返回按钮事件啦");//根据自己的需求实现自己的功能 
+    }, false);
+
+    
+    
+
   }
 }
 </script>

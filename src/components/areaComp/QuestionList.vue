@@ -7,7 +7,7 @@
   	<!-- 1.其他人 -->
 	  	<a v-link="'/question/' + que.q_id " v-if="type=='other'">
 			  <div style="padding: 20px 20px 0">
-			  	<title class="que-content over-1">
+			  	<title class="que-content over-2">
 			  		{{que.title}}
 			  	</title>
 			  	<!-- <div class="nock" v-if="que.role==0"> -->
@@ -24,7 +24,7 @@
 		<!-- 跳转到我的问题 -->
 		<a v-link="'/me/question/' + que.q_id " v-if="type=='mine'">
 		  <div style="padding: 20px 20px 0">
-		  	<title class="que-content over-1">
+		  	<title class="que-content over-2">
 		  		{{que.title}}
 		  	</title>
 		  	<div class="meta" v-if="$route.name==='myque'">
