@@ -5,7 +5,7 @@
     <div style="margin-top: 0.5rem">
       <choice v-if="index==1" :swiper-list="swiperList" :index.sync="index"></choice>
       <question-list v-if="index==2" :data="queList" :is-best="true"></question-list>
-      <div class="seemore" @click="seeMore('que')" v-if="index==2 && queList.length > 0">
+      <div class="seemore" @click="seeMore('que')" v-if="index==2 && queList.length > 9">
         查看更多问答
       </div>
       <div class="seemore" @click="seeMore('que')" v-if="index==2 && queList.length == 0">

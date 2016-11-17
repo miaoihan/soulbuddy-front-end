@@ -141,12 +141,12 @@
 				this.$router.go('/ask')
 			},
 			click(i){
-				console.log(this.identity)
+				// console.log(this.identity)
 				this.identity = i
 			},
-			t(){
-				console.log($('#t').val() )
-			},
+			// t(){
+			// 	console.log($('#t').val() )
+			// },
 			confirm(){
 				if (confirm('确定取消？')) {
 					window.history.go(-1)
