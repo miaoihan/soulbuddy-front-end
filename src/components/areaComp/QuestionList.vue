@@ -89,9 +89,9 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
 	  		this.qid = id
 	  	},
 	  	yuPay(id){
-	  		this.loading = true;
 	  		if (global.user.balance<1) alert('余额不足,请充值!');
 	  		else{
+	  			this.loading = true;
 	  			// 余额支付接口
 	  			$.ajax({
 	          url: global.domain +'/user/balance_buy_answer',
@@ -118,7 +118,7 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
 				        		this.show_modal = false; 
 				        		alert('支付成功！')
 				        	}
-				        	else alert('支付失败！')
+				        	else {alert('支付失败！'); this.loading = false;}
 				        } ,'json');
 	          },
 	          error: err => console.error(err.toString())
