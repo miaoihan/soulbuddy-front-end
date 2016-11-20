@@ -32,7 +32,7 @@
   	<section class="qd-middle" style="margin-bottom: 5.0rem">
   		<div class="answer-item" v-for="obj in ans_other"
   					>
-  			<answer-card :data="obj" :setbest="true" :free="true" :is-null="isNull" 
+  			<answer-card :data="obj" :setbest="true" :free="true" :is-null="isNull" :index="$index"
   									 :is-set.sync="isSet" goto="true"></answer-card>	
   		</div>
   	</section>

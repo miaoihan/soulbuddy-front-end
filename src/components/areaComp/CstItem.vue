@@ -73,7 +73,7 @@
 	  	},
 	  	cancelike(u_id){
 	  		if(this.$route.path!='/me/favorite'){
-	  			console.log("u_id is "+u_id)
+	  			// console.log("u_id is "+u_id)
 		  		this.is_like = false
 		  		this.data.fav_count--
 		  		this.data.is_fav=0

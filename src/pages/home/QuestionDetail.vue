@@ -31,7 +31,7 @@
   	<section class="qd-middle" style="margin-bottom: 5.0rem">
   		<div class="answer-item" v-for="obj in ans_other"
   					v-if="question.answers">
-  			<answer-card :data="obj" goto="true" :free="question.can_listen"></answer-card>	
+  			<answer-card :data="obj" goto="true" :free="question.can_listen" :index="$index"></answer-card>	
   		</div>
   	</section>
   	<footer class="qd-footer fixed-bottom ztc"

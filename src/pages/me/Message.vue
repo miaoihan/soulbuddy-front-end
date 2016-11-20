@@ -14,7 +14,7 @@
   			查看更多
   	</div>
   	<div class="seemore" v-if="msgList.length==0">
-        暂无内容~
+        暂无消息~
     </div> 
   	<div class="bom-div"></div>
   </div>

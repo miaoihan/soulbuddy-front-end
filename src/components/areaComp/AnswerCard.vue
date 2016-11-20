@@ -6,7 +6,7 @@
 				<!-- 头像 -->
 					<div class="avator pull-left">
 					<!-- 写两个反而更快，强迫症的自行改之 属性多了则不然-->
-						<a v-link="{name:'user', params:{ id: data.user_id }}" v-if="goto==='true'">
+						<a v-link="{name:'user', params:{ id: data.a_u_id }}" v-if="goto==='true'">
 							<i class="avator" v-if="!datap" style="background: url({{data.identity==1?data.real_logo:data.logo}}) no-repeat center top; background-size: cover"></i>
 							<i class="avator" v-if="datap" style="background: url({{datap.identity==1?datap.real_logo:datap.logo}}) no-repeat center top; background-size: cover">	</i>
 						</a>
