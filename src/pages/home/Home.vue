@@ -5,15 +5,16 @@
     <div style="margin-top: 0.5rem">
       <choice v-if="index==1" :swiper-list="swiperList" :index.sync="index"></choice>
       <question-list v-if="index==2" :data="queList" :is-best="true"></question-list>
-      <div class="seemore" @click="seeMore('que')" v-if="index==2 && queList.length > 9">
-        查看更多问答
-      </div>
-      <div class="seemore" @click="seeMore('que')" v-if="index==2 && queList.length == 0">
-        暂无内容~
-      </div>
+      
       <div class="bom-div" v-if="index==2"></div>
       <reading v-if="index==3" :data="readList"></reading>
       <evaluation v-if="index==4" :data="evaList" style="margin-bottom: 80px"></evaluation>
+    </div>
+    <div class="seemore" @click="seeMore(index)" v-if="(index==2 && queList.length > 9) || (index==4 && evaList.length > 9)">
+      查看更多问答
+    </div>
+    <div class="seemore" v-if="(index==2 && queList.length == 0) || (index==4 && evaList.length == 0)">
+      暂无内容~
     </div>
     <!-- <modal></modal> -->
   </div>
@@ -39,7 +40,8 @@ import Evaluation from 'pages/home/Evaluation.vue'
         readList: [],
         evaList: [],
         jsApiParams: {},
-        que_page:1
+        que_page:1,
+        eva_page:2
       }
     },
     props: {
@@ -51,11 +53,17 @@ import Evaluation from 'pages/home/Evaluation.vue'
     },
     methods:{
       // 加载更多
-      seeMore(type){
-        console.log(type)
+      seeMore(index){
+        if(index===2){
           $.post(global.domain +'/question/get_question_list',
-            { token: global.token, page: ++this.que_page, }, v => 
+            { token: global.token, que_page: ++this.que_page, }, v => 
             this.queList = this.queList.concat(v.data), 'json');
+        }else if(index===4){
+          $.post(global.domain +'/access/get_access_list',
+            { token: global.token, eva_page: ++this.que_page, }, v => 
+            this.evaList = this.evaList.concat(v.data), 'json');
+        }
+        
       },
       // 微信支付
       // onBridgeReady(){

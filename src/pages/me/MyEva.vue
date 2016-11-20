@@ -15,6 +15,13 @@
   			</span>
     	</div>
     </div>
+    <div class="seemore" @click="seeMore('eva')" v-if="evaList.length>9">
+        查看更多
+    </div>
+    <div class="seemore" v-if="evaList.length==0">
+          暂无内容~
+    </div>
+    <div class="bom-div"></div>
   </div>
 </template>
 
@@ -25,13 +32,14 @@
 	  },
 	  data(){
 	  	return{
-	  		evaList: []
+	  		evaList: [],
+        eva_page:1
 	  	}
 	  },
 	  ready(){
 	  	// 测评列表
       $.ajax({
-          url: global.domain +'/access/get_access_list',
+          url: global.domain +'/user/get_my_access',
           type:'POST', 
           dataType: 'json',
           data:{
@@ -46,7 +54,13 @@
         if (flag) {
           this.$router.go({name:'evaResult',params:{id: id}})
         }
-      }
+      },
+      seeMore(type){
+        // console.log(type)
+          $.post(global.domain +'/user/get_my_access',
+            { token: global.token, page: ++this.eva_page, }, v => 
+            this.evaList = this.evaList.concat(v.data), 'json');
+      },
     }
 	  
   }
