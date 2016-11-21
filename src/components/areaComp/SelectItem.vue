@@ -30,11 +30,14 @@
   	},
 	  methods:{
   		select(option){
-  			console.log(option)
-  			this.selIndex = option;
-  			// 将题的选项放到数组里
-  			this.selarr.$set(this.index,option)
-  			console.log(this.selarr)
+  			if(this.canChose){
+  				// console.log(option)
+	  			this.selIndex = option;
+	  			// 将题的选项放到数组里
+	  			this.selarr.$set(this.index,option)
+	  			// console.log(this.selarr)
+  			}
+  			
   		}
   	},
   	ready(){
@@ -50,6 +53,7 @@
 		  		]
 		  	}
 	  	},
+	  	canChose:{type: Boolean, default:true},
 	  	selIndex:{type: Number, default: -1},
 	  	// 选择题数组
 	  	selarr: {type: Array, default: null},

@@ -2,7 +2,7 @@
 	<div>
 	  <nav-header :title="item.title" left="back" right=''></nav-header>
 	  <div>
-	  	<select-list :data="item.questions" :selarr.sync="selarr" :sel-index="selIndex"></select-list>
+	  	<select-list :data="item.questions" :selarr.sync="selarr" :sel-index="selIndex" :can-chose="false"></select-list>
 	  </div>
 	  <div class="bottom-body">
 	  	<div class="score-text">综合评分：</div><span class="score-res">{{user_item.score}}</span>
