@@ -35,13 +35,14 @@ import NavHeader from 'components/funComp/NavHeader';
      if(this.price){
      	this.opacity=1
      }
-   //   this.$router.beforeEach(function (transition) {
-		 //   transition.redirect('/home')
-		 // })
     },
     methods:{
       submit(){
       	if (!this.price) return;
+      	if(ths.price==0){
+          alert('咨询费必须大于0')
+          return false
+        }
       	// 设置资费
 	      $.post(global.domain +'/user/set_serivce_fee',
 	        { answer_fee: this.price, 

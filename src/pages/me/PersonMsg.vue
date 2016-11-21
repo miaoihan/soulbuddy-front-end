@@ -213,6 +213,10 @@ export default {
           alert('简介不能为空')
           return false
         }
+        if($('[name="answer_fee"]').val()==0){
+          alert('咨询费必须大于0')
+          return false
+        }
         else{        
             $.ajax({
                 url: global.domain +"/user/auth",

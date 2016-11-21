@@ -6,7 +6,7 @@
 	  	<div class="container-20" style="border-bottom: 1px solid #e3e3e3">
 	  		<div class="top-aut">
 	  			<span class="avator pull-left" style="height: 1.5rem; width: 1.5rem">
-	  				<img :src="question.logo" alt="">
+	  				<img :src="question.logo" alt="" class="avator">
 	  			</span>
 					<span style="font-size: 13px;margin-left: 0.45rem">{{question.user_name}}</span>
 					<time class="pull-right" style="font-size: 13px; color: #999">{{question.create_time}}</time>
@@ -93,7 +93,7 @@
 	.top-aut
 		height 1.5rem
 		line-height: 1.5rem
-		margin-top: 1.0rem
+		// margin-top: 1.0rem
 
 .m-other
 	margin-top:24px; 

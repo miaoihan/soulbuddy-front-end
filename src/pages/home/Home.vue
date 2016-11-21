@@ -5,7 +5,6 @@
     <div style="margin-top: 0.5rem">
       <choice v-if="index==1" :swiper-list="swiperList" :index.sync="index"></choice>
       <question-list v-if="index==2" :data="queList" :is-best="true"></question-list>
-      
       <div class="bom-div" v-if="index==2"></div>
       <reading v-if="index==3" :data="readList"></reading>
       <evaluation v-if="index==4" :data="evaList" style="margin-bottom: 80px"></evaluation>

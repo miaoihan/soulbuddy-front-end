@@ -88,9 +88,22 @@ export default {
   	QuestionCard,Voicep,TopBar,NavHeader
   },
   ready(){
+    let vm = this;
     if(localStorage.answer_num==0){
       this.isfirst=true
     }
+
+    //微信一分钟录音停止
+    wx.onVoiceRecordEnd({
+        // 录音时间超过一分钟没有停止的时候会执行 complete 回调
+        complete: function (res) {
+            // vm.stopTime();
+            vm.recordfin();
+            vm.voice.localId = res.localId; 
+            alert('录音已超过一分钟上限,你可以重新回答或者直接提交此次回答'); 
+        }
+    });
+
     $.ajax({
           url: global.domain +'/question/get_question_info',
           type:'POST', 
@@ -136,6 +149,11 @@ export default {
       this.voice.time = minute+":"+second;
       // document.getElementById('showtime').innerHTML=minute+":"+second;
       this.t++;
+      // if (this.t>60) { 
+      //   this.stopTime();
+      //   alert('录音已超过一分钟上限,可以重新回答或者提交回答'); 
+      //   return;
+      // }
       // alert(this.voice.time)
       this.flag = setTimeout(this.startTime, 1000);           
     },
@@ -143,13 +161,6 @@ export default {
       clearTimeout(this.flag);
       this.t = 0;
     },
-    // test(){
-    //   // alert(this.t)
-    //   document.getElementById('txt').value=this.t
-    //   this.t=this.t+1
-    //   // alert(this.t)
-    //   setTimeout(this.test,1000)
-    // },
     //开始录音
     recordbgn(){
       this.isStart=!this.isStart;
@@ -171,7 +182,6 @@ export default {
       this.isFinish=!this.isFinish;
       this.stopTime();
       var that = this  
-    // document.querySelector('#stopRecord').onclick = function () {
       wx.stopRecord({
         success: function (res) {
           that.voice.localId = res.localId;
@@ -180,7 +190,6 @@ export default {
           // alert(JSON.stringify(res));
         }
       });
-    // };
     },
     //播放音频
     playVoice(){
@@ -193,13 +202,13 @@ export default {
         localId: that.voice.localId
       });
     },
+    //取消回答
     cancle(){
-      //取消回答
-      $.post(global.domain +'/question/cancel_answer',
-        { token: global.token, q_id: this.$route.params.qid }, v => {
-          // this.readList = v.data; 
-          if (v.code!= 1) alert('取消失败！');
-        },'json');
+      // $.post(global.domain +'/question/cancel_answer',
+      //   { token: global.token, q_id: this.$route.params.qid }, v => {
+      //     // this.readList = v.data; 
+      //     if (v.code!= 1) alert('取消失败！');
+      //   },'json');
       this.isFinish=false;
       this.isbox=false;
       this.isStart=false;
@@ -208,6 +217,7 @@ export default {
       wx.stopRecord({
         fail: function (res) {
           // alert(JSON.stringify(res));
+          console.log('stopRecord调用失败')
         }
       });
       // 清空
@@ -218,11 +228,18 @@ export default {
       };
 
     },
+    //重新录制
     again(){
-      this.isFinish=false;
-      this.isbox=true;
+      this.isFinish=false; this.isbox=true;
       this.isStart=false;
       this.stopTime();
+      //停止
+      wx.stopRecord({
+        fail: function (res) {
+          // alert(JSON.stringify(res));
+          console.log('stopRecord调用失败')
+        }
+      });
       // 清空
       this.voice={
         localId:'',
@@ -237,6 +254,7 @@ export default {
       var that = this
       if (this.voice.localId == '') {
         alert('请先录制一段声音');
+        return;
         // return;
       }
       // 语音上传,然后保存到服务器
@@ -256,11 +274,11 @@ export default {
               if (res.code!=1) {
                 alert('语音上传失败！')
                 //取消回答
-                $.post(global.domain +'/question/cancel_answer',
-                  { token: global.token, q_id: this.$route.params.qid }, v => {
-                    // this.readList = v.data; 
-                    if (v.code != 1) alert('失败！');
-                  },'json');
+                // $.post(global.domain +'/question/cancel_answer',
+                //   { token: global.token, q_id: this.$route.params.qid }, v => {
+                //     // this.readList = v.data; 
+                //     if (v.code != 1) alert('失败！');
+                //   },'json');
                 alert(res.msg)
               }
               else {that.hasAnswer=true; alert('回答成功！')};

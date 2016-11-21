@@ -1,12 +1,11 @@
 <template>
   <div class="wrapper">
   <!-- 问题列表 -->
-
   <!-- 其他人问题 -->
   	<section class="question-item part" v-for="que in data">
   	<!-- 1.其他人 -->
 	  	<a v-link="'/question/' + que.q_id " v-if="type=='other'">
-			  <div style="padding: 20px 20px 0">
+			  <div style="padding: 16px 20px">
 			  	<title class="que-content over-2">
 			  		{{que.title}}
 			  	</title>
@@ -17,13 +16,14 @@
 			  					@click.prevent="callpay(que.q_id)">￥1元解锁该问题的所有回答</span>
 			  	</div>
 				</div>
-					<answer-card :data="que" :index="$index" v-if="que.answer_url" :datap="datap" :is-best="isBest" :free="free"></answer-card>
+				<div class="fenge-20"></div>
+				<answer-card :data="que" :index="$index" v-if="que.answer_url" :datap="datap" :is-best="isBest" :free="free"></answer-card>
 		</a>
 
 		<!-- 2.我的 -->
 		<!-- 跳转到我的问题 -->
 		<a v-link="'/me/question/' + que.q_id " v-if="type=='mine'">
-		  <div style="padding: 20px 20px 0">
+		  <div style="padding: 16px 20px">
 		  	<title class="que-content over-2">
 		  		{{que.title}}
 		  	</title>
@@ -215,8 +215,8 @@ import AnswerCard from 'components/areaComp/AnswerCard.vue'
 
 	.nock
 		overflow hidden
-		border-bottom: 1px solid #ebebeb
-		padding-bottom 0.9rem
+		// border-bottom: 1px solid #ebebeb
+		// padding-bottom 0.9rem
 		 .nock-text
 			 	display block
 			 	text-align center

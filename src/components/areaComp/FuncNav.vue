@@ -46,7 +46,8 @@
 	  },
 	  methods:{
 	  	change(i){
-	  		this.index = i
+	  		this.index = i;
+	  		// this.$router.go('/home#'+i);
 	  	}
 	  },
   }

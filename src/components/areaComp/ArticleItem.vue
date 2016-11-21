@@ -68,16 +68,16 @@
 		width 66.6%
 		padding 0.4rem 0.9rem 1.0rem 0.5rem
 		.a-title
-			font-size: 15px
+			font-size: 0.75rem
 			margin-bottom: 5px
 		.a-content
-			font-size: 11px
+			font-size: 0.55rem
 			color: #999
 
 	.art-label
 		height 0.85rem
 		line-height: 0.76rem
-		font-size: 10px
+		font-size: 0.5rem
 		background-color #316aa3
 		
 	a 

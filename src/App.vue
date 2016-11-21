@@ -113,7 +113,8 @@ export default {
                 timestamp: res.data.timestamp, // 必填，生成签名的时间戳
                 nonceStr: res.data.nonceStr, // 必填，生成签名的随机串
                 signature: res.data.signature,// 必填，签名，见附录1
-                jsApiList: ['chooseImage', 'previewImage', 'uploadImage',
+                jsApiList: [
+                'chooseImage', 'previewImage', 'uploadImage',
                 'startRecord',
                 'stopRecord',
                 'playVoice',
@@ -121,6 +122,7 @@ export default {
                 'uploadVoice',
                 'downloadVoice',
                 'chooseWXPay',
+                'onVoiceRecordEnd',
                 ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
             });
         }, 'json');
@@ -388,6 +390,12 @@ body{
 .toast-info{
    
  }
+ 
+ //分割线
+.fenge-20{
+  border-bottom:1px solid #ebebeb
+  margin 0 1.0rem
+}
  
  //解决ios下底部margin异常
 .bom-div
