@@ -28,7 +28,7 @@
   		 {{'其他 '+(ans_other.length)}} 个回答 
   	</aside>
   	<!-- 回答列表 -->
-  	<section class="qd-middle" style="margin-bottom: 5.0rem">
+  	<section class="qd-middle">
   		<div class="answer-item" v-for="obj in ans_other"
   					v-if="question.answers">
 <<<<<<< HEAD
@@ -38,6 +38,7 @@
 >>>>>>> 1c3d7243eed3aefcacc8dd3ce879eeb7ec639f0e
   		</div>
   	</section>
+  	<div class="bom-div"></div>
   	<footer class="qd-footer fixed-bottom ztc"
   					@click.prevent="callpay" v-if="show_lock">
   					￥1 解锁该问题的所有回答			
@@ -218,7 +219,7 @@ import NavHeader from 'components/funComp/NavHeader'
 	.top-aut
 		height 1.5rem
 		line-height: 1.5rem
-		margin-top: 1.0rem
+		// margin-top: 1.0rem
 
 .m-other
 	margin-top:24px; 

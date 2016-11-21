@@ -109,7 +109,7 @@ import Voice from 'components/funComp/Voice.vue'
 
 <style scoped lang="stylus">
 .answer
-	padding 0.8rem 1.0rem
+	padding 0.8rem 1.0rem 
 	.answer-inf
 		.avator
 			width 2.3rem

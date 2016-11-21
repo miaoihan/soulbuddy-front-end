@@ -102,6 +102,7 @@ import NavHeader from 'components/funComp/NavHeader';
 	  		this.show_modal = true
 	  	},
 	  	yuPay(){
+	  		if (true) {}
 	  		if (Number(global.user.balance)<Number(this.user.answer_fee)) 
 	  		 alert('余额不足,请充值!');
 	  		else{

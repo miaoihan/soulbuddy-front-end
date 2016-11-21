@@ -17,12 +17,12 @@
   <div class="container-20" style="font-size:0.55rem;margin-bottom:0.5rem;padding-bottom:0">TA 已完成 {{user_access.length}} 份心理测评</div>
   <eva-card :datap="user_access" type="other" v-if="user_access.length!=0"></eva-card>
   <div class="profile-list wrapper">
-    <change-btn isIcon=false btntext="绑定手机" title-color="black" :placeholder="user.mobile" class="change-btn-pro"  place-color="#000" ></change-btn>
-    <change-btn btntext="年龄" title-color="black" :placeholder="user.borth_date" class="change-btn-pro" place-color="#000"></change-btn>
-    <change-btn btntext="性别" title-color="black" :placeholder="sex[user.sex-1]" class="change-btn-pro" place-color="#000"></change-btn>
-    <change-btn btntext="学历" title-color="black" :placeholder="qualifications[user.education-1]" class="change-btn-pro" place-color="#000"></change-btn>
-    <change-btn btntext="婚姻状况" title-color="black" :placeholder="marriage[user.marital_status-1]" class="change-btn-pro" place-color="#000"></change-btn>
-    <change-btn btntext="工作" title-color="black" :placeholder="user.work" class="change-btn-pro" place-color="#000" ></change-btn>
+    <change-btn :is-icon="false" btntext="绑定手机" title-color="black" :placeholder="user.mobile" class="change-btn-pro"  place-color="#000" ></change-btn>
+    <change-btn :is-icon="false" btntext="年龄" title-color="black" :placeholder="user.borth_date" class="change-btn-pro" place-color="#000"></change-btn>
+    <change-btn :is-icon="false" btntext="性别" title-color="black" :placeholder="sex[user.sex-1]" class="change-btn-pro" place-color="#000"></change-btn>
+    <change-btn :is-icon="false" btntext="学历" title-color="black" :placeholder="qualifications[user.education-1]" class="change-btn-pro" place-color="#000"></change-btn>
+    <change-btn :is-icon="false" btntext="婚姻状况" title-color="black" :placeholder="marriage[user.marital_status-1]" class="change-btn-pro" place-color="#000"></change-btn>
+    <change-btn :is-icon="false" btntext="工作" title-color="black" :placeholder="user.work" class="change-btn-pro" place-color="#000" ></change-btn>
     
   </div>
   <div class="textarea-pro">
