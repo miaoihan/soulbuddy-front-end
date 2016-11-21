@@ -84,6 +84,7 @@ import EvaCard from 'components/funComp/EvaCard'
           },
           success: data =>{ 
             this.user_access = data.data
+            global.user_access = data.data
           },
           error: err => console.log(err)
         });

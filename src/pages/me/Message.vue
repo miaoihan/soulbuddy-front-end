@@ -10,9 +10,12 @@
 	  		<p style="font-size:14px;">{{ msg.content.split(':')[1] ? msg.content.split(':')[1] : msg.content.split(':')[0]}}</p>
 	  	</div>
   	</div>
-  	<div class="seemore" @click="seeMore('msg')">
+  	<div class="seemore" @click="seeMore('msg')" v-if="msgList.length!=0">
   			查看更多
   	</div>
+  	<div class="seemore" v-if="msgList.length==0">
+        暂无消息~
+    </div> 
   	<div class="bom-div"></div>
   </div>
 </template>

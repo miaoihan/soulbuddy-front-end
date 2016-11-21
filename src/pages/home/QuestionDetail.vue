@@ -25,18 +25,22 @@
   		 {{ question.answers.length>0? '共有 '+question.answers.length : 0}} 个回答
   	</aside>
   	<aside class="m-other" v-if="ans_best.is_best==1">
-  		 {{'其他 '+(ans_other.length)}} 个回答
+  		 {{'其他 '+(ans_other.length)}} 个回答 
   	</aside>
   	<!-- 回答列表 -->
   	<section class="qd-middle" style="margin-bottom: 5.0rem">
   		<div class="answer-item" v-for="obj in ans_other"
   					v-if="question.answers">
+<<<<<<< HEAD
   			<answer-card :data="obj" goto="132132" :free="question.can_listen"></answer-card>	
+=======
+  			<answer-card :data="obj" goto="true" :free="question.can_listen" :index="$index"></answer-card>	
+>>>>>>> 1c3d7243eed3aefcacc8dd3ce879eeb7ec639f0e
   		</div>
   	</section>
   	<footer class="qd-footer fixed-bottom ztc"
-  					@click.prevent="callpay" v-if="!question.can_listen">
-  					￥1 解锁该问题的所有回答
+  					@click.prevent="callpay" v-if="show_lock">
+  					￥1 解锁该问题的所有回答			
   	</footer>
   	<!-- loading -->
 		<div class="spinner" v-if="loading">
@@ -63,7 +67,7 @@ import NavHeader from 'components/funComp/NavHeader'
 	  data(){
 	  	return{
 	  		money: 1,
-	  		lock: true ,
+	  		show_lock: false ,
 	  		question: {},
 	  		ans_best:{},
 	  		ans_other:[],
@@ -78,7 +82,46 @@ import NavHeader from 'components/funComp/NavHeader'
 	  	yuPay(){
 	  		if (global.user.balance<1) alert('余额不足,请充值!');
 	  		else{
-
+	  			$.ajax({
+	                url: global.domain +"/user/balance_buy_answer",
+	                type:'post', 
+	                dataType: 'json',
+	                async:false,
+	                data: {
+	                	token:global.token,
+	                	money:1
+	                },
+	                success: function(data) {
+	                	// 支付成功后解锁
+							      $.post(global.domain +'/question/buy_answers',
+							        { token: global.token, q_id: id },
+							         v => {
+							        	if (v.code == 1) {
+							        		// 解锁 刷新一遍
+							        		$.post(global.domain +'/question/get_question_info',
+										        { token: global.token,
+										        	q_id: this.$route.params.id }, v => {
+										        	this.question = v.data;
+										        	this.show_lock = false;
+										        	
+										        	// if (v.data.length==1) this.show_lock = !v.data.
+										        	let q = v.data.answers
+										        	// console.log(q)
+										        	if(q[0].is_best==1){
+										        		this.ans_best = q.shift()
+										        		// console.log(this.ans_best)
+										        	}
+										        	this.ans_other = q
+										        } ,'json');
+					
+								        }else alert('支付失败！')
+							        } ,'json');
+	                }.bind(this),
+	                error: function(xhr, status, err) {
+	                  console.err(err.toString())
+	                  alert('支付失败')
+	                }.bind(this)
+	            });
 	  		}
 	  	},
 	  	closeModal(){
@@ -113,7 +156,27 @@ import NavHeader from 'components/funComp/NavHeader'
 				        // 支付成功后解锁
 					      $.post(global.domain +'/question/buy_answers',
 					        { token: global.token, q_id: id },
-					        v => { vm.$router.go('/question/'+id)} ,'json');
+					         v => {
+					        	if (v.code == 1) {
+					        		// 解锁 刷新一遍
+					        		$.post(global.domain +'/question/get_question_info',
+								        { token: global.token,
+								        	q_id: vm.$route.params.id }, v => {
+								        	vm.question = v.data;
+								        	vm.show_lock = false;
+								        	
+								        	// if (v.data.length==1) this.show_lock = !v.data.
+								        	let q = v.data.answers
+								        	// console.log(q)
+								        	if(q[0].is_best==1){
+								        		vm.ans_best = q.shift()
+								        		// console.log(this.ans_best)
+								        	}
+								        	vm.ans_other = q
+								        } ,'json');
+			
+						        }else alert('支付失败！')
+					        } ,'json');
 						    },
 						    fail: function(res){
 						    	console.log(res)
@@ -128,7 +191,12 @@ import NavHeader from 'components/funComp/NavHeader'
       $.post(global.domain +'/question/get_question_info',
         { token: global.token,
         	q_id: this.$route.params.id }, v => {
-        	this.question = v.data; 
+        	this.question = v.data;
+        	for(let i of v.data.answers){
+        		// console.log(i)
+        		if (i.can_listen == false) this.show_lock = true;
+        	} 
+        	// if (v.data.length==1) this.show_lock = !v.data.
         	let q = v.data.answers
         	// console.log(q)
         	if(q[0].is_best==1){

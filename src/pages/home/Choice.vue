@@ -10,9 +10,12 @@
   	</aside>
   	<div class="article-list">
   		<article-list :data="readList"></article-list>
-  		<div class="seemore" @click="seeMore('art')" id="seemore">
+  		<div class="seemore" @click="seeMore('art')" id="seemore" v-if="readList.length>3">
   			查看更多精选阅读 
   		</div>
+      <div class="seemore" v-if="readList.length==0">
+        暂无内容~
+      </div>
   	</div> <!-- end article-list -->
     <!-- 测评精选 -->
   	<div class="eva">
@@ -25,10 +28,14 @@
   	</aside>
   	<div class="que-list">
   		<question-list :data="queList" :is-best="true"></question-list>	
-  		<div class="seemore" @click="seeMore('que')">
+  		<div class="seemore" @click="seeMore('que')" v-if="queList.length>2">
   			查看更多精选问答
   		</div>
+      <div class="seemore" v-if="queList.length==0">
+        暂无内容~
+      </div>
   	</div>
+    <div class="bom-div"></div>
   </div>
 </template>
 
@@ -67,7 +74,7 @@
     methods:{
       // 加载更多
       seeMore(type){
-        console.log(type)
+        // console.log(type)
         // Zepto.toast("没有更多了",120000,'toast-info');
         if (type=='art') {
           $.post(global.domain +'/article/get_choice_article',
@@ -138,7 +145,7 @@
 <style scoped lang="stylus">
 
 	.que-list{
-		margin-bottom: 5.0rem;
+		// margin-bottom: 5.0rem;
 	}
  
  .eva{

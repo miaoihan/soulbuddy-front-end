@@ -149,6 +149,10 @@ var routes = {
     name: 'eva',
     component: require('pages/home/SelfEva.vue')
   },
+  '/otherevaluation/:id': {
+    name: 'othereva',
+    component: require('pages/home/OtherEva.vue')
+  },
   '/evaluation/result/:id': {
     name: 'evaResult',
     component: require('pages/home/EvaResult.vue')

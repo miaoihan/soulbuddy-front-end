@@ -6,6 +6,9 @@
       <div class="seemore" @click="seeMore">
         查看更多
       </div>
+      <div class="seemore" v-if="readList.length==0">
+        暂无内容~
+      </div> 
   	</div> <!-- end article-list -->
     <div class="bom-div"></div>
   </div>

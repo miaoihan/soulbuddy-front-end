@@ -8,6 +8,7 @@
   	<input type="hidden" name="q_type" :value="1">
   	<input type="hidden" name="is_public" value="{{ is_public? 1:0 }}">
   	<input type="hidden" name="answer_id" :value="$route.query.uid">
+  	<input type="hidden" name="reward_money" :value="$route.query.rm">
   	<div class="ask-title tbar">
   		<input name="title" type="text" placeholder="标题" >
   	</div>

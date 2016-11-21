@@ -10,7 +10,7 @@
           <!-- {{data.tags | str2arr}} -->
           <!-- 标签组 -->
           <div class="art-label">
-            <span class="label label-border" v-for="tag of tags">{{ tag }}</span>
+            <span class="label label-border" v-for="tag of tags.toString() | str2arr">{{ tag }}</span>
           </div>
           <!-- 信息 -->
           <article class="art-meta">

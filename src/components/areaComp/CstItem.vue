@@ -7,8 +7,8 @@
 					<img src="../../assets/imgs/liked.png" alt="">
 			  </i>
 			  <a v-link="{name:'user', params:{ id: data.u_id }}">
-			  	<div class="z-avator">
-			  		<img :src="data.real_logo" alt="">
+			  	<div class="z-avator" style="background: url({{data.real_logo}}) no-repeat center top; background-size: cover">
+			  		<!-- <img :src="data.real_logo" alt=""> -->
 			  		
 			  	</div>
 			  	<div class="z-desc container-16">
@@ -73,7 +73,7 @@
 	  	},
 	  	cancelike(u_id){
 	  		if(this.$route.path!='/me/favorite'){
-	  			console.log("u_id is "+u_id)
+	  			// console.log("u_id is "+u_id)
 		  		this.is_like = false
 		  		this.data.fav_count--
 		  		this.data.is_fav=0

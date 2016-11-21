@@ -14,6 +14,7 @@ import SelectItem from '../areaComp/SelectItem'
   	data() {
   		return{
   			checked_list: [],
+        test:1
   		}
   	},
     created(){
@@ -53,6 +54,7 @@ import SelectItem from '../areaComp/SelectItem'
 		  		]
 		  	}
 	  	},
+      selIndex:{type:Array,default:[]},
       // 选择题数组
       selarr: {type: Array, default: null},
 	  },

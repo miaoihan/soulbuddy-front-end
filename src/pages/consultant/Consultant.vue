@@ -1,10 +1,18 @@
 <template>
 <!-- 咨询师 -->
 	<nav-header :identity.sync="identity" :iscst="true" :right="false"></nav-header>
-  <div class="far-bom">
+  <div>
 	  <cst-list :data="userList1" v-if="identity===1"></cst-list>
 	  <kol-list :data="userList2" v-if="identity===2"></kol-list>
   </div>
+  <div class="seemore" @click="seeMore(identity)" 
+       v-if="(identity===1 && userList1.length>9) || (identity===2 && userList2.length>9)">
+    查看更多
+  </div>
+  <div class="seemore" v-if="(identity===1 && userList1.length===0) || (identity===2 && userList2.length===0)">
+    暂无内容~
+  </div>
+  <div class="bom-div"></div>
 </template>
 
 <script>
@@ -17,17 +25,32 @@
 	  data(){
 	  	return{
 	  		token: '',
-	  		domain: 'http://xinling.songtaxihuan.com',
 	  		iscst: true,
 	  		identity: 1, //0普通用户1心理咨询师2经验答人
 	  		userList1: [],
 	  		userList2: [],
+        page1: 1,
+        page2: 1
 	  	}
 	  },
+    methods:{
+      // 加载更多
+      seeMore(i){
+        if (i == 1) {
+          $.post(global.domain +'/user/get_user_list',
+            { token: global.token, page: ++this.page1,identity: i }, v => 
+            this.userList1 = this.userList1.concat(v.data), 'json');
+        }else if(i == 2){
+          $.post(global.domain +'/user/get_user_list',
+            { token: global.token, page: ++this.page2,identity: i }, v => 
+            this.userList2 = this.userList2.concat(v.data), 'json');
+        }
+      },
+    },
 	  ready(){
       // 咨询师
 	  	$.ajax({
-          url: this.domain +'/user/get_user_list',
+          url: global.domain +'/user/get_user_list',
           type:'POST', 
           dataType: 'json',
           cache: true,
@@ -39,7 +62,6 @@
           success: function(data) {
           	if (data.code != -1) {
           		this.userList1 = data.data;
-	          	console.log(this.userList1)
           	}
           }.bind(this),
           error: function(xhr, status, err) {
@@ -47,7 +69,7 @@
         });
       // 经验达人
 	  	$.ajax({
-          url: this.domain +'/user/get_user_list',
+          url: global.domain +'/user/get_user_list',
           type:'POST', 
           dataType: 'json',
           cache: true,
@@ -59,7 +81,6 @@
           success: function(data) {
           	if (data.code != -1) {
           		this.userList2 = data.data;
-	          	console.log(this.userList2)
           	}
           }.bind(this),
           error: function(xhr, status, err) {

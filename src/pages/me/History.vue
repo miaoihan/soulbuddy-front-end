@@ -13,8 +13,11 @@
 			</div>
 			<answer-card :data="que" :free="true"></answer-card>
 		</section>
-		<div class="seemore" @click="seeMore('que')">
+		<div class="seemore" @click="seeMore('que')" v-if="questions.length!=0">
   			查看更多听过的问题
+  	</div>
+  	<div class="seemore" v-if="questions.length==0">
+  			暂无内容~
   	</div>
   	<div class="bom-div"></div>
   </div>

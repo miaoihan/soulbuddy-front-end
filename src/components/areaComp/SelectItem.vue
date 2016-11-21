@@ -8,7 +8,7 @@
 				<li @click="select($index+1)" v-for="answer in answers" v-if="answer">
 					{{answer}}
 					<span class="iconfont pull-right"
-								v-if="sel_index ==  $index+1" 
+								v-if="selIndex ==  $index+1" 
 								>&#xe60e;</span>
 				</li>
 				
@@ -23,7 +23,7 @@
 	  },
 	  data() {
   		return{
-  			sel_index: -1,
+  			// selIndex: -1,
   			answers: [],
   			
   		}
@@ -31,7 +31,7 @@
 	  methods:{
   		select(option){
   			console.log(option)
-  			this.sel_index = option;
+  			this.selIndex = option;
   			// 将题的选项放到数组里
   			this.selarr.$set(this.index,option)
   			console.log(this.selarr)
@@ -39,6 +39,7 @@
   	},
   	ready(){
   		this.answers = JSON.parse(this.data.answers)
+  		this.selIndex=this.data.selIndex
   	},
 	  props:{
 	  	data: {
@@ -49,6 +50,7 @@
 		  		]
 		  	}
 	  	},
+	  	selIndex:{type: Number, default: -1},
 	  	// 选择题数组
 	  	selarr: {type: Array, default: null},
 	  	index: {type: Number, default: 0},

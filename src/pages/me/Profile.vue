@@ -258,7 +258,7 @@ import NavHeader from 'components/funComp/NavHeader';
 .textarea-pro{
   margin-top: 1rem;
   width: 100%;
-  height: 5.0rem;
+  height: 6.0rem;
   padding:0.75rem 1.0rem;
   background-color: #fff;
 }

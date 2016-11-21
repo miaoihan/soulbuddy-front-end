@@ -4,8 +4,9 @@
   	<div class="wrapper search-body">
   		<i class="iconfont sear-img" @click="search">&#xe600;</i>
   		<div class="input-body-head">
-  				<input class="input-ser" type="serch" v-model="search_title" @keyup="search">
-
+	  		<form action="">
+	  				<input class="input-ser" type="search" v-model="search_title" @keyup="search">
+				</form>
   		</div>  		
   	</div>
 	<a class="back" onclick="window.history.go(-1)">取消</a>
@@ -13,6 +14,7 @@
   </header>
   <serch-list :data="search_list" style="background-color:#fff"></serch-list>
   <div class="noResult" v-if="!result">没有你搜索的结果</div>
+  <div class="bom-div"></div>
   <!-- <p>{{search_title}}</p> -->
 </template>
 
@@ -91,6 +93,7 @@ import SerchList from 'pages/home/SerchList.vue'
 	width 80.5%
 	// margin-left 0.25rem
 	background-color #fff
+	border-radius 3px
 .sear-img
 	opacity 0.8
 	float left

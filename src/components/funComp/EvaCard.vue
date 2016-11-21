@@ -26,21 +26,25 @@
   </div>
 
   <div class="card-bodyp relative wrapper" v-if="type=='other'">
-    <div class="swiper-container"id="swp2">
-      <div class="swiper-wrapper">
-          <!-- 已经评测了就跳转 -->
-          <div class="swiper-slide" style="height:4.0rem;" 
-               v-for="eva in datap">
-            <div class="opacityback" style="opacity: 1;">
-             <img style="height:100%;width:100%;" src="../../../src/assets/imgs/xl8.jpg">
-            </div>
-            <span class="eva-titlep">{{eva.title}}</span>
-            <div class="eva-score" style="margin-left:0.75rem;margin-top:0.8rem">
-                  <span style="font-size:0.6rem">综合评分：</span>{{eva.score}}
-            </div>
-          </div>
+    
+      <div class="swiper-container"id="swp2">
+        <div class="swiper-wrapper">
+            <!-- 已经评测了就跳转 -->
+              <div class="swiper-slide" style="height:4.0rem;" 
+                   v-for="eva in datap">
+                <a v-link="{name:'othereva', params:{id: eva.test_id}}">
+                  <div class="opacityback" style="opacity: 1;">
+                   <img style="height:100%;width:100%;" src="../../../src/assets/imgs/xl8.jpg">
+                  </div>
+                  <span class="eva-titlep">{{eva.title}}</span>
+                  <div class="eva-score" style="margin-left:0.75rem;margin-top:0.8rem">
+                        <span style="font-size:0.6rem">综合评分：</span>{{eva.score}}
+                  </div>
+                </a>
+              </div>
+        </div>
       </div>
-    </div>
+    
   </div>
 </template>
 

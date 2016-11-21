@@ -21,7 +21,11 @@
   	</section> <!-- end top -->
   	<!-- 最佳回答 -->
   	<answer-card :data="ans_best" v-if="ans_best.is_best==1" 
+<<<<<<< HEAD
   			:free="true" goto="true"></answer-card>	
+=======
+  							 :free="true" goto="true"></answer-card>	
+>>>>>>> 1c3d7243eed3aefcacc8dd3ce879eeb7ec639f0e
   	<aside class="m-other" v-if="ans_best.is_best!=1">
   		 {{ question.answers.length>0? '共有 '+ans_other.length : 0}} 个回答
   	</aside>
@@ -32,7 +36,12 @@
   	<section class="qd-middle" style="margin-bottom: 5.0rem">
   		<div class="answer-item" v-for="obj in ans_other"
   					>
+<<<<<<< HEAD
   			<answer-card :data="obj" :setbest="true" :free="true" :is-null="isNull" :is-set.sync="isSet" goto="true"></answer-card>	
+=======
+  			<answer-card :data="obj" :setbest="true" :free="true" :is-null="isNull" :index="$index"
+  									 :is-set.sync="isSet" goto="true"></answer-card>	
+>>>>>>> 1c3d7243eed3aefcacc8dd3ce879eeb7ec639f0e
   		</div>
   	</section>
   </div>

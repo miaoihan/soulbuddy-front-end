@@ -1,13 +1,13 @@
 <template>
   <nav class="bar bar-tab fixed" v-if="isshow">
     <a v-link="'/home'" class="tab-item external" :class="{ active: index === 0 }" @click="changClass(0)">
-      <i class="iconfont icon-htmal5icon06"></i>
+      <i class="iconfont">&#xe624;</i>
       <span class="tab-label">首页</span>
     </a>
     <a v-link="'/consultants'" class="tab-item external " 
        :class="{ active: index === 1 }" @click="changClass(1)"
        v-if="identityb == 0">
-      <i class="iconfont icon-zixun-copy"></i>
+      <i class="iconfont">&#xe627;</i>
       <span class="tab-label">咨询</span>
     </a>
     <a v-link="'/wenda'" class="tab-item external " 
@@ -17,7 +17,7 @@
       <span class="tab-label">问答</span>
     </a>
     <a v-link="'/me'" class="tab-item external " :class="{ active: index === 2 }" @click="changClass(2)">
-      <i class="iconfont icon-iconfontwode" style="margin-top:3px"></i>
+      <i class="iconfont" style="margin-top:3px">&#xe625;</i>
       <span class="tab-label" style="margin-top:-10px">我的</span>
     </a>
   </nav>

@@ -50,9 +50,9 @@
 	  		</div>
   	</div> <!-- end top -->
   	<div class="m-tips">
-  			共回答了 <strong>{{ user.answers.length}}</strong> 个问题</div>
+  			共回答了 <strong>{{ answers.length}}</strong> 个问题</div>
 		<div class="ans-list">
-			<question-list :data="user.answers" :datap="datap"></question-list>	
+			<question-list :data="answers" :datap="datap"></question-list>	
 		</div>
 		<footer class="qd-footer fixed-bottom ztc"
   					@click="callpay">
@@ -87,6 +87,7 @@ import NavHeader from 'components/funComp/NavHeader';
 	  	return{
 	  		token: '',
 	  		user: {},
+	  		answers: [],
 	  		collected:false,
 	  		user_type:"",
 	  		about_info:[],
@@ -118,7 +119,7 @@ import NavHeader from 'components/funComp/NavHeader';
 	                	if(data.msg==true){
 	                		alert(global.user.balance)
 	                		alert('支付成功')
-	                 		this.$router.go('/askto?uid='+this.user.u_id)
+	                 		this.$router.go('/askto?uid='+this.user.u_id+'&rm='+this.user.answer_fee)
 	                	}else{
 	                		alert('支付失败')
 	                	}
@@ -128,7 +129,6 @@ import NavHeader from 'components/funComp/NavHeader';
 	                  alert('支付失败')
 	                }.bind(this)
 	            });
-	  			
 	  		}
 	  	},
 	  	closeModal(){
@@ -138,6 +138,7 @@ import NavHeader from 'components/funComp/NavHeader';
 	  		// 微信支付
 		  	this.loading = true;
 		  	let vm = this;
+
 	  		// 先获取订单
 	  		$.ajax({
           url: global.domain +'/thirdparty/wepay',
@@ -151,6 +152,7 @@ import NavHeader from 'components/funComp/NavHeader';
           	let vm = this;
           	let param = JSON.parse(data.data);
           	this.loading = false;
+
       			// 调微信支付接口
 		      	wx.chooseWXPay({
 					    timestamp: param.timeStamp+'', 
@@ -160,7 +162,7 @@ import NavHeader from 'components/funComp/NavHeader';
 					    paySign: param.paySign, 
 					    success: function (res) {
 				        // 支付成功后,可以提问
-				        vm.$router.go('/askto?uid='+vm.user.u_id)
+				        vm.$router.go('/askto?uid='+vm.user.u_id+'&rm='+vm.user.answer_fee)
 						    },
 						    fail: function(res){
 						    	console.log(res)
@@ -197,6 +199,19 @@ import NavHeader from 'components/funComp/NavHeader';
           error: function(err) {
             console.error(JSON.stringify(err));
           }.bind(this)
+        });
+	  		// 用户回答
+	  		$.ajax({
+          url: global.domain +'/user/get_user_answers',
+          type:'POST', 
+          dataType: 'json',
+          data:{
+            token: global.token,
+            u_id: this.$route.params.id,
+            page: 1,
+          },
+          success: data => this.answers = data.data,
+          error: err => console.error(err.toString())
         });
 
 	  		let vm = this;
