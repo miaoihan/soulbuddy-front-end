@@ -1,6 +1,6 @@
 <template>
 <!-- 问题详情 -->
-<nav-header title="问题详情" left="back"></nav-header>
+<nav-header title="问题情" left="back"></nav-header>
   <div>
   	<section class="qd-top part">
 	  	<div class="container-20" style="border-bottom: 1px solid #e3e3e3">
@@ -31,7 +31,7 @@
   	<section class="qd-middle" style="margin-bottom: 5.0rem">
   		<div class="answer-item" v-for="obj in ans_other"
   					v-if="question.answers">
-  			<answer-card :data="obj" :free="question.can_listen"></answer-card>	
+  			<answer-card :data="obj" goto="132132" :free="question.can_listen"></answer-card>	
   		</div>
   	</section>
   	<footer class="qd-footer fixed-bottom ztc"
