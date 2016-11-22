@@ -31,11 +31,7 @@
   	<section class="qd-middle">
   		<div class="answer-item" v-for="obj in ans_other"
   					v-if="question.answers">
-<<<<<<< HEAD
-  			<answer-card :data="obj" goto="132132" :free="question.can_listen"></answer-card>	
-=======
   			<answer-card :data="obj" goto="true" :free="question.can_listen" :index="$index"></answer-card>	
->>>>>>> 1c3d7243eed3aefcacc8dd3ce879eeb7ec639f0e
   		</div>
   	</section>
   	<div class="bom-div"></div>

@@ -39,7 +39,7 @@ import NavHeader from 'components/funComp/NavHeader';
     methods:{
       submit(){
       	if (!this.price) return;
-      	if(ths.price==0){
+      	if(this.price==0){
           alert('咨询费必须大于0')
           return false
         }
